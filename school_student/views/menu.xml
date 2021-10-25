@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Top menu item -->
+        <menuitem name="school student" id="school_student.menu_root"/>
+        <!-- menu categories -->
+        <menuitem name="Students" id="school_student.menu_1"
+                  parent="school_student.menu_root"/>
+        <!-- actions -->
+        <menuitem name="Student List" id="school_student.menu_1_list"
+                  parent="school_student.menu_1" action="school_student.action_window"/>
+        <menuitem name="Hobbies" id="hobbies_list_menu"
+                  parent="school_student.menu_1" action="student_hobby_action_window"/>
+
+        <menuitem name="Update Fees" id="student_fees_update_menu_item" action="student_fees_update_action"
+                  parent="school_student.menu_root"/>
+
+    </data>
+</odoo>

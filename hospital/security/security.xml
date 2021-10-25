@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record model="ir.module.category" id="module_category_hospital">
+        <field name="name">Hospital Management</field>
+        <field name="description">Category for hospital.</field>
+        <field name="sequence">45</field>
+    </record>
+
+    <record id="hospital_patient_group" model="res.groups">
+        <field name="name">Doctor</field>
+        <field name="category_id" ref="module_category_hospital"/>
+    </record>
+    <record model="ir.rule" id="hospital_patient_record_rule">
+        <field name="name">See only his patient.</field>
+        <field name="model_id" ref="model_hospital_patient"/>
+        <field name="domain_force">[('doctor_id.user_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('hospital_patient_group'))]"/>
+    </record>
+
+    <record id="hospital_patient_manager_group" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="category_id" ref="module_category_hospital"/>
+    </record>
+    <record model="ir.rule" id="hospital_patient_manager_record_rule">
+        <field name="name">See all patient.</field>
+        <field name="model_id" ref="model_hospital_patient"/>
+        <field name="domain_force">[]</field>
+        <field name="groups" eval="[(4, ref('hospital_patient_manager_group'))]"/>
+    </record>
+
+    <record id="hospital_lab_group" model="res.groups">
+        <field name="name">Lab Assistance</field>
+        <field name="category_id" ref="module_category_hospital"/>
+        <field name="implied_ids" eval="[(4, ref('hospital_patient_group'))]"/>
+    </record>
+    <record model="ir.rule" id="hospital_lab_record_rule">
+        <field name="name">See his lab.</field>
+        <field name="model_id" ref="model_hospital_lab"/>
+        <field name="domain_force">[('user_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('hospital_lab_group'))]"/>
+    </record>
+
+</odoo>

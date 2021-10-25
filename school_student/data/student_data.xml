@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--<record id="school_student_1" model="school.student">
+        <field name="name">Student XML</field>
+        <field name="student_fees">1245</field>
+        <field name="school_id" ref="school.school_profile_1"/>
+    </record>-->
+
+   <!-- <record id="school_student_2" model="school.student">
+        <field name="name">Student XML2</field>
+        <field name="student_fees">6500</field>
+        <field name="school_id" ref="school.school_profile_1"/>
+        <field name="hobby_list" eval="[(6, 0, [ref('1'), ref('3'), ref('5')])]"/>
+    </record>-->
+
+    <!--  <record id="school_profile_20" model="school.profile">
+          <field name="name">NEW SCHOOL</field>
+          <field name="email">NEWSCHOOL@gmail.com</field>
+          <field name="school_rank">12</field>
+          <field name="address">New XMl School</field>
+          <field name="school_type">public</field>
+          <field name="school_list" eval="[(0, 0, {
+              'name': 'First XML student',
+              'student_fees': 1232,
+          })]"/>
+      </record>
+  -->
+
+    <function model="school.student" name="_change_roll_number" eval="('STD', )"/>
+
+</odoo>

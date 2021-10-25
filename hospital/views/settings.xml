@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Inherit Form View to Modify it -->
+    <record id="view_res_config_settings_form" model="ir.ui.view">
+        <field name="name">res.config.settings.form</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//div[hasclass('settings')]" position="inside">
+                <div class="app_settings_block" data-string="Hospital" string="Hospital" data-key="hospital">
+                    <h2>Hospital</h2>
+                    <div class="row mt16 o_settings_container" name="expenses_setting_container">
+                        <div class="o_setting_left_pane">
+                            <label for="name" string="Name"/>
+                            <field name="name"/>
+                        </div>
+                    </div>
+                    <div class="row mt16 o_settings_container" name="expenses_setting_container">
+                        <div class="o_setting_left_pane">
+                            <label for="product_id" string="Medicine"/>
+                            <field name="product_id" widget="many2many_tags"/>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="action_hospital_config_settings" model="ir.actions.act_window">
+        <field name="name">Settings</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{'module': 'hospital'}</field>
+    </record>
+
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="menu_hospital_configuration" name="Configuration" parent="hospital.hospital_root" sequence="450"/>
+    <menuitem id="menu_hospital_settings" name="Settings" parent="menu_hospital_configuration"
+              action="action_hospital_config_settings" sequence="0"/>
+</odoo>

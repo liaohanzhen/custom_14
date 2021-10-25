@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--<delete model="school.student" id="school_student.school_student_2" />
+    <delete model="student.hobby" id="school_student.6" />
+&lt;!&ndash;    <delete model="ir.ui.menu" id="school_student.student_fees_update_menu_item" /> Delete whole menu &ndash;&gt; &lt;!&ndash;    This is working fine...&ndash;&gt;-->
+
+    <delete search="[('name', 'ilike' , 'xyz')]" model="student.hobby" />
+
+</odoo>

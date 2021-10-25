@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="act_patient_appointment" model="ir.actions.act_window">
+            <field name="name">Patient Appointment</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hospital.appointment</field>
+            <field name="view_mode">graph</field>
+            <field name="view_id" ref="hospital.view_hospital_patient_graph"/>
+        </record>
+
+        <record id="act_book_appointment" model="ir.actions.act_window">
+            <field name="name">Book Appointment</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hospital.appointment</field>
+            <field name="view_mode">calendar</field>
+            <field name="view_id" ref="hospital.view_hospital_patient_calendar"/>
+        </record>
+
+        <record id="act_patient_list" model="ir.actions.act_window">
+            <field name="name">Appointment List</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hospital.appointment</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="view_dashboard_form" model="ir.ui.view">
+            <field name="name">Dashboard.Form</field>
+            <field name="model">board.board</field>
+            <field name="arch" type="xml">
+                <form string="Dashboard">
+                    <board style="1-2">
+                        <column>
+                            <action string="Patient Appointment" name="%(hospital.act_patient_appointment)d"/>
+                            <action string="Appointment List" name="%(hospital.act_patient_list)d"/>
+                        </column>
+                        <column>
+                            <action string="Book Appointment" name="%(hospital.act_book_appointment)d"/>
+                        </column>
+                    </board>
+                </form>
+            </field>
+        </record>
+
+        <record id="menu_dashboard_action" model="ir.actions.act_window">
+            <field name="name">Dashboard</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">board.board</field>
+            <field name="view_mode">form</field>
+            <field name="usage">menu</field>
+        </record>
+
+        <menuitem name="Dashboard" id="menu_dashboard" parent="hospital.hospital_root" action="menu_dashboard_action"
+                  sequence="-12"/>
+
+    </data>
+</odoo>

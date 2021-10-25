@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_school_student_school_student,school_student.school_student,model_school_student,base.group_user,1,1,1,1
+access_school_student_hobbies,school_student.student_hobby,model_student_hobby,base.group_user,1,1,1,1
+access_student_fees_update_wizard,school_student.student_fees_update_wizard,model_student_fees_update_wizard,base.group_user,1,1,1,1
+access_student_address,school_student_student_address,model_student_address,base.group_user,1,1,1,1

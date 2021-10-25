@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="book_category_view_tree" model="ir.ui.view">
+        <field name="name">Book Category</field>
+        <field name="model">book.category</field>
+        <field name="arch" type="xml">
+            <tree string="Book Category">
+                <field name="name"/>
+                <field name="parent_id"/>
+                <field name="child_ids"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="book_category_view_form" model="ir.ui.view">
+        <field name="name">book.catefory.form</field>
+        <field name="model">book.category</field>
+        <field name="arch" type="xml">
+            <form string="Book Category">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                        <group>
+                            <field name="parent_id"/>
+                        </group>
+                        <field name="child_ids">
+                            <tree editable="1">
+                                <field name="name"/>
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="book_category_action" model="ir.actions.act_window">
+        <field name="name">Book Category</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">book.category</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create your first category..
+            </p>
+        </field>
+    </record>
+
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="book_category_menuitem" name="Category" parent="hospital.hospital_root"
+              action="book_category_action"/>
+
+</odoo>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="user_model_form_view" model="ir.ui.view">
+        <field name="name">APi.user.model.form</field>
+        <field name="model">user.model</field>
+        <field name="arch" type="xml">
+            <form string="Users">
+                <header>
+                    <button name="load_data" type="object" string="Load Data"></button>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="userId"/>
+                            <field name="title"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="body"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="user_model_tree_view" model="ir.ui.view">
+        <field name="name">API.user.model.tree</field>
+        <field name="model">user.model</field>
+        <field name="arch" type="xml">
+            <tree string="ModelTitle">
+                <field name="userId"/>
+                <field name="title"/>
+                <field name="body"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="user_model_action" model="ir.actions.act_window">
+        <field name="name">User Model</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">user.model</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create Your first user...
+            </p>
+        </field>
+    </record>
+
+    <record id="user_model_load_data" model="ir.actions.server">
+        <field name="name">Load Data</field>
+        <field name="model_id" ref="api.model_user_model"/>
+        <field name="binding_model_id" ref="api.model_user_model"/>
+        <field name="state">code</field>
+        <field name="code">model.load_data()</field>
+    </record>
+
+    <!-- This Menu Item will appear in the Upper bar, That's why It needs NO parent or action -->
+    <menuitem id="user_model_action_root" name="API" sequence="1"/>
+    <menuitem name="Users" id="user_model_action_child" parent="user_model_action_root" action="user_model_action"/>
+</odoo>
+
+
+        <!--    <field name="product_uom" force_save="1" groups="uom.group_uom" class="oe_inline oe_no_button"-->
+        <!--<field name="price_unit" groups="sales_team.group_sale_manager"/>-->
+        <!--<label for="discount" groups="sale.group_discount_per_so_line"/>-->
+        <!--<div name="discount" groups="sale.group_discount_per_so_line">-->
+        <!--<label for="analytic_tag_ids" groups="analytic.group_analytic_tags"/>-->
+        <!--    <field name="analytic_tag_ids" widget="many2many_tags" groups="analytic.group_analytic_tags"-->

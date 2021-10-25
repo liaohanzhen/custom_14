@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_invoice_document" inherit_id="account.report_invoice_document">
+        <xpath expr="//div[@id='informations']" position="inside">
+            <t t-if="o.project_id">
+                <div class="col-auto col-3 mw-100 mb-2" name="origin">
+                    <strong>Project Name:</strong>
+                    <p class="m-0" t-field="o.project_id.name"/>
+                </div>
+                <div class="col-auto col-3 mw-100 mb-2" name="origin">
+                    <strong>Project Code:</strong>
+                    <p class="m-0" t-field="o.project_id.project_code"/>
+                </div>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="report_delivery_document_inherit" inherit_id="stock.report_delivery_document">
+        <xpath expr="//div[@class='row mt32 mb32']" position="inside">
+            <t t-if="o.project_id">
+                <div class="col-auto col-3 mw-100 mb-2" name="origin">
+                    <strong>Project Name:</strong>
+                    <p class="m-0" t-field="o.project_id.name"/>
+                </div>
+                <div class="col-auto col-3 mw-100 mb-2" name="origin">
+                    <strong>Project Code:</strong>
+                    <p class="m-0" t-field="o.project_id.project_code"/>
+                </div>
+            </t>
+        </xpath>
+    </template>
+</odoo>

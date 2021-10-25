@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+<!--    <t t-name="TaxbleButton">-->
+    <!--        <button class="btn btn-primary">-->
+    <!--			<i class='fa fa-shopping-cart'/>Texable Invoice-->
+    <!--        </button>-->
+    <!--    </t>-->
+
+    <t t-extend="PaymentScreenWidget">
+        <t t-jquery="div.payment-buttons" t-operation="append">
+            <t t-if='widget.pos.get_order()'>
+                <t t-name="TaxbleButton">
+                    <div t-attf-class='button taxable_invoice #{ widget.pos.get_order().is_to_invoice() ? "highlight" : ""} '>
+                        <i class='fa fa-file-text-o'/>
+                        Texable Invoice
+                    </div>
+                </t>
+            </t>
+        </t>
+    </t>
+
+
+
+</templates>

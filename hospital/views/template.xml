@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="web_patients_page" name="Hospital Patient">
+            <t t-call="website.layout">
+                <div class="container">
+                    <span clas="text-center display">Hello, word.</span>
+                </div>
+                <div class="container my-5">
+                    <t t-if="one">
+                        <div class="card">
+                            <div class="card-header d-flex justify-content-between">
+                                <h2>Patient</h2>
+                                <h2><a href="/hospital/doctor">Back</a></h2>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><h5 class="card-title text-primary"><t
+                                        t-esc="patients.name_seq"/></h5></li>
+                                <li class="list-group-item" t-esc="patients.patient_name"></li>
+                                <li class="list-group-item" t-esc="patients.gender"></li>
+                                <li class="list-group-item" t-esc="patients.patient_age"></li>
+                                <li class="list-group-item" t-esc="patients.age_group"></li>
+                                <li class="list-group-item" t-esc="patients.notes"></li>
+                            </ul>
+                        </div>
+                    </t>
+                    <t t-else="">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="patients" t-as="patient">
+                                    <tr>
+                                        <th scope="row"><a t-attf-href="/hospital/doctor/{{ slug(patient) }}"
+                                                           t-esc="patient.name_seq" class="text-primary"/></th>
+                                        <td t-esc="patient.patient_name"></td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </t>
+                </div>
+            </t>
+        </template>
+
+        <template id="web_patient_form">
+            <t t-call="website.layout">
+                <div class="container mt-5">
+                    <div class="row">
+                        <div class="col-12">
+                            <form method="POST" action="/hospital/create-patient">
+                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                <div class="form-group">
+                                    <label for="patient_name">Patient Name</label>
+                                    <input type="text" name="patient_name" class="form-control" id="patient_name"
+                                           placeholder="Patient Name" t-att-value="patient_name"/>
+                                    <small id="emailHelp" class="form-text text-muted">We'll never share your details
+                                        with anyone
+                                        else.</small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email_id">Email address</label>
+                                    <input type="email" name="email" class="form-control" id="email_id"
+                                           aria-describedby="emailHelp"
+                                           placeholder="Enter email" t-att-value="email_id"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="doctor_id">Select Doctor</label>
+                                    <select class="form-control" id="doctor_id" name="doctor_id">
+                                        <t t-foreach="doctor_rec" t-as="doctor">
+                                            <option t-esc="doctor.name" t-att-value="doctor.id"/>
+                                        </t>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+    </data>
+</odoo>

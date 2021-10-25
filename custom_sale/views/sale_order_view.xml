@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_order_form_inherit" model="ir.ui.view">
+        <field name="name">sale.order.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+
+            <field name="payment_term_id" position="after">
+                <field name="project_id"/>
+            </field>
+
+        </field>
+    </record>
+
+    <record id="view_move_form_inherit" model="ir.ui.view">
+        <field name="name">account.move.form</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='journal_div']" position="after">
+                <field name='project_id'/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_picking_form_inherit" model="ir.ui.view">
+        <field name="name">stock.picking.form.inherit.website.sale.stock</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="project_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_edit_project_inherit" model="ir.ui.view">
+        <field name="name">project.project.view.inherit</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button class="oe_stat_button" name="action_display_tree_form" type="object" icon="fa-pencil-square-o"
+                        context="{'caller': 'account.move'}">
+                    <field string="Invoices" name="invoice_count" widget="statinfo"/>
+                </button>
+                <button class="oe_stat_button" name="action_display_tree_form" type="object" icon="fa-truck"
+                        context="{'caller': 'stock.picking'}">
+                    <field string="Deliveries" name="picking_count" widget="statinfo"/>
+                </button>
+                <button class="oe_stat_button" name="action_display_tree_form" type="object" icon="fa-shopping-cart"
+                        context="{'caller': 'sale.order'}">
+                    <field string="Orders" name="sale_order_count" widget="statinfo"/>
+                </button>
+            </xpath>
+            <field name="label_tasks" position="after">
+                <group>
+                    <field name="project_code"/>
+                </group>
+            </field>
+        </field>
+    </record>
+
+
+</odoo>

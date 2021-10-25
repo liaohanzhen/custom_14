@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_appointment">
+        <t t-call="web.html_container">
+
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <table class="table table-bordered mb64">
+                        <tr>
+                            <th>Patient ID</th>
+                            <th>Appointment Date</th>
+                            <th>Status</th>
+                            <th>Note</th>
+                        </tr>
+                        <t t-foreach="appointments or docs" t-as="o">
+                            <tr>
+                                <td colspan="">
+                                    <strong>
+                                        <h2 t-esc="o['name']"/>
+                                    </strong>
+                                </td>
+                                <td colspan="">
+                                    <h6 t-esc="o['appointment_date']"/>
+                                </td>
+                                <td colspan="">
+                                    <h6 t-esc="o['state']"/>
+                                </td>
+                                <td colspan="">
+                                    <h6 t-esc="o['notes']"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </table>
+                    <!--<table class="table table-bordered mb64">
+                        <div class="page">
+                            <t t-foreach="appointments" t-as="appointment">
+                                <tr>
+                                    <td colspan="">
+                                        <strong>
+                                            <h5 t-esc="appointment['name']"/>
+                                        </strong>
+                                    </td>
+                                    <td class="text-center align-middle" style="height: 6rem">
+                                        <span t-esc="appointment['appointment_date']"/>
+                                    </td>
+                                    <td class="text-center align-middle" style="height: 6rem">
+                                        <span t-esc="appointment['notes']"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </div>
+                    </table>-->
+                </div>
+            </t>
+        </t>
+
+    </template>
+
+<!--    <t t-jquery="t[t-if*='lines']" t-operation="replace">-->
+<!--        <t t-foreach="lines" t-as="line">-->
+<!--            <t t-esc="line.location_id.id"/>-->
+<!--            <span class="product-label" t-esc="line.display_name || line.product_id.display_name"/>-->
+<!--            <span class="product-label" t-esc="line.location_id"/>-->
+<!--        </t>-->
+<!--    </t>-->
+
+</odoo>
+

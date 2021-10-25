@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+uid_process_order_import,AccessName.process.order.import,model_process_order_import,,1,1,1,1
+uid_import_order,AccessName.import.order,model_import_order,,1,1,1,1
+uid_import_order_line,AccessName.import.order.line,model_import_order_line,,1,1,1,1

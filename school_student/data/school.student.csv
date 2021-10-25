@@ -1,0 +1,3 @@
+id,name,student_fees,school_id:id,hobby_list:id
+student_1,"Same",6543,school_1,"1"
+student_1,"Samuel",1235,school_1,"1,2,5"

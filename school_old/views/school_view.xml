@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="scholl_list_view" model="ir.ui.view">
+        <field name="name">school.list.view</field>
+        <field name="model">school.profile</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name_seq"></field>
+                <field name="name" string="From xml school name"></field>
+                <field name="email"></field>
+                <field name="phone"></field>
+                <field name="school_rank"></field>
+                <field name="school_type"></field>
+                <field name="document_name"></field>
+                <field name="establish_date"></field>
+                <field name="open_date"></field>
+                <field name="is_virtual_class"></field>
+                <field name="result"></field>
+                <field name="address" string="School Address"></field>
+                <field name="school_description" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="school_form" model="ir.ui.view">
+        <field name="name">school.form.view</field>
+        <field name="model">school.profile</field>
+        <field name="arch" type="xml">
+            <form string="Profile">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name_seq" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name" string="From xml school name"
+                                   readonly="0" required="1"></field>
+                            <field name="email" placeholder="example@gmail.com"></field>
+                            <field name="phone"></field>
+                            <field name="school_rank"></field>
+                            <field name="auto_rank"></field>
+                            <field name="is_virtual_class"></field>
+                            <field name="result" widget="monetary"></field>
+                            <!-- <field name="address" string="School Address" widget="html"></field> -->
+                            <field name="address" string="School Address"></field>
+                        </group>
+                        <group>
+                            <field name="image" widget="image"></field>
+                            <field name="establish_date"></field>
+                            <field name="open_date"></field>
+                            <field name="school_type"></field>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="document" filename="document_name"></field>
+                        <field name="document_name" invisible="1"></field>
+                        <field name="school_description"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_school_profile" model="ir.actions.act_window">
+        <field name="name">School Profile</field>
+        <field name="res_model">school.profile</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="school_root_menu" name="School"/>
+    <menuitem id="school_profile_menu"
+              action="action_school_profile" parent="school_root_menu"
+              name="Profile"></menuitem>
+
+
+</odoo>

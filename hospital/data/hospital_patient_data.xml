@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <record id="patient_7" model="hospital.patient">
+        <field name="patient_name">From Xml</field>
+        <field name="patient_age">12</field>
+        <field name="gender">female</field>
+        <field name="notes">Nothing..</field>
+    </record>
+    <record id="patient_8" model="hospital.patient">
+        <field name="patient_name">From Xml2</field>
+        <field name="patient_age">12</field>
+        <field name="gender">female</field>
+        <field name="notes">Nothing..</field>
+    </record>
+
+
+</odoo>

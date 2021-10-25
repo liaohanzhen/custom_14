@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="school_profile_1" model="school.profile">
+        <field name="name">XMl School</field>
+        <field name="school_rank">12</field>
+        <field name="address">XMl School</field>
+        <field name="school_type">public</field>
+        <!--        <field name="image" type="base64" file="school/static/src/ducati-monster-1200-wallpaper-3.png"/>-->
+    </record>
+
+</odoo>

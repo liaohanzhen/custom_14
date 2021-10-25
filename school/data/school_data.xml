@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id='school_3' model='school.profile'>
+        <field name='name'>school xml3</field>
+        <field name='email'>school3.xml@.com</field>
+        <field name='phone'>78795565676</field>
+        <field name='address'>addresh of this school xml</field>
+        <field name='school_type'>public</field>
+
+    </record>
+
+    <record id='school_4' model='school.profile'>
+        <field name='name'>first school</field>
+        <field name='email'>school4.xml@.com</field>
+        <field name='phone'>9896080789</field>
+        <field name='address'>addresh of this school xml</field>
+        <field name='school_type'>public</field>
+    </record>
+
+    <record id='school_5' model='school.profile'>
+        <field name='name'>school xml3</field>
+        <field name='email'>school3.xml@.com</field>
+        <field name='phone'>345345546</field>
+        <field name='address'>addresh of this school xml</field>
+        <field name='school_type'>public</field>
+    </record>
+</odoo>

@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <record id="mail_template_hospital_patient" model="mail.template">
+            <field name="name">Patient Card: Send by Email</field>
+            <field name="model_id" ref="model_hospital_patient"/>
+            <field name="email_from">${object.user_id.email_formatted |safe}</field>
+            <field name="email_to">${object.email |safe}</field>
+            <field name="subject">Patient Card (Ref ${object.name_seq or 'n/a' })</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        Hello ${object.patient_name},
+                        <br/>
+                        <br/>
+                        We are glad to inform you that your patient card has been issued.
+                        Here is your patient card reference number ${object.name_seq}.
+                        <br/>
+                        Your Doctor Name.: ${object.doctor_id.doctor_name}
+                        <br/>
+                        Age: ${object.patient_age}
+                        Age Group: ${object.age_group}
+                        <br/>
+                        <br/>
+                        If you have any queries fill free to contact.
+                    </p>
+                </div>
+            </field>
+            <field name="report_template" ref="hospital.report_hospital_patient"/>
+            <field name="report_name">Patient Card_${object.name_seq}</field>
+        </record>
+    </data>
+</odoo>

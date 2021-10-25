@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="report_hospital_patient" model="ir.actions.report">
+        <field name="name">Patient</field>
+        <field name="model">hospital.patient</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">hospital.report_patient</field>
+        <field name="report_file">hospital.report_patient</field>
+        <field name="binding_model_id" ref="model_hospital_patient"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="report_patient_appointment" model="ir.actions.report">
+        <field name="name">Appointment</field>
+        <field name="model">hospital.appointment</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">hospital.report_appointment</field>
+        <field name="report_file">hospital.report_appointment</field>
+        <field name="binding_model_id" ref="model_hospital_appointment"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="report_hospital_patient_xls" model="ir.actions.report">
+        <field name="name">Patient XLSX</field>
+        <field name="model">hospital.patient</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">hospital.report_patient_xls</field>
+        <field name="report_file">hospital.report_patient_xls</field>
+        <field name="binding_model_id" ref="model_hospital_patient"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!-- <record id="report_hospital_patient_appointment_xls" model="ir.actions.report">
+         <field name="name">Appointment XLSX</field>
+         <field name="model">hospital.patient</field>
+         <field name="report_type">xlsx</field>
+         <field name="report_name">hospital.report_patient_appointment_xls</field>
+         <field name="report_file">hospital.report_patient_appointment_xls</field>
+         <field name="binding_model_id" ref="model_hospital_patient"/>
+         <field name="binding_type">report</field>
+     </record>-->
+    <!--<report
+            id="report_hospital_patient"
+            model="hospital.patient"
+            string="Patient from menu"
+            report_type="qweb-pdf"
+            file="hospital.report_patient"
+            name="hospital.report_patient"
+            menu="False"
+    />
+
+    <report
+            id="report_hospital_patient_xls"
+            model="hospital.patient"
+            string="Patient From Menu XLS"
+            report_type="xlsx"
+            file="hospital.report_patient_xls"
+            name="hospital.report_patient_xls"
+            menu="False"
+    />-->
+
+</odoo>
+

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_order_import_wizard" model="ir.ui.view">
+        <field name="name">Update Order Data Wizard</field>
+        <field name="model">import.order</field>
+        <field name="arch" type="xml">
+            <form string="Order details" version="7">
+                <field name="order_id" invisible="True"/>
+
+                <group string="Invalid Product Codes" invisible="not context.get('invalid_code_ids', False)">
+                    <div class='oe_grey' invisible="not context.get('none_in_file', False)">
+                        System is unable to process some rows because of Code is not provided. <br/>
+                    </div>
+                    <br/>
+                    <div class="oe_grey">
+                        All these codes are not available in system. <br/>
+                        <h3>
+                            <field name="invalid_code_ids" readonly="True"></field>
+                        </h3>
+                    </div>
+                </group>
+
+                <newline/>
+                <group string="Order Items To Import" invisible="not context.get('item_ids', False)">
+                    <div class="oe_grey">
+                        <h3>All these products are already available in order but there may be change in Price, Quantity
+                            or Discount. So update Price, Qty or Discount and then choose the action you want.</h3>
+                    </div>
+                </group>
+                <group invisible="not context.get('item_ids', False)">
+                    <field name="item_ids" nolabel="1">
+                        <tree string="Order Details" editable="bottom" create="false">
+                            <field name="product_id" invisible="1"/>
+                            <field name="product_name"/>
+                            <field name="description"/>
+                            <field name="product_uom_id" readonly="True"/>
+                            <field name="quantity"/>
+                            <field name="price"/>
+                            <field name="discount"/>
+                        </tree>
+                    </field>
+                </group>
+
+                <footer>
+                    <button name="do_append" string="OK" type="object" class="oe_highlight"
+                            invisible="context.get('item_ids', False)"/>
+                    <button name="do_append" string="Append" type="object" class="oe_highlight"
+                            invisible="not context.get('item_ids', False)"/>
+                    <!--<button name="do_update" string="Update" type="object" class="oe_highlight"/>-->
+                    or
+                    <button string="_Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id='report_delivery_document_priority' inherit_id="stock.report_delivery_document">
+        <!-- Align Quantity-->
+        <xpath expr="//table/thead/tr/th[2]" position="attributes">
+            <attribute name="class">text-right</attribute>
+        </xpath>
+        <xpath expr="//table/tbody/tr/td[2]" position="attributes">
+            <attribute name="class">text-right</attribute>
+        </xpath>
+        <!-- Hide UoM -->
+        <xpath expr="//table/tbody/tr/td/span[2]" position="replace">
+            <span t-if="move.product_id.uom_id != move.product_uom"
+                t-field="move.product_uom"/>
+        </xpath>
+        <!-- Sort by product name -->
+        <xpath expr="//table[@name='stock_move_table']/tbody/tr" position="attributes">
+            <attribute name="t-foreach">lines.sorted(key=lambda l: l.product_id.name)</attribute>
+        </xpath>
+    </template>
+</odoo>

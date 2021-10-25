@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sale_order_line_view_ept" model="ir.ui.view">
+        <field name="name">sale order line ept</field>
+        <field name="model">process.order.import</field>
+        <field name="arch" type="xml">
+            <form string="Add Products">
+                <sheet>
+                    <notebook>
+                        <page string="Import / Export">
+                            <group col="2">
+                                <field name="choose_file" filename="file_name"/>
+                                <field name="file_name" invisible="1"/>
+                            </group>
+                            <newline/>
+                            <div>
+                                <p style="color:red;">
+                                    <h2>General Instructions :</h2> <br/>
+                                    <ul>
+                                        <li>Only <b>.xls</b> or <b>.xlsx</b> file format is supported.</li>
+                                        <li>Column headings must be like <b>Code,Name,Qty,Price,Discount</b>.</li>
+                                        <li><b>Code</b> column is mandatory while import.</li>
+                                        <li><b>Code</b> column value must be match to your product code. ( That is
+                                            “Internal reference” field in your product form ).</li>
+                                        <li>If <b>Qty</b> column is not given then system will take <b>Qty</b> from
+                                            server parameter.</li>
+                                        <li>While import, if only column <b>Code &amp; Qty</b> is specified then system
+                                            will take Name,Price &amp; Discount from Pricelist.</li>
+                                        <li>After exporting file you will see <b>ID</b> column. Don't remove it modify
+                                            it, if you want to update existing Order lines.</li>
+                                        <li>You can update existing order lines after exporting current order in Excel
+                                            file by clicking on <b>Export</b> button and then re-import it by modify
+                                            Qty, Name, Price or Discount.</li>
+                                        <li>If <b>ID</b> column is exist in excel file and there is no value in any
+                                            cell, then system will create new sale order line.</li>
+                                        <li>If same product is going to upload again then system will open those
+                                            products in new pop-up so you can change Price, Qty or Discount before
+                                            adding into Sale Order Line.</li>
+                                        <li>You can add new product &amp; modify existing lines at same time. Just
+                                            keep <b>ID</b> cell blank for the products which you want to add as new
+                                            items.</li>
+                                        <li>If you remove any Order line from Odoo and still if <b>ID</b> exists in
+                                            Excel file, then system will ignore that row.</li>
+                                        <li>While importing new row if <b>Code</b> column value is not specified than
+                                            system will ignore that row.</li>
+                                        <li>If <b>ID</b> column contains the value and <b>Code</b> is not specified then
+                                            system will update the Order line. if there is any changes in Price, Qty or
+                                            Discount.</li>
+                                        <li>If <b>Price</b> is not specified in Cell by keeping it blank, then system
+                                            will take price from Pricelist.</li>
+                                        <li>If wrong product <b>code</b> is specified in any cell then whole row will be
+                                            ignored.</li>
+                                    </ul>
+                                </p>
+                            </div>
+                            <footer>
+                                <button name="make_sale_order_line" string="Import"
+                                        colspan="1" type="object" icon="fa-arrow-down"
+                                        groups="import_order_xls.group_sale_order_line_import"/>
+                                <button name="export_sale_order_line" string="Export"
+                                        colspan="1" type="object" icon="fa-arrow-up"
+                                        groups="import_order_xls.group_sale_order_line_import"/>
+                                <button icon='fa-times' special="cancel"
+                                        string="Cancel"/>
+                            </footer>
+                        </page>
+                    </notebook>
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+
+    <!--    <act_window name="Import/Export Order Lines"-->
+    <!--                res_model="process.order.import"-->
+    <!--                src_model="sale.order"-->
+    <!--                view_mode="form"-->
+    <!--                target="new"-->
+    <!--                id="act_make_sale_oreder_line_ept" groups="group_sale_order_line_import"/>-->
+
+    <record id="act_make_sale_oreder_line_ept" model="ir.actions.act_window">
+        <field name="name">Import/Export Order Lines</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">process.order.import</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="sale.model_sale_order"/>
+        <field name="binding_view_types">form</field>
+        <field name="groups_id" eval="[(4, ref('import_order_xls.group_sale_order_line_import'))]"/>
+    </record>
+
+</odoo>

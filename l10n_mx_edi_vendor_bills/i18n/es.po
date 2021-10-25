@@ -1,0 +1,766 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_mx_edi_vendor_bills
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0+e-20210812\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-08-24 06:47+0000\n"
+"PO-Revision-Date: 2021-08-24 06:47+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_mx_edi_vendor_bills
+#. openerp-web
+#: code:addons/l10n_mx_edi_vendor_bills/static/src/js/attach_xmls.js:0
+#, python-format
+msgid ", </span> Customer RFC: <span level=\"2\">"
+msgstr ", </span> RFC del Cliente: <span level=\"2\">"
+
+#. module: l10n_mx_edi_vendor_bills
+#. openerp-web
+#: code:addons/l10n_mx_edi_vendor_bills/static/src/js/attach_xmls.js:0
+#, python-format
+msgid ", </span> Invoice Tax Total: <span level=\"2\">"
+msgstr ", </span> Monto de Impuestos de la Factura: <span level=\"2\">"
+
+#. module: l10n_mx_edi_vendor_bills
+#. openerp-web
+#: code:addons/l10n_mx_edi_vendor_bills/static/src/js/attach_xmls.js:0
+#, python-format
+msgid ", </span> Invoice Total: <span level=\"2\">"
+msgstr ", </span> Total de la Factura: <span level=\"2\">"
+
+#. module: l10n_mx_edi_vendor_bills
+#. openerp-web
+#: code:addons/l10n_mx_edi_vendor_bills/static/src/js/attach_xmls.js:0
+#, python-format
+msgid ", </span> Supplier invoice number: <span level=\"2\">"
+msgstr ", </span> Número de factura del proveedor: <span level=\"2\">"
+
+#. module: l10n_mx_edi_vendor_bills
+#. openerp-web
+#: code:addons/l10n_mx_edi_vendor_bills/static/src/js/attach_xmls.js:0
+#, python-format
+msgid ", </span> Your Company RFC: <span level=\"2\">"
+msgstr ", </span> RFC de la compañía actual: <span level=\"2\">"
+
+#. module: l10n_mx_edi_vendor_bills
+#. openerp-web
+#: code:addons/l10n_mx_edi_vendor_bills/static/src/js/attach_xmls.js:0
+#, python-format
+msgid "</span> was not found or is disabled.</div>"
+msgstr "</span> no fue encontrada o está deshabilitada.</div>"
+
+#. module: l10n_mx_edi_vendor_bills
+#. openerp-web
+#: code:addons/l10n_mx_edi_vendor_bills/static/src/js/attach_xmls.js:0
+#: code:addons/l10n_mx_edi_vendor_bills/static/src/js/attach_xmls.js:0
+#: code:addons/l10n_mx_edi_vendor_bills/static/src/js/attach_xmls.js:0
+#, python-format
+msgid "<button class=\"dnd-alert-button\" tag=\"remove\">Remove XML</button>"
+msgstr "<button class=\"dnd-alert-button\" tag=\"remove\">Remover XML</button>"
+
+#. module: l10n_mx_edi_vendor_bills
+#. openerp-web
+#: code:addons/l10n_mx_edi_vendor_bills/static/src/js/attach_xmls.js:0
+#, python-format
+msgid "<button class=\"dnd-alert-button\" tag=\"supplier\">Create Supplier</button>"
+msgstr "<button class=\"dnd-alert-button\" tag=\"supplier\">Crear Proveedor</button>"
+
+#. module: l10n_mx_edi_vendor_bills
+#. openerp-web
+#: code:addons/l10n_mx_edi_vendor_bills/static/src/js/attach_xmls.js:0
+#, python-format
+msgid "<button class=\"dnd-alert-button\" tag=\"tryagain\">Try again</button>"
+msgstr ""
+"<button class=\"dnd-alert-button\" tag=\"tryagain\">Intentar de "
+"nuevo</button>"
+
+#. module: l10n_mx_edi_vendor_bills
+#. openerp-web
+#: code:addons/l10n_mx_edi_vendor_bills/static/src/js/attach_xmls.js:0
+#, python-format
+msgid ""
+"<button class=\"dnd-alert-remove-all-wrong-xml-button\" style=\"background-"
+"color: #31708f; border: 0px solid; margin: 0 5px 0 0; color: #ffffff;\" "
+"tag=\"remove\">Remove All Wrong XML</button>"
+msgstr ""
+"<button class=\"dnd-alert-remove-all-wrong-xml-button\" style=\"background-"
+"color: #31708f; border: 0px solid; margin: 0 5px 0 0; color: #ffffff;\" "
+"tag=\"remove\">Remover todos los archivos con errores de validación</button>"
+
+#. module: l10n_mx_edi_vendor_bills
+#. openerp-web
+#: code:addons/l10n_mx_edi_vendor_bills/static/src/js/attach_xmls.js:0
+#, python-format
+msgid "<div><span level=\"1\">Some taxes</span> do not exist: <span level=\"2\">"
+msgstr ""
+"<div><span level=\"1\">Algunos impuestos</span> no existen: <span "
+"level=\"2\">"
+
+#. module: l10n_mx_edi_vendor_bills
+#. openerp-web
+#: code:addons/l10n_mx_edi_vendor_bills/static/src/js/attach_xmls.js:0
+#, python-format
+msgid ""
+"<div><span level=\"1\">Some taxes</span> do not have account assigned: <span"
+" level=\"2\">"
+msgstr ""
+"<div><span level=\"1\">Algunos impuestos</span> no tienen cuenta asignada: "
+"<span level=\"2\">"
+
+#. module: l10n_mx_edi_vendor_bills
+#. openerp-web
+#: code:addons/l10n_mx_edi_vendor_bills/static/src/js/attach_xmls.js:0
+#, python-format
+msgid ""
+"<div><span level=\"1\">The DocumentType is \"E\" and The XML UUID / and the "
+"node CfdiRelacionados</span> were not found in the XML.</div>"
+msgstr ""
+"<div><span level=\"1\">El TipoDeComprobante es \"E\" y El UUID del XML / y "
+"el nodo CfdiRelacionados</span> no fueron encontrados en el XML.</div>"
+
+#. module: l10n_mx_edi_vendor_bills
+#. openerp-web
+#: code:addons/l10n_mx_edi_vendor_bills/static/src/js/attach_xmls.js:0
+#, python-format
+msgid ""
+"<div><span level=\"1\">The DocumentType is \"E\" and The XML UUID</span> is "
+"not related to any invoice. <span level=\"1\">UUID: </span>"
+msgstr ""
+"<div><span level=\"1\">El TipoDeComprobante es \"E\" El UUID del XML</span> "
+"no está relacionado con ninguna factura. <span level=\"1\">UUID: </span>"
+
+#. module: l10n_mx_edi_vendor_bills
+#. openerp-web
+#: code:addons/l10n_mx_edi_vendor_bills/static/src/js/attach_xmls.js:0
+#, python-format
+msgid ""
+"<div><span level=\"1\">The DocumentType is \"E\" and The node CFDI related "
+"is not set</span> Manually reconcile with the appropiate invoice. <span "
+"level=\"1\">UUID: </span>"
+msgstr ""
+"<div><span level=\"1\">El DocumentType es \"E\" y el nodo CFDI relacionado "
+"no esta establecido</span> Concilie manualmente con la factura apropiada. "
+"<span level=\"1\">UUID: </span>"
+
+#. module: l10n_mx_edi_vendor_bills
+#. openerp-web
+#: code:addons/l10n_mx_edi_vendor_bills/static/src/js/attach_xmls.js:0
+#, python-format
+msgid "<div><span level=\"1\">The XML Currency</span> <span level=\"2\">"
+msgstr "<div><span level=\"1\">La Moneda del XML</span> <span level=\"2\">"
+
+#. module: l10n_mx_edi_vendor_bills
+#. openerp-web
+#: code:addons/l10n_mx_edi_vendor_bills/static/src/js/attach_xmls.js:0
+#, python-format
+msgid ""
+"<div><span level=\"1\">The XML Emitter RFC</span> does not match with <span "
+"level=\"1\">Customer RFC</span>: "
+msgstr ""
+"<div><span level=\"1\">El RFC del Emisor del XML</span> no coincide con "
+"<span level=\"1\">el RFC del Cliente</span>: "
+
+#. module: l10n_mx_edi_vendor_bills
+#. openerp-web
+#: code:addons/l10n_mx_edi_vendor_bills/static/src/js/attach_xmls.js:0
+#, python-format
+msgid ""
+"<div><span level=\"1\">The XML Folio</span> does not match with <span "
+"level=\"1\">Supplier Invoice Number</span>: "
+msgstr ""
+"<div><span level=\"1\">El Folio del XML</span> no coincide con <span "
+"level=\"1\">el Número de Factura del Proveedor</span>: "
+
+#. module: l10n_mx_edi_vendor_bills
+#. openerp-web
+#: code:addons/l10n_mx_edi_vendor_bills/static/src/js/attach_xmls.js:0
+#, python-format
+msgid ""
+"<div><span level=\"1\">The XML Receptor RFC</span> does not match with <span"
+" level=\"1\">your Company RFC</span>: "
+msgstr ""
+"<div><span level=\"1\">El RFC del Receptor del XML</span> no coincide con "
+"<span level=\"1\">el RFC de su Compañía</span>: "
+
+#. module: l10n_mx_edi_vendor_bills
+#. openerp-web
+#: code:addons/l10n_mx_edi_vendor_bills/static/src/js/attach_xmls.js:0
+#, python-format
+msgid ""
+"<div><span level=\"1\">The XML Supplier</span> was not found: <span "
+"level=\"2\">"
+msgstr ""
+"<div><span level=\"1\">El Proveedor del XML</span> no fue encontrado: <span "
+"level=\"2\">"
+
+#. module: l10n_mx_edi_vendor_bills
+#. openerp-web
+#: code:addons/l10n_mx_edi_vendor_bills/static/src/js/attach_xmls.js:0
+#, python-format
+msgid ""
+"<div><span level=\"1\">The XML UUID</span> belong to other invoice. <span "
+"level=\"1\">UUID: </span>"
+msgstr ""
+"<div><span level=\"1\">El UUID del XML</span> pertenece a otra factura. "
+"<span level=\"1\">UUID: </span>"
+
+#. module: l10n_mx_edi_vendor_bills
+#. openerp-web
+#: code:addons/l10n_mx_edi_vendor_bills/static/src/js/attach_xmls.js:0
+#, python-format
+msgid ""
+"<div><span level=\"1\">The XML amount total</span> does not match with <span"
+" level=\"1\">Invoice total</span>: "
+msgstr ""
+"<div><span level=\"1\">La cantidad del XML</span> no coincide con <span "
+"level=\"1\">el total de la factura</span>: "
+
+#. module: l10n_mx_edi_vendor_bills
+#. openerp-web
+#: code:addons/l10n_mx_edi_vendor_bills/static/src/js/attach_xmls.js:0
+#, python-format
+msgid ""
+"<div><span level=\"1\">The XML reference</span> matches another invoice "
+"reference. <span level=\"1\">Partner: </span>"
+msgstr ""
+"<div><span level=\"1\">La referencia del XML</span> coincide con la referencia de otra factura. "
+"<span level=\"1\">Partner: </span>"
+
+#. module: l10n_mx_edi_vendor_bills
+#. openerp-web
+#: code:addons/l10n_mx_edi_vendor_bills/static/src/js/attach_xmls.js:0
+#, python-format
+msgid "<div><span level=\"1\">The XML state</span> is CANCELLED in SATs system. "
+msgstr "<div><span level=\"1\">El XML esta</span> CANCELADO en el SAT. "
+
+#. module: l10n_mx_edi_vendor_bills
+#. openerp-web
+#: code:addons/l10n_mx_edi_vendor_bills/static/src/js/attach_xmls.js:0
+#, python-format
+msgid ""
+"<div><span level=\"1\">The XML tax total amount</span> does not match with "
+"<span level=\"1\">Invoice tax total amount</span>: "
+msgstr ""
+"<div><span level=\"1\">El total de impuestos del XML</span> no coincide con "
+"<span level=\"1\">el total de impuestos de la Factura</span>: "
+
+#. module: l10n_mx_edi_vendor_bills
+#. openerp-web
+#: code:addons/l10n_mx_edi_vendor_bills/static/src/js/attach_xmls.js:0
+#, python-format
+msgid "<div><span level=\"1\">UUID</span> not found in the XML.</div>"
+msgstr "<div><span level=\"1\">UUID</span> no encontrado en el XML.</div>"
+
+#. module: l10n_mx_edi_vendor_bills
+#. openerp-web
+#: code:addons/l10n_mx_edi_vendor_bills/static/src/js/attach_xmls.js:0
+#, python-format
+msgid ""
+"<div><span level=\"1\">Unable to generate invoices from an XML with version "
+"3.2.</span>You can create the invoice manually and then attach the "
+"xml.</div>"
+msgstr ""
+"<div><span level=\"1\">Incapaz de generar facturas de un XML con versión "
+"3.2.</span> Puede crear la factura manualmente y después adjuntar el "
+"XML.</div>"
+
+#. module: l10n_mx_edi_vendor_bills
+#. openerp-web
+#: code:addons/l10n_mx_edi_vendor_bills/static/src/js/attach_xmls.js:0
+#, python-format
+msgid ""
+"<div><strong>Info!</strong> XML data could not be read correctly.</div>"
+msgstr ""
+"<div><strong>Info!</strong> Los datos del XML no se pueden leer "
+"correctamente.</div>"
+
+#. module: l10n_mx_edi_vendor_bills
+#. openerp-web
+#: code:addons/l10n_mx_edi_vendor_bills/static/src/js/attach_xmls.js:0
+#, python-format
+msgid "<span level=\"1\"> Reference: </span>"
+msgstr "<span level=\"1\"> Referencia: </span>"
+
+#. module: l10n_mx_edi_vendor_bills
+#. openerp-web
+#: code:addons/l10n_mx_edi_vendor_bills/static/src/js/attach_xmls.js:0
+#, python-format
+msgid "<span>Wrong File: <span class=\"index-alert\"></span>"
+msgstr "<span>Archivo Incorrecto: <span class=\"index-alert\"></span>"
+
+#. module: l10n_mx_edi_vendor_bills
+#. openerp-web
+#: code:addons/l10n_mx_edi_vendor_bills/static/src/js/attach_xmls.js:0
+#, python-format
+msgid "<strong>Info!</strong> Some files are already loaded.<br>"
+msgstr "<strong>!Info!</strong> Algunos archivos ya están cargados.<br>"
+
+#. module: l10n_mx_edi_vendor_bills
+#. openerp-web
+#: code:addons/l10n_mx_edi_vendor_bills/static/src/js/attach_xmls.js:0
+#, python-format
+msgid "<strong>Info!</strong> You only can upload XML files.<br>"
+msgstr "<strong>!Info!</strong> Solo puede cargar archivos XML.<br>"
+
+#. module: l10n_mx_edi_vendor_bills
+#: model:ir.model.fields,field_description:l10n_mx_edi_vendor_bills.field_attach_xmls_wizard__account_id
+msgid "Account"
+msgstr "Cuenta"
+
+#. module: l10n_mx_edi_vendor_bills
+#: code:addons/l10n_mx_edi_vendor_bills/wizards/attach_xmls_wizard.py:0
+#, python-format
+msgid "Account to set in the lines not found.<br/>"
+msgstr "Cuenta para configurar las líneas no encontrada.<br/>"
+
+#. module: l10n_mx_edi_vendor_bills
+#: model_terms:ir.ui.view,arch_db:l10n_mx_edi_vendor_bills.attach_xmls_wizard_form_view
+msgid "Allow creation of Products"
+msgstr "Permitir creación de nuevos productos"
+
+#. module: l10n_mx_edi_vendor_bills
+#: model:res.groups,name:l10n_mx_edi_vendor_bills.allow_force_invoice_generation
+msgid "Allow to omit validations in the invoice generation"
+msgstr "Permitir omitir la validación de la generación de facturas"
+
+#. module: l10n_mx_edi_vendor_bills
+#: model:ir.actions.act_window,name:l10n_mx_edi_vendor_bills.attach_xmls_wizard_action
+msgid "Attach Supplier Files"
+msgstr "Adjuntar Archivos de Proveedor"
+
+#. module: l10n_mx_edi_vendor_bills
+#: model_terms:ir.ui.view,arch_db:l10n_mx_edi_vendor_bills.attach_xmls_wizard_form_view
+msgid "Attach Supplier XML's"
+msgstr "Adjuntar XML's de proveedor"
+
+#. module: l10n_mx_edi_vendor_bills
+#: model:ir.ui.menu,name:l10n_mx_edi_vendor_bills.menu_atach_xmls_wizard
+msgid "Attach Supplier's CFDI"
+msgstr "Adjuntar CFDI de Proveedor"
+
+#. module: l10n_mx_edi_vendor_bills
+#: model:ir.model,name:l10n_mx_edi_vendor_bills.model_attach_xmls_wizard
+msgid "Attach xmls"
+msgstr "Adjuntar xmls"
+
+#. module: l10n_mx_edi_vendor_bills
+#: model:ir.model,name:l10n_mx_edi_vendor_bills.model_ir_attachment
+msgid "Attachment"
+msgstr "Archivo adjunto"
+
+#. module: l10n_mx_edi_vendor_bills
+#. openerp-web
+#: code:addons/l10n_mx_edi_vendor_bills/static/src/xml/attach_xmls_template.xml:0
+#, python-format
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: l10n_mx_edi_vendor_bills
+#. openerp-web
+#: code:addons/l10n_mx_edi_vendor_bills/static/src/js/attach_xmls.js:0
+#, python-format
+msgid "Congratulations"
+msgstr "Felicitaciones"
+
+#. module: l10n_mx_edi_vendor_bills
+#: model_terms:ir.ui.view,arch_db:l10n_mx_edi_vendor_bills.view_move_form_l10n_mx_edi_vendor_bills
+msgid "Consistency"
+msgstr "Consistencia"
+
+#. module: l10n_mx_edi_vendor_bills
+#: model_terms:ir.actions.act_window,help:l10n_mx_edi_vendor_bills.product_sat_list_action
+msgid "Create the first product"
+msgstr "Crea el primer producto"
+
+#. module: l10n_mx_edi_vendor_bills
+#: model:ir.model.fields,field_description:l10n_mx_edi_vendor_bills.field_attach_xmls_wizard__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: l10n_mx_edi_vendor_bills
+#: model:ir.model.fields,field_description:l10n_mx_edi_vendor_bills.field_attach_xmls_wizard__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: l10n_mx_edi_vendor_bills
+#: model:ir.model.fields,field_description:l10n_mx_edi_vendor_bills.field_product_unspsc_code__deep_search
+#: model_terms:ir.ui.view,arch_db:l10n_mx_edi_vendor_bills.product_sat_code_search_view
+msgid "Deep Search"
+msgstr "Búsqueda profunda"
+
+#. module: l10n_mx_edi_vendor_bills
+#: model:ir.model.fields,field_description:l10n_mx_edi_vendor_bills.field_account_edi_format__display_name
+#: model:ir.model.fields,field_description:l10n_mx_edi_vendor_bills.field_account_move__display_name
+#: model:ir.model.fields,field_description:l10n_mx_edi_vendor_bills.field_attach_xmls_wizard__display_name
+#: model:ir.model.fields,field_description:l10n_mx_edi_vendor_bills.field_ir_attachment__display_name
+#: model:ir.model.fields,field_description:l10n_mx_edi_vendor_bills.field_product_unspsc_code__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: l10n_mx_edi_vendor_bills
+#. openerp-web
+#: code:addons/l10n_mx_edi_vendor_bills/static/src/xml/attach_xmls_template.xml:0
+#, python-format
+msgid "Drag and Drop your files here"
+msgstr "Arrastrar y soltar tus archivos aquí"
+
+#. module: l10n_mx_edi_vendor_bills
+#: model:ir.model.fields,field_description:l10n_mx_edi_vendor_bills.field_attach_xmls_wizard__dragndrop
+msgid "Dragndrop"
+msgstr ""
+
+#. module: l10n_mx_edi_vendor_bills
+#: model:ir.model,name:l10n_mx_edi_vendor_bills.model_account_edi_format
+msgid "EDI format"
+msgstr "Formato EDI"
+
+#. module: l10n_mx_edi_vendor_bills
+#. openerp-web
+#: code:addons/l10n_mx_edi_vendor_bills/static/src/js/attach_xmls.js:0
+#, python-format
+msgid "Error checking XML data."
+msgstr "Error revisando datos del XML."
+
+#. module: l10n_mx_edi_vendor_bills
+#. openerp-web
+#: code:addons/l10n_mx_edi_vendor_bills/static/src/js/attach_xmls.js:0
+#, python-format
+msgid "Error creating invoice."
+msgstr "Error creando factura."
+
+#. module: l10n_mx_edi_vendor_bills
+#. openerp-web
+#: code:addons/l10n_mx_edi_vendor_bills/static/src/js/attach_xmls.js:0
+#, python-format
+msgid "Error creating supplier."
+msgstr "Error creando proveedor."
+
+#. module: l10n_mx_edi_vendor_bills
+#: code:addons/l10n_mx_edi_vendor_bills/wizards/attach_xmls_wizard.py:0
+#, python-format
+msgid "FUEL - IEPS"
+msgstr ""
+
+#. module: l10n_mx_edi_vendor_bills
+#: model:ir.model.fields,field_description:l10n_mx_edi_vendor_bills.field_account_edi_format__id
+#: model:ir.model.fields,field_description:l10n_mx_edi_vendor_bills.field_account_move__id
+#: model:ir.model.fields,field_description:l10n_mx_edi_vendor_bills.field_attach_xmls_wizard__id
+#: model:ir.model.fields,field_description:l10n_mx_edi_vendor_bills.field_ir_attachment__id
+#: model:ir.model.fields,field_description:l10n_mx_edi_vendor_bills.field_product_unspsc_code__id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_mx_edi_vendor_bills
+#: model:ir.model.fields,help:l10n_mx_edi_vendor_bills.field_product_unspsc_code__deep_search
+msgid ""
+"If this record is active, then the CFDI Importer will implement further "
+"logic to reach the correct product"
+msgstr ""
+
+#. module: l10n_mx_edi_vendor_bills
+#: code:addons/l10n_mx_edi_vendor_bills/wizards/attach_xmls_wizard.py:0
+#, python-format
+msgid "Info"
+msgstr "Información"
+
+#. module: l10n_mx_edi_vendor_bills
+#: model:ir.model.fields,field_description:l10n_mx_edi_vendor_bills.field_attach_xmls_wizard__journal_id
+msgid "Journal"
+msgstr "Diario"
+
+#. module: l10n_mx_edi_vendor_bills
+#: model:ir.model,name:l10n_mx_edi_vendor_bills.model_account_move
+msgid "Journal Entry"
+msgstr "Asiento contable"
+
+#. module: l10n_mx_edi_vendor_bills
+#: model:ir.model.fields,field_description:l10n_mx_edi_vendor_bills.field_account_edi_format____last_update
+#: model:ir.model.fields,field_description:l10n_mx_edi_vendor_bills.field_account_move____last_update
+#: model:ir.model.fields,field_description:l10n_mx_edi_vendor_bills.field_attach_xmls_wizard____last_update
+#: model:ir.model.fields,field_description:l10n_mx_edi_vendor_bills.field_ir_attachment____last_update
+#: model:ir.model.fields,field_description:l10n_mx_edi_vendor_bills.field_product_unspsc_code____last_update
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: l10n_mx_edi_vendor_bills
+#: model:ir.model.fields,field_description:l10n_mx_edi_vendor_bills.field_attach_xmls_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: l10n_mx_edi_vendor_bills
+#: model:ir.model.fields,field_description:l10n_mx_edi_vendor_bills.field_attach_xmls_wizard__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: l10n_mx_edi_vendor_bills
+#: code:addons/l10n_mx_edi_vendor_bills/models/account_edi_format.py:0
+#, python-format
+msgid "Mexican %s CFDI generated for the %s document."
+msgstr "%s CFDI generada para el documento %s."
+
+#. module: l10n_mx_edi_vendor_bills
+#: model:ir.model.fields,field_description:l10n_mx_edi_vendor_bills.field_attach_xmls_wizard__omit_cfdi_related
+msgid "Omit Cfdi Related"
+msgstr "Omitir CFDI relacionado"
+
+#. module: l10n_mx_edi_vendor_bills
+#: model:ir.model.fields,help:l10n_mx_edi_vendor_bills.field_attach_xmls_wizard__account_id
+msgid ""
+"Optional field to define the account that will be used in all the lines of the invoice.\n"
+"If the field is not set, the wizard will take the account by default."
+msgstr ""
+"Campo opcional para definir la cuenta que se utilizará en todas las líneas de la factura.\n"
+"Si el campo no está configurado, el asistente tomará la cuenta de forma predeterminada."
+
+#. module: l10n_mx_edi_vendor_bills
+#: code:addons/l10n_mx_edi_vendor_bills/models/account_move.py:0
+#, python-format
+msgid ""
+"Verify the invoice total and taxes\n"
+"\n"
+"Total amount: %s -->  Verification total amount: %s. Difference: %s\n"
+"Tax amount: %s --> Verification tax amount: %s. Difference: %s\n"
+msgstr ""
+"Verifique el monto total y/o de impuestos de la factura\n"
+"\n"
+"Monto total: %s --> Monto total de verificación: %s. Diferencia: %s\n"
+"Monto de impuestos: %s --> Monto de impuestos de verificación: %s. Diferencia: %s\n"
+
+#. module: l10n_mx_edi_vendor_bills
+#: model:ir.model.fields,field_description:l10n_mx_edi_vendor_bills.field_product_unspsc_code__product_count
+msgid "Product Count"
+msgstr "Recuento de productos"
+
+#. module: l10n_mx_edi_vendor_bills
+#: model:ir.model.fields,field_description:l10n_mx_edi_vendor_bills.field_attach_xmls_wizard__product_create
+msgid "Product Create"
+msgstr ""
+
+#. module: l10n_mx_edi_vendor_bills
+#: model:ir.model,name:l10n_mx_edi_vendor_bills.model_product_unspsc_code
+msgid "Product and UOM Codes from UNSPSC"
+msgstr ""
+"Códigos de producto y unidad de medida provienen del Código de Productos y "
+"Servicios Estándar de las Naciones Unidas (UNSPSC)"
+
+#. module: l10n_mx_edi_vendor_bills
+#: model:ir.actions.act_window,name:l10n_mx_edi_vendor_bills.product_sat_list_action
+#: model:ir.ui.menu,name:l10n_mx_edi_vendor_bills.menu_invoicing_product_sat_action
+msgid "SAT Product Catalogue"
+msgstr "Catálogo de codigos de productos del SAT"
+
+#. module: l10n_mx_edi_vendor_bills
+#: model_terms:ir.ui.view,arch_db:l10n_mx_edi_vendor_bills.product_sat_form_view
+msgid "SAT products form"
+msgstr ""
+
+#. module: l10n_mx_edi_vendor_bills
+#: model_terms:ir.ui.view,arch_db:l10n_mx_edi_vendor_bills.product_sat_code_tree_view
+msgid "SAT products tree"
+msgstr ""
+
+#. module: l10n_mx_edi_vendor_bills
+#. openerp-web
+#: code:addons/l10n_mx_edi_vendor_bills/static/src/xml/attach_xmls_template.xml:0
+#, python-format
+msgid "Save"
+msgstr "Guardar"
+
+#. module: l10n_mx_edi_vendor_bills
+#. openerp-web
+#: code:addons/l10n_mx_edi_vendor_bills/static/src/xml/attach_xmls_template.xml:0
+#, python-format
+msgid "Show invoices"
+msgstr "Mostrar facturas"
+
+#. module: l10n_mx_edi_vendor_bills
+#: model:ir.model.fields,field_description:l10n_mx_edi_vendor_bills.field_account_edi_format__smart_search
+#: model:ir.model.fields,field_description:l10n_mx_edi_vendor_bills.field_account_move__smart_search
+#: model:ir.model.fields,field_description:l10n_mx_edi_vendor_bills.field_attach_xmls_wizard__smart_search
+#: model:ir.model.fields,field_description:l10n_mx_edi_vendor_bills.field_ir_attachment__smart_search
+#: model:ir.model.fields,field_description:l10n_mx_edi_vendor_bills.field_product_unspsc_code__smart_search
+msgid "Smart Search"
+msgstr "Busqueda Inteligente"
+
+#. module: l10n_mx_edi_vendor_bills
+#: code:addons/l10n_mx_edi_vendor_bills/wizards/attach_xmls_wizard.py:0
+#, python-format
+msgid ""
+"Some products are not found in the database, and the account that is used as"
+" default is not configured in the journal, please set default account in the"
+" journal %s to create the invoice."
+msgstr ""
+"Algunos productos no fueron encontrados en la base de datos, y la cuenta que"
+" es usada como predeterminada no esta configurada en el diario. Por favor "
+"configure la cuenta predeterminada en el diario  %s para crear la factura."
+
+#. module: l10n_mx_edi_vendor_bills
+#: code:addons/l10n_mx_edi_vendor_bills/wizards/attach_xmls_wizard.py:0
+#, python-format
+msgid ""
+"Something went wrong. The parameter for XML files must be a dictionary."
+msgstr ""
+"Algo salió mal. El parámetro para archivos XML debe ser un diccionario."
+
+#. module: l10n_mx_edi_vendor_bills
+#. openerp-web
+#: code:addons/l10n_mx_edi_vendor_bills/static/src/js/attach_xmls.js:0
+#, python-format
+msgid "Supplier Invoices"
+msgstr "Facturas de Proveedor"
+
+#. module: l10n_mx_edi_vendor_bills
+#: model:ir.model.fields,field_description:l10n_mx_edi_vendor_bills.field_account_bank_statement_line__x_tax_difference
+#: model:ir.model.fields,field_description:l10n_mx_edi_vendor_bills.field_account_move__x_tax_difference
+#: model:ir.model.fields,field_description:l10n_mx_edi_vendor_bills.field_account_payment__x_tax_difference
+msgid "Tax difference"
+msgstr "Diferencia en Impuestos"
+
+#. module: l10n_mx_edi_vendor_bills
+#: model:ir.model.fields,help:l10n_mx_edi_vendor_bills.field_product_unspsc_code__product_count
+msgid ""
+"The number of products under this SAT code (Does not consider children "
+"categories)"
+msgstr ""
+"El número de productos de este código del SAT (Sin considerar subcódigos)"
+
+#. module: l10n_mx_edi_vendor_bills
+#. openerp-web
+#: code:addons/l10n_mx_edi_vendor_bills/static/src/js/attach_xmls.js:0
+#, python-format
+msgid "There are files uploading"
+msgstr "Hay archivos cargando"
+
+#. module: l10n_mx_edi_vendor_bills
+#. openerp-web
+#: code:addons/l10n_mx_edi_vendor_bills/static/src/js/attach_xmls.js:0
+#, python-format
+msgid "There is no files selected"
+msgstr "No hay archivos seleccionados"
+
+#. module: l10n_mx_edi_vendor_bills
+#: model:ir.model.fields,help:l10n_mx_edi_vendor_bills.field_attach_xmls_wizard__journal_id
+msgid "This journal will be used in the invoices generated with this wizard."
+msgstr ""
+"Este Diario será establecido en las facturas generadas por este asistente"
+
+#. module: l10n_mx_edi_vendor_bills
+#: code:addons/l10n_mx_edi_vendor_bills/wizards/attach_xmls_wizard.py:0
+#, python-format
+msgid ""
+"This partner was created when invoice %s was created from a XML file. Please"
+" verify that the datas of partner are correct."
+msgstr ""
+"Este socio fue creado cuando la factura %s fue añadida desde un archivo "
+"XML. Por favor verifique que la información del socio sea correcta."
+
+#. module: l10n_mx_edi_vendor_bills
+#: model:ir.model.fields,field_description:l10n_mx_edi_vendor_bills.field_account_bank_statement_line__x_total_difference
+#: model:ir.model.fields,field_description:l10n_mx_edi_vendor_bills.field_account_move__x_total_difference
+#: model:ir.model.fields,field_description:l10n_mx_edi_vendor_bills.field_account_payment__x_total_difference
+msgid "Total difference"
+msgstr "Diferencia en Total"
+
+#. module: l10n_mx_edi_vendor_bills
+#: model:ir.model.fields,help:l10n_mx_edi_vendor_bills.field_attach_xmls_wizard__product_create
+msgid ""
+"Use this option to allow the importer to also create new products when they "
+"are not found in database."
+msgstr ""
+"Marque esta opción para permitirle al importador crear productos nuevos "
+"cuando no los encuentre en catalogo de productos"
+
+#. module: l10n_mx_edi_vendor_bills
+#: model:ir.model.fields,help:l10n_mx_edi_vendor_bills.field_attach_xmls_wizard__omit_cfdi_related
+msgid ""
+"Use this option when the CFDI attached do not have a CFDI related and is a "
+"Refund (Only as exception)"
+msgstr ""
+"Use esta opción cuando el CFDI adjuntado no tenga un CFDI relacionado y este"
+" sea un Reembolso (Solo como excepción)"
+
+#. module: l10n_mx_edi_vendor_bills
+#: model:ir.model.fields,field_description:l10n_mx_edi_vendor_bills.field_account_bank_statement_line__check_tax
+#: model:ir.model.fields,field_description:l10n_mx_edi_vendor_bills.field_account_move__check_tax
+#: model:ir.model.fields,field_description:l10n_mx_edi_vendor_bills.field_account_payment__check_tax
+msgid "Verification tax"
+msgstr "Verificación de impuesto"
+
+#. module: l10n_mx_edi_vendor_bills
+#: model:ir.model.fields,field_description:l10n_mx_edi_vendor_bills.field_account_bank_statement_line__check_total
+#: model:ir.model.fields,field_description:l10n_mx_edi_vendor_bills.field_account_move__check_total
+#: model:ir.model.fields,field_description:l10n_mx_edi_vendor_bills.field_account_payment__check_total
+msgid "Verification total"
+msgstr "Verificación de total"
+
+#. module: l10n_mx_edi_vendor_bills
+#. openerp-web
+#: code:addons/l10n_mx_edi_vendor_bills/static/src/js/attach_xmls.js:0
+#, python-format
+msgid "XML Emitter RFC: <span level=\"2\">"
+msgstr "RFC del Emisor en el XML: <span level=\"2\">"
+
+#. module: l10n_mx_edi_vendor_bills
+#. openerp-web
+#: code:addons/l10n_mx_edi_vendor_bills/static/src/js/attach_xmls.js:0
+#: code:addons/l10n_mx_edi_vendor_bills/static/src/js/attach_xmls.js:0
+#, python-format
+msgid "XML Folio: <span level=\"2\">"
+msgstr "Folio del XML: <span level=\"2\">"
+
+#. module: l10n_mx_edi_vendor_bills
+#. openerp-web
+#: code:addons/l10n_mx_edi_vendor_bills/static/src/js/attach_xmls.js:0
+#, python-format
+msgid "XML Receptor RFC: <span level=\"2\">"
+msgstr "RFC del Receptor del XML: <span level=\"2\">"
+
+#. module: l10n_mx_edi_vendor_bills
+#. openerp-web
+#: code:addons/l10n_mx_edi_vendor_bills/static/src/js/attach_xmls.js:0
+#, python-format
+msgid "XML amount total: <span level=\"2\">"
+msgstr "Cantidad total del XML: <span level=\"2\">"
+
+#. module: l10n_mx_edi_vendor_bills
+#. openerp-web
+#: code:addons/l10n_mx_edi_vendor_bills/static/src/js/attach_xmls.js:0
+#, python-format
+msgid "XML removed, the TipoDeComprobante is not I or E."
+msgstr "XML eliminado, el TipoDeComprobante no es I o E."
+
+#. module: l10n_mx_edi_vendor_bills
+#. openerp-web
+#: code:addons/l10n_mx_edi_vendor_bills/static/src/js/attach_xmls.js:0
+#, python-format
+msgid "XML tax total: <span level=\"2\">"
+msgstr "Monto de impuestos del XML: <span level=\"2\">"
+
+#. module: l10n_mx_edi_vendor_bills
+#. openerp-web
+#: code:addons/l10n_mx_edi_vendor_bills/static/src/js/attach_xmls.js:0
+#, python-format
+msgid "You cannot attach more than one xml to an invoice"
+msgstr "No puede adjuntar mas de un XML a una factura"
+
+#. module: l10n_mx_edi_vendor_bills
+#. openerp-web
+#: code:addons/l10n_mx_edi_vendor_bills/static/src/js/attach_xmls.js:0
+#, python-format
+msgid "Your invoices were created correctly"
+msgstr "Sus facturas fueron creadas correctamente"
+
+#. module: l10n_mx_edi_vendor_bills
+#. openerp-web
+#: code:addons/l10n_mx_edi_vendor_bills/static/src/xml/attach_xmls_template.xml:0
+#, python-format
+msgid "or Click to upload the files"
+msgstr "o Click para subir los archivos"

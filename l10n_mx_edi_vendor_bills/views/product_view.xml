@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="product_sat_code_tree_view" model="ir.ui.view">
+            <field name="name">product.sat.code.tree</field>
+            <field name="model">product.unspsc.code</field>
+            <field name="arch" type="xml">
+                <tree string="SAT products tree">
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="deep_search" widget="boolean_toggle"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="product_sat_form_view" model="ir.ui.view">
+            <field name="name">product.sat.code.form</field>
+            <field name="model">product.unspsc.code</field>
+            <field name="arch" type="xml">
+                <form string="SAT products form" edit="true">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                        </group>
+                        <group>
+                            <field name="deep_search"/>
+                            <field name="product_count"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="product_sat_code_search_view" model="ir.ui.view">
+            <field name="name">product.sat.code.search</field>
+            <field name="model">product.unspsc.code</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <filter name="deep_search" string="Deep Search" domain="[('deep_search', '=', True)]"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="product_sat_list_action" model="ir.actions.act_window">
+            <field name="name">SAT Product Catalogue</field>
+            <field name="res_model">product.unspsc.code</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Create the first product</p>
+            </field>
+        </record>
+
+        <menuitem id="menu_invoicing_product_sat_action"
+            action="l10n_mx_edi_vendor_bills.product_sat_list_action"
+            parent="account.account_management_menu"
+            sequence="6"/>
+    </data>
+</odoo>

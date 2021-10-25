@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="custom_layout" inherit_id="web.internal_layout">
+            <xpath expr="//div[@class='row']" position="replace">
+                <div class="d-flex justify-content-between align-items-baseline">
+                    <div class="col-3">
+                        <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height: 45px;"
+                             alt="Logo"/>
+                    </div>
+                    <div class="col-9 text-right">
+                        <strong>"All stores are different, but some are more different than others"</strong>
+                    </div>
+                </div>
+                <div style="border-bottom: 2px solid black;"/>
+            </xpath>
+        </template>
+
+        <template id="sale_report_inherit" inherit_id="sale.report_saleorder_document">
+            <xpath expr="//t[@t-call='web.external_layout']" position="attributes">
+                <attribute name="t-call">hospital.custom_layout</attribute>
+            </xpath>
+            <xpath expr="//t[@t-set='address']" position="replace">
+                <div class="pagecontent">
+                    <div class="oe_structure"/>
+                    <div class="col-12">
+                        <div class="row" id="informations">
+                            <div class="col-auto col-8 mw-100 mb-2 text-left">
+                                <div t-field="doc.partner_id"
+                                     t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'/>
+                                <p t-if="doc.partner_id.vat"><t
+                                        t-esc="doc.company_id.country_id.vat_label or 'Tax ID'"/>: <span
+                                        t-field="doc.partner_id.vat"/></p>
+                            </div>
+                            <div class="col-auto col-4 mw-100 mb-2 text-right">
+                                <div class="">
+                                    <img alt="Barcode" style="margin-right: -80px;"
+                                         t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', quote_plus(doc.name or ''), 400, 100)"/>
+                                </div>
+                                <div class="text-right" style="margin-right: 80px;">
+                                    <p class="m-0 ml-5" t-field="doc.name"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+            <xpath expr="//div[@class='page']" position="replace">
+                <div class="row mt32 mb32" id="informations">
+                    <div class="col-auto col-3 mw-100 mb-2" t-if="doc.user_id.name">
+                        <strong>Nombre Cliente:</strong>
+                        <p class="m-0" t-field="doc.partner_id"/>
+                    </div>
+                    <div class="col-auto col-6 mw-100 mb-2">
+                        <div class="text-right">
+                            <h2 class="mt16">
+                                <t t-if="not (env.context.get('proforma', False) or is_pro_forma)">
+                                    <span t-if="doc.state not in ['draft','sent']">Order # </span>
+                                    <span t-if="doc.state in ['draft','sent']">Quotation # </span>
+                                </t>
+                                <t t-if="env.context.get('proforma', False) or is_pro_forma">
+                                    <span>Pro-Forma Invoice # </span>
+                                </t>
+                                <span t-field="doc.name"/>
+                            </h2>
+                        </div>
+                        <div t-if="doc.date_order and doc.state not in ['draft','sent']" class="text-right">
+                            <strong>Fecha de Presupuesto:</strong>
+                            <p class="m-0" t-field="doc.date_order"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt10 mb32" id="informations">
+                    <div class="col-auto col-3 mw-100 mb-2">
+                        <strong>Direccisn Facturacisn:</strong>
+                        <div t-field="doc.partner_id"
+                             t-options='{"widget": "contact", "fields": ["address"], "no_marker": True}'/>
+                        <p t-if="doc.partner_id.vat"><t
+                                t-esc="doc.company_id.country_id.vat_label or 'Tax ID'"/>: <span
+                                t-field="doc.partner_id.vat"/></p>
+                    </div>
+                    <div class="col-auto col-3 mw-100 mb-2 text-center">
+                        <strong>Direccisn de Entrega:</strong>
+                        <div t-field="doc.partner_id"
+                             t-options='{"widget": "contact", "fields": ["address"], "no_marker": True}'/>
+                        <p t-if="doc.partner_id.vat"><t
+                                t-esc="doc.company_id.country_id.vat_label or 'Tax ID'"/>: <span
+                                t-field="doc.partner_id.vat"/></p>
+                    </div>
+                    <div class="col-auto col-3 mw-100 mb-2 text-right" t-if="doc.user_id.name">
+                        <strong>Vendedor:</strong>
+                        <p class="m-0" t-field="doc.user_id"/>
+                    </div>
+                </div>
+                <table class="table table-sm o_main_table mt-3">
+                    <!-- In case we want to repeat the header, remove "display: table-row-group" -->
+                    <thead style="display: table-row-group">
+                        <tr>
+                            <th name="th_image" class="text-left">Imagen</th>
+                            <th name="th_description" class="text-left">Descripcisn</th>
+                            <th name="th_quantity" class="text-right">Cantidad</th>
+                            <th name="th_priceunit" class="text-right">Precio</th>
+                            <th name="th_subtotal" class="text-right">
+                                <span groups="account.group_show_line_subtotals_tax_excluded">Precio</span>
+                                <span groups="account.group_show_line_subtotals_tax_included">Importe</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="sale_tbody">
+
+                        <t t-set="current_subtotal" t-value="0"/>
+
+                        <t t-foreach="doc.order_line" t-as="line">
+
+                            <t t-set="current_subtotal" t-value="current_subtotal + line.price_subtotal"
+                               groups="account.group_show_line_subtotals_tax_excluded"/>
+                            <t t-set="current_subtotal" t-value="current_subtotal + line.price_total"
+                               groups="account.group_show_line_subtotals_tax_included"/>
+
+                            <tr t-att-class="'bg-200 font-weight-bold o_line_section' if line.display_type == 'line_section' else 'font-italic o_line_note' if line.display_type == 'line_note' else ''">
+                                <t t-if="not line.display_type">
+                                    <td name="td_image">
+                                        <img t-if="line.product_id.image_128"
+                                             t-att-src="image_data_uri(line.product_id.image_128)"
+                                             style="height: auto; width: 40px;"/>
+                                    </td>
+                                    <td name="td_name"><span t-field="line.name"/></td>
+                                    <td name="td_quantity" class="text-right">
+                                        <span t-field="line.product_uom_qty"/>
+                                        <span t-field="line.product_uom"/>
+                                    </td>
+                                    <td name="td_priceunit" class="text-right">
+                                        <span t-field="line.price_unit"/>
+                                    </td>
+                                    <td name="td_subtotal" class="text-right o_price_total">
+                                        <span t-field="line.price_subtotal"
+                                              groups="account.group_show_line_subtotals_tax_excluded"/>
+                                        <span t-field="line.price_total"
+                                              groups="account.group_show_line_subtotals_tax_included"/>
+                                    </td>
+                                </t>
+                                <t t-if="line.display_type == 'line_section'">
+                                    <td name="td_section_line" colspan="99">
+                                        <span t-field="line.name"/>
+                                    </td>
+                                    <t t-set="current_section" t-value="line"/>
+                                    <t t-set="current_subtotal" t-value="0"/>
+                                </t>
+                                <t t-if="line.display_type == 'line_note'">
+                                    <td name="td_note_line" colspan="99">
+                                        <span t-field="line.name"/>
+                                    </td>
+                                </t>
+                            </tr>
+
+                            <t t-if="current_section and (line_last or doc.order_line[line_index+1].display_type == 'line_section')">
+                                <tr class="is-subtotal text-right">
+                                    <td name="td_section_subtotal" colspan="99">
+                                        <strong class="mr16">Subtotal</strong>
+                                        <span
+                                                t-esc="current_subtotal"
+                                                t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'
+                                        />
+                                    </td>
+                                </tr>
+                            </t>
+                        </t>
+                    </tbody>
+                </table>
+                <div class="clearfix" name="so_total_summary">
+                    <div id="total" class="row" name="total">
+                        <div t-attf-class="#{'col-4' if report_type != 'html' else 'col-sm-7 col-md-5'} ml-auto">
+                            <table class="table table-sm">
+                                <tr class="border-black o_subtotal" style="">
+                                    <td name="td_amount_untaxed_label"><strong>Subtotal <span
+                                            t-field="doc.currency_id"></span></strong></td>
+                                    <td name="td_amount_untaxed" class="text-right">
+                                        <span t-field="doc.amount_untaxed"/>
+                                    </td>
+                                </tr>
+                                <t t-foreach="doc.amount_by_group" t-as="amount_by_group">
+                                    <tr style="">
+                                        <t t-if="amount_by_group[5] == 1 and doc.amount_untaxed == amount_by_group[2]">
+                                            <td name="td_amount_by_group_label_3">
+                                                <span t-esc="amount_by_group[0]"/>
+                                                <span>&amp;nbsp;<span>on</span>&amp;nbsp;<t
+                                                        t-esc="amount_by_group[2]"
+                                                        t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/></span>
+                                            </td>
+                                            <td name="td_amount_by_group_3" class="text-right o_price_total">
+                                                <span t-esc="amount_by_group[1]"
+                                                      t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/>
+                                            </td>
+                                        </t>
+                                        <t t-else="">
+                                            <td name="td_amount_by_group_label">
+                                                <span t-esc="amount_by_group[0]"/>
+                                            </td>
+                                            <td name="td_amount_by_group" class="text-right o_price_total">
+                                                <span t-esc="amount_by_group[1]"
+                                                      t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/>
+                                            </td>
+                                        </t>
+                                    </tr>
+                                </t>
+                                <tr class="border-black o_total">
+                                    <td name="td_amount_total_label"><strong>Total</strong></td>
+                                    <td name="td_amount_total" class="text-right">
+                                        <span t-field="doc.amount_total"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-4 ml64 mr4">
+                    <div class="col-6">
+                        <p t-field="doc.note"/>
+                        <p t-if="doc.payment_term_id.note">
+                            <span t-field="doc.payment_term_id.note"/>
+                        </p>
+                        <p>Por favor realizar sus pagos en: </p>
+                        <p> Cta. Banco Popular</p>
+                        <p> No. 798700613 (USD) Ahorros</p>
+                        <p> No. 709993216 (DOP) Corriente</p>
+                        <p id="fiscal_position_remark"
+                           t-if="doc.fiscal_position_id and doc.fiscal_position_id.sudo().note">
+                            <strong>Fiscal Position Remark:</strong>
+                            <span t-field="doc.fiscal_position_id.sudo().note"/>
+                        </p>
+                    </div>
+                    <div class="col-6 text-center" t-if="doc.signature" name="signature">
+                        <div class="">
+                            <strong>Signature</strong>
+                        </div>
+                        <div class="">
+                            <img t-att-src="image_data_uri(doc.signature)"
+                                 style="max-height: 4cm; max-width: 8cm;"/>
+                        </div>
+                        <div class="text-center">
+                            <p t-field="doc.signed_by"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="oe_structure"/>
+
+            </xpath>
+        </template>
+    </data>
+</odoo>
