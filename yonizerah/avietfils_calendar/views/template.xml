@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="assets_backend" name="calendar.renderer" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" type="text/scss" href="/avietfils_calendar/static/src/scss/web_calendar.scss"/>
+            <script src="/avietfils_calendar/static/src/js/calendar_renderer.js" />
+        </xpath>
+    </template>
+</odoo>

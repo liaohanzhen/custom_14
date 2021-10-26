@@ -1,0 +1,12 @@
+<templates>
+    <t t-extend="calendar-box">
+        <t t-jquery="div div.o_event_title" t-operation="before">
+            <div t-esc="record.x_client_ids[1]"/>
+        </t>
+        <t t-jquery="div div.o_event_title" t-operation="before">
+            <t t-foreach="record.partner_ids" t-as="partner">
+                <img t-attf-src="/web/image/res.partner/#{partner}/image_128" class="o_cw_filter_avatar flex-shrink-0 rounded-circle" alt="Avatar"/>
+            </t>
+        </t>
+    </t>
+</templates>

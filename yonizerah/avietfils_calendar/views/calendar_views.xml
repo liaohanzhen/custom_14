@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_calendar_event_calendar_extended" model="ir.ui.view">
+        <field name="name">calendar.event.calendar.extended</field>
+        <field name="model">calendar.event</field>
+        <field name="inherit_id" ref="calendar.view_calendar_event_calendar"/>
+        <field name="arch" type="xml">
+            <xpath expr="//calendar" position="attributes">
+<!--                <attribute name="mode">month</attribute>-->
+                <attribute name="color">x_studio_field_3E2nL</attribute>
+<!--                <attribute name="color">user_id</attribute>-->
+            </xpath>
+
+<!--            <field name="privacy" position="after">-->
+            <field name="x_studio_adresse" position="after">
+                <field name="x_client_ids" invisible="1" />
+                <field name="partner_ids" widget="many2many_tags_avatar" write_model="calendar.contacts" write_field="partner_id" avatar_field="image_128"/>
+            </field>
+
+        </field>
+    </record>
+
+</odoo>
+
+<!--SimpleDayGridEventRenderer-->
