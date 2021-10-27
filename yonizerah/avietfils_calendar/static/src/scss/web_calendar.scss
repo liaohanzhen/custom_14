@@ -35,18 +35,14 @@ div.fc-day-grid table td {
 // ===============  Generate color classes ===============
 
 $o-colors-complete: (
-                        'status3': #f8aa65,
-//                         6: #f8aa65,
                         'traité': #9cbc58,
-//                         7: #9cbc58,
                         'status1': #f8ab51,
-//                         16: #f8ab51,
                         'sav': #94cede,
-//                         21: #94cede,
-                        'sav_ok': #497ebc,
-//                         2: #497ebc,
                         'status2': #f35f5b,
-//                         11: #f35f5b,
+//                         'sav_ok': #a4a7ab,
+//                         'status3': #a4a7ab,
+                        'sav_ok': #94cede,
+                        'status3': #f8aa65,
                     );
 @each $i, $color in $o-colors-complete {
 //     $color: nth($o-colors-complete, $i);
@@ -109,14 +105,30 @@ $o-colors-complete: (
         }
     }
 }
-.o_cw_nobg {
-    .fc-bg {
-        visibility: hidden;
+.o_cw_graybg {
+    $color: #a4a7ab;
+    border-color: $color !important;
+    color: darken($color, 35%) !important;
+    opacity: 0.8 !important;
+
+    &.o_event_hightlight {
+        opacity: 1 !important;
+
+        .fc-content {
+            font-weight: bold !important;
+        }
     }
 
-    &.o_cw_custom_hover, &.o_cw_custom_highlight, &:hover {
+    .fc-bg {
+        background: mix($color, white) !important;
+    }
+
+    &.o_cw_custom_hover, &.o_cw_custom_highlight {
+        box-shadow: 0 12px 12px -5px rgba($color, 0.3) !important;
+        color: color-yiq($color) !important;
+
         .fc-bg {
-            visibility: visible;
+            background: $color !important;
         }
     }
 }

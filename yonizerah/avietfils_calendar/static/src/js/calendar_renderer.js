@@ -127,10 +127,9 @@ odoo.define('avietfils_calendar.CalendarRendererTwo', function (require) {
                     var $render = $(self._eventRender(event));
                     element.find('.fc-content').html($render.html());
                     element.addClass($render.attr('class'));
-                    if(!(event.extendedProps.record.x_studio_field_3E2nL in session.allow_back_color)){
-                        element.addClass('o_cw_nobg');
+                    if(view.type === "timeGridWeek" && !(event.extendedProps.record.x_studio_field_3E2nL in session.allow_back_color)){
+                        element.addClass('o_cw_graybg');
                     }
-
                     // Add background if doesn't exist
                     if (!element.find('.fc-bg').length) {
                         element.find('.fc-content').after($('<div/>', {class: 'fc-bg'}));
@@ -143,6 +142,9 @@ odoo.define('avietfils_calendar.CalendarRendererTwo', function (require) {
                         var isSameDayEvent = moment(start).clone().add(1, 'minute').isSame(moment(end).clone().subtract(1, 'minute'), 'day');
                         if (!event.extendedProps.record.allday && isSameDayEvent) {
                             // For month vie
+                            if(!(event.extendedProps.record.x_studio_field_3E2nL in session.allow_back_color)){
+                                element.addClass('o_cw_nobg');
+                            }
                             if (event.extendedProps.showTime && !self.hideTime) {
                                 const displayTime = moment(start).clone().format(self._getDbTimeFormat());
                                 element.find('.fc-content .fc-time').text(displayTime);
