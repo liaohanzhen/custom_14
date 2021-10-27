@@ -10,6 +10,11 @@ class IrHttp(models.AbstractModel):
 
     def session_info(self):
         user = request.env.user
+        no_color = ['status3', 'SAV OK']
         result = super(IrHttp, self).session_info()
-        result['x_studio_field_3E2nL'] = dict(self.env['calendar.event']._fields_get('x_studio_field_3E2nL').selection)
+        selection = dict(
+            self.env['calendar.event'].fields_get('x_studio_field_3E2nL')['x_studio_field_3E2nL']['selection'])
+        for i in no_color: selection.pop(i)
+        result['allow_back_color'] = selection
         return result
+

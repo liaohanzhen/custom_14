@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="view_project_project_filter_project_code_name" model="ir.ui.view">
+        <field name="name">project.project.search.inherited.filter.project.code</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.view_project_project_filter"/>
+        <field name="priority">18</field>
+        <field name="arch" type="xml">
+            <data>
+                <xpath expr="//field[@name='name']" position="replace">
+                	<field name="name" string="Project Name" filter_domain="['|','|',('project_code','ilike',self),('name','ilike',self),('partner_id','ilike',self)]"/>
+                    <!-- <attribute name="filter_domain" attrs="domain">
+                    	['|','|',('project_code','ilike',self),('name','ilike',self),('partner_id.name','ilike',self)]"
+                    </attribute> -->
+                </xpath>
+            </data>
+        </field>
+    </record>
+    
+	<record model="ir.ui.view" id="project_project_kanban_inherit_background_image">
+        <field name="name">project.project.kanban.view.inherit.background.image</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.view_project_kanban"/>
+        <field name="arch" type="xml">
+        	<xpath expr="//field[@name='alias_domain']" position="after">
+        		<field name="project_type_id" />
+        		<field name="project_code" />
+        		<field name="id"/>
+        		<field name="image"/>
+        		<field name="doc_count"/>
+        	</xpath>
+        	<xpath expr="//div[@class='o_kanban_primary_left']/div[@class='o_primary']/span[1]" position="replace">
+        		<t t-if="record.project_code.value">
+        			<span>[<t t-esc="record.project_code.value"/>] <t t-esc="record.name.value"/></span>
+                	
+        		</t>
+        		<t t-if="!record.project_code.value">
+        			<span><t t-esc="record.name.value"/></span>
+        		</t>
+        		
+        	</xpath>
+        	<xpath expr="//div[@class='o_project_kanban_main']" position="attributes">
+        		<attribute name="t-att-style">record.image.value ? 'background-image:url(\'/web/image/project.project/' + record.id.raw_value + '/image/\'); background-size: auto 100%; background-repeat: no-repeat; background-position: right top;' : ''</attribute>
+        	</xpath>
+        	<xpath expr="//div[hasclass('o_project_kanban_boxes')]" position="inside">
+                <a class="o_project_kanban_box" type="edit" groups="project.group_project_manager">
+                	<div>
+                        <span class="o_label">Settings</span>
+                    </div>
+                </a>
+                <a class="o_project_kanban_box" name="attachment_tree_view" type="object">
+                    <div>
+                    	<span class="o_value"><t t-esc="record.doc_count.value"/></span>
+                        <span class="o_label">Documents</span>
+                    </div>
+                </a>
+            </xpath>
+        </field>
+    </record>
+    
+    <record model="ir.ui.view" id="project_project_form_view_simplified_inherit_project_type_selection">
+        <field name="name">project.project.form.view.simplified.inherit.type.selection</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.project_project_view_form_simplified"/>
+        <field name="arch" type="xml">
+            <data>
+            	<xpath expr="//div[@name='alias_def']" position="after">
+            		<field name="project_type_id" />
+                </xpath>
+            </data>
+        </field>
+    </record>
+    
+    <record model="ir.ui.view" id="project_project_edit_form_inherit_project_type">
+        <field name="name">project.project.edit.form.inherit.project.type</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+        	<field name="user_id" position="after">
+        		<field name="project_type_id" attrs="{'readonly':[('id','!=',False)]}"/>
+        	</field>
+        </field>
+    </record>
+</odoo>

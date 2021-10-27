@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<!-- <record id="product_product_attachment_form_view" model="ir.ui.view">
+			<field name="name">product.product.form.view.inherit</field>
+			<field name="model">product.product</field>
+			<field name="inherit_id" ref="plm.plm_component_base_form"/>
+			<field name="arch" type="xml">
+				<notebook position="inside">
+					<page string="Website Attachments" groups="advance_product_attachments.group_website_multi_attachment">
+						<button name="advance_product_attachments.product_attachment_wizard_action" type="action" class="btn-success" icon="fa-paperclip" string="Add Attachment" style="width: 100%;height: 35px;"/>
+						<field name="product_attachments" nolabel="1" readonly="1">
+							<tree>
+								<field name="name"/>
+								<field name="attachment_category"/>
+								<field name="allowed_user"/>
+								<field name="sequence"/>
+								<field name="file_size"/>
+								<field name="downloads"/>
+								<button name="update_attachment" type="object" icon="fa-edit"/>
+								<button name="delete_attachment" type="object" icon="fa-trash"/>
+							</tree>
+							<form>
+								<sheet>
+									<group>
+										<group>
+											<field name="name"/>
+											<field name="attachment_category" widget="selection"/>
+											<field name="allowed_user" widget="statusbar" clickable="True"/>
+										</group>
+									</group>
+									<group>
+										<field name="description"/>
+									</group>
+									<group>
+										<group>
+											<field name="file_size"/>
+										</group>
+										<group>
+											<field name="downloads"/>
+										</group>
+									</group>
+								</sheet>
+							</form>
+						</field>
+					</page>
+				</notebook>
+			</field>
+		</record> -->
+		<record id="product_product_variant_easy_attachment_form_view" model="ir.ui.view">
+			<field name="name">product.product.variant.easy.edit.form.view.inherit</field>
+			<field name="model">product.product</field>
+			<field name="inherit_id" ref="product.product_variant_easy_edit_view"/>
+			<field name="priority">25</field>
+			<field name="arch" type="xml">
+				<xpath expr="//group[last()]" position="after">
+					<notebook colspan="4">
+						<page string="Website Attachments" groups="advance_product_attachments.group_website_multi_attachment">
+							<button name="advance_product_attachments.product_attachment_wizard_action" type="action" class="btn-success" icon="fa-paperclip" string="Add Attachment" style="width: 100%;height: 35px;"/>
+							<field name="product_attachments" nolabel="1" readonly="1">
+								<tree>
+									<field name="name"/>
+									<field name="attachment_category"/>
+									<field name="allowed_user"/>
+									<field name="sequence"/>
+									<field name="file_size"/>
+									<field name="downloads"/>
+									<button name="update_attachment" type="object" icon="fa-edit"/>
+									<button name="delete_attachment" type="object" icon="fa-trash"/>
+								</tree>
+								<form>
+									<sheet>
+										<group>
+											<group>
+												<field name="name"/>
+												<field name="attachment_category" widget="selection"/>
+												<field name="allowed_user" widget="statusbar" clickable="True"/>
+											</group>
+										</group>
+										<group>
+											<field name="description"/>
+										</group>
+										<group>
+											<group>
+												<field name="file_size"/>
+											</group>
+											<group>
+												<field name="downloads"/>
+											</group>
+										</group>
+									</sheet>
+								</form>
+							</field>
+						</page>
+					</notebook>
+				</xpath>
+			</field>
+		</record>		
+		
+	</data>
+</odoo>

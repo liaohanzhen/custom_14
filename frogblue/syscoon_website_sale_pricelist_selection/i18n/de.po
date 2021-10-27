@@ -1,0 +1,38 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* syscoon_website_sale_pricelist_selection
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-06-01 16:43+0000\n"
+"PO-Revision-Date: 2021-06-01 16:43+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: de\n"
+"Plural-Forms: \n"
+
+#. module: syscoon_website_sale_pricelist_selection
+#. openerp-web
+#: code:addons/syscoon_website_sale_pricelist_selection/static/src/js/website_dialog_pricelist.js:0
+#, python-format
+msgid "Continue"
+msgstr "Weiter"
+
+#. module: syscoon_website_sale_pricelist_selection
+#. openerp-web
+#: code:addons/syscoon_website_sale_pricelist_selection/static/src/xml/pricelist.xml:0
+#, python-format
+msgid "Please select your pricelist"
+msgstr "Bitte wählen Sie Ihre Preisliste"
+
+#. module: syscoon_website_sale_pricelist_selection
+#. openerp-web
+#: code:addons/syscoon_website_sale_pricelist_selection/static/src/js/website_dialog_pricelist.js:0
+#, python-format
+msgid "Select Pricelist"
+msgstr "Preisliste wählen"

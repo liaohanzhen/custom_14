@@ -1,0 +1,96 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#   * frogblue_partner_first_last_name
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-03-01 08:01+0000\n"
+"PO-Revision-Date: 2021-03-01 08:01+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: frogblue_partner_first_last_name
+#: model:ir.model,name:frogblue_partner_first_last_name.model_res_partner
+msgid "Contact"
+msgstr "Kontakt"
+
+#. module: frogblue_partner_first_last_name
+#: model:ir.model.fields,field_description:frogblue_partner_first_last_name.field_crm_lead__contact_name
+msgid "Contact Name"
+msgstr "Ansprechpartner"
+
+#. module: frogblue_partner_first_last_name
+#: model:ir.model.constraint,message:frogblue_partner_first_last_name.constraint_res_partner_check_name
+msgid "Contacts require a name."
+msgstr ""
+
+#. module: frogblue_partner_first_last_name
+#: model:ir.model.fields,field_description:frogblue_partner_first_last_name.field_crm_lead__display_name
+#: model:ir.model.fields,field_description:frogblue_partner_first_last_name.field_res_partner__display_name
+#: model:ir.model.fields,field_description:frogblue_partner_first_last_name.field_res_users__display_name
+msgid "Display Name"
+msgstr "Anzeigename"
+
+#. module: frogblue_partner_first_last_name
+#: model:ir.model.fields,field_description:frogblue_partner_first_last_name.field_crm_lead__firstname
+#: model:ir.model.fields,field_description:frogblue_partner_first_last_name.field_res_partner__firstname
+#: model:ir.model.fields,field_description:frogblue_partner_first_last_name.field_res_users__firstname
+#: model_terms:ir.ui.view,arch_db:frogblue_partner_first_last_name.frogblue_crm_case_form_view_leads_partner_first_name_inherit
+#: model_terms:ir.ui.view,arch_db:frogblue_partner_first_last_name.frogblue_view_partner_form_firstname
+#: model_terms:ir.ui.view,arch_db:frogblue_partner_first_last_name.frogblue_view_partner_simple_form_firstname
+#: model_terms:ir.ui.view,arch_db:frogblue_partner_first_last_name.frogblue_view_users_form_inherit
+msgid "First Name"
+msgstr "Vorname"
+
+#. module: frogblue_partner_first_last_name
+#: model:ir.model.fields,field_description:frogblue_partner_first_last_name.field_crm_lead__id
+#: model:ir.model.fields,field_description:frogblue_partner_first_last_name.field_res_partner__id
+#: model:ir.model.fields,field_description:frogblue_partner_first_last_name.field_res_users__id
+msgid "ID"
+msgstr ""
+
+#. module: frogblue_partner_first_last_name
+#: model:ir.model.fields,field_description:frogblue_partner_first_last_name.field_crm_lead____last_update
+#: model:ir.model.fields,field_description:frogblue_partner_first_last_name.field_res_partner____last_update
+#: model:ir.model.fields,field_description:frogblue_partner_first_last_name.field_res_users____last_update
+msgid "Last Modified on"
+msgstr "Zuletzt geändert am"
+
+#. module: frogblue_partner_first_last_name
+#: model:ir.model.fields,field_description:frogblue_partner_first_last_name.field_crm_lead__lastname
+#: model:ir.model.fields,field_description:frogblue_partner_first_last_name.field_res_partner__lastname
+#: model:ir.model.fields,field_description:frogblue_partner_first_last_name.field_res_users__lastname
+#: model_terms:ir.ui.view,arch_db:frogblue_partner_first_last_name.frogblue_crm_case_form_view_leads_partner_first_name_inherit
+#: model_terms:ir.ui.view,arch_db:frogblue_partner_first_last_name.frogblue_view_partner_form_firstname
+#: model_terms:ir.ui.view,arch_db:frogblue_partner_first_last_name.frogblue_view_partner_simple_form_firstname
+#: model_terms:ir.ui.view,arch_db:frogblue_partner_first_last_name.frogblue_view_users_form_inherit
+msgid "Last Name"
+msgstr "Nachname"
+
+#. module: frogblue_partner_first_last_name
+#: model:ir.model,name:frogblue_partner_first_last_name.model_crm_lead
+msgid "Lead/Opportunity"
+msgstr "Interessent / Chance"
+
+#. module: frogblue_partner_first_last_name
+#: model:ir.model.fields,field_description:frogblue_partner_first_last_name.field_res_partner__name
+#: model:ir.model.fields,field_description:frogblue_partner_first_last_name.field_res_users__name
+msgid "Name"
+msgstr ""
+
+#. module: frogblue_partner_first_last_name
+#: code:addons/frogblue_partner_first_last_name/models/res_partner.py:0
+#, python-format
+msgid "No name is set"
+msgstr "kein Name festgelegt"
+
+#. module: frogblue_partner_first_last_name
+#: model:ir.model,name:frogblue_partner_first_last_name.model_res_users
+msgid "Users"
+msgstr "Benutzer"

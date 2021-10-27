@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>	
+		<record model="ir.ui.view" id="hr_employee_kanban_inherit_checklists">
+            <field name="name">hr.employee.kanban.inherit.checklists</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.hr_kanban_view_employees"/>
+            <field name="arch" type="xml">
+                <data>
+                	<field name="user_id" position="after">
+                		<field name="color"/>
+                	</field>
+                	<xpath expr="//div[@class='oe_kanban_global_click o_kanban_record_has_image_fill o_hr_kanban_record']" position="attributes">
+                		<attribute name="class" />
+                		<attribute name="t-attf-class">oe_kanban_global_click o_kanban_record_has_image_fill o_hr_kanban_record #{kanban_color(record.color.raw_value)}</attribute>
+                	</xpath>
+                </data>
+            </field>
+        </record>
+        
+		<record model="ir.ui.view" id="hr_employee_tree_inherit_checklists">
+            <field name="name">hr.employee.tree.inherit.checklists</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_tree"/>
+            <field name="arch" type="xml">
+                <data>
+                	<field name="parent_id" position="after">
+                		<field name="checklist_progress" widget="progressbar" context="{'left_justified':True}"/>
+                		<field name="offboaring_checklist_progress" widget="progressbar" context="{'left_justified':True}"/>
+                	</field>
+                </data>
+            </field>
+        </record>
+        
+		<record model="ir.ui.view" id="hr_employee_form_inherit_checklists">
+            <field name="name">hr.employee.form.inherit.checklists</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <data>
+                	<xpath expr="//field[@name='category_ids']" position="after">
+                		<br/>
+                		<label for="checklist_progress" />
+                		<field name="checklist_progress" widget="progressbar" />
+                		<br/>
+                		<field name="checklist_items_offboaring_ids" invisible="1"/>
+                		<label for="offboaring_checklist_progress" attrs="{'invisible':[('checklist_items_offboaring_ids','=',[])]}"/>
+                		<field name="offboaring_checklist_progress" widget="progressbar" attrs="{'invisible':[('checklist_items_offboaring_ids','=',[])]}"/>
+                		
+                	</xpath>
+                	<xpath expr="//div[@name='button_box']" position="inside">
+                		<button name="employee_checklist_items" type="object" groups="base.group_user"
+                                class="oe_stat_button" icon="fa-list-ol">
+                            <field name="count_checklist" string="Onboarding" widget="statinfo"/>
+                        </button>
+                        <button name="employee_checklist_items" type="object" groups="base.group_user"
+                                class="oe_stat_button" icon="fa-list-ol" context="{'employee_checklist_items_clicked':True}">
+                            <field name="count_offboaring_checklist" string="Offboarding" widget="statinfo"/>
+                        </button>
+                        
+                	</xpath>
+                	<xpath expr="//notebook" position="inside">
+                		<page string="Onboarding" >
+                			<label for="checklist_item_template_id" string="Checklist template"/>
+                			<field name="checklist_item_template_id" />
+                			<field name="checklist_items" colspan="4" > context="{'readonly_by_pass': True}"
+                				<tree string="Checklists tree" editable="bottom">
+				                    <field name="checklist_done" attrs="{'readonly':[('checklist_type','!=','ACTION')]}" force_save="1"/>
+				                    <field name="checklist_type" required="1"/>
+				                    <field name="related_field_id" attrs="{'readonly':[('checklist_type','!=','INFO')]}" force_save="1" options="{'no_create': True, 'no_open': True, 'no_edit': True}" /> , 'added_related_fields':parent.added_related_fields options="{'no_create': True, 'no_open': True, 'no_edit': True}" 
+				                    <field name="ticket_id" attrs="{'readonly':[('checklist_type','!=','TICKET')]}" force_save="1"/>
+				                    <field name="training_session_id" attrs="{'readonly':[('checklist_type','!=','TRAINING')]}" force_save="1"/>
+				                    <field name="description" attrs="{'readonly':[('checklist_type','=','TICKET')]}" force_save="1"/>
+				                    <field name="doc" filename="file_name" attrs="{'readonly':[('checklist_type','!=','DOC')]}" force_save="1"/>
+				                    <field name="file_name" invisible="1"/>
+				                    <field name="responsible" />
+				                    <field name="user_id" readonly="1" force_save="1"/>
+				                    <field name="date" readonly="1" force_save="1"/>
+				                </tree>
+                			</field>
+                		</page>
+                		<page string="Offboarding" >
+                			<label for="checklist_item_off_template_id" string="Checklist template"/>
+                			<field name="checklist_item_off_template_id" />
+                			<field name="checklist_items_offboaring_ids" colspan="4"> context="{'readonly_by_pass': True}"
+                				<tree string="Checklists tree" editable="bottom">
+				                    <field name="checklist_done" attrs="{'readonly':[('checklist_type','!=','ACTION')]}" force_save="1"/>
+				                    <field name="checklist_type" required="1"/>
+				                    <field name="related_field_id" attrs="{'readonly':[('checklist_type','!=','INFO')]}" force_save="1" options="{'no_create': True, 'no_open': True, 'no_edit': True}" /> 
+				                    <field name="ticket_id" attrs="{'readonly':[('checklist_type','!=','TICKET')]}" force_save="1"/>
+				                    <field name="training_session_id" attrs="{'readonly':[('checklist_type','!=','TRAINING')]}" force_save="1"/>
+				                    <field name="description" attrs="{'readonly':[('checklist_type','=','TICKET')]}" force_save="1"/>
+				                    <field name="doc" filename="file_name" attrs="{'readonly':[('checklist_type','!=','DOC')]}" force_save="1"/>
+				                    <field name="file_name" invisible="1"/>
+				                    <field name="responsible" />
+				                    <field name="user_id" readonly="1" force_save="1"/>
+				                    <field name="date" readonly="1" force_save="1"/>
+				                </tree>
+                			</field>
+                		</page>
+                	</xpath>
+                </data>
+            </field>
+    	</record>
+    	
+    	<!-- <record id="hr.open_view_employee_list_my" model="ir.actions.act_window">
+		    <field name="context">
+		    	{'readonly_by_pass': True}
+		    </field>
+		</record>
+		<record id="hr.open_view_employee_list" model="ir.actions.act_window">
+		    <field name="context">
+		    	{'readonly_by_pass': True}
+		    </field>
+		</record>
+		<record id="hr.act_employee_from_department" model="ir.actions.act_window">
+			<field name="context">{"search_default_department_id": [active_id],"default_department_id": active_id, 'readonly_by_pass': True}</field>
+		</record> -->		
+</odoo>

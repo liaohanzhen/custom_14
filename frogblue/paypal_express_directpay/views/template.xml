@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://store.webkul.com/license.html/ -->
+<odoo>
+    <template id="assets_frontend" inherit_id="web.assets_frontend" name="Custom Paypal Express Assets">
+        <xpath expr="." position="inside">
+            <link rel='stylesheet' href='/paypal_express_directpay/static/src/css/paypal_checkout.css'/>
+        	<script type="text/javascript" src="/paypal_express_directpay/static/src/js/express_checkout.js"></script>
+        </xpath>
+    </template>
+
+    <template id="paypal_checkout_product_template" inherit_id="website_sale.product">
+        <!--<xpath expr="//a[@id='add_to_cart']" position="after">
+          <t t-set="paypal_payment_acquirer" t-value="request.env['payment.acquirer'].search([('provider','=','paypal_express')])"/>
+            <t t-if="paypal_payment_acquirer.product_paypal">
+                <div id="paypal-button"></div>
+            </t>
+            <div id="paypal_express_loader" style="display:none;"/>
+        </xpath> -->
+    </template>
+    <template id="paypal_checkout_cart_template" inherit_id="website_sale.cart">
+        <xpath expr="//a[@href='/shop/checkout?express=1']" position="after">
+            <t t-set="paypal_payment_acquirer" t-value="request.env['payment.acquirer'].search([('provider','=','paypal_express')])"/>
+            <t t-if="paypal_payment_acquirer.cart_paypal">
+                <div t-if="not optional_products and website_sale_order and website_sale_order.website_order_line" id="paypal-button" class="pull-right"></div>
+            </t>
+            <div id="paypal_express_loader" style="display:none;"/>
+        </xpath>
+    </template>
+
+</odoo>

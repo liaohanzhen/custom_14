@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_crm_stage_inherit_checklist" model="ir.ui.view">
+        <field name="name">crm.stage.checklist.form.inherit</field>
+        <field name="model">crm.stage</field>
+        <field name="inherit_id" ref="crm.crm_stage_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='requirements']" position="after">
+            	<notebook>
+	                <page string="Checklist">
+	                	<field name="checklist_ids" nolabel="1">
+	                		<tree string="Checklists" editable="bottom">
+	                			<field name="name" />
+	                			<field name="groups_ids" widget="many2many_tags" />	
+	                		</tree>
+	                	</field>
+	                </page>
+                </notebook>
+                <group>
+                	<group>
+                		<field name="no_need_of_checklist" />
+                	</group>
+                	<group></group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

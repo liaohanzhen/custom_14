@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<template id="quick_assets_frontend" name="Website Quick Form Editor Assets Editor" inherit_id="website.assets_frontend">
+            <xpath expr="." position="inside">
+               <link rel="stylesheet" href="/rt_quick_order/static/src/css/styles.css"/>
+               <script type="text/javascript" src="/rt_quick_order/static/src/js/quick_order.js"></script>
+            </xpath>
+	</template>
+</odoo>

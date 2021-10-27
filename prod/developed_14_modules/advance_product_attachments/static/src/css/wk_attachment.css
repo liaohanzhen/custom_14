@@ -1,0 +1,52 @@
+/* Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) */
+/* See LICENSE file for full copyright and licensing details. */
+.wk_attachment_name {
+    white-space: nowrap;
+    overflow: hidden;
+}
+.size_div{
+    font-size: 14px;
+}
+.wk_size{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-left: 0px;
+}
+.att_size{
+    color: #2275df;
+}
+.wk_attachment_li{
+    display:block;
+    margin:1.5%;
+}
+.attachment_desc{
+    border: none !important;
+}
+
+.btn_accordion {
+    cursor: pointer;
+    padding: 15px;
+    width: 100%;
+    outline: none;
+    transition: 0.4s;
+    font-size: 15px;
+    text-align: -webkit-center;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #E0E0E0;
+    background: #FAFAFA;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.09);
+}
+ 
+.btn_accordion:hover {
+    background-color: #f3f3f3; 
+}
+.wk_panel {
+    display: none;
+    background-color: white;
+    border-style: solid;
+    border-color: #E0E0E0;
+    border-width: 1px;
+    box-shadow: 0px 0px 1px 0px rgba(0,0,0,0.09);
+}   

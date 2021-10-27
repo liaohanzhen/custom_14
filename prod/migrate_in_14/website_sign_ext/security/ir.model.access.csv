@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_assign_contract_wizard,access_assign_contract_wizard,model_assign_contract_wizard,,1,1,1,1
+access_sign_send_sequence_dialog,access_sign_send_sequence_dialog,model_sign_send_sequence_dialog,,1,1,1,1
+access_sign_send_sequence,access_sign_send_sequence,model_sign_send_sequence,,1,1,1,1

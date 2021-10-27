@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="purchase_order_form_approved_not_approved_inherit" model="ir.ui.view">
+		<field name="name">purchase.order.form.approved.not.approved.inherit</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+        	<field name="partner_id" position="after">
+        		<field name="supplier_status" invisible="1" />
+        	</field>
+        	<xpath expr="//div[@name='button_box']" position="before">
+        		<p class="oe_inline" attrs="{'invisible':[('supplier_status','=','Approved')]}" style="color:red;">Warning : this supplier is not approved</p>
+        	</xpath>
+        </field>
+    </record>
+</odoo>

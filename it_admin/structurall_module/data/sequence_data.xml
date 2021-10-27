@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+		<record id="seq_adendum" model="ir.sequence">
+            <field name="name">Adendum</field>
+            <field name="code">adendum.adendum</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="adendum_consecutivo" model="ir.sequence">
+            <field name="name">Consecutivo</field>
+            <field name="code">adendum.consecutivo</field>
+            <field name="padding">2</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_contract_renta" model="ir.sequence">
+            <field name="name">Renta</field>
+            <field name="code">contract.renta</field>
+             <field name="prefix">CR</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        <record id="seq_contract_sale" model="ir.sequence">
+            <field name="name">Venta</field>
+            <field name="code">contract.sale</field>
+             <field name="prefix">CF</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+
+    </data>
+</odoo>

@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+<template id="header_top_links" inherit_id="website.layout">
+<xpath expr="//header" position="replace">
+	<t t-set="url" t-value="request.httprequest.url"/>
+	<!--Url: <t t-esc="url" />
+	Url: <t t-esc="url[-1:]" />-->
+	<style type="text/css">
+	.o_header_affix{background:none;}
+	</style>
+	<t t-if="url[-1:] == '/'">
+		<header id="header" data-anchor="true" data-name="Header" t-attf-class="o_affix_enabled header_color">
+		<div class="container d-flex align-items-center">
+
+		  <h1 class="logo_white mr-auto"><a href="/"><img id="logo_img" src="/theme_5b/static/img/5B_LOGO_White.png" alt="5B"/></a></h1>
+		  <!-- Uncomment below if you prefer to use an image logo -->
+		  <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+		  
+		  <nav class="nav-menu d-none d-lg-block">
+			<ul id="top_menu">
+			  
+			  <!--<t t-if="'solutions' in url">
+				<li class="active"><a href="/solutions">Solutions</a></li>
+			  </t>
+			  <t t-else=""><li><a href="/solutions">Solutions</a></li></t>-->
+			  
+			  <t t-if="'solutions' in url or 'faqs' in url">
+				<li class="active drop-down"><a href="/solutions">Solutions</a>
+					<ul>
+					  <li><a href="/solutions">Solutions</a></li>
+					  <li><a href="/faqs">FAQs</a></li>
+					</ul>
+				</li>
+			  </t>
+			  <t t-else="">
+				<li class="drop-down"><a href="/solutions">Solutions</a>
+					<ul>
+					  <li><a href="/solutions">Solutions</a></li>
+					  <li><a href="/faqs">FAQs</a></li>
+					</ul>
+				</li>
+			  </t>
+			  
+			  
+			  <t t-if="'project' in url">
+				<li class="active"><a href="/projects">Projects</a></li>
+			  </t>
+			  <t t-else=""><li><a href="/projects">Projects</a></li></t>
+			  
+			  <t t-if="'about' in url or 'team' in url">
+				
+				<li class="active drop-down"><a href="/about">About Us</a>
+					<ul>
+					  <li><a href="/about">About 5B</a></li>
+					  <li><a href="/team">Meet 5B legends</a></li>
+					</ul>
+				</li>
+			  </t>
+			  <t t-else="">
+				
+				<li class="drop-down"><a href="/about">About Us</a>
+					<ul>
+					  <li><a href="/about">About 5B</a></li>
+					  <li><a href="/team">Meet 5B legends</a></li>
+					</ul>
+				</li>
+			  </t>
+			  
+			  <!--<t t-if="'faqs' in url">
+				<li class="active"><a href="/faqs">FAQs</a></li>
+			  </t>
+			  <t t-else=""><li><a href="/faqs">FAQs</a></li></t>
+			  
+			  <t t-if="'media' in url">
+				<li class="active"><a href="/media">Media</a></li>
+			  </t>
+			  <t t-else=""><li><a href="/media">Media</a></li></t>-->
+			  
+			  <t t-if="'media' in url or 'news' in url">
+				<li class="active drop-down"><a href="/media">Media</a>
+					<ul>
+					  <li><a href="/news">News</a></li>
+					  <li><a href="/media">Assets</a></li>
+					</ul>
+				</li>
+			  </t>
+			  <t t-else="">
+				<li class="drop-down"><a href="/media">Media</a>
+					<ul>
+					  <li><a href="/news">News</a></li>
+					  <li><a href="/media">Assets</a></li>
+					</ul>
+				</li>
+			  </t>
+			  
+			  <!--<t t-if="'news' in url">
+				<li class="active"><a href="/news">News</a></li>
+			  </t>
+			  <t t-else=""><li><a href="/news">News</a></li></t>
+			  
+			  <t t-if="'careers' in url">
+				<li class="active"><a href="/careers">Careers</a></li>
+			  </t>
+			  <t t-else=""><li><a href="/careers">Careers</a></li></t>
+			  -->
+			  <t t-if="'careers' in url or 'joinus' in url">
+				<li class="active drop-down"><a href="/careers">Careers</a>
+					<ul>
+					  <li><a href="/careers">Life at 5B</a></li>
+					  <li><a href="/joinus">Join Us</a></li>
+					</ul>
+				</li>
+			  </t>
+			  <t t-else="">
+				<li class="drop-down"><a href="/careers">Careers</a>
+					<ul>
+					  <li><a href="/careers">Life at 5B</a></li>
+					  <li><a href="/joinus">Join Us</a></li>
+					</ul>
+				</li>
+			  </t>
+			  
+			  <!--<t t-if="'contact' in url">
+				<li class="active"><a href="/contact">Contact Us</a></li>
+			  </t>
+			  <t t-else=""><li><a href="/contact">Contact Us</a></li></t>-->
+			  
+			  <t t-if="'contact' in url">
+				<li class="active drop-down"><a href="/contact">Contact Us</a>
+					<ul>
+					  <li><a href="/contact#get_a_quote">Get a Quote</a></li>
+					  <li><a href="/contact">Enquiry</a></li>
+					  <li><a data-toggle="modal" data-target="#subscribeEmailUpdates">Subscribe to Updates</a></li>
+					</ul>
+				</li>
+			  </t>
+			  <t t-else="">
+				<li class="drop-down"><a href="/contact">Contact Us</a>
+					<ul>
+					  <li><a href="/contact#get_a_quote">Get a Quote</a></li>
+					  <li><a href="/contact">Enquiry</a></li>
+					  <li><a data-toggle="modal" data-target="#subscribeEmailUpdates">Subscribe to Updates</a></li>
+					</ul>
+				</li>
+			  </t>
+			  
+			
+			<!--<li class="divider" />
+			<li class="" t-ignore="true" t-if="user_id._is_public()">
+				<a href="/web/login">Sign in</a>
+			</li>-->
+			<li class="drop-down" t-ignore="true" t-if="not user_id._is_public()">
+				<a href="#">
+					<t t-esc="user_id.name[:23] + '...' if user_id.name and len(user_id.name) &gt; 25 else user_id.name"/></a>
+					<ul>
+					  <li><a id="o_logout" t-attf-href="/web/session/logout?redirect=/">Logout</a></li>
+					</ul>
+			</li>
+			  
+			</ul>
+		  </nav><!-- .nav-menu -->
+		</div>
+		</header><!-- End Header -->
+		<script type="text/javascript">
+			(function () {
+				$(document).ready(function() {
+					$('#header').addClass("header_color");
+				});
+			});
+		</script>
+	</t>
+	<t t-if="url[-1:] != '/'">
+		<t t-set="logged_class" t-value="'fixed-top'"/>
+		<t t-if="request.uid &gt; 1">
+			<t t-set="logged_class" t-value="''"/>
+		</t>
+		<header id="header" data-anchor="true" data-name="Header" t-attf-class="o_affix_enabled background_white">
+		
+		<div class="container d-flex align-items-center">
+
+		  <h1 class="logo_dark mr-auto"><a href="/"><img id="logo_img" src="/theme_5b/static/img/5B_LOGO_Color.png" alt="5B"/></a></h1>
+		  <!-- Uncomment below if you prefer to use an image logo -->
+		  <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+		  <nav class="nav-menu d-none d-lg-block">
+			<ul id="top_menu">
+			  
+			  <!--<t t-if="'solutions' in url">
+				<li class="active"><a href="/solutions">Solutions</a></li>
+			  </t>
+			  <t t-else=""><li><a href="/solutions">Solutions</a></li></t>-->
+			  
+			  <t t-if="'solutions' in url or 'faqs' in url">
+				<li class="active drop-down"><a href="/solutions">Solutions</a>
+					<ul>
+					  <li><a href="/solutions">Solutions</a></li>
+					  <li><a href="/faqs">FAQs</a></li>
+					</ul>
+				</li>
+			  </t>
+			  <t t-else="">
+				<li class="drop-down"><a href="/solutions">Solutions</a>
+					<ul>
+					  <li><a href="/solutions">Solutions</a></li>
+					  <li><a href="/faqs">FAQs</a></li>
+					</ul>
+				</li>
+			  </t>
+			  
+			  
+			  <t t-if="'project' in url">
+				<li class="active"><a href="/projects">Projects</a></li>
+			  </t>
+			  <t t-else=""><li><a href="/projects">Projects</a></li></t>
+			  
+			  <t t-if="'about' in url or 'team' in url">
+				
+				<li class="active drop-down"><a href="/about">About Us</a>
+					<ul>
+					  <li><a href="/about">About 5B</a></li>
+					  <li><a href="/team">Meet 5B legends</a></li>
+					</ul>
+				</li>
+			  </t>
+			  <t t-else="">
+				
+				<li class="drop-down"><a href="/about">About Us</a>
+					<ul>
+					  <li><a href="/about">About 5B</a></li>
+					  <li><a href="/team">Meet 5B legends</a></li>
+					</ul>
+				</li>
+			  </t>
+			  
+			  <!--<t t-if="'faqs' in url">
+				<li class="active"><a href="/faqs">FAQs</a></li>
+			  </t>
+			  <t t-else=""><li><a href="/faqs">FAQs</a></li></t>
+			  
+			  <t t-if="'media' in url">
+				<li class="active"><a href="/media">Media</a></li>
+			  </t>
+			  <t t-else=""><li><a href="/media">Media</a></li></t>-->
+			  
+			  <t t-if="'media' in url or 'news' in url">
+				<li class="active drop-down"><a href="/media">Media</a>
+					<ul>
+					  <li><a href="/news">News</a></li>
+					  <li><a href="/media">Assets</a></li>
+					</ul>
+				</li>
+			  </t>
+			  <t t-else="">
+				<li class="drop-down"><a href="/media">Media</a>
+					<ul>
+					  <li><a href="/news">News</a></li>
+					  <li><a href="/media">Assets</a></li>
+					</ul>
+				</li>
+			  </t>
+			  
+			  <!--<t t-if="'news' in url">
+				<li class="active"><a href="/news">News</a></li>
+			  </t>
+			  <t t-else=""><li><a href="/news">News</a></li></t>
+			  
+			  <t t-if="'careers' in url">
+				<li class="active"><a href="/careers">Careers</a></li>
+			  </t>
+			  <t t-else=""><li><a href="/careers">Careers</a></li></t>
+			  -->
+			  <t t-if="'careers' in url or 'joinus' in url">
+				<li class="active drop-down"><a href="/careers">Careers</a>
+					<ul>
+					  <li><a href="/careers">Life at 5B</a></li>
+					  <li><a href="/joinus">Join Us</a></li>
+					</ul>
+				</li>
+			  </t>
+			  <t t-else="">
+				<li class="drop-down"><a href="/careers">Careers</a>
+					<ul>
+					  <li><a href="/careers">Life at 5B</a></li>
+					  <li><a href="/joinus">Join Us</a></li>
+					</ul>
+				</li>
+			  </t>
+			  
+			  <!--<t t-if="'contact' in url">
+				<li class="active"><a href="/contact">Contact Us</a></li>
+			  </t>
+			  <t t-else=""><li><a href="/contact">Contact Us</a></li></t>-->
+			  
+			  <t t-if="'contact' in url">
+				<li class="active drop-down"><a href="/contact">Contact Us</a>
+					<ul>
+					  <li><a href="/contact#get_a_quote">Get a Quote</a></li>
+					  <li><a href="/contact">Enquiry</a></li>
+					  <li><a data-toggle="modal" data-target="#subscribeEmailUpdates">Subscribe to Updates</a></li>
+					</ul>
+				</li>
+			  </t>
+			  <t t-else="">
+				<li class="drop-down"><a href="/contact">Contact Us</a>
+					<ul>
+					  <li><a href="/contact#get_a_quote">Get a Quote</a></li>
+					  <li><a href="/contact">Enquiry</a></li>
+					  <li><a data-toggle="modal" data-target="#subscribeEmailUpdates">Subscribe to Updates</a></li>
+					</ul>
+				</li>
+			  </t>
+			  
+			
+			<!--<li class="divider" />
+			<li class="" t-ignore="true" t-if="user_id._is_public()">
+				<a href="/web/login">Sign in</a>
+			</li>-->
+			<li class="drop-down" t-ignore="true" t-if="not user_id._is_public()">
+				<a href="#">
+					<t t-esc="user_id.name[:23] + '...' if user_id.name and len(user_id.name) &gt; 25 else user_id.name"/></a>
+					<ul>
+					  <li><a id="o_logout" t-attf-href="/web/session/logout?redirect=/">Logout</a></li>
+					</ul>
+			</li>
+			  
+			</ul>
+		  </nav><!-- .nav-menu -->
+		</div>
+		</header><!-- End Header -->
+	</t>
+</xpath>
+</template>
+</odoo>

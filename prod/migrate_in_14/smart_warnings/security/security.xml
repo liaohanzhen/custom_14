@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="group_smart_warnings_manager" model="res.groups">
+        <field name="name">Smart Alerts Admin</field>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+    <data noupdate="1">
+        <record id="smart_warning_company_rule" model="ir.rule">
+            <field name="name">Smart Alerts: Multi Companies</field>
+            <field name="model_id" ref="model_smart_warning"/>
+            <field name="domain_force">[
+                '|',
+                    ('company_id','=',False),
+                    ('company_id','child_of',[user.company_id.id])]
+            </field>
+        </record>
+    </data>
+
+</odoo>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  	<data>
+ 		<record id="syscom_brand_form_view" model="ir.ui.view">
+	        <field name="name">syscom.brand.form.view</field>
+	        <field name="model">syscom.brand</field>	
+	        <field name="arch" type="xml">
+	        <form create="0" duplicate="0" edit="0">
+	        	<sheet>
+	            	<group>
+	            		<group>
+	                		<field name="syscom_id" string="Syscom Id :" readonly="1"/>
+				    		<field name="name" string="Name :"/>
+				    	</group>
+	              </group>	
+	        	</sheet>	
+	        </form>
+	       </field>
+ 	 </record>
+ 	 
+     <record id="syscom_brand_tree_view" model="ir.ui.view">
+	     <field name="name">syscom.brand.tree.view</field>
+	     <field name="model">syscom.brand</field>
+     	 <field name="arch" type="xml">
+	     	<tree create="0" duplicate="0" edit="0">
+	     		<field name="syscom_id" string="Syscom Id :" readonly="1"/>
+				<field name="name" string="Name :"/>
+	     	</tree>
+        </field>
+     </record>
+     
+     <record id="syscom_brand_menu" model="ir.actions.act_window">
+	     <field name="name">Syscom Brand</field>
+	     <field name="res_model">syscom.brand</field>
+	     <field name="view_mode">tree,form</field>
+     </record> 
+     
+     <menuitem name="Syscom Brand" id="syscom_brand_menus" action="syscom_brand_menu" parent="stock.menu_product_in_config_stock"></menuitem>
+     
+   </data>
+</odoo>
+  

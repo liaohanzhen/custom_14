@@ -1,0 +1,117 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data>
+        <record id="view_product_kanban" model="ir.ui.view">
+            <field name="name">product.template.kanban</field>
+            <field name="model">product.template</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="id"/>
+                    <field name="image_128"/>
+                    <field name="price"/>
+                    <field name="product_variant_count"/>
+                    <field name="product_variant_ids"/>
+                    <field name="currency_id"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click">
+                                <div class="o_kanban_image">
+                                    <img t-att-src="kanban_image('product.template', 'image_128', record.id.raw_value)" alt="Product"/>
+                                </div>
+                                <div class="oe_kanban_details">
+                                    <strong class="o_kanban_record_title">
+                                        <field name="name"/>
+                                        <small t-if="record.default_code.value">[<field name="default_code"/>]</small>
+                                    </strong>
+                                    <div t-if="record.product_variant_count.value &gt; 1" groups="product.group_product_variant">
+                                        <strong>
+                                            <t t-esc="record.product_variant_count.value"/> Variants
+                                        </strong>
+                                    </div>
+                                    <div name="tags"/>
+                                    <ul>
+                                        <li>Price: <field name="price"/></li>
+                                    </ul>
+                                    <div name="tags"/>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="view_product_form" model="ir.ui.view">
+            <field name="name">product.template.form.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+                <div class="oe_button_box" name="button_box">
+                    <button class="oe_stat_button" name="action_view_rentals" type="object" icon="fa-calendar"
+                            attrs="{'invisible': [('rent_ok', '=', False)]}">
+                        <div class="o_field_widget o_stat_info">
+                            <span class="o_stat_value">
+                                <field name="qty_in_rent" widget="statinfo" nolabel="1" class="mr4"/>
+                                Units
+                            </span>
+                            <span class="o_stat_text">
+                                in Rental
+                            </span>
+                        </div>
+                    </button>
+                </div>
+                <xpath expr="//field[@name='purchase_ok']" position="before">
+                    <div>
+                        <field name="rent_ok"/>
+                        <label for="rent_ok"/>
+                    </div>
+                </xpath>
+                <notebook position="inside">
+                    <page string="Rental" attrs="{'invisible': [('rent_ok', '=', False)]}">
+                        <group >
+                            <group string="Rental Pricing" class="w-25 p-3 ml-5">
+                                <field name="rental_pricing_ids" nolabel="1">
+                                    <tree editable="bottom">
+                                        <field name="duration"/>
+                                        <field name="unit"/>
+                                        <field name="price"/>
+                                    </tree>
+                                </field>
+                            </group>
+                            <group string="Delay Charges" class="ml-5">
+                                <field name="extra_hourly" widget='monetary' options="{'currency_field': 'currency_id', 'field_digits': True}"/>
+                                <field name="extra_daily" widget='monetary' options="{'currency_field': 'currency_id', 'field_digits': True}"/>
+                            </group>
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+
+        <record id="rental_product_search" model="ir.ui.view">
+            <field name="name">rental.product.search</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_search_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//search" position="inside">
+                    <filter string="Rental Product" name="rental" domain="[('rent_ok', '=', True)]"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id='rental_product_action_id' model='ir.actions.act_window'>
+            <field name='name'>Rental Product</field>
+            <field name='res_model'>product.template</field>
+            <field name='view_mode'>kanban,tree,form</field>
+            <field name='view_id' ref="view_product_kanban"/>
+            <field name="domain">[('rent_ok','=',True)]</field>
+            <field name="context">{'default_rent_ok':True, 'default_sale_ok': False, 'default_purchase_ok': False,
+                "search_default_rental":1 }
+            </field>
+        </record>
+
+        <menuitem id='product' name='Products' parent='resource_rental_mgt.resource_rental_root_menu'/>
+        <menuitem id='product_create' name='Products' parent='resource_rental_mgt.product'
+                  action='resource_rental_mgt.rental_product_action_id'/>
+    </data>
+</odoo>

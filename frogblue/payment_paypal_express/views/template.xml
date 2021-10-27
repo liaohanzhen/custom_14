@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://store.webkul.com/license.html/ -->
+<odoo>
+    <data>
+        <template id="inherit_payment_tokens_list" inherit_id="payment.payment_tokens_list">
+            <xpath expr="//form" position="attributes">
+                <attribute name="t-att-data-paypal-currency-code">paypal_currency_code or ''</attribute>
+            </xpath>
+            <xpath expr="//button[@id='o_payment_form_pay']" position="after">
+                <div id="paypal-button" style="display:none;width: 280px;"></div>
+                <div id="paypal_express_loader" style="display:none;"/>
+            </xpath>
+        </template>
+    </data>
+</odoo>

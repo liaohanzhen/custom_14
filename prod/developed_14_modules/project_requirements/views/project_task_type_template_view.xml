@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    	<record id="view_project_task_type_template_filter" model="ir.ui.view">
+            <field name="name">project.task.type.template.search.view</field>
+            <field name="model">project.task.type.template</field>
+            <field name="arch" type="xml">
+                <search string="Project Checklist Search">
+                    <field name="name" />
+                </search>
+            </field>
+        </record>
+        <record id="view_project_task_type_template_form" model="ir.ui.view">
+            <field name="name">project.task.type.template.form</field>
+            <field name="model">project.task.type.template</field>
+            <field name="arch" type="xml">
+                <form string="Checklists Item Form">
+                    <sheet>
+                        <div class="oe_title">
+	                        <h1>
+	                            <field name="name" />
+	                        </h1>
+	                    </div>
+	                    <separator string="Project Stages" colspan="4"/>
+                        <field name="stage_ids" colspan="4" nolabel="1">
+               				<tree string="Stages" editable="bottom">
+               					<field name="sequence" widget="handle" groups="base.group_no_one"/>
+			                    <field name="name"/>
+			                    <field name="fold"/>
+			                    <field name="description"/>
+               				</tree>
+               			</field>	
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_project_task_type_template_tree" model="ir.ui.view">
+            <field name="name">project.task.type.template.tree</field>
+            <field name="model">project.task.type.template</field>
+            <field name="arch" type="xml">
+                <tree string="Project Stages template tree">
+                	<field name="name"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="action_project_task_type_template" model="ir.actions.act_window">
+            <field name="name">Project Workflows</field>
+            <field name="res_model">project.task.type.template</field>
+            <!-- <field name="view_mode">tree,form</field> -->
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_project_task_type_template_filter"/>
+            <field name="view_ids"
+                   eval="[(5, 0, 0),
+                          (0, 0, {'view_mode': 'tree', 'view_id': ref('view_project_task_type_template_tree')}),
+                          (0, 0, {'view_mode': 'form', 'view_id': ref('view_project_task_type_template_form')}),
+                          ]"/>
+            <field name="context">{}</field>
+        </record>
+        
+        <menuitem id="menu_action_project_task_type_template"
+        	parent="project.menu_project_config"
+        	name="Project Workflows"
+        	action="action_project_task_type_template"
+        	sequence="5"/>
+        	
+    </data>
+</odoo>

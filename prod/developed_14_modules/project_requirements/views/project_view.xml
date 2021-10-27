@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="project_project_form_view_simplified_inherit_project_type_selection_req" model="ir.ui.view">
+        <field name="name">project.project.form.view.simplified.inherit.project.type.selection.req</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project_kanban_background.project_project_form_view_simplified_inherit_project_type_selection"/>
+        <field name="arch" type="xml">
+            <data>
+            	<field name="project_type_id" position="replace"/>
+            </data>
+        </field>
+    </record>
+	<record id="project_project_form_view_simplified_inherit_requirement" model="ir.ui.view">
+        <field name="name">project.project.form.view.simplified.inherit.requirement</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.project_project_view_form_simplified"/>
+        <field name="arch" type="xml">
+            <data>
+            	<xpath expr="//div[@name='alias_def']" position="after">
+            		<field name="id" invisible="1" />
+            		<field name="project_template_id" attrs="{'readonly':[('id','!=',False)]}"/> <!-- 'required':[('id','=',False),('is_project_manager','!=', True)] -->
+            		<!-- <field name="is_project_manager" invisible='1'/> -->
+            		<field name="project_type_id" force_save="1" attrs="{'readonly':[('project_template_id','!=',False)]}"/> <!-- attrs="{'readonly':[('project_template_id','!=',False)]}" -->
+            		<field name="stage_template_id" force_save="1" attrs="{'readonly':['|',('id','!=',False), ('project_template_id','!=',False)]}"/> <!--   -->
+                </xpath>
+            </data>
+        </field>
+    </record>
+    
+	<record id="project_project_edit_form_inherit_requirement" model="ir.ui.view">
+        <field name="name">project.project.edit.form.inherit.project.requirement</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+            <data>
+            	<field name="user_id" position="before">
+            		<field name="project_template_id" attrs="{'readonly':[('id','!=',False)],'required':[('id','=',False)]}"/>
+            	</field>
+            	<field name="privacy_visibility" position="before">
+            		<field name="id" invisible="1" />
+            		<field name="project_template_id" attrs="{'readonly':[('id','!=',False)]}"/>
+            		<field name="stage_template_id" attrs="{'readonly':[('id','!=',False)]}"/>
+            	</field>
+            	<xpath expr="//notebook" position="inside">
+            		<page string="Project Requirements" >
+                		<field name="requirement_ids" colspan="4" >
+               				<tree string="Requirements" editable="bottom">
+               					<field name="name" />
+               					<field name="description" />
+               					<field name="task_ids" widget="many2many_tags" readonly="1"/>
+               				</tree>
+               			</field>	
+                	</page>
+                </xpath>
+            </data>
+        </field>
+    </record>
+    <record id="project.menu_project_config_project" model="ir.ui.menu">
+    	<field name="name">Project Stages</field>
+    	<field name="sequence">7</field>
+    </record>
+    <!-- <act_window
+            id="create_project_template_from_project_server_action"
+            name="Create a template from this project"
+            res_model="select.project.name"
+            view_mode="form"
+            src_model="project.project"
+            target="new"/> -->
+    <!-- <record id="create_project_template_from_project_server_action" model="ir.actions.server">
+        <field name="name">Create a template from this project</field>
+        <field name="model_id" ref="project.model_project_project"/>
+        <field name="binding_model_id" ref="project.model_project_project"/>
+        <field name="condition">True</field>
+        <field name="state">code</field>
+        <field name="code">action = records.create_project_template()</field>
+    </record> -->
+</odoo>

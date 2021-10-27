@@ -1,0 +1,58 @@
+<odoo>
+  <data>
+	
+	<!-- list view -->
+    <record model="ir.ui.view" id="mvp_pylon_projects_list">
+      <field name="name">mvp.pylon.projects.tree</field>
+      <field name="model">mvp.pylon.projects.5b</field>
+      <field name="arch" type="xml">
+        <tree>
+			<field name="project_id"/>
+			<field name="name"/>
+			<field name="publish_date"/>
+        </tree>
+      </field>
+    </record>
+	
+		<!-- form view -->
+    <record model="ir.ui.view" id="mvp_pylon_projects_form">
+      <field name="name">mvp.pylon.projects.form</field>
+      <field name="model">mvp.pylon.projects.5b</field>
+      <field name="arch" type="xml">
+		<form>
+        <sheet>
+			<group> 
+				<group>
+					<field name="project_id"/>
+					<field name="is_publish"/>
+				</group>
+				<group>
+					<field name="name"/>
+					<field name="publish_date"/>
+				</group>
+			</group>
+			<group>
+				<field name="project_data"/> 
+				<field name="design_data"/>
+			</group>
+		</sheet>
+      </form>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="mvp_pylon_projects_view">
+      <field name="name">Pylon 5B Projects</field>
+      <field name="res_model">mvp.pylon.projects.5b</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+	
+	<menuitem id="menu_5b_website_cms"
+            name="Website CMS"
+            sequence="1"
+            parent="website.menu_website_configuration"/>
+			
+	<menuitem name="Pylon Projects" id="mvp_pylon_projects" parent="menu_5b_website_cms" action="mvp_pylon_projects_view" sequence="6" />
+	
+  </data>
+</odoo>

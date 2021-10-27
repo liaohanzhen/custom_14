@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="quick_search_assets_backend" inherit_id="web.assets_backend" name="Quick Search Assets Backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/quick_search_customize/static/src/js/basic_renderer.js"></script>
+            <link rel="stylesheet" href="/quick_search_customize/static/src/css/quick_search_customize.css" />
+        </xpath>
+    </template>
+</odoo>

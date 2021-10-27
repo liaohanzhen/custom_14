@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+		<record id="view_calendar_event_booking_form" model="ir.ui.view">
+                <field name="name">Delivery And Equipment Booking Form</field>
+                <field name="model">calendar.event</field>
+                <field name="inherit_id" ref="calendar.view_calendar_event_form"/>
+                <field name="priority">12</field>
+                <field name="arch" type="xml">
+                	<page name="page_misc" position="after">
+                		<page name="delivery_equipment_booking_form" string="Delivery And Equipment Booking Form">
+                            <group>
+	                            <group>
+	                                <field name="partner_id_equipment"/>
+	                                <field name="department_name"/>
+	                                <field name="selection_booking_ids" widget="many2many_checkboxes"/>
+	                                <field name="provide_referance_number"/>
+	                                <field name="event_title"/>
+	                            </group>
+	                            <group>
+	                            	    <field name="partner_making_book"/>
+	                            	    <field name="request_refer_ids" widget="many2many_checkboxes"/>
+	                            	    <field name="entered_firm" widget='radio'/>
+	                            	    <field name="request_refer_ids" widget="many2many_checkboxes"/>
+	                            </group>
+                            </group>
+                            <separator string="In case of delivery please provide details of the delivery. (size, weight, project)"/>
+                            	<field name="delivery_provide_details" nolabel="1" class="oe_inline"/>
+                            	
+                            <separator string="Questions and Comments" colspan="3"/>	
+                            	<field name="questions_comments" nolabel="1" class="oe_inline"/>
+                        </page>
+                	</page>
+                </field>
+        </record>        
+</odoo>

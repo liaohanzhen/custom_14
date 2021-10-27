@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_employee_checklists_item_user,access.hr.employee.checklists.item.user,model_hr_employee_checklists_item,base.group_user,1,1,1,0
+access_hr_employee_checklists_item_manager,access.hr.employee.checklists.item.manager,model_hr_employee_checklists_item,hr.group_hr_manager,1,1,1,1
+access_hr_employee_checklists_item_user_helpdesk,access.hr.employee.checklists.item.user.helpdesk,model_hr_employee_checklists_item,helpdesk.group_helpdesk_user,1,1,1,0
+access_hr_employee_checklists_item_manager_helpdesk,access.hr.employee.checklists.item.manager.helpdesk,model_hr_employee_checklists_item,helpdesk.group_helpdesk_manager,1,1,1,1
+access_checklist_item_package,access.checklist_item_package,model_checklist_item_package,,1,1,1,1

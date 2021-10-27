@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_crm_lead_checklist,crm.lead.checklist,crm_checklist.model_crm_lead_checklist,,1,1,1,1

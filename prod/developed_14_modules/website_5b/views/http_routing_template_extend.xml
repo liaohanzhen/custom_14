@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<template id="404" inherit_id="http_routing.404" name="Page not found">
+		<xpath expr="//div[@id='wrap']" position="replace">
+		<div id="wrap" class="oe_structure oe_empty">
+			<section id="hero-project" class="d-flex justify-content-center align-items-center">
+				<div class="container position-relative"></div>
+			</section><!-- End Hero -->
+			<section id="about" class="about">
+			  <div class="container">
+				<div class="row">
+				  <div class="col-lg-12 pt-4 pt-lg-0 order-2 order-lg-1 content" align="left">
+					<div class="section-title">
+					  <!-- <h2>About</h2> -->
+					  <h3>404: Page not found!</h3>
+					</div>
+					<p>
+						The page you were looking for could not be found; it is possible you have
+						typed the address incorrectly, but it has most probably been removed due
+						to the recent reorganisation.
+					</p>
+					</div>
+				</div>
+				</div>
+			</section>
+		</div>
+		</xpath>
+    </template>
+</odoo>

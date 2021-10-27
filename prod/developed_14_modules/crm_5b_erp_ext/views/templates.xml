@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="assets_backend" name="crm assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" href="/crm_5b_erp_ext/static/src/css/opportunity.css"/>
+                <script type="text/javascript" src="/crm_5b_erp_ext/static/src/js/kanban_column_progressbar.js"></script>
+                <script type="text/javascript" src="/crm_5b_erp_ext/static/src/js/kanban_renderer.js"></script>
+                <script type="text/javascript" src="/crm_5b_erp_ext/static/src/js/list_renderer.js"></script>
+            </xpath>
+            <!-- <xpath expr="script[@src='/web/static/src/js/views/kanban/kanban_view.js']" position="replace">
+            	<script type="text/javascript" src="/crm_5b_erp_ext/static/src/js/kanban_view.js"></script>	
+            </xpath> -->
+            
+        </template>
+    </data>
+</odoo>

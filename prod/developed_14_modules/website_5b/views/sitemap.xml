@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- === 5B Sitemap Page === -->
+    <template id="5b_sitemap">
+        <t t-call="website.layout">
+            <div id="wrap">
+				<!-- === Snippets' area === -->
+				<div class="oe_structure" />
+				<t t-call="website_5b.page_5b_sitemap_contents" />
+            </div>
+        </t>
+    </template>
+	
+    <record id="page_5b_sitemap" model="website.page">
+        <field name="name">Sitemap</field>
+        <field name="website_published">True</field>
+        <field name="url">/sitemap</field>
+        <field name="view_id" ref="5b_sitemap"/>
+    </record>
+
+	<template id="page_5b_sitemap_contents" name="Sitemap">
+	  <!-- ======= Hero Section ======= -->
+	  <section id="hero-project" class="d-flex justify-content-center align-items-center">
+			<div class="container position-relative" data-aos="zoom-in" data-aos-delay="100"/>
+		</section><!-- End Hero -->
+	  <main id="main">
+		<section id="about" class="about">
+		  <div class="container" data-aos="fade-up">
+
+			<div class="row">
+			  <div class="col-lg-12 pt-4 pt-lg-0 order-2 order-lg-1 content">
+				
+				<div class="section-title">
+					<h3>Sitemap</h3>
+				  </div>
+				  <div align="left" class="privacy">Content will be updated soon.</div>
+								
+			  </div>
+			</div>
+		  </div>
+		</section><!-- End About Section -->
+	  </main><!-- End #main -->
+    </template>
+</odoo>

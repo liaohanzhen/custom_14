@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+		<record id="view_model_fields_form_project_project" model="ir.ui.view">
+            <field name="model">ir.model.fields</field>
+            <field name="priority">100</field>
+            <field name="arch" type="xml">
+                <form string="Project Attribute" duplicate="false">
+                       <group>
+                           <group>
+                               <field name="name"/>
+                               <field name="field_description"/>
+                               <field name="model_id" domain="[('model','=','project.project')]" options="{'no_create': True, 'no_open': True, 'no_edit': True}"/>
+                           </group>
+                           <group>
+                               <field name="project_field_type" required="1"/>
+                               <field name="ttype" invisible="1"/>
+                               <field name="is_project_custom_field" invisible="1" />
+                               <field name="help"/>
+                           </group>
+                       </group>
+                       <notebook>
+                           <page name="base" string="Properties">
+                               <group string="Base Properties">
+                                   <group>
+                                       <field name="required"/>
+                                       <field name="readonly"/>
+                                       <field name="store" groups="base.group_no_one"/>
+                                       <field name="index" groups="base.group_no_one"/>
+                                       <field name="copied" groups="base.group_no_one"/>
+                                   </group>
+                                   <group>
+                                       <field name="translate"
+                                           attrs="{'readonly': [('ttype','not in',['char','text','html'])],
+                                                   'invisible': [('ttype','not in',['char','text','html'])]}"/>
+                                       <field name="size" groups="base.group_no_one"
+                                           attrs="{'readonly': [('ttype','not in',['char','reference'])],
+                                                   'invisible': [('ttype','not in',['char','reference'])]}"/>
+                                       
+                                   </group>
+                               </group>
+                               
+                           </page>
+                           <page name="groups" string="Access Rights">
+                               <field name="groups"/>
+                           </page>
+                       </notebook>
+					<footer>
+						<button name="action_save_custom_field" string="Save &amp; Close" type="object" class="oe_highlight"/>
+						<button name="action_save_and_new_custom_field" string="Save &amp; New" type="object" class="oe_highlight"/>
+                        <button string="Cancel" class="oe_highlight" special="cancel" />
+					</footer>	                    
+                </form>
+            </field>
+        </record>
+</odoo>

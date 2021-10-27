@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="quality_check_view_form_small_inherit_serial_no" model="ir.ui.view">
+        <field name="name">quality.check.view.form.inherit.serial.no</field>
+        <field name="model">quality.check</field>
+        <field name="inherit_id" ref="quality_control.quality_check_view_form_small"/>
+        <field name="arch" type="xml">
+            <field name="note" position="before">
+                <label for="lot_id" /> 
+                <field name="lot_id" readonly="1"/>
+            </field>
+            <button name="do_pass" position="after">
+            	<button name="do_pass_all" type="object" class="btn-primary" string="Pass All"
+                        attrs="{'invisible': [('test_type', '=', 'measure')]}"/>
+            </button>
+            
+        </field>
+    </record>
+</odoo>

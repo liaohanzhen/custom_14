@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="opentrans_view_order_tree" model="ir.ui.view">
+            <field name="name">opentrans.sale.order.tree</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="opentrans_order_transmitted"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="opentrans_view_order_form" model="ir.ui.view">
+            <field name="name">opentrans.sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_shipping_id']" position="after">
+                    <field name="opentrans_order_transmitted"/>
+                    <field name="opentrans_order_not_send" attrs="{'invisible': [('opentrans_order_transmitted','=',True)]}"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="hr_job_form_view_inherit_add_html_widget">	
+            <field name="name">hr.job.form.view.inherit.add.html.widget</field>
+            <field name="model">hr.job</field>
+            <field name="inherit_id" ref="hr.view_hr_job_form"></field>
+            <field name="arch" type="xml">
+                <field name="description" position="attributes">
+                    <attribute name="widget">html</attribute>
+                </field>
+            </field>
+        </record>
+	</data>
+</odoo>

@@ -1,0 +1,100 @@
+<odoo>
+  <data>
+	  <template id="page_projects" name="Projects">
+		<t t-call="website.layout">
+        <div id="wrap" class="oe_structure oe_empty">
+		<!-- ======= Hero Section ======= -->
+		  <!--<section id="hero-project" class="d-flex justify-content-center align-items-center">-->
+		  <section id="hero-project" style="background: url('/theme_5b/static/img/banner-project.jpg'); background-position: 50% 50%; background-size:cover; background-repeat:no-repeat">
+			<div class="container position-relative">
+			        
+			</div>
+		  </section><!-- End Hero -->
+
+		  <main id="main">
+			<!-- ======= Courses Section ======= -->
+			<section class="courses" style="margin-top:30px; margin-bottom:0 !important; padding-bottom:0 !important;">
+			  <div class="container">
+				  <div class="btn-center">
+					<a href="/theme_5b/static/contents/5B-Project-Portfolio.pdf" title="5B Project Portfolio" class="learn-more-btn">Download project portfolio</a>
+				  </div>
+			  </div>
+			</section>
+			  
+			<section id="courses" class="courses">
+			  <div class="container">
+				<div class="row">
+				  <div class="col-lg-12 pt-4 pt-lg-0 order-2 order-lg-1 content">
+					<div class="section-title" style="padding-top:0 !important;">
+					  <h3>Key Projects</h3>
+					</div>
+				  </div>
+				</div>
+				
+				
+				<div class="row">
+				<t t-set="row_count" t-value="1" />
+				<t t-foreach="contents" t-as="content">
+					<t t-set="hidden_class" t-value="'display:block;'" />
+					<t t-if="row_count > 3">
+						<t t-set="hidden_class" t-value="'display:none !important;'" />
+					</t>
+					<t t-if="content.display_order">
+				  <div class="col-lg-4 col-md-6 d-flex align-items-stretch blogBox moreBox" t-attf-style="margin-bottom:30px; {{hidden_class}}">
+					<div class="course-item">
+					  <div class="image-zoom">
+						
+						<t t-if="content.caption_image_thumb">
+							<img t-att-src="image_data_uri(content.caption_image_thumb)" class="img-fluid" t-att-alt="content.name" />
+							<!--<a t-att-href="image_data_uri(content.caption_image_thumb)" class="progressive replace img-fluid">
+							  <img src="/theme_5b/static/img/lazy/project.jpg" class="preview img-fluid" t-att-alt="content.name" />
+							</a>-->
+						</t>
+						<t t-else="">
+							<img src="/theme_5b/static/img/image-not-found.jpg" style="max-width:100%; height:auto;" alt="Project image not found" />
+							<!--<a href="/theme_5b/static/img/image-not-found.jpg" class="progressive replace">
+							  <img src="/theme_5b/static/img/lazy/project.jpg" class="preview" alt="Project image not found" style="max-width:100%; height:auto;" />
+							</a>-->
+						</t>
+					  </div>
+					  <div class="course-content">
+						<h3><a><t t-esc="content.name" /></a></h3>
+						<t t-if="float(content.project_capacity) >= 1000">
+							<t t-set="capacity" t-value="float(content.project_capacity)/1000" />
+							<t t-set="unit" t-value="'MWp'" />
+						</t>
+						<t t-else="">
+							<t t-set="capacity" t-value="content.project_capacity" />
+							<t t-set="unit" t-value="'kWp'" />
+						</t>
+						<p style="font-size:1.2em; line-height:1.6em;"><strong><t t-esc="capacity" /> <t t-esc="unit" /> – <t t-esc="content.project_panel" /> MAVs</strong><br /></p><t t-raw="content.short_intro" />
+					  </div>
+					  <div class="btn-center">
+						<t t-if="content.project_portfolio">
+							<a t-attf-href="/web/content/{{content.project_portfolio.id}}/{{content.project_portfolio.name}}"><i class="fa fa-caret-right"></i> <u>Download project overview</u></a>
+						</t>
+					  </div>
+					  <div class="margin30"> </div>
+					</div>
+				  </div> <!-- End Course Item-->
+				  <t t-set="row_count" t-value="row_count + 1" />
+				  </t>
+				</t>
+				</div>
+				
+				<div class="margin30"> </div>
+				
+				<div id="loadMore" style="">
+				  <a href="#" class="learn-more-btn">View <span class="remaining_project"></span> more projects ...</a>
+				</div>
+				
+				</div>
+			</section><!-- End Courses Section -->
+
+		  </main><!-- End #main -->
+        </div>
+      </t>
+    </template>
+
+  </data>
+</odoo>

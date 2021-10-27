@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+# -*- coding: utf-8 -*-
+##############################################################################
+#
+# Copyright (c) 2018 Openfellas (http://openfellas.com) All Rights Reserved.
+#
+# WARNING: This program as such is intended to be used by professional
+# programmers who take the whole responsibility of assessing all potential
+# consequences resulting from its eventual inadequacies and bugs
+# End users who are looking for a ready-to-use solution with commercial
+# guarantees and support are strongly advised to contact support@openfellas.com
+#
+##############################################################################
+-->
+<odoo>
+    <data>
+
+        <!-- Frogblue Res Company Form View Inherit -->
+
+        <record id="frogblue_view_company_form_inherit" model="ir.ui.view">
+            <field name="name">res.company.form.inherit</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+                <field name="phone" position="after">
+                    <field name="fax"/>
+                </field>
+                <xpath expr="//notebook" position="inside">
+                    <page string="Weee Numbers">
+                        <group>
+                            <field name="weee_numbers" mode="tree" nolabel="1">
+                                <tree string="Sales Order Lines" editable="bottom">
+                                    <field name="country_id"/>
+                                    <field name="weee_number"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </page>
+                    <page string="Accounting">
+                        <group string="Configure Account Tags">
+                            <field name="account_tag_ids" widget="many2many_tags"/>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="frogblue_view_company_inter_change_inherit_form">
+            <field name="name">res.company.form.inherit</field>
+            <field name="inherit_id" ref ="sale_purchase_inter_company_rules.view_company_inter_change_inherit_form"/>
+            <field name="model">res.company</field>
+            <field name="arch" type="xml">
+                <field name="rule_type" position="after">
+                    <field name="auto_validate_shipments" attrs="{'invisible': [('rule_type','=',False)]}" />
+                </field>
+            </field>
+        </record>
+
+    </data>
+</odoo>

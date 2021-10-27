@@ -1,0 +1,182 @@
+<odoo>
+  <data>
+	  <template id="page_media" name="Media">
+		<t t-call="website.layout">
+        <div id="wrap" class="oe_structure oe_empty">
+			<!-- ======= Hero Section ======= -->
+			  <section id="hero-project" style="background: url('./theme_5b/static/img/banner-media.jpg'); background-position: 50% 50%; background-size:cover; background-repeat:no-repeat">
+				<div class="container position-relative"></div>
+			  </section><!-- End Hero -->
+
+			  <main id="main">
+				<!-- ======= About Section ======= -->
+				<section id="media" class="courses">
+				  <div class="container">
+
+					<div class="row">
+					  <div class="col-lg-12 pt-4 pt-lg-0 order-2 order-lg-1 content">
+						
+						
+						
+						<div class="mission">
+							<div class="info" style="line-height:2em">
+							<p>External sources have permission to use the videos or images below. You can contact us at <a href="mailto:marketing@5b.com.au" style="text-decoration:underline">marketing@5b.com.au</a> for more information.<br />
+							</p>
+							</div>
+						</div>
+						
+						<div class="section-title">
+						  <h3>Videos</h3>
+						</div>
+						
+						<div class="row">
+						<t t-set="row_count" t-value="1" />
+						<t t-foreach="contents" t-as="content">
+						<t t-if="content.video_source"> <!-- For video only-->
+							
+							<t t-set="hidden_class" t-value="'display:block;'" />
+							<t t-if="row_count > 3">
+								<t t-set="hidden_class" t-value="'display:none !important;'" />
+							</t>
+				
+							<div class="col-lg-4 col-md-6 d-flex align-items-stretch blogBox moreBoxVideo" t-attf-style="margin-bottom:30px; {{hidden_class}}">
+								<div class="course-item">
+								  <div class="image-zoom">
+									<t t-set="video_source" t-value="''" />
+									<t t-if="content.video_source == 'youtube'">
+										<t t-set="video_source" t-value="'YouTube'" />
+									</t>
+									<t t-if="content.video_source == 'vimeo'">
+										<t t-set="video_source" t-value="'Vimeo'" />
+									</t>
+										
+									<t t-if="content.media_image">
+										<img t-att-src="image_data_uri(content.media_image_thumb)" class="img-fluid" t-att-alt="content.name" />
+										<!--<a t-att-href="image_data_uri(content.media_image_thumb)" class="progressive replace img-fluid">
+										  <img src="./theme_5b/static/img/lazy/media.jpg" class="preview img-fluid" t-att-alt="content.name" />
+										</a>-->
+									</t>
+									<t t-else="">
+										<div class="embed-responsive embed-responsive-4by3">
+										<t t-if="content.video_source == 'youtube'">
+										  <iframe class="embed-responsive-item" t-attf-src="{{content.video_link}}" style="margin:0; padding:0" allowfullscreen="true"></iframe>
+										  
+										</t>
+										<t t-if="content.video_source == 'vimeo'">
+										  <iframe class="embed-responsive-item" t-attf-src="{{content.video_link}}" style="margin:0; padding:0" allow="autoplay; fullscreen" allowfullscreen="true"></iframe>
+										  
+										</t>
+										</div>
+									</t>
+								  </div>
+								  <p class="caption" style="text-align:center"><strong><t t-esc="content.media_caption" /></strong><br /><br /></p>
+								  <div class="btn-center">
+									<t t-if="content.video_link">
+										<a t-attf-href="{{content.video_link}}" target="_blank" class="learn-more-btn">Open video on <t t-esc="video_source" /></a>
+									</t>
+									<t t-else="">
+										<a t-attf-href="/web/content/{{content.media_image.id}}?download=true" class="learn-more-btn">Download full size image</a>
+									</t>
+								  </div>
+								  <div class="margin30"> </div>
+								</div>
+							</div>
+							<t t-set="row_count" t-value="row_count + 1" />
+						</t>
+						</t>
+						</div>
+						
+						<div class="margin30"></div>
+						
+						<div id="loadMoreVideo" style="">
+						  <a href="#" class="learn-more-btn">View <span class="remaining_videos"></span> more videos ...</a>
+						</div>
+						
+						<div class="margin30"></div>
+						
+						<div class="section-title">
+						  <h3>Images</h3>
+						</div>
+						
+						<div class="row">
+						<t t-set="row_count" t-value="1" />
+						<t t-foreach="contents" t-as="content">
+						<t t-if="not content.video_source"> <!-- For Image only-->
+							<t t-set="hidden_class" t-value="'display:block;'" />
+							<t t-if="row_count > 3">
+								<t t-set="hidden_class" t-value="'display:none !important;'" />
+							</t>
+				
+							<div class="col-lg-4 col-md-6 d-flex align-items-stretch blogBox moreBox" t-attf-style="margin-bottom:30px; {{hidden_class}}">
+								<div class="course-item">
+								  <div class="image-zoom">
+									<t t-set="video_source" t-value="''" />
+									<t t-if="content.video_source == 'youtube'">
+										<t t-set="video_source" t-value="'YouTube'" />
+									</t>
+									<t t-if="content.video_source == 'vimeo'">
+										<t t-set="video_source" t-value="'Vimeo'" />
+									</t>
+										
+									<t t-if="content.media_image">
+										<img t-att-src="image_data_uri(content.media_image_thumb)" class="img-fluid" t-att-alt="content.name" />
+										<!--<a t-att-href="image_data_uri(content.media_image_thumb)" class="progressive replace img-fluid">
+										  <img src="./theme_5b/static/img/lazy/media.jpg" class="preview img-fluid" t-att-alt="content.name" />
+										</a>-->
+									</t>
+									<t t-else="">
+										<div class="embed-responsive embed-responsive-4by3">
+										<t t-if="content.video_source == 'youtube'">
+										  <iframe class="embed-responsive-item" t-attf-src="{{content.video_link}}" style="margin:0; padding:0" allowfullscreen="true"></iframe>
+										  
+										</t>
+										<t t-if="content.video_source == 'vimeo'">
+										  <iframe class="embed-responsive-item" t-attf-src="{{content.video_link}}" style="margin:0; padding:0" allow="autoplay; fullscreen" allowfullscreen="true"></iframe>
+										  
+										</t>
+										</div>
+									</t>
+								  </div>
+								  <p class="caption" style="text-align:center"><strong><t t-esc="content.media_caption" /></strong><br /><br /></p>
+								  <div class="btn-center">
+									<t t-if="content.video_link">
+										<a t-attf-href="{{content.video_link}}" target="_blank" class="learn-more-btn">Open video on <t t-esc="video_source" /></a>
+									</t>
+									<t t-else="">
+										<a t-attf-href="/web/content/{{content.media_image.id}}?download=true" class="learn-more-btn">Download full size image</a>
+									</t>
+								  </div>
+								  <div class="margin30"> </div>
+								</div>
+							</div>
+							<t t-set="row_count" t-value="row_count + 1" />
+						</t>
+						</t>
+						</div>
+						<div class="margin30"></div>
+						
+					
+						<div id="loadMore" style="">
+						  <a href="#" class="learn-more-btn">View <span class="remaining_project"></span> more images ...</a>
+						</div>
+						<!--
+						<div class="margin30"></div>
+						<div align="left">
+						  <a href="/contact" style="text-decoration:underline">Contact us</a> or email us at <a href="mailto:info@5b.com.au"  style="text-decoration:underline">info@5b.com.au</a> for more informaion on any of the images/videos above.
+					    </div>
+						-->
+						
+					  </div>
+					</div>
+
+				  </div>
+				</section><!-- End About FAQs -->
+
+			  </main><!-- End #main -->
+  
+        </div>
+      </t>
+    </template>
+
+  </data>
+</odoo>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="assets_frontend_attachment_upload" inherit_id="web.assets_frontend" name="Portal Assets">
+        <xpath expr="//link[last()]" position="after">
+            <link rel="stylesheet" type="text/less" href="/portal_document_upload/static/src/scss/portal.scss"/>
+        </xpath>
+        <xpath expr="//script[last()]" position="after">
+            <script type="text/javascript" src="/portal_document_upload/static/src/js/portal_chatter.js"></script>
+        </xpath>
+    </template>
+</odoo>

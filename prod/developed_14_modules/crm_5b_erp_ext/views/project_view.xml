@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    	
+    	<record id="view_project_project_filter_inherit_aureliehocquel" model="ir.ui.view">
+            <field name="name">view.project.project.filter.aureliehocquel</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.view_project_project_filter"/>
+            <field name="arch" type="xml">
+            	<field name="partner_id" position="after">
+            		<field name="lead_id" />
+            	</field>
+            </field>
+        </record>
+	</data>
+</odoo>

@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+	<!-- === 5B Solutions Page === -->
+    <template id="page_solutions">
+        <t t-call="website.layout">
+            <div id="wrap">
+				<!-- === Snippets' area === -->
+				<div class="oe_structure" />
+				<t t-call="website_5b.page_solutions_contents" />
+            </div>
+        </t>
+    </template>
+	
+    <record id="solutions_page" model="website.page">
+        <field name="name">Solutions for EPCs</field>
+        <field name="website_published">True</field>
+        <field name="url">/solutions</field>
+        <field name="view_id" ref="page_solutions"/>
+    </record>
+	
+	<record id="solutions_page_link" model="website.menu">
+	  <field name="name">Solutions</field>
+	  <field name="page_id" ref="solutions_page"/>
+	  <field name="parent_id" ref="website_5b.front_website_main_menu_solutions" />
+	  <field name="sequence" type="int">99</field>
+	</record>
+	
+	  <template id="page_solutions_contents" name="Solutions for EPCs">
+		<!-- ======= Hero Section ======= -->
+		  <section id="hero-project" style="background: url('/theme_5b/static/img/banner-solution.jpg'); background-position: 50% 50%; background-size:cover; background-repeat:no-repeat">
+			<div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
+			</div>
+		  </section><!-- End Hero -->
+
+		  <main id="main" data-aos="fade-in">
+		  
+			<section id="marketplace" class="courses solutions">
+			  <div class="container">
+				<div class="row">
+				  <div class="col-12 col-lg-12 mt-4 content" align="center">
+				  
+					<div class="section-title">
+					  <h3>Resources</h3>
+					</div>
+					
+					<div id="tabs" class="c-tabs no-js">
+						<div class="c-tabs-nav">
+						  <a href="#general_enquiry" class="c-tabs-nav__link is-active">
+							<i class="fa fa-info-circle"></i>
+							<span>MAVERICK Information</span>
+						  </a>
+						  <a href="#" class="c-tabs-nav__link">
+							<i class="fa fa-suitcase"></i>
+							<span>Marketplace at a glance</span>
+						  </a>
+						  <a href="#" class="c-tabs-nav__link">
+							<i class="fa fa-plug"></i>
+							<span>Wingman &amp; Cable Management</span>
+						  </a>
+						  <a href="#" class="c-tabs-nav__link">
+							<i class="fa fa-tasks"></i>
+							<span>Project Highlights</span>
+						  </a>
+						</div>
+						<div class="c-tab is-active">
+						  <div class="c-tab__content">
+							<br />
+							<div class="section-title">
+							  <h3>Introducing  <img src="/theme_5b/static/img/maverick-color.png" /></h3>
+							</div>
+							
+							<div align="left">We’ve developed the fastest, easiest and simplest way for you to deploy ground mounted solar. 
+							  We have redefined the engineering, procurement and construction of solar farms for EPCs and developers.<br /><br />
+							  Our revolutionary approach combines modular design, prefabrication and rapid 
+							  deployment – streamlining engineering &amp; procurement and transferring cost, time &amp; risk from your 
+							  construction site to our factory. <br /><br />
+							</div>
+							
+							<section id="trainers" class="trainers">
+							  <div class="container">
+
+								<div class="row">
+								  <div class="col-lg-4 col-md-6">
+									<div class="member">
+									  <div class="company-value">
+										<h3>Simpler</h3>
+										<p>
+										  Modular, prefabricated blocks<br />
+										  Pre-wired, plug &amp; play<br />
+										  Minimal site preparation required<br />
+										  Suitable for most ground and soil types<br />
+										  Minimal ground penetration<br />
+										  No trenching needed<br />
+										</p>
+										
+									  </div>
+									</div>
+								  </div>
+
+								  <div class="col-lg-4 col-md-6">
+									<div class="member">
+									  <div class="company-value">
+										<h3>Faster</h3>
+										<p>
+										  Fastest deployment on the market<br />
+										  <strong>200 kW+ per team / day</strong><br />
+										  <strong>1MW per week, with only 3 people</strong><br />Prefabricated off site<br />
+										  Streamlined, rapid deployment on site<br /> Integrated cable management + earthing<br />
+										</p>
+										
+									  </div>
+									</div>
+								  </div>
+
+								  <div class="col-lg-4 col-md-6">
+									<div class="member">
+									  <div class="company-value">
+										<h3>Smarter</h3>
+										<p>
+										  Up to <strong>2 x more</strong> energy per area<br />
+										  Modular, scalable design<br />
+										  Reduces project soft costs<br /> Robust ballasted configuration<br />
+										  Factory efficiency and quality<br /> Simplifies logistics + high shipping density<br />
+										</p>
+										
+									  </div>
+									</div>
+								  </div>
+
+								</div>
+							  </div>
+							</section>
+							
+							<div align="left">
+							
+							<!--
+							<div class="brochure">
+								<a href="/theme_5b/static/contents/MAVERICK-Brochure-ISO-15122020.pdf">
+								<img src="/theme_5b/static/img/5B-Brochure.jpg" alt="5B Brochure" title="5B Brochure" style="max-width:100%; height:auto;" /><br />
+								<span style="margin:5px 10px 5px 10px">5B Maverick Brochure</span>
+								</a>
+								<div class="margin30"> </div>
+							</div>
+							-->
+							<h4>MAVERICK at a glance</h4><br />
+							<li>A MAV is a ground-mounted DC solar array block of 40-90 PV modules.</li>
+							<li>MAVs can be made with any standard framed 60 or 72-cell PV module.</li>
+							<li>Modules are oriented in a concertina shape at a 10 degree tilt and electrically configured, ready to be integrated at site.</li>
+							<li>Each MAV weighs between 2.7 and 5.9 tonnes. Deployed, the MAV is 5.5m wide, and 16.3m long (40 modules) 
+							or 38.6m long (90 modules).</li>
+							<br />
+							
+							<a href="/theme_5b/static/contents/MAVERICK-Brochure-ISO-15122020.pdf" class="learn-more-btn" target="_blank">Download brochure here</a><br /><br />
+							
+							
+							<h4>MAVERICK Spec Sheets</h4><br />
+							<div class="row" data-aos="zoom-in" data-aos-delay="100" align="center">
+							<div class="col-lg-3 col-md-3 col-sm-6 blogBox moreBox">
+							<div class="brochure">
+								<a href="/theme_5b/static/contents/ISO-5P-5B-MAVERICK-Spec-Sheet.pdf">
+								<img src="/theme_5b/static/img/5P-5B.jpg" alt="5P5B Spec Sheet" title="5P5B Spec Sheet" style="max-width:100%; height:auto;" />
+								<br /><span style="margin:5px 10px 5px 10px">5P5B Spec Sheet</span>
+								</a>
+								<div class="margin30"> </div>
+							</div>
+
+							</div>
+							<div class="col-lg-3 col-md-3 col-sm-6 blogBox moreBox">
+							<div class="brochure">
+								<a href="/theme_5b/static/contents/ISO-5P-6B-MAVERICK-Spec-Sheet.pdf">
+								<img src="/theme_5b/static/img/5P-6B.jpg" alt="5P6B Spec Sheet" title="5P6B Spec Sheet" style="max-width:100%; height:auto;" />
+								<br /><span style="margin:5px 10px 5px 10px">5P6B Spec Sheet</span>
+								</a>
+								<div class="margin30"> </div>
+							</div>
+							
+							</div>
+							<div class="col-lg-3 col-md-3 col-sm-6 blogBox moreBox">
+							<div class="brochure">
+								<a href="/theme_5b/static/contents/ISO-5P-9B-MAVERICK-Spec-Sheet.pdf">
+								<img src="/theme_5b/static/img/5P-9B.jpg" alt="5P9B Spec Sheet" title="5P9B Spec Sheet" style="max-width:100%; height:auto;" />
+								<br /><span style="margin:5px 10px 5px 10px">5P9B Spec Sheet</span>
+								</a>
+								<div class="margin30"> </div>
+							</div>
+
+							</div>
+							<div class="col-lg-3 col-md-3 col-sm-6 blogBox moreBox">
+							<div class="brochure">
+								<a href="/theme_5b/static/contents/ISO-5P-10B-MAVERICK-Spec-Sheet.pdf">
+								<img src="/theme_5b/static/img/5P-10B.jpg" alt="5P10B Spec Sheet" title="5P10B Spec Sheet" style="max-width:100%; height:auto;" />
+								<br /><span style="margin:5px 10px 5px 10px">5P10B Spec Sheet</span>
+								</a>
+								<div class="margin30"> </div>
+							</div>
+
+							</div>
+							
+							</div>
+							
+							</div>
+						
+						  </div>
+						</div>
+						<div class="c-tab">
+						  <div class="c-tab__content">
+							<h3 class="contact_header" align="left">Marketplace at a glance</h3>
+							<br /><a href="/theme_5b/static/img/Maverick-Ecosystem-March-2020.jpg"><img src="/theme_5b/static/img/Maverick-Ecosystem-March-2020.jpg" alt="Maverick Ecosystem" title="Maverick Ecosystem" style="max-width:100%; height:auto;" /></a>
+						  </div>
+						</div>
+						<div class="c-tab">
+						  <div class="c-tab__content">
+							<div align="left">
+								<h3 class="contact_header">Wingman &amp; Cable Management</h3>
+								<br />
+								<h4>1MW solar farm on a mineral extraction site in WA</h4><br />
+								<div class="col-lg-12 d-flex align-items-stretch">
+									<div class="embed-responsive embed-responsive-16by9">
+									  <iframe src="https://player.vimeo.com/video/435985911" allow="autoplay; fullscreen" allowfullscreen="true"></iframe>
+									</div>
+								</div>
+								<br />
+								
+								<h4>Wingman – Our inverter solution</h4>
+								<br />
+								<div class="flash-show">
+									<a href="/theme_5b/static/contents/Wingman-Mini-WM.jpg"><img src="/theme_5b/static/contents/Wingman-Mini-WM.jpg" alt="Wingman Mini WM" title="Wingman Mini WM" style="max-width:auto; height:250px;" /></a>
+									<a href="/theme_5b/static/contents/Wingman-Classic-with-switchboard.jpg"><img src="/theme_5b/static/contents/Wingman-Classic-with-switchboard.jpg" alt="Wingman Classic with switchboard" title="Wingman Classic with switchboard" style="max-width:auto; height:250px;" /></a>
+								</div>
+								<br />
+								<h4>Cable Management</h4>
+								<br />
+								<div class="flash-show">
+									<a href="/theme_5b/static/contents/Cable-Ladder-Mounting-WM.jpg"><img src="/theme_5b/static/contents/Cable-Ladder-Mounting-WM.jpg" alt="Cable Ladder Mounting WM" title="Cable Ladder Mounting WM" style="max-height:auto; width:265px;" /></a>
+									<a href="/theme_5b/static/contents/Cable-Ladder-fixing-1-WM.jpg"><img src="/theme_5b/static/contents/Cable-Ladder-fixing-1-WM.jpg" alt="Cable Ladder fixing WM" title="Cable Ladder fixing WM" style="max-height:auto; width:265px;" /></a>
+									<a href="/theme_5b/static/contents/MAV-Strings-Mounting-WM1.jpg"><img src="/theme_5b/static/contents/MAV-Strings-Mounting-WM1.jpg" alt="MAV Strings Mounting WM" title="MAV Strings Mounting WM" style="max-height:auto; width:265px;" /></a>
+									<a href="/theme_5b/static/contents/Cable-Ladder-fixing-2-WM1.jpg"><img src="/theme_5b/static/contents/Cable-Ladder-fixing-2-WM1.jpg" alt="Cable Ladder fixing WM" title="Cable Ladder fixing WM" style="max-height:auto; width:265px;" /></a>
+								</div>
+								
+							
+							</div>
+						  </div>
+						</div>
+						<div class="c-tab">
+						  <div class="c-tab__content">
+							<div align="left">
+							<h3 class="contact_header">Project Highlights</h3>
+							<br />
+							
+							<a href="/theme_5b/static/contents/5B-Project-Portfolio.pdf">
+								<img src="/theme_5b/static/img/project-portfolio.jpg" alt="Project Portfolio" title="Project Portfolio" style="max-width:100%; border:1px solid #eee; height:auto; margin-bottom:5px;" /></a>
+							<br />
+							
+							<a href="/theme_5b/static/contents/5B-Project-Portfolio.pdf" class="learn-more-btn" target="_blank">Download project portfolio</a><br /><br />
+							
+							<!--
+							<div class="brochure">
+								<a href="/theme_5b/static/contents/Portfolio-November-2020-1.pdf">
+								<img src="/theme_5b/static/img/5B-Project-Portfolio.jpg" alt="5B Project Portfolio" title="5B Project Portfolio" style="max-width:100%; height:auto;" /><br />
+								<span style="margin:5px 10px 5px 10px">Project Portfolio</span>
+								</a>
+								<div class="margin30"> </div>
+							</div>
+							-->
+							<h4>Applications – Mining, Construction, Landfills</h4><br />
+							5B provides a range of solar solutions to meet your energy needs, from small agricultural applications to large industrial and mining sites. MAVERICK offers the highest energy yield per hectare of land and as a result of its re-deployability, is perfect for short-term, industrial applications. With no geo-tech or civil works required, MAVERICK can be easily deployed on most ground types with minimal penetration.
+							<br />
+							<br />
+							
+							<h4>Download Project Highlights</h4><br />
+							
+							<a href="/theme_5b/static/contents/5B-Project-Highlights.pdf">
+								<img src="/theme_5b/static/img/project-highlights.jpg" alt="Project Highlights" title="Project Highlights" style="max-width:100%; border:1px solid #eee; height:auto; margin-bottom:5px;" /></a>
+							<br />
+							<a href="/theme_5b/static/contents/5B-Project-Highlights.pdf" class="learn-more-btn" target="_blank">Download project highlights</a><br /><br />
+							
+							<!--
+							<div class="row" data-aos="zoom-in" data-aos-delay="100" align="center">
+							<div class="col-lg-3 col-md-3 col-sm-6 blogBox moreBox">
+							<div class="brochure">
+								<a href="/theme_5b/static/contents/Port-Bonython-Highlights.pdf" target="_blank">
+								<img src="/theme_5b/static/img/Port-Bonython.jpg" alt="Port Bonython" title="Port Bonython" style="max-width:100%; height:auto;" />
+								<br /><span style="margin:5px 10px 5px 10px">Port Bonython</span>
+								</a>
+								<div class="margin30"> </div>
+							</div>
+
+							</div>
+							<div class="col-lg-3 col-md-3 col-sm-6 blogBox moreBox">
+							<div class="brochure">
+								<a href="/theme_5b/static/contents/Borroloola-Project-Highlights.pdf" target="_blank">
+								<img src="/theme_5b/static/img/Borroloola.jpg" alt="Borroloola" title="Borroloola" style="max-width:100%; height:auto;" />
+								<br /><span style="margin:5px 10px 5px 10px">Borroloola</span>
+								</a>
+								<div class="margin30"> </div>
+							</div>
+							
+							</div>
+							<div class="col-lg-3 col-md-3 col-sm-6 blogBox moreBox">
+							<div class="brochure">
+								<a href="/theme_5b/static/contents/Albury-Project-Highlights-1.pdf" target="_blank">
+								<img src="/theme_5b/static/img/Albury.jpg" alt="Albury" title="Albury" style="max-width:100%; height:auto;" />
+								<br /><span style="margin:5px 10px 5px 10px">Albury</span>
+								</a>
+								<div class="margin30"> </div>
+							</div>
+
+							</div>
+							</div>
+							-->
+							
+							</div>
+						  </div>
+						</div>
+						
+						</div>
+						<script>
+							var myTabs = tabs({
+							el: '#tabs',
+							tabNavigationLinks: '.c-tabs-nav__link',
+							tabContentContainers: '.c-tab'
+							});
+							myTabs.init();
+						</script>
+					
+				  </div>
+				</div>
+			  
+			  </div>
+			</section>
+			
+			<section class="about">
+			  <div class="container">
+				<div class="row">
+				  <div class="col-lg-12 pt-4 pt-lg-0 order-2 order-lg-1 content">
+					<div class="btn-center">
+						<a href="/project" class="learn-more-btn">View key projects</a>
+					</div>
+				</div>
+				</div>
+				</div>
+			</section>
+		  </main><!-- End #main -->
+    </template>
+</odoo>

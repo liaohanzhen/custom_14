@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="view_sales_team_view_form_inherit" model="ir.ui.view">
+		<field name="name">crm.team.form.inherit</field>
+		<field name="model">crm.team</field>
+		<field name="inherit_id" ref="sales_team.crm_team_view_form" />
+		<field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page name="structural_team" string="Structurall">
+                    <group cols="4">
+                        <group>
+                            <field name="nombre_representante_st" readonly="1"/>
+                            <field name="testimonio_notarial_st" readonly="1"/>
+                            <field name="fecha_st" readonly="1"/>
+                            <field name="notaria_st" readonly="1"/>
+                            <field name="nombre_notario_st" readonly="1"/>
+                            <field name="ciudad_notario_st" readonly="1"/>
+                            <field name="direccion" readonly="1"/>
+                            <field name="estados" widget="many2many_tags" readonly="1"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+		</field>
+	</record>
+
+    <record id="view_sales_team_view_form_inherit_restrict" model="ir.ui.view">
+        <field name="name">crm.team.form.inherit.restrict</field>
+        <field name="model">crm.team</field>
+        <field name="inherit_id" ref="sales_team.crm_team_view_form" />
+        <field name="groups_id" eval="[(6, 0, [ref('structurall_module.groups_sales_team_change')])]"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='nombre_representante_st']" position="attributes">
+                   <attribute name="readonly">False</attribute>
+            </xpath> 
+            <xpath expr="//field[@name='testimonio_notarial_st']" position="attributes">
+                   <attribute name="readonly">False</attribute>
+            </xpath>            
+            <xpath expr="//field[@name='fecha_st']" position="attributes">
+                   <attribute name="readonly">False</attribute>
+            </xpath>
+            <xpath expr="//field[@name='nombre_notario_st']" position="attributes">
+                   <attribute name="readonly">False</attribute>
+            </xpath>
+            <xpath expr="//field[@name='notaria_st']" position="attributes">
+                   <attribute name="readonly">False</attribute>
+            </xpath>
+            <xpath expr="//field[@name='direccion']" position="attributes">
+                   <attribute name="readonly">False</attribute>
+            </xpath>
+            <xpath expr="//field[@name='estados']" position="attributes">
+                   <attribute name="readonly">False</attribute>
+            </xpath>
+            <xpath expr="//field[@name='ciudad_notario_st']" position="attributes">
+                   <attribute name="readonly">False</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

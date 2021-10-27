@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+quote_quote_seller,seller_access_quote_quote,website_quote_system.model_quote_quote,odoo_marketplace.marketplace_seller_group,1,1,1,0

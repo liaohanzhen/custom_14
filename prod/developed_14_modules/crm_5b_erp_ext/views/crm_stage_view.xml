@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    	<record id="view_crm_stage_form_inherit_aureliehocquel_create_project" model="ir.ui.view">
+            <field name="name">crm.stage.form.aureliehocquel.create.project</field>
+            <field name="model">crm.stage</field>
+            <field name="inherit_id" ref="crm.crm_stage_form"/>
+            <field name="arch" type="xml">
+            	<field name="fold" position="after">
+            		<field name="create_project" />
+            	</field>
+            	
+            </field>
+        </record>
+    </data>
+</odoo>

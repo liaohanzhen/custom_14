@@ -1,0 +1,530 @@
+
+<section class="container">
+
+    <div class="row">
+        <div class="col-md-12">
+            <p class="mt32" style="font-size:18px">
+                The app goal is to provide you and your clients with up-to-date information about:
+<ul style="font-size:18px">
+<li>How many products we may produce at the moment based on available components: <strong>MRP Potential</strong></li>
+<li>What a component is of the most need and restricts us to produce more at the moment: <strong>Bottleneck component</strong></li>
+<li>How many products we may produce in the future depending on virtual stocks planned by purchases or manufacturing: <strong>MRP forecast</strong></li>
+</ul>
+            </p>
+
+            <p class="mt8" style="font-size:18px">
+                The tool is compatible
+
+                <span>with both Odoo Enterprise and Odoo Community.</span>
+            </p>
+
+            <ul class="nav nav-tabs">
+
+            <li class="active" style="color:#428bca;">
+                <a href="#features"
+                   data-toggle="tab"
+                   aria-expanded="true"
+                >
+                   Features
+                </a>
+            </li>
+
+
+                <li>
+                    <a href="#screenshots"
+                       data-toggle="tab"
+                       aria-expanded="true"
+                    >
+                       Screenshots
+                    </a>
+                </li>
+
+            <li style="color:#428bca;">
+                <a href="#support_info"
+                   data-toggle="tab"
+                   aria-expanded="true"
+                >
+                   Support
+
+                   <span>&amp; Demo</span>
+
+                </a>
+            </li>
+
+            </ul>
+
+
+            <div class="tab-content mt16">
+
+                <div class="tab-pane active" id="features">
+
+                    <p class="mt32">
+
+                        <div class="mb8">
+                            <span class="fa fa-check-square-o fa-2x" style="color:#21B799;"/>
+                            <span style="font-size:18px">
+                                The figures are calculated in real-time as soon as you decided to look at the indicators
+                            </span>
+                        </div>
+
+                        <div class="mb8">
+                            <span class="fa fa-check-square-o fa-2x" style="color:#21B799;"/>
+                            <span style="font-size:18px">
+                                The figures are calculated for product variants (<i>not templates!</i>)
+                            </span>
+                        </div>
+
+                        <div class="mb8">
+                            <span class="fa fa-check-square-o fa-2x" style="color:#21B799;"/>
+                            <span style="font-size:18px">
+                                The app supports bill of materials hierarchy. Thus, it let you assume how many of "X" may be produced if it is made of "Y", while "Y" is made of "Z", and we have 5 of "Y" and 10 of "Z" in stocks
+                            </span>
+                        </div>
+
+                        <div class="mb8">
+                            <span class="fa fa-check-square-o fa-2x" style="color:#21B799;"/>
+                            <span style="font-size:18px">
+                                <i>Services</i> and <i>consumbale products</i> of bills of materials are not included into calculations.
+                            </span>
+                        </div>
+
+                        <div class="mb8">
+                            <span class="fa fa-check-square-o fa-2x" style="color:#21B799;"/>
+                            <span style="font-size:18px">
+                                The module is fully compatible with other Odoo MRP apps. The app will be functioning with existing products and bills of materials. Just install it and start working
+                            </span>
+                        </div>
+
+                    </p>
+
+                    <div class="alert alert-warning">
+                        <span style="font-size:18px">
+                            <i class="fa fa-book"/>
+                            The module features depend on your Odoo version.
+                            Please select required one on the top right of this page
+                        </span>
+                    </div>
+
+                    <div class="mb8">
+                        <h3>Use Case</h3>
+                        <span style="font-size:18px">
+                                <ol>
+     <li class="oe_mt16">
+      Imagine, your product is "Ice cream, Chocolate" (5kg can)
+     </li>
+     <li class="oe_mt16">
+      According to the bill of material it is produced of "Milk" (5kg) and "Chocolate" (1 kg)
+     </li>
+     <li class="oe_mt16">
+      We have on stocks 20 kg of "Milk" and 2 kg of "Chocolate"
+     </li>
+     <li class="oe_mt16">
+      <i class="fa fa-arrow-right">
+      </i>
+      Currently we may produce two cans of "Ice cram, Chocolate", taking 10 kg of "Milk" and 2 kg of "Chocolate". It is
+      <strong>
+       MRP potential
+      </strong>
+      . Since we have 10 kg more "Milk", but no more "Chocolate", the latter is
+      <strong>
+       Bottleneck component
+      </strong>
+     </li>
+     <li class="oe_mt16">
+      We also ordered from supplier 10 kg of "Chocolate" and planning to get it in 5 days (confirmed purchase order with the linked picking of the type "Receipt")
+     </li>
+     <li class="oe_mt16">
+      <i class="fa fa-arrow-right">
+      </i>
+      So, in 5 days we anticipate 10 kg of "Chocolate". Taking into account 10 kg of "Milk" left in stocks, we will be able to produce 2 extra "Ice cream" cans. Or 4 cans together with MRP potential. This 4 is
+      <strong>
+       MRP forecast
+      </strong>
+     </li>
+    </ol>
+                        </span>
+                    </div>
+
+                        <div class="row col-md-12">
+                            <a name="recommended_odoo_apps"><h3>You may like the tools</h3></a>
+                        </div>
+
+
+                        <div class="row mb8">
+
+                            <div class="col-md-4 row mt8 mb8" style="min-height: 150px;">
+                                <div class="col-md-3 mt8">
+                                    <a href="https://apps.odoo.com/apps/modules/12.0/product_management">
+                                        <img class="img img-responsive icon_module"
+                                             src="app_icon_1.png"
+                                             alt="Odoo Recommended App"
+                                        />
+                                    </a>
+                                </div>
+                                <div class="col-md-9">
+                                    <a href="https://apps.odoo.com/apps/modules/12.0/product_management">
+                                        <span style="font-size:16px">Product Management Interface</span>
+                                    </a>
+                                    <p class="mt0 mb0">
+                                        <span style="font-size:14px">The tool to search, select and update product templates in batch</span>
+                                    </p>
+                                    <strong class="pull-right">
+                                        <span style="font-size:14px;margin-left:5px;">
+                                            € 92
+                                        </span>
+
+                                    </strong>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-4 row mt8 mb8" style="min-height: 150px;">
+                                <div class="col-md-3 mt8">
+                                    <a href="https://apps.odoo.com/apps/modules/12.0/product_stock_balance">
+                                        <img class="img img-responsive icon_module"
+                                             src="app_icon_2.png"
+                                             alt="Odoo Recommended App"
+                                        />
+                                    </a>
+                                </div>
+                                <div class="col-md-9">
+                                    <a href="https://apps.odoo.com/apps/modules/12.0/product_stock_balance">
+                                        <span style="font-size:16px">Stocks by Locations</span>
+                                    </a>
+                                    <p class="mt0 mb0">
+                                        <span style="font-size:14px">The tool to make inventory data essential and comfortable for elaboration</span>
+                                    </p>
+                                    <strong class="pull-right">
+                                            <del style="font-size:14px;color:red;">
+                                                € 36
+                                            </del>
+                                        <span style="font-size:14px;margin-left:5px;">
+                                            € 28
+                                        </span>
+
+                                    </strong>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-4 row mt8 mb8" style="min-height: 150px;">
+                                <div class="col-md-3 mt8">
+                                    <a href="https://apps.odoo.com/apps/modules/12.0/stock_limitation">
+                                        <img class="img img-responsive icon_module"
+                                             src="app_icon_3.png"
+                                             alt="Odoo Recommended App"
+                                        />
+                                    </a>
+                                </div>
+                                <div class="col-md-9">
+                                    <a href="https://apps.odoo.com/apps/modules/12.0/stock_limitation">
+                                        <span style="font-size:16px">Stocks Access Rules</span>
+                                    </a>
+                                    <p class="mt0 mb0">
+                                        <span style="font-size:14px">The tool to restrict users' access to stocks, locations and warehouse operations</span>
+                                    </p>
+                                    <strong class="pull-right">
+                                        <span style="font-size:14px;margin-left:5px;">
+                                            € 28
+                                        </span>
+
+                                    </strong>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-4 row mt8 mb8" style="min-height: 150px;">
+                                <div class="col-md-3 mt8">
+                                    <a href="https://apps.odoo.com/apps/modules/12.0/stock_qty_forecast">
+                                        <img class="img img-responsive icon_module"
+                                             src="app_icon_4.png"
+                                             alt="Odoo Recommended App"
+                                        />
+                                    </a>
+                                </div>
+                                <div class="col-md-9">
+                                    <a href="https://apps.odoo.com/apps/modules/12.0/stock_qty_forecast">
+                                        <span style="font-size:16px">Stock Demand Trends and Forecast</span>
+                                    </a>
+                                    <p class="mt0 mb0">
+                                        <span style="font-size:14px">The tool to calculate stock demand trends and make prediction for future demand statistically</span>
+                                    </p>
+                                    <strong class="pull-right">
+                                        <span style="font-size:14px;margin-left:5px;">
+                                            € 115
+                                        </span>
+
+                                    </strong>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-4 row mt8 mb8" style="min-height: 150px;">
+                                <div class="col-md-3 mt8">
+                                    <a href="https://apps.odoo.com/apps/modules/12.0/product_access_restriction">
+                                        <img class="img img-responsive icon_module"
+                                             src="app_icon_5.png"
+                                             alt="Odoo Recommended App"
+                                        />
+                                    </a>
+                                </div>
+                                <div class="col-md-9">
+                                    <a href="https://apps.odoo.com/apps/modules/12.0/product_access_restriction">
+                                        <span style="font-size:16px">Limited Access for Products</span>
+                                    </a>
+                                    <p class="mt0 mb0">
+                                        <span style="font-size:14px">The tool to restrict rights for create, edit and delete products</span>
+                                    </p>
+                                    <strong class="pull-right">
+                                            <del style="font-size:14px;color:red;">
+                                                € 28
+                                            </del>
+                                        <span style="font-size:14px;margin-left:5px;">
+                                            € 22
+                                        </span>
+
+                                    </strong>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-4 row mt8 mb8" style="min-height: 150px;">
+                                <div class="col-md-3 mt8">
+                                    <a href="https://apps.odoo.com/apps/modules/12.0/min_rules_per_category">
+                                        <img class="img img-responsive icon_module"
+                                             src="app_icon_6.png"
+                                             alt="Odoo Recommended App"
+                                        />
+                                    </a>
+                                </div>
+                                <div class="col-md-9">
+                                    <a href="https://apps.odoo.com/apps/modules/12.0/min_rules_per_category">
+                                        <span style="font-size:16px">Reordering Rules Per Categories</span>
+                                    </a>
+                                    <p class="mt0 mb0">
+                                        <span style="font-size:14px">The tool to prepare re-ordering rules per product categories</span>
+                                    </p>
+                                    <strong class="pull-right">
+                                            <del style="font-size:14px;color:red;">
+                                                € 44
+                                            </del>
+                                        <span style="font-size:14px;margin-left:5px;">
+                                            € 33
+                                        </span>
+
+                                    </strong>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-4 row mt8 mb8" style="min-height: 150px;">
+                                <div class="col-md-3 mt8">
+                                    <a href="https://apps.odoo.com/apps/modules/12.0/knowsystem">
+                                        <img class="img img-responsive icon_module"
+                                             src="app_icon_7.png"
+                                             alt="Odoo Recommended App"
+                                        />
+                                    </a>
+                                </div>
+                                <div class="col-md-9">
+                                    <a href="https://apps.odoo.com/apps/modules/12.0/knowsystem">
+                                        <span style="font-size:16px">KnowSystem</span>
+                                    </a>
+                                    <p class="mt0 mb0">
+                                        <span style="font-size:14px">The tool to build deep and structured knowledge base for internal and external use</span>
+                                    </p>
+                                    <strong class="pull-right">
+                                        <span style="font-size:14px;margin-left:5px;">
+                                            € 228
+                                        </span>
+
+                                    </strong>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-4 row mt8 mb8" style="min-height: 150px;">
+                                <div class="col-md-3 mt8">
+                                    <a href="https://apps.odoo.com/apps/modules/12.0/owncloud_odoo">
+                                        <img class="img img-responsive icon_module"
+                                             src="app_icon_8.png"
+                                             alt="Odoo Recommended App"
+                                        />
+                                    </a>
+                                </div>
+                                <div class="col-md-9">
+                                    <a href="https://apps.odoo.com/apps/modules/12.0/owncloud_odoo">
+                                        <span style="font-size:16px">OwnCloud / NextCloud Odoo Integration</span>
+                                    </a>
+                                    <p class="mt0 mb0">
+                                        <span style="font-size:14px">The tool to automatically synchronize Odoo attachments with OwnCloud / NextCloud files in both ways</span>
+                                    </p>
+                                    <strong class="pull-right">
+                                        <span style="font-size:14px;margin-left:5px;">
+                                            € 394
+                                        </span>
+
+                                    </strong>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-4 row mt8 mb8" style="min-height: 150px;">
+                                <div class="col-md-3 mt8">
+                                    <a href="https://apps.odoo.com/apps/modules/12.0/google_drive_odoo">
+                                        <img class="img img-responsive icon_module"
+                                             src="app_icon_9.png"
+                                             alt="Odoo Recommended App"
+                                        />
+                                    </a>
+                                </div>
+                                <div class="col-md-9">
+                                    <a href="https://apps.odoo.com/apps/modules/12.0/google_drive_odoo">
+                                        <span style="font-size:16px">Google Drive Odoo Integration</span>
+                                    </a>
+                                    <p class="mt0 mb0">
+                                        <span style="font-size:14px">The tool to automatically synchronize Odoo attachments with Google Drive files in both ways</span>
+                                    </p>
+                                    <strong class="pull-right">
+                                        <span style="font-size:14px;margin-left:5px;">
+                                            € 394
+                                        </span>
+
+                                    </strong>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    <div class="col-md-12 mb8 text-center">
+                        <span style="font-size:22px;">
+                            <a href="https://apps.odoo.com/apps/modules/browse?author=Odoo%20Tools">
+                                <i class="fa fa-arrow-right"> More Apps by Odoo Tools</i>
+                            </a>
+                        </span>
+                    </div>
+
+                </div>
+
+
+                <div class="tab-pane" id="screenshots">
+
+                    <div class="col-md-12 mb32 alert alert-success">
+                         <span style="font-size:18px">
+                            MRP Potential indicators for product variants
+                         </span>
+                    </div>
+                    <div class="col-md-12 mb32">
+                        <img class="img img-responsive shadow"
+                             alt="Odoo MRP Potential"
+                             src="indicators.png"
+                        />
+                    </div>
+
+                    <div class="col-md-12 mb32 alert alert-success">
+                         <span style="font-size:18px">
+                            Bill of Material (first level)
+                         </span>
+                    </div>
+                    <div class="col-md-12 mb32">
+                        <img class="img img-responsive shadow"
+                             alt="Odoo MRP Bill of Material"
+                             src="bom_first_level.png"
+                        />
+                    </div>
+
+                    <div class="col-md-12 mb32 alert alert-success">
+                         <span style="font-size:18px">
+                            Bill of Material (second level of hierarchy)
+                         </span>
+                    </div>
+                    <div class="col-md-12 mb32">
+                        <img class="img img-responsive shadow"
+                             alt="Odoo MRP Hierarchical Bill of Material"
+                             src="bom_second_level.png"
+                        />
+                    </div>
+
+                    <div class="col-md-12 mb32 alert alert-success">
+                         <span style="font-size:18px">
+                            Components' inventory current ad forecast levels
+                         </span>
+                    </div>
+                    <div class="col-md-12 mb32">
+                        <img class="img img-responsive shadow"
+                             alt="Odoo Components inventories"
+                             src="current_stocks.png"
+                        />
+                    </div>
+
+                </div>
+
+                <div class="tab-pane" id="support_info">
+
+                    <div class="col-md-12">
+                        <p style="font-size:18px;">
+                            <a href="https://odootools.com/">OdooTools</a> is the team of developers and business analysts to help you extend Odoo potential. We have been communicating with end users to whom the software became the main business tool since 2012. As a result, we are proud of dozens of successful Odoo apps developed.  We are open for new ideas and challenges to create the best Odoo tools for business needs all over the world.
+                        </p>
+
+                        <p style="font-size:18px;">
+                            This tool has been developed in cooperation with <a href="https://itlibertas.com/">IT Libertas</a> - one of the leading Odoo
+                            integrators in Russia.
+                        </p>
+
+                    </div>
+
+                    <div class="col-md-12 mb4 alert alert-success">
+                         <span style="font-size:18px">
+                            To contact us please register in our support system. Registration form is available by any link below. Registration doesn't take more than 30 seconds. No phone number or credit card are required
+                         </span>
+                    </div>
+
+                    <div class="col-md-12"
+                         style="background-color:#339966; padding:2%;"
+                    >
+                        <div style="font-size:25px;" class="text-center">
+                            <a href="https://odootools.com/my/tickets/newticket?&amp;x_custom_1=x_option_11&amp;x_custom_2=x_option_2&amp;url_type_id=1"
+                               target="_blank"
+                               style="color:white;padding:0 1% 0 1%"
+                            >
+                                <i class="fa fa-bug" style="color:white;"/> Bug Report
+                            </a>
+                            <a href="https://odootools.com/my/tickets/newticket?&amp;x_custom_1=x_option_11&amp;x_custom_2=x_option_2&amp;url_type_id=4"
+                               target="_blank"
+                               style="color:white;padding:0 1% 0 1%"
+                            >
+                                <i class="fa fa-info-circle" style="color:white;"/> Raise Question
+                            </a>
+                            <a href="https://odootools.com/my/tickets/newticket?&amp;x_custom_1=x_option_11&amp;x_custom_2=x_option_2&amp;url_type_id=2"
+                               target="_blank"
+                               style="color:white;padding:0 1% 0 1%"
+                            >
+                                <i class="fa fa-bookmark" style="color:white;"/> New Features
+                            </a>
+                        </div>
+                        <div style="font-size:25px"  class="text-center">
+
+                            <a href="https://odootools.com/my/tickets/newticket?&amp;x_custom_1=x_option_11&amp;x_custom_2=x_option_2&amp;url_type_id=3&amp;name=Demo Database for Testing"
+                               target="_blank"
+                               style="color:white;padding:0 1% 0 1%"
+                            >
+                                <i class="fa fa-laptop" style="color:white;"/>  Request Demo Database (Live Preview)
+                            </a>
+
+                            <a href="https://odootools.com/my/tickets/newticket?&amp;x_custom_1=x_option_11&amp;x_custom_2=x_option_2&amp;url_type_id=5"
+                               target="_blank"
+                               style="color:white;padding:0 1% 0 1%"
+                            >
+                                <i class="fa fa-lightbulb-o" style="color:white;"/>  Share Module Ideas
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+                

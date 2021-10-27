@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="assets_backend" name="employee training assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <!-- <script type="text/javascript" src="/employee_training/static/src/js/employee_session_list.js"/> -->
+                <!-- <script type="text/javascript" src="/employee_training/static/src/js/form_view.js"/> -->
+                <script type="text/javascript" src="/employee_training/static/src/js/form_renderer.js"/>
+            </xpath>
+        </template>
+    </data>
+</odoo>

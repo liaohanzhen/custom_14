@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_selection_booking,selection_booking,delivery_equipment_booking.model_selection_booking,,1,1,1,1
+access_request_refer,request_refer,delivery_equipment_booking.model_request_refer,,1,1,1,1
+access_requirements,requirements,delivery_equipment_booking.model_requirements,,1,1,1,1

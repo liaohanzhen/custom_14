@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="warehouse_exteral_user" model="res.groups">
+        <field name="name">Warehouse Exteral User</field>
+    </record>
+</odoo>

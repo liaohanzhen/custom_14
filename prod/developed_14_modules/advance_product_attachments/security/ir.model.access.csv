@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+"",,,,,,,
+access_attachment_category_public,Attachment Category public,model_attachment_category,,1,0,0,0
+access_attachment_category_publisher,Attachment Category wbesite publisher,model_attachment_category,website.group_website_publisher,1,1,1,1
+access_attachment_category_sale,Attachment Category sale,model_attachment_category,sales_team.group_sale_manager,1,1,1,1
+access_product_attachment_public,Product Attachment public,model_product_attachment,,1,0,0,0
+access_product_attachment_publisher,Product Attachment wbesite publisher,model_product_attachment,website.group_website_publisher,1,1,1,1
+access_product_attachment_sale,Product Attachment sale,model_product_attachment,sales_team.group_sale_manager,1,1,1,1
+access_attachment_wizard,Product Attachment,model_attachment_wizard,,1,1,1,1
+access_attachment_category,Attachment Category,model_attachment_category,,1,1,1,1

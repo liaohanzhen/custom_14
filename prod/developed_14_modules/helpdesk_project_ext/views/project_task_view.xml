@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+        <record id="project_view_task_form2_inherit_helpdesk" model="ir.ui.view">
+            <field name="name">form.project.task.inherit.helpdesk</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_form2" />
+            <field name="arch" type="xml">
+            	<field name='user_id' position="after">
+            		<field name="ticket_id" readonly="1" />
+            	</field>
+            </field>
+        </record>
+    </data>
+</odoo>

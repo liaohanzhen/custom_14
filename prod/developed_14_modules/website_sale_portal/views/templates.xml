@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<template id="assets_frontend" inherit_id="website.assets_frontend" name="Website Sale portal">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/website_sale_portal/static/src/js/product_configurator_mixin.js" />
+        </xpath>
+    </template>
+    
+    <template id="categories_recursive_filter_user_allowed_category" name="Filter user allowed category" inherit_id="website_sale.categories_recursive">
+    	<xpath expr="//li[hasclass('nav-item')]" position='attributes'>
+    		<attribute name="t-if">c.id in allowed_categories_ids</attribute>
+    	</xpath>
+    </template>
+    <template id="option_collapse_categories_recursive_filter_user_allowed_category" name="Filter user allowed category" inherit_id="website_sale.option_collapse_categories_recursive">
+    	<xpath expr="//li[hasclass('nav-item')]" position='attributes'>
+    		<attribute name="t-if">categ.id in allowed_categories_ids</attribute>
+    	</xpath>
+    </template>
+	<template id="products_item_inherit_add_default_code" name="Products item add default code" inherit_id="website_sale.products_item">
+		<xpath expr="//a[@t-field='product.name']" position="replace">
+			<a itemprop="name" t-att-href="product_href"> <!-- t-att-content="product.name" t-field="product.name" -->
+	            <center>
+	            <span style='font-size:12px;' t-att-content="product.name" t-field="product.name"/>
+	            <t t-if="combination_info['default_code']">
+	            	<br/>
+	            	<span style="color: #6c757d;font-size:12px;" t-esc="'['+combination_info['default_code']+']'" />
+	            </t>
+	            </center>
+			</a>
+		</xpath>
+		
+	</template>
+	<!-- <template id="product_inherit_add_default_code" name="Products add default code" inherit_id="website_sale.product">
+		<xpath expr="//div[@id='product_details']/h1[1]" position='replace'>
+			<h1 itemprop="name" >
+				<center>
+		            <span t-field="product.name"/>
+		            <t t-if="combination_info['default_code']">
+		            	<div style="margin-top: -20px;">
+		            		<span style="color: #6c757d;font-size:21px;">[</span><span style="color: #6c757d;font-size:21px;" id='product_default_code' t-esc="combination_info['default_code']"></span><span style="color: #6c757d;font-size:21px;">]</span>
+		            	</div>
+		            </t>
+	            </center>
+			</h1>
+		</xpath>
+	</template> -->
+</odoo>

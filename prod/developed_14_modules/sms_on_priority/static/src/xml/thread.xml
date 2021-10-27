@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+	<t t-extend="mail.ChatThread.Message">
+		<t t-jquery="t[t-if*='message.is_note']" t-operation="replace">
+			<t t-if="message.sms_number_id &amp;&amp; message.sms_number_id[1]">
+                SMS by
+            </t>
+            <t t-if="!message.sms_number_id &amp;&amp; message.is_note">
+                Note by
+            </t>
+				
+		</t>
+        <t t-jquery="strong[t-if*='message.mailto']:first" t-operation="replace">
+			<strong t-if="message.sms_number_id &amp;&amp; message.sms_number_id[1]">
+	           <t t-esc="message.sms_number_id[1]"/>
+                <t t-if="message.sms_mobile_number">
+	            (<t t-esc="message.sms_mobile_number"/>)
+	           </t>
+                <t t-if="message.partner_ids &amp;&amp; message.partner_ids[0]">
+	           	 - To : <t t-esc="message.partner_ids[0][1]"/>
+                    <t t-if="message.to_mobile">
+	           			(<t t-esc="message.to_mobile"/>)	
+	           		</t>			
+	           </t>
+                <t t-if="!message.partner_ids[0] &amp;&amp; message.to_mobile">
+	           		- To : <t t-esc="message.to_mobile"/>	
+	           </t>
+	           
+	       	</strong>
+            <strong t-if="!message.sms_number_id &amp;&amp; message.mailto">
+	           <a class="o_mail_mailto" t-attf-href="mailto:#{message.mailto}?subject=Re: #{message.subject}">
+	               <t t-esc="message.mailto"/>
+	           </a>
+	       	</strong>	
+		</t>
+        <t t-jquery="strong[t-if*='!message.mailto &amp;&amp; message.author_id[0]']" t-operation="replace">
+			<strong t-if="!message.sms_number_id &amp;&amp; !message.mailto &amp;&amp; message.author_id[0]"
+                    data-oe-model="res.partner" t-att-data-oe-id="message.author_redirect ? message.author_id[0] : ''"
+                    t-attf-class="#{message.author_redirect ? 'o_mail_redirect' : ''}">
+	           <t t-esc="message.displayed_author"/>
+	       	</strong>	
+		</t>
+        <t t-jquery="strong[t-if*='!message.mailto &amp;&amp; !message.author_id[0]']" t-operation="replace">
+			<strong t-if="!message.sms_number_id &amp;&amp; !message.mailto &amp;&amp; !message.author_id[0]">
+	           <t t-esc="message.displayed_author"/>
+	       	</strong>	
+		</t>
+	</t>
+</templates>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+   <template id="quick_order_form" name="Quick Order">
+		<t t-call="website.layout">
+			<div id="wrap">
+				<section class="s_website_form" data-vcss="001" data-snippet="s_website_form">
+					<div class="container">
+					   <form id="quick_order_form" role="form" action="/bulk_products" method="POST">
+						   <div id="main_div"/>
+					   </form>
+					</div>
+				</section>
+			</div>
+		</t>
+   </template>
+
+	<template id="header_quick_order_link" name="Header Quick Order Link">
+        <t t-set="show_quick_order" t-value="True"/>
+        <li t-attf-class="o_wsale_quick_order d-none d-sm-block #{not show_quick_order and 'd-none'} #{_item_class}" style="padding:0px !important;">
+            <a href="/quick/order/" t-attf-class="#{_link_class}" style="padding: 11px 20px;">
+                <i t-if="_icon" class="fa fa-1x fa-file-text" style="font-size:30px !important; color:#97D700;"/>
+                <span t-if="_text">Quick Order</span>
+            </a>
+        </li>
+    </template>
+
+	<template id="header_quick_order_image" inherit_id="website_sale_wishlist.header_wishlist_link">
+        <xpath expr="//li[contains(@t-attf-class, 'o_wsale_my_wish')]" position="after">
+            <t t-call="rt_quick_order.header_quick_order_link">
+                <t t-set="_icon" t-value="True"/>
+                <t t-set="_item_class" t-value="'nav-item'"/>
+                <t t-set="_link_class" t-value="'nav-link'"/>
+            </t>
+        </xpath>
+    </template>
+
+</odoo>

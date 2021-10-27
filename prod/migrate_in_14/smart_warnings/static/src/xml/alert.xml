@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="SmartAlerts">
+        <t t-foreach="alerts" t-as="warn">
+            <div t-attf-class="alert alert-#{warn.css_class} smart_alert mb0" role="alertdialog">
+                <div role="alertdialog">
+                    <strong><t t-raw="warn.name"/></strong> <t t-raw="warn.description"/>
+                </div>
+            </div>
+        </t>
+    </t>
+
+</templates>

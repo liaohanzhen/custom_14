@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="ActiveChatMenu">
+        <li class="o_active_for_chat">
+
+                <label class="o_switch o_switch_danger js_publish_btn" t-att-accesskey="desktop_navbar and 'p'">
+                    <span class="css_publish px-2">Chat</span>
+                    <span/>
+                    <t t-if="widget.chat">
+                        <input type="checkbox" id="active_for_chat" checked="1"/>
+                    </t>
+                    <t t-else="">
+                        <input type="checkbox" id="active_for_chat"/>
+                    </t>
+                    <span class="css_unpublish"/>
+                </label>
+
+        </li>
+    </t>
+
+</templates>

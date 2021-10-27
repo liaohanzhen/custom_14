@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_5b_ncr_5b_ncr,5b_ncr.5b_ncr,model_5b_ncr_5b_ncr,base.group_user,1,1,1,1

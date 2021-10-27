@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    	<record id="view_training_training_filter" model="ir.ui.view">
+            <field name="name">training.training.search.view</field>
+            <field name="model">training.training</field>
+            <field name="arch" type="xml">
+                <search string="Training Search">
+                    <field name="name" />
+                    <field name="employee_id"/>
+                    <field name="trainer_id" />
+                    <field name="template_id" />
+                    <field name="session_id" />
+                    <field name="state" />
+                    <separator/>
+                    <group expand="0" string="Group By" >
+                        <filter string="Trainer’s name" name="trainer_name" context="{'group_by':'trainer_id'}" />
+                        <filter string="Employee Name" name="employee_name" context="{'group_by':'employee_id'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record id="view_training_training_form" model="ir.ui.view">
+            <field name="name">training.training.form</field>
+            <field name="model">training.training</field>
+            <field name="arch" type="xml">
+                <form string="Training Form">
+                    <header>
+                    	<!-- <button string="START" type="object" name="action_start_training" class="oe_highlight" states="NEW"/>
+                    	<button string="REQUEST SIGNATURES" type="object" name="action_request_signatures" class="oe_highlight" states="IN PROGRESS"/>
+                    	<button string="EMAIL TRAINEES" type="object" name="action_email_trainees" class="oe_highlight" states="IN SIGNED"/> -->
+                    	<button string="Draw Signature" type="object" name="action_do_employee_signature" class="oe_highlight" attrs="{'invisible':['|',('state','in',['NEW','IN PROGRESS']),('signed_employee','=',True)]}" />
+                    	<field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+	                        <h1>
+	                            <field name="name" required="1"/>
+	                        </h1>
+	                    </div>
+                        <group>
+                        	<group>
+                        		<field name="employee_id" />
+                        		<field name="start_date" />
+                        		<field name="employee_signature" widget="image" readonly="1" height="90"/>
+                        	</group>
+                        	<group>
+                        		<field name="trainer_id" />
+                        		<field name="training_date_deadline" />
+                        		<field name="template_id" />
+                        		<field name="session_id" />
+                        		<field name="signed_employee" invisible="1"/>
+                        	</group>
+                        </group>
+                        <notebook>
+                        	<page string="Training Content">
+                        		<field name="training_content" colspan="4" nolabel="1" />
+                        	</page>
+                        	
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+	                    <field name="message_follower_ids" widget="mail_followers"/>
+	                    <field name="message_ids" widget="mail_thread"/>
+	                </div>
+                    
+                </form>
+            </field>
+        </record>
+
+        <record id="view_training_training_tree" model="ir.ui.view">
+            <field name="name">training.training.tree</field>
+            <field name="model">training.training</field>
+            <field name="arch" type="xml">
+                <tree string="Training Template tree">
+                	<field name="name"/>
+                    <field name="employee_id" />
+                    <field name="start_date" />
+                    <field name="trainer_id" />
+               		<field name="template_id" />
+               		<field name="session_id" />
+               		<field name="state" />
+                </tree>
+            </field>
+        </record>
+		<!-- <record id="view_training_training_calendar" model="ir.ui.view">
+            <field name="name">training.training.calendar</field>
+            <field name="model">training.training</field>
+            <field name="arch" type="xml">
+                <calendar string="Training" color="state" date_start="start_date">
+                    <field name="name"/>
+                    <field name="amount_total" widget="monetary"/>
+                </calendar>
+            </field>
+        </record> -->
+		
+        <record id="action_training_training" model="ir.actions.act_window">
+            <field name="name">Trainings</field>
+            <field name="res_model">training.training</field>
+            <!-- <field name="view_type">form</field> -->
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_training_training_filter"/>
+        </record>
+        
+        <menuitem id="menu_action_action_training_training"
+        	parent="main_menu_employee_trainings"
+        	name="Trainings"
+        	action="action_training_training"
+        	sequence="2"/>
+    	<!-- <record id="view_training_training_filter" model="ir.ui.view">
+            <field name="name">training.training.search.view</field>
+            <field name="model">training.training</field>
+            <field name="arch" type="xml">
+                <search string="Training Search">
+                    <field name="name" />
+                    <field name="employee_id"/>
+                    <field name="package_id" />
+                    <separator/>
+                    <group expand="0" string="Group By" >
+                        <filter string="Trainer’s name" name="trainer_name" context="{'group_by':'employee_id'}" />
+                        <filter string="Training Package" name="trainer_package" context="{'group_by':'package_id'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record id="view_training_training_form" model="ir.ui.view">
+            <field name="name">training.training.form</field>
+            <field name="model">training.training</field>
+            <field name="arch" type="xml">
+                <form string="Training Seassion Form">
+                    <header>
+                    	<button string="START" type="object" name="action_start_training" class="oe_highlight" states="NEW"/>
+                    	<button string="REQUEST SIGNATURES" type="object" name="action_request_signatures" class="oe_highlight" states="IN PROGRESS"/>
+                    	<button string="EMAIL TRAINEES" type="object" name="action_email_trainees" class="oe_highlight" states="IN SIGNED"/>
+                    	<field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+	                        <h1>
+	                            <field name="name" required="1"/>
+	                        </h1>
+	                    </div>
+                        <group>
+                        	<group>
+                        		<field name="start_date" />
+                        		
+                        	</group>
+                        	<group>
+                        		<field name="employee_id" />
+                        	</group>
+                        </group>
+                        <notebook>
+                        	<page string="Training Content">
+                        		<field name="training_content" colspan="4" nolabel="1" />
+                        	</page>
+                        	<page string="Trainees">
+                        		<field name="trainee_ids" colspan="4" nolabel="1" >
+                        			<tree string="Trainees" editable="bottom">
+                        				<field name="employee_id" required="1"/>
+                        				<button string="Signature" type="object" name="action_do_signature" class="oe_highlight" />
+                        				<field name="signature" invisible="1"/>
+                        				<field name="signed" />
+                        			</tree>
+                        		</field>
+                        	</page>
+                        	<page string="Trainings">
+                        		<field name="package_id" colspan="4" />
+                        		<field name="training_template_ids" colspan="4" nolabel="1" >
+                        			<tree string="Training Templates" >
+                        				<field name="name"/>
+					                    <field name="department_id"/>
+					                    <field name="is_recurring" />
+                        			</tree>
+                        		</field>
+                        	</page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_training_training_tree" model="ir.ui.view">
+            <field name="name">training.training.tree</field>
+            <field name="model">training.training</field>
+            <field name="arch" type="xml">
+                <tree string="Training Template tree">
+                	<field name="name"/>
+                    <field name="start_date" />
+                    <field name="employee_id"/>
+                    <field name="state" />
+                </tree>
+            </field>
+        </record>
+		<record id="view_training_training_calendar" model="ir.ui.view">
+            <field name="name">training.training.calendar</field>
+            <field name="model">training.training</field>
+            <field name="arch" type="xml">
+                <calendar string="Training" color="state" date_start="start_date">
+                    <field name="name"/>
+                    <field name="amount_total" widget="monetary"/>
+                </calendar>
+            </field>
+        </record>
+		
+        <record id="action_training_training" model="ir.actions.act_window">
+            <field name="name">Trainings</field>
+            <field name="res_model">training.training</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,calendar</field>
+            <field name="search_view_id" ref="view_training_training_filter"/>
+        </record>
+        
+        <menuitem id="menu_action_action_training_training"
+        	parent="main_menu_employee_trainings"
+        	name="Trainings"
+        	action="action_training_training"
+        	sequence="2"/> -->
+        	
+    </data>
+</odoo>

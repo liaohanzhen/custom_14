@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+        <record id="account_move_search_view_inherit_analytic_account" model="ir.ui.view">
+            <field name="name">account.move.search.view.inherit.analytic.account</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_account_invoice_filter" />
+            <field name="arch" type="xml">
+            	<field name='invoice_user_id' position="after">
+            		<field name="account_analytic_id" />
+            	</field>
+            </field>
+        </record>
+    </data>
+    
+</odoo>

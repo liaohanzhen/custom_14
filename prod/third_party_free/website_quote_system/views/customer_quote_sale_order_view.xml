@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://store.webkul.com/license.html/ -->
+<odoo>
+    <data>
+        <record model='ir.ui.view' id='inherit_view_order_form'>
+    		<field name="name">sale.order.inherit</field>
+    		<field name="model">sale.order</field>
+    		<field name="type">form</field>
+    		<field name="inherit_id" ref="sale.view_order_form"/>
+    		<field name="arch" type="xml">
+                <xpath expr="//notebook/page[1]/field[@name='order_line']/tree/field[@name='qty_invoiced']" position="after">
+                    <field name="ref_quote_id"/>
+                    <field name="invoice_status"/>
+                    <field name="id"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

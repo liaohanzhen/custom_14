@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <template id="assets_common" name="Amazon Pay: Assets Common" inherit_id="web.assets_common">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/payment_amazonpay/static/src/js/common.js"></script>
+        </xpath>
+    </template>
+
+    <template id="assets_backend" name="Amazon Pay: Assets Backend" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/payment_amazonpay/static/src/js/core/misc.js"></script>
+        </xpath>
+    </template>
+
+    <template id="assets_frontend" name="Amazon Pay: Assets Frontend" inherit_id="web.assets_frontend">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" type="text/scss" href="/payment_amazonpay/static/src/scss/frontend/base.scss"/>
+            <script type="text/javascript" src="/payment_amazonpay/static/src/js/frontend/payment_form.js"></script>
+        </xpath>
+    </template>
+
+
+
+
+    <template id="payment_tokens_list" inherit_id="payment.payment_tokens_list" name="Amazon Pay: Payment Tokens list">
+        <xpath expr="//div[hasclass('card-body')]//input[@t-att-data-form-payment='true']" position="attributes">
+            <attribute name="t-att-data-amazonpay-region">acq.provider == 'amazonpay' and acq.amazonpay_region or ''</attribute>
+            <attribute name="t-att-data-amazonpay-sandbox">acq.provider == 'amazonpay' and acq.amazonpay_sandbox or ''</attribute>
+            <attribute name="t-att-data-amazonpay-widgets-url">acq.provider == 'amazonpay' and acq.amazonpay_widgets_url or ''</attribute>
+            <attribute name="t-att-data-amazonpay-client-id">acq.provider == 'amazonpay' and acq.sudo().amazonpay_client_id or ''</attribute>
+            <attribute name="t-att-data-amazonpay-merchant-id">acq.provider == 'amazonpay' and acq.sudo().amazonpay_merchant_id or ''</attribute>
+        </xpath>
+    </template>
+
+
+
+
+    <template id="amazonpay_form">
+        <div>
+            <input type="hidden" name="data_set" t-att-data-action-url="tx_url" data-remove-me="" />
+
+            <input type="hidden" name="reference" t-att-value="reference" />
+            <input type="hidden" name="tx_id" t-att-value="tx_id" />
+        </div>
+    </template>
+
+
+
+</odoo>
+

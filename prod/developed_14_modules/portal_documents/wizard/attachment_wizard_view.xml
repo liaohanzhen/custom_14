@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="product_user_attachment_wizard_form" model="ir.ui.view">
+            <field name="name">Portal Attachment</field>
+            <field name="model">portal.attachment.wizard</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Add Attachment">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field widget="binary" height="64" name="attachment" filename="name" />
+                                <field name="attachment_category" widget="selection"/>
+                                <!-- <field name="allowed_user" widget="radio"/> -->
+                                <field name="user_ids" widget="many2many_tags" />
+                                <field name="group_ids" widget="many2many_tags" /> <!-- attrs="{'invisible' : [('allowed_user', '=', 'public')]}" -->
+                                <field name="description" required='1'/>
+                            </group>
+                        </group>
+                        <footer>
+                            <button name="add_portal_attachment" type="object" string="Save" class="oe_highlight"/>
+                            <button special="cancel" class="oe_highlight" string="Close" />
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="portal_user_attachment_wizard_action" model="ir.actions.act_window">
+            <field name="name">Portal Attachment Wizard</field>
+            <field name="res_model">portal.attachment.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>
+

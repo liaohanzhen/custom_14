@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_slife_org_chart_config,slife.org.chart.config.user,model_slife_org_chart_config,,1,1,1,0
+access_org_chart_employee,access_org_chart_employee,model_org_chart_employee,,1,1,1,1
+access_slife_employee,access_slife_employee,model_slife_employee,,1,1,1,1

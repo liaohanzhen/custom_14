@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_project_task_type_template,access.project.task.type.template,model_project_task_type_template,,1,1,1,1
+access_project_requirement,access.project.requirement,model_project_requirement,,1,1,1,1
+access_project_template,access.project.template,model_project_template,,1,1,1,1

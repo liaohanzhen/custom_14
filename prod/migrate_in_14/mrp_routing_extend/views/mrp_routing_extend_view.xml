@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+    	<record id="action_menufacturing_operations" model="ir.actions.act_window">
+        	<field name="name">Operations</field>
+	        <field name="res_model">mrp.routing.workcenter</field>
+	        <field name="view_mode">tree,form</field> 
+	    </record>
+    	
+	    <menuitem id="menu_manufacturing_operations"
+         	name="Operations"
+            parent="mrp.menu_mrp_bom" 
+        	action="action_menufacturing_operations"
+        	sequence="70" />       		
+        		                
+    </data>
+</odoo>

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+<template id="footer_bottom" inherit_id="website.layout">
+    
+	<xpath expr="//footer" position="replace">
+	<!-- ======= Footer ======= -->
+		<footer id="footer">
+		
+		<div class="container d-md-flex" style="margin-top:10px;">
+			<div class="mr-md-auto text-center text-md-left" style="margin:5px 0 5px 0; padding:0;">
+				<strong>Proudly certified</strong><br />
+				<p class="copyright">
+				  <img src="/theme_5b/static/img/icon-trademark1.png" alt="5B Global mark certified" width="100" title="5B Global mark certified" style="margin:5px;" /> 
+				  <img src="/theme_5b/static/img/covid-safe.png" alt="We are COVID SAFE" width="100" title="We are COVID SAFE" style="margin:5px;" /> 
+				  <img src="/theme_5b/static/img/work180.png" alt="Work180" title="Work180" width="100" style="margin:5px;" /> 
+				</p>
+			</div>
+			<div class="mr-md-auto text-center text-md-left" style="margin:5px 0 5px 0; padding:0;">
+				<strong>Contact</strong><br />
+				<p class="copyright bottom-link">
+					<i class="fa fa-phone"></i> Phone: <a href="tel:1300 583 958">1300 58 39 58</a><br />
+				</p>
+				<strong style="padding-bottom:5px;">Head Office</strong>
+				<p class="copyright">
+				  41-43 Bowden Street<br />
+				  Alexandria, NSW 2015, Australia <br />
+				</p>
+			</div>
+			
+			<div class="mr-md-auto text-center text-md-left" style="margin:5px 0 5px 0; padding:0;">
+				<strong></strong><br />
+				<p class="d-none d-md-block copyright bottom-link">
+					<br />
+				</p>
+				<strong style="padding-bottom:5px;">Proving &amp; testing ground</strong>
+				<p class="copyright">
+				  260 Captain Cook Dr<br />
+				  Kurnell, NSW 2231, Australia <br />
+				</p>
+			</div>
+			
+		</div>
+		<div class="container d-md-flex">
+		  <div class="mr-md-auto text-center text-md-left" style="margin:5px 0 5px 0; padding:0;">
+			<div class="copyright" style="color:#d9d9d6">
+			  Copyright <i class="fa fa-copyright"></i> <t t-esc="website.name" /> <span t-esc = "datetime.datetime.now().strftime('%Y')" />. All Rights Reserved<br />
+			  <span class="bottom-link"><a href="/web/login">Sign in</a> | <a href="/contact">Get in Touch</a> | <a href="/privacy-policy">Privacy Policy</a> | <a href="/terms-and-conditions">Terms and Conditions</a> | <a href="/sitemap">Sitemap</a></span>
+				<div class="dropup" stle="font-size:0.5rem;"><t t-call="website.language_selector" /></div>
+				<!--
+				<ul style="margin:0; padding:0" t-if="(request and request.is_frontend_multilang and len(languages) &gt; 1) or (website and (editable or translatable))">
+					<li class="list-inline-item">
+						<div class="dropup" stle="font-size:0.5rem;">
+							<button class="btn btn-sm btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="background-color: #333f48; font-size: 0.80rem">
+								<span t-esc="list(filter(lambda lg : lg[0] == lang, languages))[0][1].split('/').pop()"/>
+								<span class="caret ml4"/>
+							</button>
+							<div class="dropdown-menu" role="menu" style="font-size: 0.80rem">
+								<t t-foreach="languages" t-as="lg">
+									<span class="bottom-link"><a t-att-href="url_for(request.httprequest.path + '?' + keep_query(), lang=lg[0])"
+									   class="dropdown-item js_change_lang"
+									   t-att-data-default-lang="(editable or translatable) and 'true' if website and lg[0] == website.default_lang_code else None"
+									   t-att-data-lang="lg[0]">
+										<t t-esc="lg[1].split('/').pop()"/>
+									</a></span>
+								</t>
+							</div>
+						</div>
+					</li>
+					<li groups="website.group_website_publisher" class="list-inline-item">
+						<t t-set="url_return" t-value="quote_plus(url_for('', '[lang]') + '?' + keep_query())"/>
+						<span class="bottom-link"><a t-attf-href="/web#action=base.action_view_base_language_install&amp;website_id=#{website.id if website else ''}&amp;url_return=#{url_return}">
+							<i class="fa fa-plus-circle"/>
+							Add a language...
+						</a></span>
+					</li>
+				</ul>-->
+
+			</div>
+			<div class="credits"></div>
+		  </div>
+		  <div class="social-links text-center text-md-right pt-md-0" style="margin:5px 0 5px 0; padding:0;">
+			<a t-att-href="website.social_linkedin" target="_blank" class="linkedin" title="Get in touch with 5B on LinkedIn"><i class="fa fa-linkedin"></i></a>
+			<a t-att-href="website.social_instagram" target="_blank" class="instagram" title="Follow 5B on Instagram"><i class="fa fa-instagram"></i></a>
+			<a t-att-href="website.social_github" target="_blank" class="vimeo" title="Latest about 5B on Vimeo"><i class="fa fa-vimeo"></i></a>
+			<a t-att-href="website.social_youtube" target="_blank" class="youtube" title="Latest about 5B on Youtube"><i class="fa fa-youtube-play"></i></a>
+			<a t-att-href="website.social_twitter" target="_blank" class="twitter" title="Follow 5B on Twitter"><i class="fa fa-twitter"></i></a>
+			<a t-att-href="website.social_facebook" target="_blank" class="facebook" title="Follow 5B on Facebook"><i class="fa fa-facebook"></i></a>
+			<a data-toggle="modal" data-target="#subscribeEmailUpdates" title="Subscribe to 5B email updates"><i class="fa fa-envelope"></i></a>
+		  </div>
+		</div>
+			
+		
+		<div class="modal fade" id="subscribeEmailUpdates" role="dialog" aria-labelledby="subscribeEmailUpdatesLabel" aria-hidden="true" style="color:#333">
+		  <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+			<div class="modal-content">
+			  <div class="modal-header">
+				<h5 class="modal-title" id="subscribeEmailUpdatesLabel">Subscribe to 5B email updates<br />
+				</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				  <span aria-hidden="true">X</span>
+				</button>
+			  </div>
+			  <div class="modal-body" align="center">
+				<div align="left" class="contact">
+					<p>There's a lot going on, don't miss out on our latest news! Enter your details below to receive our updates.</p>
+					
+					<form action="/submit/subscription" id="uploadFormSubscription" novalidate="true" method="post" role="form" class="contact_us_form">
+						<input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+					  <div class="form-row">
+						  <div class="col-md-6 form-group">
+							  <label for="name"><strong>First Name*</strong></label>
+							  <input type="text" name="firstname" class="form-control" id="firstname" placeholder="First Name" data-rule="required" data-msg="Please enter first name" />
+							  <div class="validate"></div>
+						  </div>
+						  <div class="col-md-6 form-group">
+							<label for="name"><strong>Last Name*</strong></label>
+							<input type="text" name="lastname" class="form-control" id="lastname" placeholder="Last Name" data-rule="required" data-msg="Please enter last name" />
+							<div class="validate"></div>
+						  </div>
+					  </div>
+		  
+					  <div class="form-group">
+						  <label for="email"><strong>Email*</strong></label>
+						  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+						  <div class="validate"></div>
+					  </div>
+					  <div class="form-group">
+						  <label for="company"><strong>Company</strong></label>
+						  <input type="text" class="form-control" name="company" id="company" />
+					  </div>
+					</form>
+					
+				</div>
+			  </div>
+			  <div class="modal-footer">
+				<button type="button" id="uploadFormSubscriptionSubmit" class="learn-more-btn">Subscribe <img src="/theme_5b/static/img/loading1.gif" style="display:none" /></button> 
+				<span class="bottom-link"><a data-dismiss="modal">Cancel</a></span>
+			  </div>
+			</div>
+		  </div>
+		</div>
+		
+		</footer><!-- End Footer -->
+
+		<a href="#" class="back-to-top"><i class="fa fa-arrow-up"></i></a>
+		<div id="preloader"></div>
+		
+    </xpath>
+</template>
+</odoo>

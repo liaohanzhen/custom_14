@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://store.webkul.com/license.html/ -->
+<odoo>
+    <data noupdate="1">
+        <function model="ir.default" name="set" eval="('customer.quote.settings', 'allow_customer_to_quote_price', True)"/>
+        <function model="ir.default"
+            name="set" eval="('customer.quote.settings', 'notify_admin_on_new_quote', True)"/>
+        <function model="ir.default"
+            name="set" eval="('customer.quote.settings', 'notify_customer_on_new_quote', True)"/>
+        <function model="ir.default"
+            name="set" eval="('customer.quote.settings', 'notify_customer_on_quote_state_change', True)"/>
+
+        <function model="ir.default" name="set" eval="('customer.quote.settings', 'notify_admin_on_new_quote_m_tmpl_id', ref('quote_create_email_template_to_admin'))"/>
+        <function model="ir.default" name="set" eval="('customer.quote.settings', 'notify_customer_on_new_quote_m_tmpl_id', ref('quote_create_email_template_to_customer'))"/>
+        <function model="ir.default" name="set" eval="('customer.quote.settings', 'notify_customer_on_quote_state_change_m_tmpl_id', ref('quote_status_update_email_template_to_customer'))"/>
+      </data>
+</odoo>

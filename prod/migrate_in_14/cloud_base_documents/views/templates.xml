@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="share_single" inherit_id="documents.share_single" name="Documents Share Single File">
+        <xpath expr="//a[hasclass('o_docs_btn')]/span" position="attributes">
+            <attribute name="t-if">'url' in document.type and (not document.cloud_key or document.mimetype in ['application/octet-stream', 'special_cloud_folder'])</attribute>
+        </xpath>
+        <xpath expr="//figcaption/span" position="attributes">
+            <attribute name="t-if">'url' not in document.type or (document.cloud_key and document.mimetype not in ['application/octet-stream', 'special_cloud_folder'])</attribute>
+        </xpath>
+
+        <xpath expr="//a[@t-if='not document_request']/span" position="attributes">
+            <attribute name="t-if">'url' in document.type and (not document.cloud_key or document.mimetype in ['application/octet-stream', 'special_cloud_folder'])</attribute>
+        </xpath>
+
+        <xpath expr="//div[hasclass('o_card_footer')]/b/t[1]" position="attributes">
+            <attribute name="t-if">document.type == 'binary' or (document.type == 'url' and document.cloud_key and document.mimetype not in ['application/octet-stream', 'special_cloud_folder'])</attribute>
+        </xpath>
+    </template>
+
+    <template id="share_page" inherit_id="documents.share_page" name="Multiple Documents Share">
+        <xpath expr="//div[hasclass('o_card_footer')]/small//b/t[1]" position="attributes">
+            <attribute name="t-if">document.type == 'binary' or (document.type == 'url' and document.cloud_key and document.mimetype not in ['application/octet-stream', 'special_cloud_folder'])</attribute>
+        </xpath>
+        <xpath expr="//a[@t-if='not document_request']/i" position="attributes">
+            <attribute name="t-attf-class">fa #{'url' not in document.type or (document.cloud_key and document.mimetype not in ['application/octet-stream', 'special_cloud_folder']) and 'fa-download' or 'fa-link'}</attribute>
+        </xpath>
+        <xpath expr="//a[@t-if='all_button']" position="attributes">
+            <attribute name="t-if">document_ids.check_all_btn()</attribute>
+        </xpath>
+        <xpath expr="//a[@t-if='all_button']" position="attributes">
+            <attribute name="t-if">document_ids.check_all_btn()</attribute>
+        </xpath>
+    </template>
+
+    <template id="format_file_size" inherit_id="documents.format_file_size" name="Format file size">
+        <xpath expr="b[@t-if='G']" position="before">
+            <b t-if="'url' in document.type">
+                <i class="fa fa-cloud"> </i>
+            </b>
+        </xpath>
+        <xpath expr="b[@t-if='G']" position="attributes">
+            <attribute name="t-if"></attribute>
+            <attribute name="t-elif">G</attribute>
+        </xpath>
+    </template>
+
+</odoo>

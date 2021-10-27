@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<odoo>
+    <data>
+		<record id="res_config_settings_attachment_view_form" model="ir.ui.view">
+            <field name="name">res.config.settings.attachment.settings.form</field>
+            <field name="model">res.config.settings</field>
+			<field name="inherit_id" ref="website_sale.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+				<xpath expr="//div[@id='digital_content_setting']" position="after">
+                    <div class="col-xs-12 col-md-6 o_setting_box" id="product_attachment_setting">
+                        <div class="o_setting_left_pane">
+                            <field name="res_website_multi_attachment"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="res_website_multi_attachment"/>
+                            <div class="text-muted">
+                                Display attachments on product pages
+                            </div>
+                        </div>
+                    </div>
+				</xpath>
+			</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,37 @@
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- @License       : https://store.webkul.com/license.html -->
+
+<odoo>
+    <data>
+        <record id="mp_quote_system_config_settings_form_view" model="ir.ui.view">
+            <field name="name">marketplace.config.quote.setting</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="odoo_marketplace.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//page[@name='mp_miscellaneous_settings']" position="attributes">
+                    <attribute name="style"></attribute>
+                </xpath>
+
+                <xpath expr="//page[@name='mp_miscellaneous_settings']" position="inside">
+                    <div class="col-xs-12 o_setting_box" title="Enable this for sending mail notification to seller on new quote request.">
+                        <separator string="On New Quote Request"/>
+                        <div class="o_setting_left_pane" title="Enable to notify to seller on new quote request.">
+                            <field name="enable_notify_seller_on_new_quote" class="oe_inline" help="Enable to notify to seller on new quote request."/>
+                        </div>
+                        <div class="o_setting_right_pane" title="Template to notify the seller for new quote request.">
+                            <label for="notify_seller_on_new_quote" string="Enable Notification for Seller"/>
+                            <div class="content-group">
+                                <div class="row mt8">
+                                    <label string="Email Template" for="notify_seller_on_new_quote" class="col-md-3 o_light_label" attrs="{'invisible': [('enable_notify_seller_on_new_quote', '=', False)]}"/>
+                                    <field name="notify_seller_on_new_quote" attrs="{'invisible': [('enable_notify_seller_on_new_quote', '=', False)], 'required': [('enable_notify_seller_on_new_quote', '=', True)]}"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

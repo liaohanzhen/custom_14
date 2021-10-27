@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <act_window
+        id="act_product_publish_unpublish_menu"
+        name="Product Publish/Unpublish"
+        context="{}"
+        target="new"
+        res_model="product.published.unpublished.wizard"
+        binding_model="product.template"
+        view_mode="form"/>
+</odoo>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+	<div t-extend="KanbanView.ColumnProgressBar">
+		<t t-jquery=".o_kanban_counter_side" t-operation="replace">
+			<div class="o_kanban_counter_side"><b><t t-esc="widget.totalCounterValue || 0"/></b><t t-if="widget.sumFieldMW"><br></br><b id='counter_mw'>-<t t-esc="widget.totalCounterValueMW || 0"/></b></t></div>
+		</t>
+		
+	</div>
+</templates>

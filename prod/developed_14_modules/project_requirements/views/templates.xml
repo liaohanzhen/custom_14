@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="project_requirements_assests" name="project_requirements" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/project_requirements/static/src/js/form_controller.js"></script>
+            <script type="text/javascript" src="/project_requirements/static/src/js/kanban_model.js"></script>
+        </xpath>
+    </template>	
+</odoo>

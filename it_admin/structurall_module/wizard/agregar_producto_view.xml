@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="agregar_unidad_wizard" model="ir.ui.view">
+        <field name="name">Agregar Producto Form</field>
+        <field name="model">agregar.producto</field>
+        <field name="arch" type="xml">
+       	 <form string="Agregar Unidad">
+       	<group style="width:50%">
+       		<field name="tiempo_de_renta"/>
+       	</group>
+       	
+        <group cols="8">
+        		
+            <field name="product_tmp_id" domain = "[('rent_ok','=',True)]"/>
+            <field name="unidades_producto"/>
+            <field name="ciudad_destino"/>
+       	 		<label for="date_to" string="Due Date"/>
+       			<div class="d-flex">
+                 	<field name="date_to" force_save="1" placeholder="Date to"/>
+                 	<span class="o_form_label mx-3 oe_edit_only"> To</span>
+                 	<field name="date_from" placeholder="Date Frome"/>
+		        </div>
+        </group>
+
+        <group>
+          
+          <group>
+            <field name="rental" readonly="1" force_save="1"/>
+            <field name="p_proteccion" readonly="1" force_save="1"/>
+            <field name="instalacion" readonly="1" force_save="1"/>
+          </group>
+
+          <group>
+            <field name="escaleras"/>
+            <field name="costo2" readonly="1" force_save="1"/>
+            <field name="subtotal2" readonly="1" force_save="1"/>
+          </group>
+           	
+          <group>
+    		      <field name="kms"/>
+    		      <field name="costo" readonly="1" force_save="1"/>
+    		      <field name="subtotal" readonly="1" force_save="1"/>
+          </group>
+
+          <group>
+              <field name="torres"/>
+              <field name="costo3" readonly="1" force_save="1"/>
+              <field name="subtotal3" readonly="1" force_save="1"/>
+          </group>
+
+          <group>
+            <field name="total_producto"/>
+          </group>
+
+        </group>
+
+       	<footer>
+                <button name="actualizar" string="Agregar" type="object" default_focus="1" class="oe_highlight"/>
+                <button string="Cancel" class="btn btn-default" special="cancel" />
+            </footer>
+       	</form>
+        </field>
+    </record>
+    
+    <record id="agregar_unidad_wizard_wizard_action" model="ir.actions.act_window">
+        <field name="name">Agregar Producto</field>
+        <field name="res_model">agregar.producto</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="agregar_unidad_wizard"/>
+        <field name="target">new</field>
+    </record>
+    
+</odoo>

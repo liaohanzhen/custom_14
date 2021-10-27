@@ -1,0 +1,48 @@
+<?xml version='1.0'?>
+<odoo>
+    <record id='rent_wizard_form' model='ir.ui.view'>
+        <field name='name'>rent.wizard.form</field>
+        <field name='model'>rent.wizard</field>
+        <field name='arch' type='xml'>
+            <form string='Rent a Produce'>
+                <h1>
+                    <field name="product_id" readonly="1" nolabel="1"/>
+                </h1>
+                <group>
+                    <group>
+                        <label for="pickup_date" string="Date"/>
+                        <div class="o_row">
+                            <field name="pickup_date" widget="daterange" options="{'related_end_date': 'return_date'}"/>
+                            <span>to</span>
+                            <field name="return_date" widget="daterange"
+                                   options="{'related_start_date': 'pickup_date'}"/>
+                        </div>
+                        <label for="duration"/>
+                        <div>
+                            <field name="duration" class="oe_inline"/>
+                            <field name="duration_unit" class="oe_inline col-lg-4" readonly="1"/>
+                        </div>
+                    </group>
+                    <group>
+                        <label for="quantity"/>
+                        <div name="qty_to_reserve">
+                            <field name="quantity" class="oe_inline col-lg-3 text-left pl-0"/>
+                            <span>Units</span>
+                        </div>
+                        <label for="unit_price"/>
+                        <div>
+                            <field name="unit_price"/>
+                            <field name="unit_price2" invisible="1"/>
+                            <field name="pricing_explanation" class="text-muted"/>
+                        </div>
+                    </group>
+                </group>
+                <footer>
+                    <button name="update_order_line" string="Add" class="btn-primary" type="object"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
+

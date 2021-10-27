@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_portfolio_category_admin,access.portfolio.category.admin,model_portfolio_category,base.group_erp_manager,1,1,1,1
+access_image_gallary_admin,access.image.gallary.admin,model_image_gallary,base.group_erp_manager,1,1,1,1
+access_portfolio_category_user,access.portfolio.category.user,model_portfolio_category,,1,0,0,0
+access_portfolio_category_manager,access.portfolio.category.manager,model_portfolio_category,project.group_project_manager,1,1,1,1
+access_image_gallary_user,access.image.gallary.user,model_image_gallary,,1,0,0,0
+access_image_gallary_manager,access.image.gallary.manager,model_image_gallary,project.group_project_manager,1,1,1,1
+access_project_project_all,access.project.project.all,model_project_project,,1,0,0,0

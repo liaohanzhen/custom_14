@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<template id="frogblue_webshop_fixes_assets_frontend" name="frogblue_webshop_fixes assets" inherit_id="website_sale_wishlist.assets_frontend">
+            <xpath expr="." position="inside">
+               <script type="text/javascript" src="/frogblue_webshop_fixes/static/src/js/website_sale_wishlist.js"></script>
+            </xpath>
+	</template>
+	
+	<template id="header_show_empty_wishlist_link" inherit_id="website_sale_wishlist.header_wishlist_link" priority="50">
+        <xpath expr="//li[contains(@t-attf-class, 'o_wsale_my_wish')]" position="attributes">
+            <attribute name="t-attf-class" remove="#{not show_wishes and 'd-none'}" separator=" "/>
+            <attribute name="t-attf-class" remove="te_wish_icon_head" separator=" "/>
+            <attribute name="style">padding:0px !important;</attribute>
+        </xpath>
+        
+        <xpath expr="//sup[contains(@t-attf-class, 'my_wish_quantity')]" position="attributes">
+        	<attribute name='style'>top:-18px !important;</attribute>
+        </xpath>
+    </template>
+</odoo>

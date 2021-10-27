@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_website_content_5b,website_content_5b,model_website_content_5b,,1,1,1,0
+access_website_faqs_5b,website_faqs_5b,model_website_faqs_5b,,1,1,1,0
+access_website_project_5b,website_project_5b,model_website_project_5b,,1,1,1,0
+access_website_media_5b,website_media_5b,model_website_media_5b,,1,1,1,0
+access_website_news_5b,website_news_5b,model_website_news_5b,,1,1,1,0
+access_website_resources_5b,website_resources_5b,model_website_resources_5b,,1,1,1,0
+

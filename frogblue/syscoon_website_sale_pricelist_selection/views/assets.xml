@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="assets_frontend_pricelist_selection" inherit_id="website.assets_frontend">
+        <xpath expr="link[last()]" position="after">
+            <link rel="stylesheet" type="text/css" href="/syscoon_website_sale_pricelist_selection/static/src/scss/website_dialog_pricelist.scss"/>
+        </xpath>
+    </template>
+    <template id="assets_frontend" inherit_id="web.assets_frontend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript"
+                    src="/syscoon_website_sale_pricelist_selection/static/src/js/website_dialog_pricelist.js"></script>
+        </xpath>
+    </template>
+    
+    <template id="assets_frontend_auth" inherit_id="auth_signup.assets_frontend" name="Auth Assets syscoon">
+		<xpath expr="." position="inside">
+			<script type="text/javascript" src="/syscoon_website_sale_pricelist_selection/static/src/js/signup.js"></script>
+		</xpath>
+	</template>
+    
+</odoo>

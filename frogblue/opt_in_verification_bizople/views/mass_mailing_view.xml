@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Part of Odoo Module Developed by Bizople Solutions Pvt. Ltd.
+    See LICENSE file for full copyright and licensing details.
+-->
+<odoo>
+    <data>
+        <record id="view_mass_mailing_contact_bizople_form" model="ir.ui.view">
+            <field name="name">mailing.contact.form</field>
+            <field name="model">mailing.contact</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="mass_mailing.mailing_contact_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='country_id']" position="after">
+                    <field name="opt_in_link" invisible="1"/>
+                    <field name="ip_address" readonly="1"/>
+                    <field name="city_name" readonly="1"/>
+                    <field name="country_name" readonly="1"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_mass_mailing_contact_bizople_tree" model="ir.ui.view">
+            <field name="name">mailing.contact.tree</field>
+            <field name="model">mailing.contact</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="mass_mailing.mailing_contact_view_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='email']" position="after">
+                    <field name="ip_address" readonly="1"/>
+                    <field name="city_name" readonly="1"/>
+                    <field name="country_name" readonly="1"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

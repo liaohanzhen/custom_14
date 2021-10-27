@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!--	<record id="sms_template_helpdesk_ticket" model="sms.template">-->
+        <!--      <field name="name">Helpdesk Ticket Template : Don't Delete</field>-->
+        <!--      <field name="model_id" ref="helpdesk.model_helpdesk_ticket"/>-->
+        <!--      <field name="template_body" >Urgent Help needed - ${object.name}-->
+        <!--Requested By : ${object.partner_name or object.partner_id.name}-->
+        <!--Ticket ID : ${object.id}</field>-->
+        <!--    </record>-->
+        <record id="sms_template_helpdesk_ticket" model="sms.frame.template">
+            <field name="name">Helpdesk Ticket Template : Don't Delete</field>
+            <field name="model_id" ref="helpdesk.model_helpdesk_ticket"/>
+            <field name="from_mobile_verified_id" eval="1"/>
+            <field name="template_body">Urgent Help needed - ${object.name}
+                Requested By : ${object.partner_name or object.partner_id.name}
+                Ticket ID : ${object.id}
+            </field>
+        </record>
+
+        <record id="sms_template_quality_alert" model="sms.frame.template">
+            <field name="name">Quality Alert Template : Don't Delete</field>
+            <field name="model_id" ref="quality.model_quality_alert"/>
+            <field name="template_body">Urgent Quality Alert - ${object.name}
+                Requested By : ${object.partner_id.name}
+                Ticket ID : ${object.id}
+            </field>
+        </record>
+    </data>
+</odoo>

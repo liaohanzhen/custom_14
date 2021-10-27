@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="frogblue_view_calendar_event_form" model="ir.ui.view">
+        <field name="name">frogblue.calendar.event.calendar</field>
+        <field name="model">calendar.event</field>
+        <field name="inherit_id" ref="calendar.view_calendar_event_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('oe_title')]" position="after">
+                <group>
+                    <group>
+                        <field name="team_id" readonly="0"/>
+                        <field name="related_partner_id" readonly="0"/>
+                    </group>    
+                </group>    
+            </xpath>
+            <xpath expr="//page[@name='page_invitations']" position="attributes">
+                <attribute name="groups"></attribute>
+            </xpath>
+            <xpath expr="//page[@name='page_misc']" position="attributes">
+                <attribute name="groups"></attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="frogblue_view_calendar_event_tree" model="ir.ui.view">
+        <field name="name">frogblue.calendar.event.tree</field>
+        <field name="model">calendar.event</field>
+        <field name="inherit_id" ref="calendar.view_calendar_event_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="related_partner_id"/>
+            </xpath>     
+            <xpath expr="//field[@name='partner_ids']" position="after">
+                <field name="team_id"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="calendar.action_calendar_event" model="ir.actions.act_window">
+        <field name="name">Meetings</field>
+        <field name="res_model">calendar.event</field>
+        <field name="view_mode">tree,calendar,form</field>
+        <field name="view_id" ref="calendar.view_calendar_event_tree"/>
+        <field name="search_view_id" ref="calendar.view_calendar_event_search"/>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Schedule a new meeting
+          </p><p>
+            The calendar is shared between employees and fully integrated with
+            other applications such as the employee leaves or the business
+            opportunities.
+          </p>
+        </field>
+    </record>
+
+</odoo>

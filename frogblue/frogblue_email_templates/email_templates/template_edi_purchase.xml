@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <!-- Frogblue Account Invoice Email Template Inherit -->
+        <record id="frogblue_email_template_edi_purchase" model="mail.template">
+            <field name="name">Purchase - Send by Email (Frogblue)</field>
+            <field name="email_from">${(object.company_id.email and '%s &lt;%s&gt;' % (object.company_id.name or '', object.company_id.email) or '')|safe}</field>
+            <field name="subject">${object.company_id.name|safe} ${object.state in ('draft', 'sent', 'to approve') and 'Request for Quotation' or 'Purchase Order'} (Ref ${object.name or 'n/a' })</field>
+            <field name="partner_to">${object.partner_id.id}</field>
+            <field name="model_id" ref="purchase.model_purchase_order"/>
+            <field name="auto_delete" eval="False"/>
+            <field name="report_template" ref="frogblue_reports.report_frogblue_purchase_order"/>
+            <field name="report_name">${(object.name or '').replace('/','_')}_${object.state in ('draft', 'sent', 'to approve') and 'rfq' or 'purchase_order'}</field>
+            <field name="lang">${object.partner_id.lang}</field>
+            <field name="body_html"><![CDATA[
+                    <!doctype html>
+                    <html>
+                        <head>
+                            <meta charset="UTF-8">
+                            <title>Purchase Order/RFQ</title>
+                        </head>
+                        <body>
+                            <% set lang = object.get_partner_lang() %>
+                            <table width="100%" border="0" align="left" cellpadding="0" cellspacing="0" style="color: #000000; font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', 'DejaVu Sans', Verdana, sans-serif; font-size: 12px; background-color: #FFFFFF; margin-left: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px;">
+                                <tbody>
+                                    <tr>
+                                        <td align="left" valign="top" bgcolor="#ffffff">
+                                            <p>
+                                                Dear
+                                                % if object.partner_id and not object.partner_id.is_company:
+                                                    % if object.partner_id.title:
+                                                        ${object.partner_id.title.name or ''}
+                                                    % endif
+                                                    ${object.partner_id.name},
+                                                % else:
+                                                    Sir/Madam,
+                                                % endif
+                                            </p>
+                                            <div style="line-height:1;"> &nbsp;</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>
+                                                % if object.state in ['draft', 'sent', 'to approve']:
+                                                    Please find attached our request no. ${object.name or ''}. <br/> <br/>
+
+                                                    Please send us your offer by ${object.get_formated_date(date=object.date_order)}. <br/> <br/>
+                                                % else:
+                                                    Please find attached our order no. ${object.name or ''} dated ${object.get_formated_date(date=object.date_order)}. <br/> <br/>
+
+                                                    Our preferred delivery date is as specified. <br/> <br/>
+                                                % endif
+
+                                                % if object.state not in ['draft', 'sent', 'to approve']:
+                                                    We would be grateful if you could send us a written order confirmation. <br/> <br/>
+                                                % endif
+
+                                                If you have any questions, don't hesitate to contact me by phone on
+                                                % if object.env and object.env.user and object.env.user.partner_id and object.env.user.partner_id.phone
+                                                    ${object.env.user.partner_id and object.env.user.partner_id.phone or ''}
+                                                % endif
+                                                or e-mail. <br/> <br/>
+
+                                                Best regards, <br/> <br/>
+                                                % if object.state in ['draft', 'sent', 'to approve']:
+                                                    The ${object.company_id and object.company_id.name or ''} team
+                                                % else:
+                                                    ${object.env and object.env.user and object.env.user.name or ''} <br/> <br/>
+                                                    % if object.env and object.env.user and object.env.user.title:
+                                                        ${object.env.user.title.name or ''}
+                                                    % endif
+                                                % endif
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    % if object.company_id and object.company_id.use_email_footer and object.company_id.email_footer:
+                                        <tr>
+                                            <td>
+                                                <p>
+                                                    % for line in object.company_id.email_footer.splitlines()
+                                                        ${line}
+                                                        <br />
+                                                    % endfor
+                                                </p>
+                                            </td>
+                                        </tr>
+                                    % endif
+                                </tbody>
+                            </table>
+                        </body>
+                    </html>
+                ]]></field>
+        </record>
+    </data>
+</odoo>

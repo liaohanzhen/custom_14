@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="of_holding_sale_report_search_inherit" model="ir.ui.view">
+        <field name="name">of.holding.sale.report.search.inherit</field>
+        <field name="model">sale.report</field>
+        <field name="inherit_id" ref="sale.view_order_product_search"/>
+        <field name="arch" type="xml">
+            <filter name="Sales" position="after">
+                <filter name="have_holding_partner" string="Have Holding Partner" domain="[('holding_partner_id', '!=', False)]"/>
+            </filter>
+            <filter name="status" position="after">
+                <filter name="group_holding_partner" string="Holding Partner" context="{'group_by':'holding_partner_id'}"/>
+                <filter name="group_comm_partner" string="Orderer" context="{'group_by':'orderer'}"/>
+            </filter>
+        </field>
+    </record>
+</odoo>

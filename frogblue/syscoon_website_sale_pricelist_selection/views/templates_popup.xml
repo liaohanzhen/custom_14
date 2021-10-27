@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+	<template id="pricelist_popup" inherit_id="website.layout" name="Popup">
+	    <xpath expr="//div[@id='footer']" position="inside">
+	        <div class="o_pricelist_popup"/>
+	    </xpath>
+	</template>
+
+	<template id="cart_lines_syscoon_pricelist" inherit_id="website_sale.cart_lines" name="cart_lines syscoon">
+	    <xpath expr="//td[@name='price']/t[@t-set='combination_info']" position="attributes">
+	        <attribute name='t-value'>line.product_id.product_tmpl_id._get_combination_info(combination)</attribute>
+	    </xpath>
+	    
+	    <xpath expr="//td[@name='price']/t[@t-set='list_price_converted']" position="attributes">
+	        <attribute name='t-value'>website.currency_id._convert(line.price_unit, website_sale_order.currency_id, website_sale_order.company_id, date)</attribute>
+	    </xpath>
+	    
+	    <!-- <xpath expr="//td[@name='price']/span[@t-field='line.price_reduce_taxexcl']" position="attributes">
+	        <attribute name='t-field'>line.price_unit</attribute>
+	    </xpath> -->
+	</template>
+	
+	<template id="pricelist_list_selection" inherit_id="website_sale.pricelist_list" priority="50">
+		<xpath expr="//a[hasclass('dropdown-toggle')][1]" position="replace">
+			<a t-if="request.session.is_website_user or request.session.uid is None" role="button" href="#" class="dropdown-toggle btn btn-link te_currency_name" data-toggle="dropdown">
+                <span>
+                    <t t-esc="curr_pl.currency_id.symbol"/>
+                    <t t-esc="curr_pl and curr_pl.name or ' - '"/>
+                </span>
+            </a>
+            <a t-else="" role="button" href="#" class="btn btn-link te_currency_name">
+                <span>
+                    
+                    <t t-esc="curr_pl.currency_id.symbol"/>
+                    <t t-esc="curr_pl and curr_pl.name or ' - '"/>
+                </span>
+            </a>
+        </xpath>
+	</template>
+</odoo>

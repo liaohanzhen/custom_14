@@ -1,0 +1,159 @@
+<odoo>
+  <data>
+	  <template id="page_careers" name="Careers">
+		<t t-call="website.layout">
+        <div id="wrap" class="oe_structure oe_empty">
+			<!-- ======= Hero Section ======= -->
+			  <section id="hero-project" style="background: url('/theme_5b/static/img/banner-career.jpg'); background-position: 50% 50%; background-size:cover; background-repeat:no-repeat">
+				<div class="container position-relative"></div>
+			  </section><!-- End Hero -->
+				
+			  <main id="main">
+			  
+				<t t-foreach="contents" t-as="content">
+
+					<t t-raw="content.description" />
+				
+				</t>
+				
+				<script>
+				var shortimages = [
+					"/theme_5b/static/img/about/1.jpg",
+					"/theme_5b/static/img/about/2.jpg",
+					"/theme_5b/static/img/about/4.jpg",
+					"/theme_5b/static/img/about/5.jpg",
+					"/theme_5b/static/img/about/6.jpg",
+					"/theme_5b/static/img/about/7.jpg",
+					"/theme_5b/static/img/about/8.jpg",
+					"/theme_5b/static/img/about/9.jpg",
+					"/theme_5b/static/img/about/10.jpg",
+					"/theme_5b/static/img/about/11.jpg",
+					"/theme_5b/static/img/about/12.jpg",
+					"/theme_5b/static/img/about/13.jpg",
+					"/theme_5b/static/img/about/14.jpg",
+					"/theme_5b/static/img/about/15.jpg",
+					"/theme_5b/static/img/about/16.jpg",
+					"/theme_5b/static/img/about/17.jpg",
+					"/theme_5b/static/img/about/18.jpg",
+					"/theme_5b/static/img/about/19.jpg",
+					"/theme_5b/static/img/about/20.jpg",
+					"/theme_5b/static/img/about/21.jpg",
+					"/theme_5b/static/img/about/22.jpg",
+					"/theme_5b/static/img/about/23.jpg",
+					"/theme_5b/static/img/about/24.jpg",
+					"/theme_5b/static/img/about/25.jpg",
+					"/theme_5b/static/img/about/26.jpg",
+					"/theme_5b/static/img/about/27.jpg",
+					"/theme_5b/static/img/about/28.jpg",
+					"/theme_5b/static/img/about/29.jpg",
+					"/theme_5b/static/img/about/30.jpg",
+					"/theme_5b/static/img/about/31.jpg",
+					"/theme_5b/static/img/about/32.jpg",
+					"/theme_5b/static/img/about/33.jpg",
+					"/theme_5b/static/img/about/34.jpg",
+					"/theme_5b/static/img/about/35.jpg",
+					"/theme_5b/static/img/about/36.jpg",
+					"/theme_5b/static/img/about/37.jpg",
+					"/theme_5b/static/img/about/38.jpg",
+					"/theme_5b/static/img/about/39.jpg",
+					"/theme_5b/static/img/about/40.jpg",
+					"/theme_5b/static/img/about/41.jpg",
+				  ];
+				  
+				  
+				  function recursive(shortimages,_img,already_used){
+					if(! already_used.includes(_img))
+						return _img
+					else{
+						_picPicker2 = (Math.floor(Math.random() * 38) + 1);
+						_source_short = shortimages[_picPicker2];
+						recursive(shortimages,_source_short,already_used)
+					}
+				  }
+				  
+				  setInterval(function() {
+				    var already_used = [];
+				  
+					var picPicker2 = (Math.floor(Math.random() * 39) + 1);
+					var source_short1 = shortimages[picPicker2];
+					$("div.short1 img").fadeOut(100).attr("src", source_short1).fadeIn(500);
+					already_used.push(source_short1)
+					
+					var picPicker2 = (Math.floor(Math.random() * 39) + 1);
+					var source_short2 = shortimages[picPicker2]
+					source_short2 = recursive(shortimages,source_short2,already_used)
+					already_used.push(source_short2)
+					$("div.short2 img").fadeOut(100).attr("src", source_short2).fadeIn(500);
+
+					var picPicker2 = (Math.floor(Math.random() * 39) + 1);
+					var source_short3 = shortimages[picPicker2];
+					source_short3 = recursive(shortimages,source_short3,already_used)
+					already_used.push(source_short3)
+					$("div.short3 img").fadeOut(100).attr("src", source_short3).fadeIn(500);
+
+					var picPicker2 = (Math.floor(Math.random() * 39) + 1);
+					var source_short4 = shortimages[picPicker2];
+					source_short4 = recursive(shortimages,source_short4,already_used)
+					already_used.push(source_short4)
+					$("div.short4 img").fadeOut(100).attr("src", source_short4).fadeIn(500);
+
+					var picPicker2 = (Math.floor(Math.random() * 39) + 1);
+					var source_short5 = shortimages[picPicker2];
+					source_short5 = recursive(shortimages,source_short5,already_used)
+					already_used.push(source_short5)
+					$("div.short5 img").fadeOut(100).attr("src", source_short5).fadeIn(500);
+
+					var picPicker2 = (Math.floor(Math.random() * 39) + 1);
+					var source_short6 = shortimages[picPicker2];
+					source_short6 = recursive(shortimages,source_short6,already_used)
+					already_used.push(source_short6)
+					$("div.short6 img").fadeOut(100).attr("src", source_short6).fadeIn(500);
+
+				  }, 3000);
+
+				</script>
+				<section class="about flash-show d-none d-sm-block" style="padding:0 0 30px 0;">
+				  <div class="row">
+					<div class="short1" style="width:13.333%; height:250px; overflow: hidden;"><img src='/theme_5b/static/img/about/2.jpg' height="260" /></div>
+					<div class="long1" style="width:20%; height:250px; overflow: hidden;"><img src='/theme_5b/static/img/about/long1_1.jpg' /></div>
+					<div class="short2" style="width:13.333%; height:250px; overflow: hidden;"><img src='/theme_5b/static/img/about/6.jpg' height="260" /></div>
+					<div class="long2" style="width:20%; height:250px; overflow: hidden;"><img src='/theme_5b/static/img/about/long1_2.jpg' /></div>
+					<div class="short3" style="width:13.333%; height:250px; overflow: hidden;"><img src='/theme_5b/static/img/about/9.jpg' height="260" /></div>
+					<div class="long3" style="width:20%; height:250px; overflow: hidden;"><img src='/theme_5b/static/img/about/long1_3.jpg' /></div>
+
+					<div style="width:20%; height:250px; overflow: hidden;"><img src='/theme_5b/static/img/about/long1_4.jpg' /></div>
+					<div class="short4" style="width:13.333%; height:250px; overflow: hidden;"><img src='/theme_5b/static/img/about/18.jpg' height="260" /></div>
+					<div style="width:20%; height:250px; overflow: hidden;"><img src='/theme_5b/static/img/about/long1_5.jpg' /></div>
+					<div class="short5" style="width:13.333%;height:250px; overflow: hidden;"><img src='/theme_5b/static/img/about/4.jpg' height="260" /></div>
+					<div style="width:20%; height:250px; overflow: hidden;"><img src='/theme_5b/static/img/about/long1_6.jpg' /></div>
+					<div class="short6" style="width:13.333%; height:250px; overflow: hidden;"><img src='/theme_5b/static/img/about/7.jpg' height="260" /></div>
+				  </div>
+				</section>
+				
+				<section class="courses" style="margin-top:10px;">
+				  <div class="container">
+					<!--<div class="col-lg-12 pt-4 pt-lg-0 order-2 order-lg-1 content">
+					  <div class="mission">
+						<div class="info" style="line-height:2em">
+						  <p>Our people and culture Instagram page will give you an insight into some of the good times we've had together recently.<br />
+						  </p>
+						</div>
+					</div>
+					</div>-->
+					
+					<div class="btn-center">
+						<a href=" https://www.instagram.com/5bpeople/" target="_blank" class="learn-more-btn">View 5B people &amp; culture at Instragram</a>
+					</div>
+						
+				  </div>
+				</section>
+				
+				
+			  </main><!-- End #main -->
+  
+        </div>
+      </t>
+    </template>
+
+  </data>
+</odoo>

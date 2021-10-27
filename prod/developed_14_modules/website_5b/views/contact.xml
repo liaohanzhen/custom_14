@@ -1,0 +1,411 @@
+<odoo>
+  <data>
+	  <template id="page_contact" name="Contact 5B">
+		<t t-call="website.layout">
+        <div id="wrap" class="oe_structure oe_empty">
+		<!-- ======= Hero Section ======= -->
+			<section id="hero-project" class="d-flex justify-content-center align-items-center" style="background: url('/theme_5b/static/img/banner-5b-maverick.jpg'); background-position: 50% 50%; background-size:cover; background-repeat:no-repeat">
+			  <div class="container position-relative">
+			  </div>
+			</section><!-- End Hero -->
+
+			<main id="main">
+			    
+				<!-- ======= Contact Section ======= -->
+				<section id="contact" class="contact">
+				  <div class="container">
+					<div class="row">
+					  <div class="col-12 col-lg-8 mt-4">
+					  <div id="tabs" class="c-tabs no-js">
+						<div class="c-tabs-nav">
+						  <a href="#general_enquiry" id="general_enquiry" class="c-tabs-nav__link is-active">
+							<i class="fa fa-question-circle"></i>
+							<span>General Enquiry</span>
+						  </a>
+						  <a href="#outside_australia" id="outside_australia" class="c-tabs-nav__link">
+							<i class="fa fa-globe"></i>
+							<span>Outside Australia</span>
+						  </a>
+						  <a href="#get_a_quote" id="get_a_quote" class="c-tabs-nav__link">
+							<i class="fa fa-envelope"></i>
+							<span>Get a Quote</span>
+						  </a>
+						  <a href="#become_a_partner" id="become_a_partner" class="c-tabs-nav__link">
+							<i class="fa fa-handshake-o"></i>
+							<span>Become a Partner</span>
+						  </a>
+						</div>
+						<div id="general_enquiry_container" class="c-tab is-active">
+						  <div class="c-tab__content">
+							<t t-call="website_5b.general_enquiry_form" />
+						  </div>
+						</div>
+						<div id="outside_australia_container" class="c-tab">
+						  <div class="c-tab__content">
+							<t t-call="website_5b.general_enquiry_outside_australia" /> 
+						  </div>
+						</div>
+						<div id="get_a_quote_container" class="c-tab">
+						  <div class="c-tab__content">
+							<t t-call="website_5b.request_a_quote_form" />
+						  </div>
+						</div>
+						<div id="become_a_partner_container" class="c-tab">
+						  <div class="c-tab__content">
+							<t t-call="website_5b.become_a_partner_form" />
+						  </div>
+						</div>
+						
+						</div>
+						
+						<script src="/theme_5b/static/assets/js/tabs.js"></script>
+						<script>
+							var myTabs = tabs({
+								el: '#tabs',
+								tabNavigationLinks: '.c-tabs-nav__link',
+								tabContentContainers: '.c-tab'
+							});
+							myTabs.init();
+						</script>
+					  </div>
+
+					  <div class="col-lg-4 mt-4 d-none d-lg-block align-items-stretch"  style="border-left:1px solid #f1f1f1; font-size:0.9em;">
+						<p>
+							<strong><i class="fa fa-phone"></i> Phone: </strong><a href="tel:1300 583 958">1300 58 39 58</a> <br />
+							<!--<strong><i class="fa fa-envelope"></i> Email:</strong> <a href="mailto:info@5b.com.au">info@5b.com.au</a><br/>-->
+						</p>
+						<p>
+							<strong>Head Office</strong><br />
+							41-43 Bowden Street<br />
+							Alexandria, NSW 2015, Australia <br />
+						</p>
+						
+						<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3311.417115007889!2d151.2001242802798!3d-33.904662734687456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b12b0419b0f1d85%3A0xa9f8a636ccdadfca!2s5B!5e0!3m2!1sen!2sau!4v1604550121449!5m2!1sen!2sau" frameborder="0" style="border:1px solid #ccc; width:100%; height:300px;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+						
+						<p>
+							<strong>Proving &amp; testing ground</strong><br />
+							260 Captain Cook Dr<br />
+							Kurnell, NSW 2231, Australia <br />
+						</p>
+						
+						<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3306.760639179175!2d151.19468021581122!3d-34.02435453458171!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b12b7b50bf4412f%3A0x88bd384e6ff1bd61!2s260%20Captain%20Cook%20Dr%2C%20Kurnell%20NSW%202231!5e0!3m2!1sen!2sau!4v1608008403026!5m2!1sen!2sau" frameborder="0" style="border:1px solid #ccc; width:100%; height:300px;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+						
+					  </div>
+
+					</div>
+
+				  </div>
+				</section><!-- End Contact Section -->
+			</main><!-- End #main -->
+        </div>
+      </t>
+    </template>
+	
+	<template id="request_a_quote_form">
+		<h3 class="contact_header">Get a Quote</h3>
+		<p class="margin30">
+		Request a quote for Maverick system from 5B by providing project related details.<br />
+		<i style="font-size: 0.7em;">Please note the below form is provided by GoogleForms.</i>
+		</p>
+		<!--<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfLenWbkoEisylX6FNIReF_JQdO8ZTxChIOQ0RtnyMlsiWJfw/viewform?embedded=true" width="700" height="520" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>-->
+		
+		<div class="embed-responsive embed-responsive-4by3">
+		  <iframe class="embed-responsive-item" src="https://docs.google.com/forms/d/e/1FAIpQLSfLenWbkoEisylX6FNIReF_JQdO8ZTxChIOQ0RtnyMlsiWJfw/viewform?embedded=true"></iframe>
+		</div>
+
+	</template>
+	
+	<template id="general_enquiry_outside_australia">
+		<h3 class="contact_header">Outside Australia</h3>
+		<p class="margin30">Please fill out the form below and we’ll be in touch.<br />
+			<i style="font-size: 0.7em;">The fields marked * are mandatory</i>
+		</p>
+		<form action="/submit/outside" method="post" role="form" class="contact_us_form">
+			<div class="form-row">
+				<input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+				<div class="col-md-6 form-group">
+					<label for="name"><strong>Name*</strong></label>
+					<input type="text" name="o_name" class="form-control" id="o_name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+					<div class="validate"></div>
+				</div>
+				<div class="col-md-6 form-group">
+					<label for="email"><strong>Email*</strong></label>
+					<input type="email" class="form-control" name="o_email" id="o_email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+					<div class="validate"></div>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="col-md-6 form-group">
+					<label for="company"><strong>Company</strong></label>
+					<input type="text" name="o_company" class="form-control" id="o_company" placeholder="Company Name" />
+				</div>
+				<div class="col-md-6 form-group">
+					<label for="phone"><strong>Phone</strong></label>
+					<input type="text" class="form-control" name="o_phone" id="o_phone" placeholder="Phone" />
+				</div>
+			</div>
+			
+			<div class="form-row">
+				<div class="col-md-6 form-group">
+					<label for="company"><strong>Role with the company</strong></label>
+					<input type="text" name="o_company_role" class="form-control" id="o_company_role" placeholder="Role with the company" />
+				</div>
+				<div class="col-md-6 form-group">
+					<label for="phone"><strong>Company website</strong></label>
+					<input type="text" class="form-control" name="o_website" id="o_website" placeholder="Website" />
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="country"><strong>Type of company*</strong></label>
+				<select name="o_company_type" id="o_company_type" class="form-control" data-rule="required" data-msg="Please select a type of company">
+					<option value="">--Select type of company--</option>
+					<option value="EPC">EPC</option>
+					<option value="Developer">Developer</option>
+					<option value="Specialist contractor, supplier">Specialist contractor, supplier</option>
+					<option value="Finance">Finance</option>
+					<option value="Other">Other</option>
+				</select>
+				<div class="validate"></div>
+			</div>
+			
+			
+			<div class="form-group">
+				<label for="country"><strong>Current project location*</strong></label>
+				<select name="o_country" id="o_country" class="form-control" data-rule="required" data-msg="Please select a country">
+					<option value="">--Select country--</option>
+					<t t-foreach="country" t-as="country">
+						<option t-attf-value="{{country.name}}"><t t-esc="country.name" /></option>
+					</t>
+				</select>
+				<div class="validate"></div>
+			</div>
+			
+			<div class="form-group">
+				<label for="project_name"><strong>Portfolio of projects complete MW*</strong></label>
+				<input type="text" class="form-control" name="o_project_name" id="o_project_name" placeholder="Portfolio of projects" data-rule="required" data-msg="Please specify about the project" />
+				<div class="validate"></div>
+			</div>
+			
+			<div class="form-group">
+				<label for="project_pipeline"><strong>Pipeline of ground-mounted solar projects MW*</strong></label>
+				<input type="text" class="form-control" name="o_project_pipeline" id="o_project_pipeline" placeholder="Pipeline of project" data-rule="required" data-msg="Please specify about the project" />
+				<div class="validate"></div>
+			</div>
+			<div class="form-group">
+				<label for="o_message"><strong>Please tell us about your enquiry*</strong></label>
+				<textarea class="form-control" name="o_message" id="o_message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+				<div class="validate"></div>
+			</div>
+			<div class="form-group">
+				<label for="know_how"><strong>How do you know about us?</strong></label>
+				<select name="o_know_how" id="o_know_how" class="form-control">
+					<option value="">--Select source--</option>
+					<!--<t t-foreach="source" t-as="source">
+						<option t-attf-value="{{source.name}}"><t t-esc="source.name" /></option>
+					</t>-->
+					<option value="Search engine">Search engine</option>
+					<option value="Social media">Social media</option>
+					<option value="News">News</option>
+					<option value="Industry event">Industry event</option>
+					<option value="Referral">Referral</option>
+					<option value="Word of mouth">Word of mouth</option>
+					<option value="Other">Other (please specify)</option>
+				</select>
+				<div class="validate"></div>
+			</div>
+			<div class="form-group o_show_other" style="display:none">
+				<label for="o_other_source"><strong>Other (please specify)</strong></label>
+				<input type="text" class="form-control" name="o_other_source" id="o_other_source"  placeholder="Please specify" />
+			</div>
+			
+			<div class="form-group">
+				<input type="checkbox" checked="checked" id="o_check" name="o_check" />
+				<label class="form-check-label" style="vertical-align:middle !important;" for="o_check">Yes, I would you like to hear about general 5B world-changing updates.</label>
+			  </div>
+			  
+			<input type="hidden" value="outside" name="form_type" />
+			<div class="text-center"><button type="submit">Send message <img src="/theme_5b/static/img/loading1.gif" style="display:none" /></button></div>
+		</form>
+
+	</template>
+	
+	<template id="general_enquiry_form">
+		<h3 class="contact_header">General Enquiry</h3>
+		<p class="margin30">If you have a question or request, please fill out the form below and we’ll be in touch.<br />
+			<i style="font-size: 0.7em;">The fields marked * are mandatory</i>
+		</p>
+		<form action="/submit/contact"  method="post" role="form" name="general_enquiry_form" class="contact_us_form">
+			<div class="form-group">
+				<label for="type"><strong>Type of Enquiry*</strong></label>
+				<select name="type" id="type" class="form-control" data-rule="required" data-msg="Please select type of enquiry">
+					<option value="">--Select type--</option>
+					<option value="general">General Enquiry</option>
+					<!--<option value="career">Careers</option>-->
+					<option value="media">Media and Marketing</option>
+					<option value="account">Accounts and Billing</option>
+				</select>
+				<div class="validate"></div>
+			</div>
+			
+			<div class="form-row">
+			<input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+			<div class="col-md-6 form-group">
+				<label for="name"><strong>Name*</strong></label>
+				<input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+				<div class="validate"></div>
+			</div>
+			<div class="col-md-6 form-group">
+				<label for="email"><strong>Email*</strong></label>
+				<input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+				<div class="validate"></div>
+			</div>
+			</div>
+
+			<div class="form-row">
+				<div class="col-md-6 form-group">
+					<label for="company"><strong>Company</strong></label>
+					<input type="text" name="company" class="form-control" id="company" placeholder="Company Name" />
+				</div>
+				<div class="col-md-6 form-group">
+					<label for="phone"><strong>Phone</strong></label>
+					<input type="text" class="form-control" name="phone" id="phone" />
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="subject"><strong>Subject*</strong></label>
+				<input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:10" data-msg="Please enter at least 10 chars of subject" />
+				<div class="validate"></div>
+			</div>
+
+			<div class="form-group">
+				<label for="message"><strong>Message*</strong></label>
+				<textarea class="form-control" name="message" id="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+				<div class="validate"></div>
+			</div>
+
+			<div class="form-group">
+				<label for="know_how"><strong>How do you know about us?</strong></label>
+				<select name="know_how" id="know_how" class="form-control">
+					<option value="">--Select source--</option>
+					<!--<t t-foreach="source" t-as="source">
+						<option t-attf-value="{{source.name}}"><t t-esc="source.name" /></option>
+					</t>-->
+					<option value="Search engine">Search engine</option>
+					<option value="Social media">Social media</option>
+					<option value="News">News</option>
+					<option value="Industry event">Industry event</option>
+					<option value="Referral">Referral</option>
+					<option value="Word of mouth">Word of mouth</option>
+					<option value="Other">Other (please specify)</option>
+				</select>
+			</div>
+			<div class="form-group show_other" style="display:none">
+				<label for="other_source"><strong>Other (please specify)</strong></label>
+				<input type="text" class="form-control" name="other_source" id="other_source"  placeholder="Please specify" />
+			</div>
+			<div class="form-group">
+				<input type="checkbox" checked="checked" id="check" name="check" />
+				<label class="form-check-label" style="vertical-align:middle !important;" for="check">Yes, I would you like to hear about general 5B world-changing updates.</label>
+			  </div>
+			  
+			<input type="hidden" value="general" name="form_type" />
+			<div class="text-center"><button type="submit">Send message <img src="/theme_5b/static/img/loading1.gif" style="display:none" /></button></div>
+			
+			
+		</form>
+	</template>
+	
+	<template id="become_a_partner_form">
+		<h3 class="contact_header">Become a Partner</h3>
+		<p class="margin30">Please fill out the form below to become a partner with 5B.<br />
+			<i style="font-size: 0.7em;">The fields marked * are mandatory</i>
+		</p>
+		<form action="/submit/become"  method="post" role="form" name="become_a_partner_form" class="contact_us_form">
+			<div class="form-row">
+			<input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+			<div class="col-md-6 form-group">
+				<label for="b_name"><strong>Name*</strong></label>
+				<input type="text" name="b_name" class="form-control" id="b_name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+				<div class="validate"></div>
+			</div>
+			<div class="col-md-6 form-group">
+				<label for="b_email"><strong>Email*</strong></label>
+				<input type="email" class="form-control" name="b_email" id="b_email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+				<div class="validate"></div>
+			</div>
+			</div>
+
+			<div class="form-row">
+				<div class="col-md-6 form-group">
+					<label for="b_company"><strong>Company*</strong></label>
+					<input type="text" name="b_company" class="form-control" id="b_company" placeholder="Company Name" data-rule="required" data-msg="Please enter comppany name" />
+					<div class="validate"></div>
+				</div>
+				<div class="col-md-6 form-group">
+					<label for="b_phone"><strong>Phone*</strong></label>
+					<input type="text" class="form-control" name="b_phone" id="b_phone" data-rule="required" data-msg="Please enter a valid phone number" />
+					<div class="validate"></div>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="country"><strong>Type of partner*</strong></label>
+				<select name="b_partner_type" id="b_partner_type" class="form-control" data-rule="required" data-msg="Please select a type of partner">
+					<option value="">--Select type of partner--</option>
+					<option value="Channel partner (EPCs, IPPs, Developers)">Channel partner (EPCs, IPPs, Developers)</option>
+					<option value="Assembly partner (Original Equipment Manufacturers)">Assembly partner (Original Equipment Manufacturers)</option>
+					<option value="Deployment partners (installers)">Deployment partners (installers)</option>
+				</select>
+				<div class="validate"></div>
+			</div>
+
+			<div class="form-group">
+				<label for="b_message"><strong>Message*</strong></label>
+				<textarea class="form-control" name="b_message" id="b_message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+				<div class="validate"></div>
+			</div>
+
+			<div class="form-group">
+				<label for="b_know_how"><strong>How do you know about us?</strong></label>
+				<select name="b_know_how" id="b_know_how" class="form-control">
+					<option value="">--Select source--</option>
+					<!--<t t-foreach="source" t-as="source">
+						<option t-attf-value="{{source.name}}"><t t-esc="source.name" /></option>
+					</t>-->
+					<option value="Search engine">Search engine</option>
+					<option value="Social media">Social media</option>
+					<option value="News">News</option>
+					<option value="Industry event">Industry event</option>
+					<option value="Referral">Referral</option>
+					<option value="Word of mouth">Word of mouth</option>
+					<option value="Other">Other (please specify)</option>
+				</select>
+			</div>
+			<div class="form-group b_show_other" style="display:none">
+				<label for="b_other_source"><strong>Other (please specify)</strong></label>
+				<input type="text" class="form-control" name="b_other_source" id="b_other_source"  placeholder="Please specify" />
+			</div>
+			
+			<div class="form-group">
+				<input type="checkbox" checked="checked" id="b_check" name="b_check" />
+				<label class="form-check-label" style="vertical-align:middle !important;" for="b_check">Yes, I would you like to hear about general 5B world-changing updates.</label>
+			  </div>
+			  
+			<input type="hidden" value="become" name="form_type" />
+			<div class="text-center"><button type="submit">Send message <img src="/theme_5b/static/img/loading1.gif" style="display:none" /></button></div>
+			
+			
+		</form>
+	</template>
+	
+	<template id="inherit_assets_frontend" name="web_example assets"  inherit_id="website.assets_frontend">
+	    <xpath expr="script[last()]" position="after">
+			<script type="text/javascript" src="/website_5b/static/src/js/script.js"/>
+		</xpath>
+	</template>
+
+  </data>
+</odoo>

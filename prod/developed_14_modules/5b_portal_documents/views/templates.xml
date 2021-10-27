@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	
+    <template id="portal_my_home_ir_documents" name="Portal My Home : documents entries" inherit_id="portal.portal_my_home" priority="70">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-if="documents_count" t-call="portal.portal_docs_entry">
+                <t t-set="title">Documents</t>
+                <t t-set="url" t-value="'/my/my_documents'"/>
+                <t t-set="count" t-value="documents_count"/>
+            </t>
+            <t t-if="not documents_count" t-call="portal.portal_docs_entry">
+                <t t-set="title">Documents</t>
+                <t t-set="url" t-value="'/my/my_documents'"/>
+                <t t-set="count" t-value="documents_count"/>
+            </t>
+        </xpath>
+    </template>
+    
+    <template id="portal_my_documents" name="My Documents">
+      <t t-call="portal.portal_layout">
+        <t t-set="breadcrumbs_searchbar" t-value="True"/>
+        <t t-call="portal.portal_searchbar">
+            <t t-set="title">Documents</t>
+        </t>
+        <t t-if="not ir_attachments">
+            <p>There are currently no any documents for your account.</p>
+        </t>
+        <t t-if="ir_attachments" t-call="portal.portal_table">
+            <tbody>
+            	<t t-foreach='ir_attachments' t-as='attachment'>
+                   <t t-if="attachment.type == 'url'">
+                   		<a class="list-group-item list-group-item-action d-flex align-items-center oe_attachments py-1 px-2"  t-attf-href="#{attachment.url}" target="_blank" data-no-post-process="">
+						    <div class='oe_attachment_embedded o_image  mr-2 mr-lg-3' t-att-title="attachment.name" t-att-data-mimetype="attachment.mimetype" t-attf-data-src="/web/image/#{attachment.id}/50x40"/>
+						    <div class='oe_attachment_name text-truncate'><t t-esc='attachment.name'/></div>
+	   					</a>
+                   </t> 
+                   <t t-if="not attachment.type == 'url'">
+                   	<!-- <a class="list-group-item list-group-item-action d-flex align-items-center oe_attachments py-1 px-2"  t-attf-href="/web/content/#{attachment.attachment_id.id}?download=true&amp;" target="_blank" data-no-post-process=""> -->
+					    <a class="list-group-item list-group-item-action d-flex align-items-center oe_attachments py-1 px-2"  t-attf-href="/web/content/#{attachment.attachment_id.id}" target="_blank" data-no-post-process="">
+						    <div class='oe_attachment_embedded o_image  mr-2 mr-lg-3' t-att-title="attachment.name" t-att-data-mimetype="attachment.mimetype" t-attf-data-src="/web/image/#{attachment.attachment_id.id}/50x40"/>
+						    <div class='oe_attachment_name text-truncate'><t t-esc='attachment.name'/></div>
+			   			</a>
+	   			   </t>
+	   			</t>
+            </tbody>
+        </t>
+      </t>
+    </template>
+</odoo>

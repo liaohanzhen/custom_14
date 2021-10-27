@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+	<template id="wk_variant_attachment_assets_frontend" inherit_id="website.assets_frontend" name="Attachment">
+        <xpath expr="." position="inside">
+            <script src="/advance_variant_attachments/static/src/js/website_sale_variant_attachment.js" type="text/javascript"></script>
+        </xpath>
+    </template> 
+    <template id="wk_attachment_assets_frontend_replace" inherit_id="advance_product_attachments.wk_attachment_assets_frontend" name="Attachment">
+        <xpath expr="//script[@src='/advance_product_attachments/static/src/js/wk_attachment.js']" position="replace">
+        	<script src="/advance_variant_attachments/static/src/js/wk_attachment.js" type="text/javascript"></script>
+        </xpath>
+    </template> 
+    
+    <!-- <template id="assets_frontend_variant_attachment" inherit_id="advance_product_attachments.assets_frontend_attachment" name="Product Attachment">
+        <xpath expr="//t[@groups='advance_product_attachments.group_website_multi_attachment']" position="replace">
+            <t groups="advance_product_attachments.group_website_multi_attachment">
+                <t t-set="attachData"  t-value="product.sudo().getAttachmentCategories()"/>
+                <t t-if="attachData">
+                    <t t-set="product_attachments"  t-value="attachData.get('pro_attachments')"/>
+                    <t t-set="attachCategories"  t-value="attachData.get('categories')"/>
+                    <t t-if="attachCategories">
+                        <hr/>
+                        <h4><strong>Attachments</strong></h4>
+                        <hr/>
+                        <div class="o_not_editable accordion">
+                            <div class="wk_btn_accordion" id="wk_all">
+                                <div class="btn_accordion">
+                                    All
+                                </div>
+                                <t t-call="advance_product_attachments.wk_attachments"/>
+                            </div>
+                            <t t-foreach="attachCategories" t-as="attachCategory" >
+                                <div class="wk_btn_accordion" t-att-id="attachCategory">
+                                    <div class="btn_accordion">
+                                        <t t-esc="attachCategory"/>
+                                    </div>
+                                    <t t-call="advance_product_attachments.wk_attachments"/>
+                                </div>
+                            </t>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </xpath>
+    </template> -->
+
+    <template id="wk_attachments" name="Attachments" inherit_id="advance_product_attachments.wk_attachments">
+    	<xpath expr="//li[@class='wk_attachment_li']" position='attributes'>
+    		<attribute name="t-att-variant_attachment">1 if attachment.product_id else 0</attribute>
+    		<attribute name="t-att-variant_id">attachment.product_id.id</attribute>
+    	</xpath>
+    </template>
+</odoo>

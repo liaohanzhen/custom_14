@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="account_move_line_tree_extended" model="ir.ui.view">
+            <field name="name">account.move.line.tree.extended</field>
+            <field name="model">account.move.line</field>
+            <field eval="1" name="priority"/>
+            <field name="arch" type="xml">
+                <tree string="Journal Items Extended" create="false">
+                    <field name="date"/>
+                    <field name="move_id" required="0" groups="account.group_account_user"/>
+                    <field name="journal_id" options='{"no_open":True}'/>
+                    <field name="name"/>
+                    <field name="product_id"/>
+                    <field name="quantity"/>
+                    <field name="ref"/>
+                    <field name="stock_move_origin_doc"/>
+                    <field name="statement_id" invisible="1"/>
+                    <field name="partner_id"/>
+                    <field name="account_id" options='{"no_open":True}' domain="[('company_id', '=', company_id)]" groups="account.group_account_user"/>
+                    <field name="analytic_account_id" groups="account.group_account_user" invisible="1"/>
+                    <field name="reconciled" invisible="1"/>
+                    <field name="full_reconcile_id"/>
+                    <field name="debit" sum="Total Debit"/>
+                    <field name="credit" sum="Total Credit"/>
+                    <field name="amount_currency" readonly="True" groups="base.group_multi_currency" invisible="1"/>
+                    <field name="currency_id" readonly="True" invisible="1" />
+                    <field name="date_maturity" invisible="1"/>
+                    <field name="company_currency_id" invisible="1"/>
+                    <field name="company_id" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="account_move_line_view_filter_extended" model="ir.ui.view">
+            <field name="name">Journal Items Extended</field>
+            <field name="model">account.move.line</field>
+            <field name="arch" type="xml">
+                <search string="Search Journal Items">
+                    <field name="name" filter_domain="['|', ('name','ilike',self), ('ref','ilike',self)]" string="Move"/>
+                    <field name="date"/>
+                    <separator/>
+                    <filter string="Unposted" name="unposted" domain="[('move_id.state','=','draft')]" help="Unposted Journal Items"/>
+                    <filter name="posted" string="Posted" domain="[('move_id.state','=','posted')]" help="Posted Journal Items"/>
+                    <separator/>
+                    <filter string="Unreconciled" domain="[('full_reconcile_id', '=', False), ('balance','!=', 0), ('account_id.reconcile','=',True)]" help="Journal items where matching number isn't set" name="unreconciled"/>
+                    <separator/>
+                    <filter string="Payable" domain="[('account_id.internal_type', '=', 'payable')]" help="From Payable accounts" name="payable"/>
+                    <filter string="Receivable" domain="[('account_id.internal_type', '=', 'receivable')]" help="From Receivable accounts" name="receivable"/>
+                    <separator/>
+                    <field name="account_id"/>
+                    <field name="partner_id"/>
+                    <field name="journal_id"/>
+                    <field name="move_id" string="Number (Move)"/>
+                    <field name="tax_line_id"/>
+                    <field name="tax_ids" />
+                    <field name="stock_move_origin_doc" filter_domain="['|', ('name','ilike',self), ('stock_move_origin_doc','ilike',self)]"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Partner" name="partner_id" domain="[]" context="{'group_by':'partner_id'}"/>
+                        <filter string="Journal" name="journal_id" domain="[]" context="{'group_by':'journal_id'}"/>
+                        <filter string="Account" name="account_id"  context="{'group_by':'account_id'}"/>
+                        <filter string="Date" name="date" domain="[]" context="{'group_by':'date'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_account_moves_all_a_extended" model="ir.actions.act_window">
+            <field name="context">{'journal_type':'general'}</field>
+            <field name="name">Journal Items Extended</field>
+            <field name="res_model">account.move.line</field>
+            <field name="view_id" ref="account_move_line_tree_extended"/>
+            <field name="view_mode">tree,pivot,graph,form</field>
+            <field name="search_view_id" ref="account_move_line_view_filter_extended"/>
+        </record>
+
+        <menuitem action="action_account_moves_all_a_extended"
+                  id="menu_action_account_moves_all_extended"
+                  parent="account.menu_finance_entries_actions"
+                  sequence="1"
+                  groups="account.group_account_manager" />
+
+        <record id="action_account_moves_all_a_upgrade" model="ir.actions.server">
+            <field name="name">Upgrade Extended Journal Items</field>
+            <field name="model_id" ref="account.model_account_move"/>
+            <field name="state">code</field>
+            <field name="code">action = model.execute_journal_query()</field>
+        </record>
+
+        <menuitem action="action_account_moves_all_a_upgrade"
+                  id="menu_action_account_moves_all_upgrade"
+                  parent="account.menu_finance_entries_actions"
+                  sequence="1"
+                  groups="account.group_account_manager" />
+
+    </data>
+</odoo>

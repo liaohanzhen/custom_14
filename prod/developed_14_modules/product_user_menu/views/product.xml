@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	
+	<record id="product_template_search_view_5b_ind" model="ir.ui.view">
+        <field name="model">product.template</field>
+        <field name="name">product.template.search.view.5b.industries</field>
+        <field name="inherit_id" ref="product.product_template_search_view"/>
+        <field name="arch" type="xml">
+        	<xpath expr="//separator[4]" position="before">
+        		<separator/>
+        		<filter string="MAVs" name="filter_to_is_mav" />
+        		<filter string="Modules" name="filter_to_modules" domain="[('categ_id.complete_name','ilike','All / Saleable / Modules')]" />
+        		<filter string="Inverters" name="filter_to_inverters" domain="[('categ_id.complete_name','ilike','All / Saleable / Inverters')]" />
+        		<filter string="Wingman" name="filter_to_wingman" domain="[('categ_id.complete_name','ilike','All / Saleable / Wingman')]" />
+        	</xpath>
+        	<filter name="activities_upcoming_all" position="after">
+        		<group expand="0" string="Group By">
+	                <filter string="Category" name="group_category" context="{'group_by':'categ_id'}"/>
+	            </group>
+        	</filter>
+        </field>
+    </record>
+</odoo>

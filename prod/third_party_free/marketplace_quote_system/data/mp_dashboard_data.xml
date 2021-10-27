@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://store.webkul.com/license.html/ -->
+
+<openerp>
+    <data noupdate="1">
+        <record model="marketplace.dashboard" id="quotes_demo">
+            <field name="name">Marketplace Quote Requests</field>
+            <field name="state">quotes</field>
+            <field name="color">6</field>
+        </record>
+        <function model="ir.default" name="set" eval="('res.config.settings', 'notify_seller_on_new_quote', False)"/>
+        <function model="ir.default" name="set" eval="('res.config.settings', 'enable_notify_seller_on_new_quote', True)"/>
+        <function model="ir.default" name="set" eval="('res.config.settings', 'notify_seller_on_new_quote', ref('quote_create_email_template_to_seller'))"/>
+    </data>
+</openerp>

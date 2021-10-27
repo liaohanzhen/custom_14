@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    
+    <record id="report_frogblue_sale_order" model="ir.actions.report">
+        <field name="name">Sale Order</field>
+        <field name="model">sale.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">frogblue_reports.report_frogblue_saleorder</field>
+        <field name="report_file">frogblue_reports.report_frogblue_saleorder</field>
+        <field name="binding_model_id" ref="model_sale_order"/>
+        <field name="binding_type">report</field>
+    </record>
+    
+    <record id="report_frogblue_sale_order_proforma" model="ir.actions.report">
+        <field name="name">Order proforma</field>
+        <field name="model">sale.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">frogblue_reports.report_frogblue_saleorder_proforma</field>
+        <field name="report_file">frogblue_reports.report_frogblue_saleorder_proforma</field>
+        <field name="binding_model_id" ref="model_sale_order"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="report_frogblue_account_invoice" model="ir.actions.report">
+        <field name="name">Invoice</field>
+        <field name="model">account.move</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">frogblue_reports.report_frogblue_accountinvoice</field>
+        <field name="report_file">frogblue_reports.report_frogblue_accountinvoice</field>
+        <field name="binding_model_id" ref="model_account_move"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="report_frogblue_delivery_note" model="ir.actions.report">
+        <field name="name">Delivery Note</field>
+        <field name="model">stock.picking</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">frogblue_reports.report_frogblue_deliverynote</field>
+        <field name="report_file">frogblue_reports.report_frogblue_deliverynote</field>
+        <field name="binding_model_id" ref="model_stock_picking"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!--<report-->
+        <!--id="report_frogblue_pick_list"-->
+        <!--string="Pick List"-->
+        <!--model="stock.picking"-->
+        <!--report_type="qweb-pdf"-->
+        <!--name="frogblue_reports.report_frogblue_picklist"-->
+    <!--/>-->
+
+    <record id="report_frogblue_purchase_order" model="ir.actions.report">
+        <field name="name">Purchase Order/RFQ</field>
+        <field name="model">purchase.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">frogblue_reports.report_frogblue_purchaseorder</field>
+        <field name="report_file">frogblue_reports.report_frogblue_purchaseorder</field>
+        <field name="binding_model_id" ref="model_purchase_order"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="paperformat_frogblue_A4" model="report.paperformat">
+        <field name="name">A4 frogblue Reports</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">50</field>
+        <field name="margin_bottom">20</field>
+        <field name="margin_left">0</field>
+        <field name="margin_right">20</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">50</field>
+        <field name="dpi">90</field>
+        <field
+            name="report_ids"
+            eval="[(6,0,
+                    [
+                        ref('frogblue_reports.report_frogblue_sale_order'),
+                        ref('frogblue_reports.report_frogblue_sale_order_proforma'),
+                        ref('frogblue_reports.report_frogblue_delivery_note'),
+                        ref('frogblue_reports.report_frogblue_account_invoice'),
+                        ref('frogblue_reports.report_frogblue_purchase_order')
+                    ]
+                  )]"
+        />
+    </record>
+
+</odoo>

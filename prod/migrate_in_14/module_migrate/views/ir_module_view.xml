@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>	
+		<record model="ir.ui.view" id="ir_module_module_form_5b">
+            <field name="name">ir.module.module.form.inherit</field>
+            <field name="model">ir.module.module</field>
+            <field name="inherit_id" ref="base.module_form"/>
+            <field name="arch" type="xml">
+                <data>
+                	<xpath expr="//form" position='attributes'>
+                		<attribute name='edit'>1</attribute>
+                	</xpath>
+                	<field name="summary" position="after">
+                		<field name="to_migrate_to_14" />
+                	</field>
+                </data>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="ir_module_module_tree_5b">
+            <field name="name">ir.module.module.tree.inherit</field>
+            <field name="model">ir.module.module</field>
+            <field name="inherit_id" ref="base.module_tree"/>
+            <field name="arch" type="xml">
+            	<field name='website' position='after'>
+            		<field name="to_migrate_to_14" />
+            	</field>
+            </field>
+        </record>
+        
+</odoo>

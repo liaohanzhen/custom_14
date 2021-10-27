@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>	
+		<record model="ir.ui.view" id="project_task_tree2_inherit_checklists">
+            <field name="name">project.task.tree2.inherit.checklists</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_tree2"/>
+            <field name="arch" type="xml">
+                <data>
+                	<field name="stage_id" position="after">
+                		<field name="checklist_progress" widget="progressbar"/>
+                	</field>
+                </data>
+            </field>
+        </record>
+        
+		<record model="ir.ui.view" id="project_task_form2_inherit_checklists">
+            <field name="name">project.task.form2.inherit.checklists</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_form2"/>
+            <field name="arch" type="xml">
+                <data>
+                	<xpath expr="//field[@name='tag_ids']" position="after">
+                		<field name="checklist_progress" widget="progressbar" />
+                		<!-- <field name="added_related_fields" invisible="1" /> -->
+                	</xpath>
+                	<xpath expr="//button[@name='action_assign_to_me']" position="after">
+                		<button name="task_checklist_items" type="object" groups="base.group_user"
+                                class="oe_stat_button" icon="fa-list-ol">
+                            <field name="count_checklist" string="Checklist" widget="statinfo"/>
+                        </button>
+                	</xpath>
+                	<xpath expr="//notebook" position="inside">
+                		<page string="To-do list" >
+                			<field name="checklist_items" colspan="4" > <!-- context="{'readonly_by_pass': True}" -->
+                				<tree string="To-do list" editable="bottom" >
+				                    <field name="checklist_done" attrs="{'readonly':[('checklist_type','!=','ACTION')]}"/>
+				                    <field name="checklist_type" required="1"/>
+				                    <field name="related_field_project_id" attrs="{'readonly':[('checklist_type','!=','INFO')]}" context="{'default_project_id':parent.project_id ,'project_id':parent.project_id}"/> <!-- , 'added_related_fields':parent.added_related_fields options="{'no_create': True, 'no_open': True, 'no_edit': True}" --> 
+				                    <field name="ticket_id" attrs="{'readonly':[('checklist_type','!=','TICKET')]}"/>
+				                    <field name="description" attrs="{'readonly':[('checklist_type','=','TICKET')]}"/>
+				                    <field name="doc" filename="file_name" attrs="{'readonly':[('checklist_type','!=','DOC')]}"/>
+				                    <field name="file_name" invisible="1"/>
+				                    <field name="responsible" />
+				                    <field name="user_id" readonly="1" force_save="1"/>
+				                    <field name="date" readonly="1" force_save="1"/>
+				                </tree>
+                			</field>
+                		</page>
+                	</xpath>
+                </data>
+            </field>
+    	</record>
+    	
+    	<!-- <record id="project.action_view_task" model="ir.actions.act_window">
+		    <field name="context">
+		    	{'search_default_my_tasks': 1, 'readonly_by_pass': True}
+		    </field>
+		</record> -->
+		<!-- <record id="project.act_project_project_2_project_task_all" model="ir.actions.act_window">
+			<field name="context">
+				{'group_by': 'stage_id',
+                'search_default_project_id': [active_id],
+                'default_project_id': active_id,'readonly_by_pass': True}
+			</field>
+		</record> -->
+		<!-- <record id="project.act_res_users_2_project_task_opened" model="ir.actions.act_window">
+			<field name="context">
+				{'search_default_user_id': [active_id], 'default_user_id': active_id,'readonly_by_pass': True}
+			</field>
+		</record> -->
+		<!-- <record id="project.action_view_task_overpassed_draft" model="ir.actions.act_window">
+			<field name="context">
+				{'readonly_by_pass': True}
+			</field>
+		</record> -->
+		<!-- <record id="project.dblc_proj" model="ir.actions.act_window">
+			<field name="context">
+				{'project_id':active_id, 'readonly_by_pass': True}
+			</field>
+		</record> -->
+</odoo>

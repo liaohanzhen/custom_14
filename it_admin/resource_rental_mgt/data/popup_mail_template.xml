@@ -1,0 +1,46 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <!-- Mail template are declared in a NOUPDATE block
+         so users can freely customize/delete them -->
+    <data>
+        <record id="email_template_sale" model="mail.template">
+            <field name="name">Rental Order: Send by email</field>
+            <field name="model_id" ref="model_rent_wizard"/>
+            <field name="email_from">${object.temp_sale_order_id.user_id.email_formatted |safe}</field>
+            <field name="email_to">${object.temp_sale_order_id.partner_id.email}</field>
+            <field name="subject">Rental Order (Ref ${object.temp_sale_order_id.name})</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        Dear
+                        <br/>
+                        <br/>
+                        Here is your reserved product details:
+                        <br/>
+                        <br/>
+                        <br/>
+                        <table class="table" border="1px" style="width: 50%%">
+                            <tr>
+                                <td>
+                                    <strong>Product</strong>
+                                </td>
+                                <td>
+                                    <strong>Quantity Reserved</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>${object.product_id}</td>
+                                <td>${object.quantity}</td>
+                            </tr>
+                        </table>
+
+                        <br/>
+                        <br/>
+                        Do not hesitate to contact us if you have any question.
+                    </p>
+                </div>
+            </field>
+        </record>
+    </data>
+</odoo>

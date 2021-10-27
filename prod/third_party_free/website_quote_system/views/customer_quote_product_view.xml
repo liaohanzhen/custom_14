@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://store.webkul.com/license.html/ -->
+<odoo>
+    <data>
+        <record model='ir.ui.view' id='inherit_product_template_form_view'>
+    		<field name="name">product.template.inherit</field>
+    		<field name="model">product.template</field>
+    		<field name="type">form</field>
+    		<field name="inherit_id" ref="product.product_template_form_view"/>
+    		<field name="arch" type="xml">
+                <xpath expr="//sheet/div[2]/div/div[2]" position="after">
+                    <field name="quotation"/>
+                    <label for="quotation" string="Allow to Quote"/>
+                </xpath>
+                <xpath expr="//sheet/notebook/page[@name='sales']" position="inside">
+                    <group string="Customer Quote" attrs="{'invisible':[('quotation','=',False)]}">
+                        <field name="min_qty" required="True" style="width:25%;"/>
+                        <label for="valid_days" string="Valid Upto" help="Valid no. of days after quote request is approved"/>
+                        <div>
+                            <field name="valid_days" class="oe_inline" required="True"
+                                 help="Valid no. of days after quote request is approved"/><span> days</span>
+                        </div>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+        <record id="inherit_product_template_search_view" model="ir.ui.view">
+            <field name="name">product.template.search.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_search_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='filter_to_purchase']" position="after">
+                    <filter string="Allow to Quote" name="quotation" domain="[('quotation','=',True)]"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

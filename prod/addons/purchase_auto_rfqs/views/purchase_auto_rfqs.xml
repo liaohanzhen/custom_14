@@ -1,0 +1,66 @@
+<odoo>
+  <data>
+	
+	<record id="view_purchase_requisition_form_inherit" model="ir.ui.view">
+        <field name="model">purchase.requisition</field>
+        <field name="inherit_id" ref="purchase_requisition.view_purchase_requisition_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="generate_related_rfqs" class="btn-primary" type="object" string="Generate related RFQs" />
+            </xpath>
+        </field>
+    </record>
+	
+	<record id="view_product_replenish_form_inherit" model="ir.ui.view">
+        <field name="model">product.replenish</field>
+        <field name="inherit_id" ref="stock.view_product_replenish" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='date_planned']" position="after">
+                <field name="x_type_id" string="Agreement Type"/>
+            </xpath>
+        </field>
+    </record>
+	
+	<record id="product_template_form_view_inherit_purchase_agreement" model="ir.ui.view">
+        <field name="name">product.template.form.inherit.purchase.agreement</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="purchase.view_product_supplier_inherit"/>
+        <field name="arch" type="xml">
+			<xpath expr="//field[@name='purchase_requisition']" position="after">
+                <field name="x_type_id" string="Agreement Type" attrs="{'invisible': [('purchase_requisition', '!=', 'tenders')]}" />
+            </xpath>
+        </field>
+    </record>
+	
+	<record id="res_config_settings_view_form_purchase_automation" model="ir.ui.view">
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="purchase.res_config_settings_view_form_purchase" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='matrix_setting_container']" position="inside">
+				<div class="col-12 col-lg-6 o_setting_box" id="purchase_order_automation" title="If ticked, Purchase agreement is confirmed and automatically generates RFQs">
+					<div class="o_setting_left_pane">
+						<field name="confirm_pa_and_generate_rfqs" />
+					</div>
+					<div class="o_setting_right_pane">
+						<label for="confirm_pa_and_generate_rfqs" string="Confirm PA and Generate RFQs"/>
+						<div class="text-muted">
+							Purchase agreement is confirmed and automatically generates RFQs
+						</div>
+					</div>
+				</div>
+			</xpath>
+		</field>
+	</record>
+	
+	<record id="purchase_requisition_type_form_inherit" model="ir.ui.view">
+        <field name="model">purchase.requisition.type</field>
+        <field name="inherit_id" ref="purchase_requisition.view_purchase_requisition_type_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='exclusive']" position="after">
+                <field name="x_confirm_pa_and_generate_rfqs" string="Confirm PA and Generate RFQs"/>
+            </xpath>
+        </field>
+    </record>
+	
+  </data>
+</odoo>

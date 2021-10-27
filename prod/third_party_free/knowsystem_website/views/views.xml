@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="assets_frontend" inherit_id="web_editor.assets_frontend">
+        <xpath expr="link[last()]" position="after">
+            <link rel="stylesheet" type="text/scss" href="/knowsystem_website/static/src/css/style.css" />
+        </xpath>
+        <xpath expr="script[last()]" position="after">
+            <script type="text/javascript" src="/knowsystem_website/static/src/js/sections.js"></script>
+        </xpath>
+    </template>
+
+    <template id="css_html_readonly_assets_know" inherit_id="knowsystem.css_html_readonly_assets_know">
+        <xpath expr="link[last()]" position="after">
+            <t t-call-assets="website.assets_frontend"/>
+        </xpath>
+    </template>
+
+    <template id="css_html_edit_assets_know" inherit_id="knowsystem.css_html_edit_assets_know">
+        <xpath expr="t[last()]" position="after">
+            <t t-call-assets="website.assets_frontend"/>
+        </xpath>
+    </template>
+
+</odoo>

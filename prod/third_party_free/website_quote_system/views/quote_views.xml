@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://store.webkul.com/license.html/ -->
+<odoo>
+    <data>
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ SCHEDULAR ACTION ~~~~~~~~~~~~~~~~~~~~~~ -->
+        <record forcecreate="True" model="ir.cron" id="quote_status_update_scheduler">
+            <field name="name">Quote Status Update Scheduler</field>
+            <field name="model_id" ref="model_quote_quote"/>
+            <field name="state">code</field>
+            <field name="code">model.quote_status_update_scheduler_queue()</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="active" eval="True"/>
+            <field name="doall" eval="False"/>
+        </record>
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ TREE VIEW ~~~~~~~~~~~~~~~~~~~~~~ -->
+		<record model="ir.ui.view" id="quote_system_customer_quote_tree_view">
+			<field name="name">Customers Quote Tree</field>
+			<field name="model">quote.quote</field>
+			<field name="type">tree</field>
+			<field name="priority" eval="False"/>
+			<field name="arch" type="xml">
+				<tree string="Customers Quotation" decoration-success="status=='approved'" decoration-warning="status=='pending'"
+                    decoration-primary="status=='incart' or status=='inprocess'" decoration-info="status=='sold'"
+                    decoration-danger="status=='rejected'" decoration-muted="status=='expired'">
+                    <field name="name"/>
+                    <field name="customer_id"/>
+                    <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
+                    <field name="product_id"/>
+                    <field name="currency_id" invisible="1"/>
+					<field name="price" widget="monetary" options="{'currency_field': 'website_currency_id'}"/>
+    				<field name="qty"/>
+                    <field name="create_date" widget="date"/>
+					<field name="status" string="Status"/>
+				</tree>
+			</field>
+		</record>
+        <!--~~~~~~~~~~~~~~~~ FORM VIEW ~~~~~~~~~~~~~~~~~ -->
+        <record model="ir.ui.view" id="quote_system_customer_quote_form_view">
+			<field name="name">Customers Quote Form</field>
+			<field name="model">quote.quote</field>
+			<field name="type">form</field>
+			<field name="priority" eval="False"/>
+			<field name="arch" type="xml">
+				<form string="Customers Quotation">
+					<header>
+                        <button name="but_approve_quote" class="oe_highlight" string="Approve"
+                                title="Click to Approve Quotation"
+                                attrs= "{'invisible' : [('status','in',['approved','expired','incart','inprocess','sold'])]}"
+                                type="object"/>
+                        <button name="but_reject_quote" class="oe_highlight" string="Reject"
+                                title="Click to Reject Quotation"
+                                type="object"
+                                attrs= "{'invisible' : [('status','in',['rejected','expired','incart','inprocess','sold'])]}"
+                                />
+                        <field name="status" widget="statusbar" statusbar_visible="pending,approved,rejected"/>
+                    </header>
+                    <sheet>
+                        <h1>
+                            <field name="name" class="oe_left oe_title"/>
+                        </h1>
+                        <br/><br/>
+                        <separator string="Product"/>
+                        <group>
+                            <group>
+                                <field name="product_id" domain="[('quotation','=',True)]" attrs="{'readonly': [('status', '!=', 'pending')]}"/>
+                                <label for="prod_actual_price" string="Actual Price"/>
+                                <div>
+                                    <field name="currency_id" invisible="1"/>
+                                    <field name="prod_actual_price" widget='monetary' options="{'currency_field': 'currency_id'}" class="oe_inline"/>
+                                </div>
+                            </group>
+                            <group>
+                                <label for="prod_valid_days" string="Valid Upto" help="Valid no. of days after quote request is approved"/>
+                                <div>
+                                    <field name="prod_valid_days" class="oe_inline" help="Valid no. of days after quote request is approved"/>
+                                    <span> days</span>
+                                </div>
+                                <field name="prod_min_qty"/>
+                            </group>
+                        </group>
+                        <separator  string="Customer Quote"/>
+                        <group>
+                            <group>
+                                <field name="customer_id" required="1" attrs="{'readonly': [('status', '!=', 'pending')]}"
+                                    options="{'no_create_edit': True, 'no_open': True, 'no_create':True,'no_quick_create':True}"/>
+                                <field name="company_id" required="1" attrs="{'readonly': [('status', '!=', 'pending')]}"
+                                    options="{'no_create_edit': True, 'no_open': True, 'no_create':True,'no_quick_create':True}" groups="base.group_multi_company"/>
+                                <label for="price" string="Price"/>
+                                <div>
+                                    <field name="website_currency_id" invisible="1"/>
+                                    <field name="price" widget='monetary' options="{'currency_field': 'website_currency_id'}"
+                                       class="oe_inline"
+                                       attrs="{'readonly': [('status', '!=', 'pending')]}"
+                                       />
+                                </div>
+                                <field name="approved_date" string="Approved Date" readonly="1" attrs= "{'invisible' : [('status','in',['pending','rejected'])]}"/>
+                                <field name="sale_order_id" attrs="{'invisible': [('status', 'in', ['pending','approved','rejected'])]}" options="{'no_create_edit': True}"
+                                    readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="create_date" string="Create Date" readonly="1"/>
+                                <field name="qty" attrs="{'readonly': [('status', '!=', 'pending')]}"/>
+                                <field name="expired_date" string="Expired Date" readonly="1" attrs= "{'invisible' : [('status','in',['pending','rejected'])]}"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="description"/>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread" options='{"thread_level": 1}'/>
+                    </div>
+		       </form>
+            </field>
+        </record>
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~ SEARCH VIEW ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+        <record model="ir.ui.view" id="cust_quote_search_view">
+			<field name="name">Customer Quote Search</field>
+			<field name="model">quote.quote</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search string="Search Quotes">
+                    <field name="name" string="Quotation" filter_domain="['|',('name','ilike',self),('name','=',self)]"/>
+					<group string="Group By">
+						<filter name="group_quote_states" string="Status" context="{'group_by':'status'}"/>
+						<filter name="product_name" string="Product" domain="[]" context="{'group_by':'product_id'}"/>
+						<filter name="group_quote_states_pending" string="Pending" domain="[('status', '=', 'pending')]" context="{'group_by':'status'}"/>
+                        <filter name="group_quote_states_approved" string="Approved" domain="[('status', '=', 'approved')]" context="{'group_by':'status'}"/>
+                        <filter name="group_quote_states_rejected" string="Rejected" domain="[('status', '=', 'rejected')]" context="{'group_by':'status'}"/>
+                        <filter name="group_quote_states_incart" string="In Cart" domain="[('status', '=', 'incart')]" context="{'group_by':'status'}"/>
+                        <filter name="group_quote_states_inprocess" string="In Process" domain="[('status', '=', 'inprocess')]" context="{'group_by':'status'}"/>
+                        <filter name="group_quote_states_sold" string="Sold" domain="[('status', '=', 'sold')]" context="{'group_by':'status'}"/>
+                        <filter name="quote_states_pending" string="Pending" domain="[('status', '=', 'pending')]"/>
+                        <filter name="quote_states_approved" string="Approved" domain="[('status', '=', 'approved')]"/>
+                        <filter name="quote_states_rejected" string="Rejected" domain="[('status', '=', 'rejected')]"/>
+                        <filter name="quote_states_incart" string="In Cart" domain="[('status', '=', 'incart')]"/>
+                        <filter name="quote_states_inprocess" string="In Process" domain="[('status', '=', 'inprocess')]"/>
+                        <filter name="quote_states_sold" string="Sold" domain="[('status', '=', 'sold')]"/>
+                        <filter name="customer_id" string="Customer" domain="[]" context="{'group_by':'customer_id'}"/>
+
+					</group>
+				</search>
+			</field>
+		</record>
+
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ Search View For Graph ~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <record model="ir.ui.view" id="cust_quote_reporting_search_view">
+			<field name="name">Customer Quote Reporting Search</field>
+			<field name="model">quote.quote</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search string="Quote Requests Analysis">
+                    <field name="name" string="Quotation" filter_domain="['|',('name','ilike',self),('name','=',self)]"/>
+					<group string="Group By">
+						<filter name="group_quote_states" string="Status" context="{'group_by':'status'}"/>
+						<filter name="product_name" string="Product" domain="[]" context="{'group_by':'product_id'}"/>
+						<filter name="customer_id" string="Customer" domain="[]" context="{'group_by':'customer_id'}"/>
+                        <filter name="quote_states_pending" string="Pending" domain="[('status', '=', 'pending')]"/>
+                        <filter name="quote_states_approved" string="Approved" domain="[('status', '=', 'approved')]"/>
+                        <filter name="quote_states_rejected" string="Rejected" domain="[('status', '=', 'rejected')]"/>
+                        <filter name="quote_states_incart" string="In Cart" domain="[('status', '=', 'incart')]"/>
+                        <filter name="quote_states_inprocess" string="In Process" domain="[('status', '=', 'inprocess')]"/>
+                        <filter name="quote_states_sold" string="Sold" domain="[('status', '=', 'sold')]"/>
+                        <filter name="quote_states_expired" string="Expired" domain="[('status', '=', 'expired')]"/>
+                    </group>
+				</search>
+			</field>
+		</record>
+
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  Kanban View ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <record model="ir.ui.view" id="quote_system_customer_quote_kanban_view">
+            <field name="name">Customers Quote Kanban</field>
+            <field name="model">quote.quote</field>
+			<field name="arch" type="xml">
+                <kanban class="o_kanban_mobile" default_order="create_date desc">
+                    <field name="name"/>
+                    <field name="product_id"/>
+                    <field name="customer_id"/>
+                    <field name="status"/>
+                    <field name="create_date"/>
+                    <field name="expired_date"/>
+                    <field name="sale_order_id"/>
+                    <field name="currency_id"/>
+                      <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_card oe_kanban_global_click mb-2" style="font-size:11px;">
+                                <div class="o_kanban_record_top pull-right">
+                                        <img t-att-src="kanban_image('res.partner', 'image_128', record.customer_id.raw_value)" t-att-title="record.customer_id.value" t-att-alt="record.customer_id.value" width="24" height="24" class="oe_kanban_avatar float-right"/>
+                                </div>
+                                <div class="oe_kanban_content oe_kanban_details">
+                                    <div class="o_kanban_image">
+                                        <img t-att-src="kanban_image('product.product', 'image_1920', record.product_id.raw_value)" t-att-title="record.product_id.value" t-att-alt="record.product_id.value" width="64" height="64" class="oe_kanban_avatar float-left"/>
+                                    </div>
+                                    <div class="o_kanban_left">
+                                        <div>
+                                            <b><field name="product_id"/></b>
+                                        </div>
+                                        <div>
+                                            <field name="customer_id"/>
+                                        </div>
+                                        <div>
+                                            Price: 
+                                            <field name="price"  widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                        </div>
+                                        <div>
+                                            Quantity: 
+                                            <field name="qty"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="oe_kanban_content oe_kanban_details mt-2">
+                                    <div>
+                                        <span class="text-muted">
+                                            <b>Min Qty: </b>
+                                            <field name="prod_min_qty"/>
+                                        </span>
+                                        <strong t-if="record.name" class="pull-right" style="font-size:11px; color:#7b7aac;"><field name="name"/></strong>
+                                    </div>
+                                </div>
+
+                                <div class="o_kanban_record_bottom">
+                                    <div class="oe_kanban_bottom_left text-muted">
+                                            <b>Actual Price: </b>
+                                            <field name="prod_actual_price" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                            
+                                    </div>
+                                    <div class="oe_kanban_bottom_right">
+                                        <t t-if="record.status.raw_value == 'approved'">
+                                            <span class="text-success" style="font-size:11px;"><i class="fa fa-check" title="Approved" aria-label="Approved"></i> <t t-esc="record.status.value" /></span>
+                                        </t>
+                                        <t t-if="record.status.raw_value == 'incart'">
+                                            <span class="text-primary" style="font-size:11px;"><i class="fa fa-shopping-cart" title="In Cart" aria-label="In Cart"></i> <t t-esc="record.status.value" /></span>
+                                        </t>
+                                        <t t-if="record.status.raw_value == 'inprocess'">
+                                            <span class="text-primary" style="font-size:11px;"><i class="fa fa-check" title="In Process" aria-label="In Process"></i> <t t-esc="record.status.value" /></span>
+                                        </t>
+                                        <t t-if="record.status.raw_value == 'rejected'">
+                                            <span class="text-danger" style="font-size:11px;"><i class="fa fa-remove" title="Rejected" aria-label="Rejected"></i> <t t-esc="record.status.value" /></span>
+                                        </t>
+                                        <t t-if="record.status.raw_value == 'expired'">
+                                            <span class="text-muted" style="font-size:11px;"><i class="fa fa-history" title="Expired" aria-label="Expired"></i> <t t-esc="record.status.value" /></span>
+                                        </t>
+                                        <t t-if="record.status.raw_value == 'sold'">
+                                            <span class="text-info" style="font-size:11px;"><i class="fa fa-dollar" title="Sold" aria-label="Sold"></i> <t t-esc="record.status.value" /></span>
+                                        </t>
+                                        <button name="but_approve_quote" class="oe_highlight btn btn-primary ml-1" string="Approve"
+                                            title="Click to Approve Quotation"
+                                            type="object" attrs= "{'invisible':[('status','in',['approved','expired','incart','inprocess','sold'])]}" style="padding: .5rem .4rem;font-size: .875rem;line-height: .5;border-radius: .2rem;">Approve</button>
+                                        <button name="but_reject_quote" class="btn btn-secondary ml-1" string="Reject"
+                                            title="Click to Reject Quotation"
+                                            type="object"
+                                            attrs= "{'invisible' : [('status','in',['rejected','expired','incart','inprocess','sold'])]}"
+                                            style="padding: .5rem .4rem;font-size: .875rem;line-height: .5;border-radius: .2rem;">
+                                            Reject</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                      </templates>
+                </kanban>
+			</field>
+        </record>
+
+        
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Graph ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <record model="ir.ui.view" id="quote_graph_view">
+            <field name="name">Customers Quote Graph</field>
+            <field name="model">quote.quote</field>
+            <field name="arch" type="xml">
+                <graph string="Quotes">
+                    <field name="product_id"/>
+                    <field name="customer_id"/>
+                    <field name="status"/>
+                    <field name="price" type="measure"/>
+                </graph>
+            </field>
+        </record>
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Pivot ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+        <record model="ir.ui.view" id="quote_pivot_view">
+            <field name="name">Customers Quote Pivot</field>
+            <field name="model">quote.quote</field>
+            <field name="arch" type="xml">
+                <pivot string="Quotes">
+                    <field name="product_id" type="row"/>
+                    <field name="customer_id" type="row"/>
+                    <field name="status" type="row"/>
+                    <field name="qty" type="measure"/>
+                    <field name="price" type="measure"/>
+                </pivot>
+            </field>
+        </record>
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ACTION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <record id="quote_system_customer_quote_action" model="ir.actions.act_window">
+            <field name="name">Quote Requests</field>
+            <field name="res_model">quote.quote</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="context">{}</field>
+            <field name="search_view_id" ref="cust_quote_search_view"/>
+        </record>
+
+        <record id="quote_system_customer_quote_reporting_action" model="ir.actions.act_window">
+            <field name="name">Quote Requests Analysis</field>
+            <field name="res_model">quote.quote</field>
+            <field name="view_mode">pivot,graph</field>
+            <field name="context">{"search_default_product_name":1,"search_default_customer_id": 2}</field>
+            <field name="search_view_id" ref="cust_quote_reporting_search_view"/>
+        </record>
+
+        <!-- ~~~~~~~~~~~~~~~~~ Quote System Root Menu~~~~~~~~~~~~~~~~~~~ -->
+        <menuitem id="quote_system_root_menu"
+                  name="Quote Requests"
+                  parent="sale.sale_menu_root"
+                  sequence="2"
+                  />
+
+        <menuitem id="quote_system_quote_menu"
+                  name="Quotes"
+                  parent="website_quote_system.quote_system_root_menu"
+                  sequence="2"
+                  action="quote_system_customer_quote_action"
+                  />
+        <menuitem id="quote_system_report_menu"
+                  name="Reporting"
+                  parent="website_quote_system.quote_system_root_menu"
+                  sequence="3"
+                  action="quote_system_customer_quote_reporting_action"
+                  />
+    </data>
+</odoo>

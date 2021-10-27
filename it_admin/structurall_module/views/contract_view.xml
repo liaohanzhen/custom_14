@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="contract_contract_search_view_inherit" model="ir.ui.view">
+        <field name="name">contract.contract.tree.view.inherit</field>
+        <field name="model">contract.contract</field>
+        <field name="inherit_id" ref="contract.contract_contract_search_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='inactive']" position="after">
+                <separator />
+                <filter
+                    name="deposito_pagado"
+                    string="Deposito no pagado"
+                    domain="[('deposito_pagado', '=', False)]"
+                />
+                <filter
+                    name="deposito_pagado_true"
+                    string="Deposito pagado"
+                    domain="[('deposito_pagado', '=', True)]"
+                />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="contract_contract_tree_view_inherit" model="ir.ui.view">
+        <field name="name">contract.contract.tree.view.inherit</field>
+        <field name="model">contract.contract</field>
+        <field name="inherit_id" ref="contract.contract_contract_tree_view"/>
+        <field name="arch" type="xml">
+        	<xpath expr="//field[@name='partner_id']" position="after">
+                <field name="deposito_pagado"/>
+                <field name="deposito_garantia" sum="Total de depositos"/>
+        		<field name="date_start"/>
+        		<field name="date_end"/>
+        	</xpath>
+        </field>
+    </record>
+
+    <record id="contract_contract_form_view_inherit" model="ir.ui.view">
+        <field name="name">contract.contract.form.view.inherit</field>
+        <field name="model">contract.contract</field>
+        <field name="inherit_id" ref="contract.contract_contract_customer_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_terminate_contract']" position="after">
+                    <button name="action_crear_adendum" type="object" string="Crear Adendum"/>
+            </xpath>
+            
+        </field>
+    </record>
+
+    <record id="contract_contract_form_view_inherit2" model="ir.ui.view">
+        <field name="name">contract.contract.form.view.inherit</field>
+        <field name="model">contract.contract</field>
+        <field name="inherit_id" ref="contract.contract_contract_form_view"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//div[@class='oe_button_box']" position="inside">
+                <button name="open_adendum_related" type="object" class="oe_stat_button" icon="fa-pencil-square-o">
+                    <field name="adendum_count" widget="statinfo" string="Adendum"/>
+                </button>
+            </xpath>
+
+            <!--ADD NEW FIELDS FOR THE REPORT ARRENDAMIENTO PERSONA MORAL (CASETAS)-->
+            <xpath expr="//notebook/page/field[@name='contract_line_fixed_ids']/tree/field[@name='price_subtotal']" position="after">
+                   <field name="es_caseta" invisible="1"/>
+                   <field name="ubicacion_exacta"/>
+                   <field name="proyecto"/>
+            </xpath>
+
+            <xpath expr="//div[@class='oe_title']" position="replace">
+                <div class="oe_button_box" name="button_box" invisible="1">
+                        <button
+                            name="action_show_invoices"
+                            type="object"
+                            icon="fa-list"
+                            class="oe_stat_button"
+                        >
+                            <field
+                                string="Invoices"
+                                name="invoice_count"
+                                widget="statinfo"
+                            />
+                        </button>
+                    </div>
+            </xpath>
+
+            <!--ADD FIELD NUMBER OF MONTHS IN VIEW-->
+            <xpath expr="//field[@name='date_end']" position="after">
+                    <field name="no_meses"/>
+                    <field name="total_months_adendum" invisible="1"/>
+                    <field name="no_meses_original" invisible="1"/>
+                    <field name="fecha_fin_original" invisible="1"/>
+            </xpath>
+
+            <!--REQUIRED FIELDS-->
+            <xpath expr="//field[@name='payment_term_id']" position="attributes">
+                   <attribute name="required">True</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='date_start']" position="attributes">
+                   <attribute name="required">True</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='date_end']" position="attributes">
+                   <attribute name="required">True</attribute>
+            </xpath>
+            <!--END OF REQUIRED FIELDS-->
+
+            <xpath expr="//field[@name='partner_id']" position="before">
+                <field name="name_serie" string="Serie"/>
+                <field name="no_verificador" string="Dígito verificador"/>
+            </xpath>
+
+           <!-- <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="so_origen"/>
+            </xpath>-->
+            <xpath expr="//field[@name='tag_ids']" position="after">
+                <field name="tipo_contrato"/>
+                <field name="team_id"/>
+                <field name="adendum_count_2" invisible="1"/>
+            </xpath>
+          <!--  <field name='recurring_next_date' position='replace'>
+            </field>
+            <field name='recurring_invoicing_type' position='before'>
+            	<field name='recurring_next_date' />
+            </field>-->
+            <xpath expr="//field[@name='recurring_invoicing_type']" position="after">
+                <field name="deposito_garantia" readonly="1"/>
+                <field name="deposito_pagado" readonly="1"/>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page name="acta_constitutiva" string="Acta constitutiva">
+                    <group cols="4">
+                        <group>
+                            <field name="nombre_representante_ac"/>
+                            <field name="testimonio_notarial_ac"/>
+                            <field name="fecha_ac"/>
+                            <field name="notaria_ac"/>
+                            <field name="nombre_notario_ac"/>
+                            <field name="ciudad_notario_ac"/>
+                            <field name="domicilio_ac"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page name="poder_notarial" string="Poder notarial">
+                    <group cols="4">
+                        <group>
+                            <field name="nombre_representante_pn" />
+                            <field name="testimonio_notarial_pn" />
+                            <field name="fecha_pn"/>
+                            <field name="notaria_pn"/>
+                            <field name="nombre_notario_pn"/>
+                            <field name="ciudad_notario_pn"/>
+                            <field name="domicilio_pn"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+
+            <!--TAB FOR PRODUCTS THAT ARE NOT RENTAL-->
+            <xpath expr="//notebook" position="inside">
+                <page name="primera_factura" string="Primera factura">
+                    <field name="primera_factura_ids">
+                        <tree editable="bottom">
+                            <field name="product_id"/>
+                            <field name="name"/>
+                            <field name="quantity"/>
+                            <field name="price_unit"/>
+                            <field name="unidad_medida"/>
+                            <field name="subtotal"/>
+                            <field name="contract_primera_ids" invisible="1"/>
+                        </tree>
+                    </field>  
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+
+
+    <!--PAYMENT TERM ID TO FALSE-->
+    <record id="contract_contract_form_view_inherit3" model="ir.ui.view">
+    <field name="name">contract.contract.form.view.inherit.3</field>
+    <field name="model">contract.contract</field>
+    <field name="inherit_id" ref="contract.contract_contract_form_view"/>
+    <field name="groups_id" eval="[(6, 0, [ref('structurall_module.allow_change_payment_terms')])]"/>
+    <field name="arch" type="xml">
+            <!--FIELD PAYMENT TERMS TO READONLY ATTRIBUTE-->
+            <xpath expr="//field[@name='payment_term_id']" position="attributes">
+                <attribute name="readonly">False</attribute>
+            </xpath>
+        </field>
+    </record>
+    
+    <!-- Field SO / Rental Char Add -->
+    <record id="contract_contract_form_view_inherit4" model="ir.ui.view">
+    <field name="name">contract.contract.form.view.inherit.4</field>
+    <field name="model">contract.contract</field>
+    <field name="inherit_id" ref="contract.contract_contract_form_view"/>
+    <field name="arch" type="xml">
+            <!-- Field So / Rental Char Add -->
+            <xpath expr="//group[@name='main']//group//field[@name='user_id']" position="after">
+                <field name="so_rentals"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!--Deposito pagado to no readonly-->
+    <record id="contract_contract_form_view_inherit_deposito" model="ir.ui.view">
+    <field name="name">contract.contract.form.view.inherit.deposito</field>
+    <field name="model">contract.contract</field>
+    <field name="inherit_id" ref="contract.contract_contract_form_view"/>
+    <field name="groups_id" eval="[(6, 0, [ref('structurall_module.allow_change_deposito_pagado')])]"/>
+    <field name="arch" type="xml">
+            <!--FIELD PAYMENT TERMS TO READONLY ATTRIBUTE-->
+            <xpath expr="//field[@name='deposito_pagado']" position="attributes">
+                <attribute name="readonly">False</attribute>
+            </xpath>
+        </field>
+    </record>
+    
+    <record id="server_action_contract_primera_factura" model="ir.actions.server">
+    	<field name="name">Primera factura</field>
+        <field name="type">ir.actions.server</field>
+        <field name="state">code</field>
+        <field name="model_id" ref="contract.model_contract_contract"/>
+        <field name="binding_model_id" ref="contract.model_contract_contract"/>
+        <field name="code">
+records.create_invoice_from_contract()
+        </field>
+    </record>
+</odoo>

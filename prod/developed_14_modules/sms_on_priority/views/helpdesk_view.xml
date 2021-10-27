@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="helpdesk_team_form_inherit_add_default_urgent_keyword">
+        <field name="name">helpdesk.team.inherit.add.default.urgent.keyword</field>
+        <field name="model">helpdesk.team</field>
+        <field name="inherit_id" ref="helpdesk.helpdesk_team_view_form"/>
+        <field name="arch" type="xml">
+            <data>
+                <field name="company_id" position="after">
+                    <!-- <group>
+                        <field name="send_sms_if_urgent"/>
+                        <field name="urgent_keyword"/>
+                    </group> -->
+
+                    <group colspan="4">
+                        <div>
+                            <label for="send_sms_if_urgent" style="font-weight:bold;"/>
+                            <field name="send_sms_if_urgent"/>
+                        </div>
+                        <br/>
+                        <div>
+                            <label for="urgent_keyword" style="font-weight:bold;"/>
+                            <field name="urgent_keyword" class="oe_inline"/>
+                        </div>
+                    </group>
+                </field>
+            </data>
+        </field>
+    </record>
+</odoo>

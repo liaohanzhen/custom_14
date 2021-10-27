@@ -1,0 +1,80 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* of_holding_partner
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-10-15 11:59+0000\n"
+"PO-Revision-Date: 2018-10-18 20:43+0200\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: de\n"
+"X-Generator: Poedit 2.1.1\n"
+
+#. module: of_holding_partner
+#: model:ir.model,name:of_holding_partner.model_res_partner
+msgid "Contact"
+msgstr "Kontakt"
+
+#. module: of_holding_partner
+#. openerp-web
+#: code:addons/of_holding_partner/static/src/js/form_common.js:58
+#, python-format
+msgid "Create \"<strong>%s</strong>\""
+msgstr "Anlegen \"<strong>%s</strong>\""
+
+#. module: of_holding_partner
+#. openerp-web
+#: code:addons/of_holding_partner/static/src/js/form_common.js:69
+#, python-format
+msgid "Create and Edit..."
+msgstr "Anlegen und bearbeiten..."
+
+#. module: of_holding_partner
+#: model:ir.ui.view,arch_db:of_holding_partner.of_holding_sale_report_search_inherit
+msgid "Have Holding Partner"
+msgstr "Hat eine Konzernzuweisung"
+
+#. module: of_holding_partner
+#: model:ir.ui.view,arch_db:of_holding_partner.of_holding_res_partner_form_view_inherit
+msgid "Holding"
+msgstr "Konzern"
+
+#. module: of_holding_partner
+#: model:ir.model.fields,field_description:of_holding_partner.field_res_partner_holding_partner_id
+#: model:ir.model.fields,field_description:of_holding_partner.field_res_users_holding_partner_id
+#: model:ir.model.fields,field_description:of_holding_partner.field_sale_report_holding_partner_id
+#: model:ir.ui.view,arch_db:of_holding_partner.of_holding_sale_report_search_inherit
+msgid "Holding Partner"
+msgstr "Konzernverknüpfung"
+
+#. module: of_holding_partner
+#. openerp-web
+#: code:addons/of_holding_partner/static/src/js/form_common.js:78
+#, python-format
+msgid "No results to show..."
+msgstr "Keine anzuzeigenden Ergebnisse..."
+
+#. module: of_holding_partner
+#: model:ir.model.fields,field_description:of_holding_partner.field_sale_report_orderer
+#: model:ir.ui.view,arch_db:of_holding_partner.of_holding_sale_report_search_inherit
+msgid "Orderer"
+msgstr "Besteller"
+
+#. module: of_holding_partner
+#: model:ir.model,name:of_holding_partner.model_sale_report
+msgid "Sales Orders Statistics"
+msgstr "Statistik Verkaufsaufträge"
+
+#. module: of_holding_partner
+#. openerp-web
+#: code:addons/of_holding_partner/static/src/js/form_common.js:42
+#, python-format
+msgid "Search More..."
+msgstr "Weitere suchen..."

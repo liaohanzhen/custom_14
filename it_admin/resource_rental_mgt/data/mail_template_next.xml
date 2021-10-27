@@ -1,0 +1,96 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <!-- Mail template are declared in a NOUPDATE block
+         so users can freely customize/delete them -->
+    <data>
+        <record id="email_template_rental_sale" model="mail.template">
+            <field name="name">Rental Order: Send by email</field>
+            <field name="model_id" ref="model_rental_order_wizard"/>
+            <field name="email_from">${object.temp_sale_order_id.user_id.email_formatted |safe}</field>
+            <field name="email_to">${object.temp_sale_order_id.partner_id.email}</field>
+            <field name="subject">Rental Order (Ref ${object.temp_sale_order_id.name})</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        Dear
+                        <br/>
+                        <br/>
+                        Here is your reserved product details:
+                        <br/>
+                        <br/>
+                        <br/>
+                        % if object.status == 'pickup':
+
+                        <table class="table" border="1px" style="width: 50%%">
+                            <tr>
+                                <td>
+                                    <strong>Product</strong>
+                                </td>
+                                <td>
+                                    <strong>Total Quantity Reserved</strong>
+                                </td>
+                                <td>
+                                    <strong>Total Quantity Picked</strong>
+                                </td>
+                                <td>
+                                    <strong>Quantity Picked now</strong>
+                                </td>
+                                <td>
+                                    <strong>Left Quantity to Pick</strong>
+                                </td>
+                            </tr>
+                            % for line in object.rental_wizard_line_ids:
+                            <tr>
+                                <td>${line.product_id.name}</td>
+                                <td>${line.order_item_id.qty_reserved}</td>
+                                <td>${line.order_item_id.qty_delivered}</td>
+                                <td>${line.qty_delivered}</td>
+                                <td>${line.order_item_id.qty_delivered_left}</td>
+
+                            </tr>
+                            % endfor
+                        </table>
+                        % endif
+                        % if object.status == 'return':
+
+                        <table class="table" border="1px" style="width: 50%%">
+                            <tr>
+                                <td>
+                                    <strong>Product</strong>
+                                </td>
+                                <td>
+                                    <strong>Total Quantity Picked</strong>
+                                </td>
+                                <td>
+                                    <strong>Total Quantity Returned</strong>
+                                </td>
+                                <td>
+                                    <strong>Quantity Returned now</strong>
+                                </td>
+                                <td>
+                                    <strong>Left Quantity to Return</strong>
+                                </td>
+                            </tr>
+                            % for line in object.rental_wizard_line_ids:
+                            <tr>
+                                <td>${line.product_id.name}</td>
+                                <td>${line.order_item_id.qty_delivered}</td>
+                                <td>${line.order_item_id.qty_returned}</td>
+                                <td>${line.qty_returned}</td>
+                                <td>${line.order_item_id.qty_returned_left}</td>
+                            </tr>
+                            % endfor
+                        </table>
+
+                        % endif
+
+                        <br/>
+                        <br/>
+                        Do not hesitate to contact us if you have any question.
+                    </p>
+                </div>
+            </field>
+        </record>
+    </data>
+</odoo>

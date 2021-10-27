@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+    <record id="paperformat_structurall_pagare" model="report.paperformat">
+        <field name="name">Pagare Structural Letter</field>
+        <field name="default" eval="True" />
+        <field name="format">Letter</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">20</field>
+        <field name="margin_bottom">20</field>
+        <field name="margin_left">14</field>
+        <field name="margin_right">14</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">15</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <!--pagare Determinado-->
+    <report
+    id="report_pagare_structurall"
+    model="contract.contract"
+    string="Pagare Structurall"
+    report_type="qweb-pdf"
+    name="structurall_module.pagare_structurall"
+    file="Pagare Structurall"
+    paperformat="paperformat_structurall_pagare"
+    />
+
+    <!--pagare EXTERNAL LAYOUT-->
+    <template id="pagare_external_layout">
+        <div class="header">
+            
+        </div>
+
+        <div class="article o_report_layout_standard" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id">
+            <t t-call="web.address_layout"/>
+            <t t-raw="0" />
+        </div>
+
+        <!--EMPIEZA EL FOOTER *ESTA BIEN*-->
+        <div class="footer">
+            
+        </div>
+        
+        <!--TERMINA EL FOOTER-->
+
+
+    </template>
+
+    <template id="pagare_structurall">
+        <t t-call="web.html_container">
+        <t t-call="structurall_module.pagare_external_layout">
+            <div class="page"> 
+                <div class="oe_structure"/>
+
+                  <div style="font-size:16px;text-align:justify">
+
+                  <center><strong>PAGARÉ</strong></center> <br/>
+
+                  "CONSTRUCTORA REMAPESA SA DE CV, debo y pagaré incondicionalmente a la orden de STRUCTURALL SONORA S.A. DE C.V. el día 22 de MAYO de 2017, en el domicilio ubicado en Boulevard Paseo del Río Sonora Oriente S/N, Colonia Hacienda de La Flor, Hernosillo,Sonora C.P. 83090,la suma principal de $6,181.23 (Seís Mil Ciento Ochenta y Un PESOS 23/100 M.N.)." <br/><br/>
+
+                  Este pagaré forma parte de una serie numerada del 1 al 3 y todos están sujetos a la condición de que,al no pagarse cualquiera de ellos a su vencimiento, serán exigibles todos los que le sigan en número,además de los ya vencidos, desde la fecha de vencimiento de este documento hasta el día de su liquidación.<br/><br/>
+
+                  1.- Si la suma principal no es cubierta en su totalidad por el suscriptor en la fecha en que sea requerido de pago por el tenedor, este pagaré generará intereses moratorias del 3% (Tres por ciento) mensual,pagaderos en el mismo domicilio y conjuntamente con el principal a la fecha de su vencimiento. <br/><br/>
+
+                  2.- El suscriptor promete incondicionalmente pagar al tenedor del mismo, el importe total de este pagaré y sus intereses moratorias del 3% (Tres por ciento) mensual desde la fecha de su vencimiento y hasta que se realice el pago total del mismo.<br/><br/>
+
+                  3.- El suscriptor se obliga a pagar todos los gastos que se realicen como consecuencia de la ejecución de este pagaré, así como los gastos de cobranza extrajudicial o judicial que se genere por el incumplimiento en el pago de la suerte principal y sus accesorios,así como los honorarios de los abogados que intervengan para procurar su cobro lo cual se hará en el mismo domicilio y en conjunto con el principal.<br/><br/>
+
+                  4.- El pago del importe principal de este pagaré,así como sus intereses y accesorios,se hará sin descontar algún tipo de impuesto presente o futuro.<br/><br/>
+
+                  5.- Los pagos parciales realizados por el suscriptor serán aplicados de la siguiente manera:<br/>
+                  A: Intereses moratorias. <br/>
+                  B: Intereses ordinarios. <br/>
+                  C: Suerte principal.<br/>
+
+                  6.- El suscriptor designa el siguiente como su domicilio:
+
+                  Suscriptor: BOULEVARD ADOLFO LOPEZ MATEOS 1 248 CENTRO, ZACATECAS, ZACATECAS<br/><br/>
+
+                  7.- Para la interpretación, ejecución y cumplimiento de este pagaré y para el requerimiento judicial del pago, el suscriptor se somete de manera expresa e irrevocable a sujetarse a la jurisdicción de los tribunales competentes de Hermosillo, Sonora, renunciando expresamente a cualquier otro fuero que en razón de su domicilio.<br/><br/>
+
+                  Leído el presente contrato que consta de siete hojas, por las partes que en el intervienen y manifestandose sabedoras de sus fines y alcance legal, lo firman de plena conformidad en dos ejemplares originales, siendo el 21 de FEBRERO de 2017 en la ciudad de Hermosillo, Sonora, México.
+
+                  <p style="page-break-after:always"></p>
+
+                  <table class="table table-borderless" style="font-weight:bold;text-align:center;">
+                    <tr>
+                        <td style="width:45%;">
+                        EL ARRENDADOR
+                            <br/><br/><br/><br/><br/>
+                        </td>
+                        <td>
+                
+                        </td>
+                        <td style="width:45%;">
+                        "El arrendatario"<br/><br/><br/><br/><br/>
+                        </td>
+                    </tr>
+                    <tr style="padding:0px;">
+                        <td style="border-top:1px solid black;">Nombre y firma</td>
+                        <td></td>
+                        <td style="border-top:1px solid black;">Nombre y firma</td>
+                    </tr>
+                    <tr>
+                        <td><br/><br/><br/><br/><br/></td><td></td><td></td>
+                    </tr>  
+                    <tr style="padding:0px;">
+                        <td style="border-top:1px solid black;">TESTIGO</td>
+                        <td></td>
+                        <td style="border-top:1px solid black;">TESTIGO</td>
+                    </tr>
+                    <tr>
+                        <td><br/><br/><br/></td><td></td><td></td>
+                    </tr>  
+                  </table>
+
+
+                  </div>
+      
+            </div>
+
+        </t>
+        </t>
+    </template>
+
+
+</data>
+
+</odoo>

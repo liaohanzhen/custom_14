@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="of_holding_res_partner_form_view_inherit" model="ir.ui.view">
+        <field name="name">of.holding.res.partner.form.view.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <field name="parent_id" position="after">
+                <field name="holding_partner_id" attrs="{'invisible': [('company_type', '!=', 'company')]}" placeholder="Holding"/>
+            </field>
+        </field>
+    </record>
+</odoo>

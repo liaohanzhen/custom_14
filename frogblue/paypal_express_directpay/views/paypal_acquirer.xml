@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://store.webkul.com/license.html/ -->
+<odoo>
+    <data>
+        <record id="acquirer_form_for_paypal_checkout_product_n_cart" model="ir.ui.view">
+            <field name="name">acquirer.form.paypal.checkout.cart</field>
+            <field name="model">payment.acquirer</field>
+           <field name="inherit_id" ref="payment_paypal_express.acquirer_form_for_paypal_checkout"/>
+            <field name="arch" type="xml">
+                <xpath expr='//field[@name="paypal_client_id"]' position='after'>
+                    <field name="product_paypal"/>
+                    <field name="cart_paypal"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

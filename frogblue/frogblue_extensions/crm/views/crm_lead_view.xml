@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+
+        <!-- Frogblue Crm Lead Form View Inherit -->
+
+        <record id="frogblue_crm_case_form_view_leads_inherit" model="ir.ui.view">
+            <field name="name">frogblue.crm.case.form.view.leads.inherit</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_lead_view_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']/.." position="after">
+                    <!--<div id="firstname">-->
+                        <!--<field name="firstname" placeholder="First Name"/>-->
+                    <!--</div>-->
+                    <!--<div id="lastname">-->
+                        <!--<field name="lastname"  placeholder="Last Name"/>-->
+                    <!--</div>-->
+                    <div id="parent_name" class="o_row">
+                        <field name="parent_id"  placeholder="Company" domain="[('is_company', '=', True)]" context="{'default_is_company': True}" />
+                        <!--context: , 'default_supplier': supplier, 'default_customer': customer,-->
+                        <!--attrs="{'invisible': ['|', '&amp;', ('is_company','=', True),('parent_id', '=', False),('company_name', '!=', False),('company_name', '!=', '')]}"-->
+                            <!--<field name="company_name" attrs="{'invisible': ['|', '|', ('company_name', '=', False), ('company_name', '=', ''), ('is_company', '=', True)]}"/>-->
+                            <!--<button name="create_company" type="object" string="Create company" class="btn btn-sm oe_edit_only fa fa-external-link btn btn-link " attrs="{'invisible': ['|', '|', ('is_company','=', True), ('company_name', '=', ''), ('company_name', '=', False)]}"/>-->
+                        </div>
+                </xpath>
+                <field name="email_cc" position="after">
+                    <field name="double_opt_in"/>
+                </field>
+                <xpath expr="//group[@name='lead_info']//field[@name='mobile']/.." position="after">
+                    <field name="fax"/>
+                </xpath>
+                <field name="partner_id" position="attributes">
+                    <attribute name="context">{'search_default_customer': 1, 'default_name': contact_name, 'default_street': street, 'default_city': city, 'default_state_id': state_id, 'default_zip': zip, 'default_country_id': country_id, 'default_function': function, 'default_phone': phone, 'default_mobile': mobile, 'default_fax': fax, 'default_email': email_from, 'default_user_id': user_id, 'default_team_id': team_id, 'default_website': website}</attribute>
+                </field>
+                <xpath expr="//group[@name='lead_info']//field[@name='contact_name']/.." position="after">
+                    <field name="salutation"/>
+                </xpath>
+
+            </field>
+        </record>
+		<record id="frogblue_view_crm_lead_opportunity_geo_assign_form" model="ir.ui.view">
+            <field name="name">frogblue.crm.lead.opportunity.geo.assign.form.view</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="website_crm_partner_assign.view_crm_lead_opportunity_geo_assign_form" />
+            <field name="arch" type="xml">
+            	<field name='partner_assigned_id' position='attributes'>
+            		<attribute name='domain'>[]</attribute>
+            	</field>
+            </field>
+        </record>
+		
+        <record id="frogblue_view_create_opportunity_simplified_inherit" model="ir.ui.view">
+            <field name="name">frogblue.crm.lead.form.quick_create</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.quick_create_opportunity_form"/>
+            <field name="arch" type="xml">
+                <field name="partner_id" position="attributes">
+                    <attribute name="domain"></attribute>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

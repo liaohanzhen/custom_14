@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Part of Odoo Module Developed by Bizople Solutions Pvt. Ltd.
+    See LICENSE file for full copyright and licensing details.
+-->
+<odoo>
+    <record id="subscribe_thanks" model="website.page">
+        <field name="name">Thanks (Contact us)</field>
+        <field name="type">qweb</field>
+        <field name="url">/subscribe-thank-you</field>
+        <field name="website_published">True</field>
+        <field name="key">website.subscribe_thanks</field>
+        <field name="arch" type="xml">
+            <t name="Thanks (Contact us)" t-name="subscribe_thanks">
+                <t t-call="website.layout">
+                  <div id="wrap">
+                    <div class="oe_structure"/>
+                    <div class="container">
+                        <h1>Thanks!</h1>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="alert alert-success">
+                                    You are successfully subscribed.
+                                    <button type="button" class="close" data-dismiss="alert">&amp;times;</button>
+                                </div>
+                                <ul class="list-unstyled">
+                                    <li><i class="fa fa-phone"></i> : <span t-field="res_company.phone"/></li>
+                                    <li><i class="fa fa-envelope"></i> : <span t-field="res_company.email"/></li>
+                                </ul>
+                            </div>
+                            <div class="col-md-4">
+                                <t t-call="website.company_description"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="oe_structure"/>
+                  </div>
+                </t>
+            </t>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	
+	<template id="portal_my_project_5b_added_chatter" name="Products item add default code" inherit_id="project.portal_my_project">
+		<xpath expr="//t[@t-call='portal.portal_record_layout']" position='after'>
+			<div class="mt32">
+	            <h4><strong>Message and communication history</strong></h4>
+	            <t t-call="portal.message_thread">
+	                <t t-set="object" t-value="project"/>
+	                <t t-set="token" t-value="project.access_token"/>
+	                <t t-set="pid" t-value="pid"/>
+	                <t t-set="hash" t-value="hash"/>
+	            </t>
+	        </div>	
+		</xpath>
+		<xpath expr="//span[@t-esc='project.task_count'][1]" position='replace'>
+			<span t-esc="task_count" />
+		</xpath>
+	</template>
+	
+</odoo>

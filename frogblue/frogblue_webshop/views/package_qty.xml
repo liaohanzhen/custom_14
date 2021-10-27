@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+	<template id="assets_frontend_package_qty" name="package_qty Assets" inherit_id="website_sale.assets_frontend"> 
+         <xpath expr="script[last()]" position="after"> 
+             <script type="text/javascript" src="/frogblue_webshop/static/src/js/package_qty.js"></script> 
+             
+         </xpath>
+	</template>
+	</data>
+</odoo>

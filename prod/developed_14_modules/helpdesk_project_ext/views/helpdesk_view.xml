@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+        <record id="form_helpdesk_ticket_inherit_project_task" model="ir.ui.view">
+            <field name="name">form.helpdesk.ticket.inherit.project.task</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form" />
+            <field name="arch" type="xml">
+            	<field name="description" position="attributes">
+            		<attribute name="invisible">1</attribute>
+            	</field>
+            	<field name="description" position="after">
+            		<field name="description_html" />
+            	</field>
+            	<xpath expr="//button[@name='assign_ticket_to_self']" position="after">
+            		<button name="action_create_task" string="Create Project Task" type="object" class="oe_highlight" groups="project.group_project_user"/>
+            		<button name="action_create_mgmtsystem_action" string="Create CAR" type="object" class="oe_highlight" groups="mgmtsystem.group_mgmtsystem_manager,mgmtsystem.group_mgmtsystem_user"/>
+            	</xpath>
+            	<xpath expr="//button[@name='assign_ticket_to_self']" position="after">
+            		<button class="oe_stat_button" name="action_view_tasks" icon="fa-hashtag" type="object" groups="project.group_project_user" attrs="{'invisible':[('count_tasks','=',0)]}">
+                        <field name="count_tasks" string="Project Tasks" widget="statinfo"/>
+                    </button>
+                    <button class="oe_stat_button" name="action_view_mgmtsystem_action" icon="fa-hashtag" type="object" groups="mgmtsystem.group_mgmtsystem_manager,mgmtsystem.group_mgmtsystem_user" attrs="{'invisible':[('count_mgmtsystem','=',0)]}">
+                        <field name="count_mgmtsystem" string="Cars" widget="statinfo"/>
+                    </button>
+            	</xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

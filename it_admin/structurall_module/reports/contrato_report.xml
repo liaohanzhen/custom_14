@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+    <record id="paperformat_structurall_contrato" model="report.paperformat">
+        <field name="name">Contrato Structural Letter</field>
+        <field name="default" eval="True" />
+        <field name="format">Letter</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">30</field>
+        <field name="margin_bottom">20</field>
+        <field name="margin_left">14</field>
+        <field name="margin_right">14</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">15</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <!--Contrato Determinado-->
+    <report
+    id="report_contrato_structurall"
+    model="contract.contract"
+    string="Contrato Structurall"
+    report_type="qweb-pdf"
+    name="structurall_module.contrato_structurall"
+    file="Contrato Structurall"
+    paperformat="paperformat_structurall_contrato"
+    />
+
+    <!--CONTRATO EXTERNAL LAYOUT-->
+    <template id="contrato_external_layout">
+        <div class="header">
+            <center><strong>Structurall Sonora SA de CV <span t-field="docs.name_serie"/></strong></center>
+        </div>
+
+        <div class="article o_report_layout_standard" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id">
+            <t t-call="web.address_layout"/>
+            <t t-raw="0" />
+        </div>
+
+        <!--EMPIEZA EL FOOTER *ESTA BIEN*-->
+        <div class="footer">
+            
+        </div>
+        
+        <!--TERMINA EL FOOTER-->
+
+
+    </template>
+
+    <template id="contrato_structurall">
+        <t t-call="web.html_container">
+        <t t-call="structurall_module.contrato_external_layout">
+            <div class="page"> 
+                <div class="oe_structure"/>
+                        
+                <strong>CONTRATO DE ARRENDAMIENTO QUE CELEBRAN POR UNA PARTE, LA EMPRESA STRUCTRALL SONORA SA DE C.V. REPRESENTADA EN ESTE ACTO POR ERNESTO ROMERO TORRES, A QUIENES EN LO SUCESIVO, SE LE DENOMINARA COMO 'EL ARRENDADOR', Y POR LA OTRA PARTE LA EMPRESA 'CONSTRUCTORA REMAPESA SA DE CV' REPRESENTADA EN ESTE ACTO POR 'DAVID SANCHEZ CASTRO' A QUIEN EN LO SUCESIVO SE LE DENOMINARA 'El ARRENDATARIO', INSTRUMENTO QUE SUJETAN LAS PARTES DE CONFORMIDAD CON LAS SIGUIENTES DECLARACIONES Y CLAUSULAS.</strong><br/><br/>         
+
+                <strong>DATOS DEL ARRENDATARIO:</strong><br/>        
+                NOMBRE:CONSTRUCTORA REMAPESA SA DE CV TEL:9278421<br/>            
+                CLAVE DE RFC: CRE110527T57 <br/>          
+                DOMICILIO FISCAL:BOULEVARD ADOLFO LOPEZ MATEOS  1248 CENTRO <br/> 
+                CIUDAD: ZACATECAS ESTADO: ZACATECAS C.P. 98000     <br/>  <br/> 
+    
+                El Arrendatario arrienda en este acto la(s) Caseta(s) del Arrendador en la fecha de inicio de Arrendamiento', por un periodo minimo de 3Meses. de acuerdo a las declaraciones y cláusulas del presente Contrato de Arrendamiento. <br/> <br/> 
+            
+                Los Cargos lniciales setán facturados por adelantado, y se integran por la Renta Inicial , los gastos por cuenta del cliente para la entrega de la(s) Caseta(s),y el Importe de depósito en garantía, y el impuesto al valor agregado aplicable a los conceptos que correspondan. <br/> <br/> 
+        
+    
+            </div>
+
+        </t>
+        </t>
+    </template>
+
+
+</data>
+
+</odoo>

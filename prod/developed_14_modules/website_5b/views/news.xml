@@ -1,0 +1,239 @@
+<odoo>
+  <data>
+	  <template id="page_news" name="News">
+		<t t-call="website.layout">
+        <div id="wrap" class="oe_structure oe_empty">
+		<!-- ======= Hero Section ======= -->
+			
+			<t t-if="news_title">
+				<section id="hero-project" style="background: url('../../theme_5b/static/img/banner-news.jpg'); background-position: 50% 50%; background-size:cover; background-repeat:no-repeat">
+				<div class="container position-relative" style="bottom:-220px; color:#fff; text-shadow: 1px 1px 0 #333F48; font-size:0.7em; font-style:italic">Co-founder, Eden Tehan, at the NSW Business Council Awards</div>
+				</section>
+			</t>
+			<t t-elif="year">
+				<section id="hero-project" style="background: url('../theme_5b/static/img/banner-news.jpg'); background-position: 50% 50%; background-size:cover; background-repeat:no-repeat">
+				<div class="container position-relative" style="bottom:-220px; color:#fff; text-shadow: 1px 1px 0 #333F48; font-size:0.7em; font-style:italic">Co-founder, Eden Tehan, at the NSW Business Council Awards</div>
+				</section>
+			</t>
+			<t t-else="">
+				<section id="hero-project" style="background: url('/theme_5b/static/img/banner-news.jpg'); background-position: 50% 50%; background-size:cover; background-repeat:no-repeat">
+				<div class="container position-relative" style="bottom:-220px; color:#fff; text-shadow: 1px 1px 0 #333F48; font-size:0.7em; font-style:italic">Co-founder, Eden Tehan, at the NSW Business Council Awards</div>
+				</section>
+			</t>
+			
+			<!-- End Hero -->
+
+			<main id="main">
+				
+				<!-- ======= Events Section ======= -->
+				<section id="events" class="events">
+				  <div class="container">
+					<div class="row">
+					  <div class="col-12">
+						
+						<t t-if="news_title">
+							<!--<t t-call="website_5b.news_details_left_sidebar" />-->
+							<t t-foreach="contents" t-as="news">
+							<div style="padding: 10px 10px 20px 10px;">
+							<div class="row">
+							  <div class="col-12">
+								<h5><t t-esc="news.title" /></h5>
+								<p style="font-size:0.7em; font-style:italic">Published: <t t-esc="news.publish_date.strftime('%B %Y')"/>
+								<t t-if="news.external_source"><br />Source: 
+									<t t-if="news.external_source_url">
+										<a t-attf-href="{{news.external_source_url}}" target="_blank">
+											<t t-if="news.external_source_logo">
+												<img t-att-src="image_data_uri(news.external_source_logo.datas)" />
+											</t>
+											<t t-if="not news.external_source_logo">
+												<t t-esc="news.external_source"/>
+											</t>
+										</a>
+									</t>
+									<t t-else=""><t t-esc="news.external_source"/></t>
+								</t>
+								</p>
+								<div align="left">
+								<t t-if="news.caption_image">
+									<img t-att-src="image_data_uri(news.caption_image.datas)" style="max-width:100%; height:auto;" t-attf-alt="{{ news.caption_title }}" />
+								</t>
+								<t t-else="">
+									<img src="../../theme_5b/static/img/image-not-found.jpg" style="max-width:100%; height:auto;" t-attf-alt="{{ news.title }}" />
+								</t>
+								<br />
+								<span style="font-size:0.8em; font-style:italic"><t t-esc="news.caption_title" /></span>
+								</div>
+								
+								<div class="card-text" style="margin-top:20px">
+								<t t-raw="news.description" />
+								</div>
+							  </div>
+							</div>
+							</div>
+							</t>
+						</t>
+						<t t-else="">
+							<!--<t t-call="website_5b.news_list_left_sidebar" />-->
+							<t t-set="row_count" t-value="1" />
+							<t t-foreach="contents" t-as="news">
+							<t t-set="hidden_class" t-value="'display:block;'" />
+							<t t-if="row_count > 3">
+								<t t-set="hidden_class" t-value="'display:none !important;'" />
+							</t>
+							<div class="moreBoxNews" t-attf-style="padding: 10px 10px 20px 10px; border-bottom:1px solid #d9d9d6; {{hidden_class}}">
+							<div class="row">
+							  <div class="col-12 col-md-6 col-lg-6">
+								<t t-if="news.caption_image">
+									<img t-att-src="image_data_uri(news.caption_image.datas)" style="max-width:100%; height:auto;" t-attf-alt="{{ news.title }}" />
+									<!--<a t-att-href="image_data_uri(news.caption_image.datas)" class="progressive replace">
+									  <img src="/theme_5b/static/img/lazy/project.jpg" class="preview" t-att-alt="news.title" style="max-width:100%; height:auto;" />
+									</a>-->
+								</t>
+								<t t-else="">
+									<img src="/theme_5b/static/img/image-not-found.jpg" style="max-width:100%; height:auto;" t-attf-alt="{{ news.title }}" />
+									<!--<a href="/theme_5b/static/img/image-not-found.jpg" class="progressive replace">
+									  <img src="/theme_5b/static/img/lazy/project.jpg" class="preview" t-att-alt="news.title" style="max-width:100%; height:auto;" />
+									</a>-->
+								</t>
+							  </div>
+							  <div class="col-12 col-md-6 col-lg-6">
+								<t t-if="news.external_source_url">
+									<h5><a t-attf-href="{{news.external_source_url}}" target="_blank"><t t-esc="news.title" /></a></h5>
+								</t>
+								<t t-else="">
+									<h5><a t-attf-href="/news/{{news.publish_date.strftime('%Y')}}/{{news.link_url}}"><t t-esc="news.title" /></a></h5>
+								</t>
+								
+								<p style="font-size:0.7em; font-style:italic">Published: <t t-esc="news.publish_date.strftime('%B %Y')"/>
+								<t t-if="news.external_source"><br />Source: 
+									<t t-if="news.external_source_url">
+										<a t-attf-href="{{news.external_source_url}}" target="_blank">
+											<t t-if="news.external_source_logo">
+												<img t-att-src="image_data_uri(news.external_source_logo.datas)" />
+											</t>
+											<t t-if="not news.external_source_logo">
+												<t t-esc="news.external_source"/>
+											</t>
+										</a>
+									</t>
+									<t t-else=""><t t-esc="news.external_source"/></t>
+								</t>
+								</p>
+								<div style="margin-bottom:10px; font-size:0.9em !important;"><t t-raw="news.short_intro" /></div>
+								
+								<t t-if="news.external_source_url">
+									<a t-attf-href="{{news.external_source_url}}" align="right" target="_blank">Read more <i class="fa fa-caret-right"></i></a>
+								</t>
+								<t t-else="">
+									<a t-attf-href="/news/{{news.publish_date.strftime('%Y')}}/{{news.link_url}}" align="right">Read more <i class="fa fa-caret-right"></i></a>
+								</t>
+								
+							  </div>
+							</div>
+							</div>
+							<t t-set="row_count" t-value="row_count + 1" />
+							</t>
+							<div class="margin30"> </div>
+				
+							<div id="loadMoreNews" style="text-align:center">
+							  <a href="#" class="learn-more-btn">View <span class="remaining_news"></span> more news ...</a>
+							</div>
+						</t>
+						
+					  </div>
+
+					  <!--<t t-call="website_5b.news_right_sidebar" />-->
+					  
+					</div>
+
+				  </div>
+				</section><!-- End Events Section -->
+			  </main><!-- End #main -->
+        </div>
+      </t>
+    </template>
+	
+	<template id="news_details_left_sidebar">
+		<div style="padding: 10px 10px 20px 10px;">
+		<div class="row">
+		  <div class="col-12">
+			<h5><t t-esc="news.title" /></h5>
+			<p style="font-size:0.7em; font-style:italic">Published: <t t-esc="news.publish_date.strftime('%B %Y')"/>
+				<!--<t t-if="news.external_source"><br />Source: 
+					<t t-if="news.external_source_url"><a t-attf-href="{{news.external_source_url}}" t-attf-target="_blank"><t t-esc="news.external_source"/></a></t>
+					<t t-else=""><t t-esc="news.external_source"/></t>
+				</t>-->
+			</p>
+			<img t-attf-src="/theme_5b/static/img/5B-Cobargo-RoughEdit-281-scaled.jpg" style="max-width:100%; height:auto;" t-attf-alt="{{ news.title }}" />
+			
+			<p class="card-text" style="font-size:0.8em;">
+			<t t-raw="news.description" />
+			</p>
+		  </div>
+		</div>
+		</div>
+	</template>
+	
+	<template id="news_list_left_sidebar">
+		
+		<div style="padding: 10px 10px 20px 10px; border-bottom:1px solid #d9d9d6;">
+		<div class="row">
+		  <div class="col-12 col-md-6 col-lg-6">
+			<img t-attf-src="/theme_5b/static/img/5B-Cobargo-RoughEdit-281-scaled.jpg" style="max-width:100%; height:auto;" t-attf-alt="{{ news.title }}" />
+		  </div>
+		  <div class="col-12 col-md-6 col-lg-6">
+			<h5><a t-attf-href="/news/{{news.publish_date.strftime('%Y')}}/{{news.link_url}}"><t t-esc="news.title" /></a></h5>
+			<p style="font-size:0.7em; font-style:italic">Published: <t t-esc="news.publish_date.strftime('%B %Y')"/>
+				<!--<t t-if="news.external_source"> | Source: 
+					<t t-if="news.external_source_url"><a t-attf-href="{{news.external_source_url}}" target="_blank"><t t-esc="news.external_source"/></a></t>
+					<t t-else=""><t t-esc="news.external_source"/></t>
+				</t>-->
+			</p>
+			<div style="font-size:0.8em; margin-bottom:10px;"><t t-raw="news.short_intro" /></div>
+			<a t-attf-href="/news/{{news.publish_date.strftime('%Y')}}/{{news.link_url}}" align="right">Read more <i class="fa fa-caret-right"></i></a>
+		  </div>
+		</div>
+		</div>
+
+	</template>
+	
+	<template id="news_right_sidebar">
+		<div class="col-lg-3 d-none d-lg-block align-items-stretch"  style="border-left:1px solid #d9d9d6;">
+					  
+		<div class="section-title" style="margin-bottom:0; padding-bottom:10px">
+		  <h6><strong>Recent News</strong></h6>
+		</div>
+		<t t-foreach="request.env['website.news.5b'].sudo().search([('is_publish', '=',  True)], limit = 12, order = 'publish_date desc')" t-as="news" >
+		<div style="padding:10px; 0 10px 0; border-bottom:1px solid #d9d9d6;">
+		  <h6 style=" font-size:0.9em; line-height:2em;"><a t-attf-href="/news/{{news.publish_date.strftime('%Y')}}/{{news.link_url}}"><t t-esc="news.title" /></a></h6>
+		  <p style="font-size:0.7em; font-style:italic">Published: <t t-esc="news.publish_date.strftime('%B %Y')"/>
+				<!--<t t-if="news.external_source"><br />Source: 
+					<t t-if="news.external_source_url">
+						<a t-attf-href="{{news.external_source_url}}" target="_blank">
+							<t t-if="news.external_source_logo">
+								<img t-att-src="image_data_uri(news.external_source_logo.datas)" />
+							</t>
+							<t t-if="not news.external_source_logo">
+								<t t-esc="news.external_source"/>
+							</t>
+						</a>
+					</t>
+					<t t-else=""><t t-esc="news.external_source"/></t>
+				</t>-->
+			</p>
+		</div>
+		</t>
+		<br /><br /><br />
+		<div class="section-title" style="margin-bottom:0; padding-top:10px; padding-bottom:10px">
+		  <h6><strong>Archive</strong></h6>
+		</div>
+		<t t-foreach="range(int(datetime.datetime.now().strftime('%Y')) -1, 2018, -1)" t-as="i">
+			<div style="padding-top:10px; border-bottom:1px solid #d9d9d6;">
+			  <h6><a t-attf-href="/news/{{i}}"><t t-esc="i" /></a></h6>
+			</div>
+		</t>
+	  </div>
+	</template>
+
+  </data>
+</odoo>

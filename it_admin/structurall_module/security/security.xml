@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="editar_descuentos_group" model="res.groups">
+        <field name="name">Editar Descuentos</field>
+    </record>
+    <record id="confirmar_pedidos_group" model="res.groups">
+        <field name="name">Confirmar pedidos</field>
+    </record>
+    <record id="groups_restrict_price_change" model="res.groups">
+        <field name="name">Permitir modificar precios</field>
+    </record>
+    <record id="groups_sales_team_change" model="res.groups">
+        <field name="name">Permitir modificar datos en sucursales</field>
+    </record>
+    <record id="allow_change_pricelist" model="res.groups">
+        <field name="name">Permitir cambiar tarifas y vendedores</field>
+    </record>
+    <record id="allow_change_payment_terms" model="res.groups">
+        <field name="name">Permitir cambiar terminos de pago</field>
+    </record>
+
+    <record id="allow_change_deposito_pagado" model="res.groups">
+        <field name="name">Modificar campo deposito pagado</field>
+    </record>
+</odoo>

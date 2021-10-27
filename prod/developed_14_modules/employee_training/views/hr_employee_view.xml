@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>	
+		<record model="ir.ui.view" id="hr_employee_inherit_training_form">
+            <field name="name">hr.employee.trainings.form</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <data>
+                	<xpath expr="//notebook" position="inside">
+                		<page string="Trainings" >
+                			<field name="training_ids" colspan="4" nolable="1" context="{'default_employee_id':id}"> <!-- readonly="1" -->
+                				<tree>
+	                				<field name="name" string="Training Name"/>
+	                				<field name="start_date" />
+	                				<field name="trainer_id" />
+	                				<field name="trainer_signature" widget="image" height="90"/>
+	                				<field name="employee_signature" widget="image" height="90"/>
+	                				<field name="state" />
+	                				<button string="Open Wiki" type="object" name="action_open_wiki_page" />
+                				</tree>
+                			</field>
+                		</page>
+                	</xpath>
+                	
+                </data>
+            </field>
+        </record>
+</odoo>

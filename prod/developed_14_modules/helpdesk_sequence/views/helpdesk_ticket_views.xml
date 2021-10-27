@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="helpdesk_ticket_view_form_inherit" model="ir.ui.view">
+            <field name="name">helpdesk.ticket.form - Sequence No.</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
+            <field name="priority">18</field>
+            <field name="arch" type="xml">
+            	<button name="assign_ticket_to_self" position="after">
+            		<button name="assign_ticket_to_self_and_open" string="Assign to me &amp; Open" type="object" class="oe_highlight" groups="helpdesk.group_helpdesk_user"/>
+            	</button>
+                <field name="name" position="before">
+                    <span attrs="{'invisible': [('name_no', '=', False)]}">[<field name="name_no"/>] </span>
+                </field>
+            </field>
+        </record>
+
+        <record id="helpdesk_ticket_view_kanban_inherit" model="ir.ui.view">
+            <field name="name">helpdesk.helpdesk_ticket_view_kanban - Sequence</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_kanban"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@class='oe_kanban_content']/div/strong" position="replace">
+                    <!--The div in the middle is actually the second div so using div[2] (tested) might be a good idea.-->
+                    <strong><span attrs="{'invisible': [('name_no', '=', False)]}">[<field name="name_no"/>] </span><field name="name"/></strong>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="helpdesk_tickets_view_tree_inherit" model="ir.ui.view" >
+            <field name="name">helpdesk_tickets_view_tree - Sequence No.</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="inherit_id" ref="helpdesk.helpdesk_tickets_view_tree"/>
+            <field name="arch" type="xml">
+                <field name="display_name" position="before">
+                    <field name="name_no"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="helpdesk_tickets_view_search_inherit" model="ir.ui.view">
+            <field name="name">helpdesk.ticket.search - Sequence No.</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="inherit_id" ref="helpdesk.helpdesk_tickets_view_search"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="name_no"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

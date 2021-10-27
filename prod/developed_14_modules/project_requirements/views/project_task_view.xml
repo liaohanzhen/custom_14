@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>	
+	<record model="ir.ui.view" id="project_task_form2_inherit_project_requirements">
+	    <field name="name">project.task.form2.inherit.project.requirements</field>
+	    <field name="model">project.task</field>
+	    <field name="inherit_id" ref="project.view_task_form2"/>
+	    <field name="arch" type="xml">
+	        <data>
+	        	<field name="user_id" position="after">
+	        		<field name="requirement_ids" widget="many2many_tags" domain="[('project_id','=',project_id)]" context="{'default_project_id':project_id}"/>
+	        		<field name="is_template" invisible="1"/>
+	        		<field name="stage_template_id" invisible="1"/>
+	        	</field>
+	        	<field name="project_id" position="attributes">
+	        		<attribute name="invisible">context.get('default_is_template',False)</attribute>
+	        	</field>
+	        	
+	        </data>
+	    </field>
+	</record>
+</odoo>

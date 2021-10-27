@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+        <record id="eco_order_form_inherit_helpdesk_ticket" model="ir.ui.view">
+            <field name="name">form.eco.order.inherit.helpdesk.ticket</field>
+            <field name="model">mrp.eco</field>
+            <field name="inherit_id" ref="mrp_plm.mrp_eco_view_form" />
+            <field name="arch" type="xml">
+            	<field name='state' position="after">
+            		<field name="ticket_id" readonly="1" force_save="1"/>
+            	</field>
+            </field>
+        </record>
+    </data>
+    
+</odoo>

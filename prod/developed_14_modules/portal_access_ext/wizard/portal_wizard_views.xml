@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="portal_wizard_view_form_5b_australia" model="ir.ui.view">
+			<field name="name">portal.wizard.view.form.5b</field>
+			<field name="model">portal.wizard</field>
+			<field name="inherit_id" ref="portal.wizard_view"/>
+			<field name="arch" type="xml">
+				<xpath expr="//div[1]" position='before'>
+					<group>
+	                    <field name="portal_id" required="1" widget="selection"/>
+	                </group>
+				</xpath>
+				<xpath expr="//field[@name='user_ids']/tree/field[@name='in_portal']" position='after'>
+					<field name="portal_group_id" readonly='1' force_save='1'/>
+				</xpath>
+			</field>
+		</record>
+</odoo>

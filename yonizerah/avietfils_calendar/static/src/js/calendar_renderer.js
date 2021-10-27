@@ -2,6 +2,7 @@ odoo.define('avietfils_calendar.CalendarRendererTwo', function (require) {
     "use strict";
     var calendar = require('web.CalendarRenderer')
     var core = require('web.core');
+    var session = require('web.session');
     var calendarModel = require('web.CalendarModel');
     var _t = core._t;
     const { createYearCalendarView } = require('/web/static/src/js/libs/fullcalendar.js');
@@ -41,7 +42,8 @@ odoo.define('avietfils_calendar.CalendarRendererTwo', function (require) {
             if (typeof key === 'number' && !(key in this.color_map)) {
                 return this.color_map[key] = key;
             }
-            var index = (((_.keys(this.color_map).length + 1) * 5) % 24) + 1;
+//            var index = (((_.keys(this.color_map).length + 1) * 5) % 24) + 1;
+            var index = key.replace(' ','_').toLowerCase()
             this.color_map[key] = index;
             return index;
         },
@@ -125,6 +127,9 @@ odoo.define('avietfils_calendar.CalendarRendererTwo', function (require) {
                     var $render = $(self._eventRender(event));
                     element.find('.fc-content').html($render.html());
                     element.addClass($render.attr('class'));
+                    if(!(event.extendedProps.record.x_studio_field_3E2nL in session.allow_back_color)){
+                        element.addClass('o_cw_nobg');
+                    }
 
                     // Add background if doesn't exist
                     if (!element.find('.fc-bg').length) {
@@ -137,8 +142,7 @@ odoo.define('avietfils_calendar.CalendarRendererTwo', function (require) {
                         // note: add & remove 1 min to avoid issues with 00:00
                         var isSameDayEvent = moment(start).clone().add(1, 'minute').isSame(moment(end).clone().subtract(1, 'minute'), 'day');
                         if (!event.extendedProps.record.allday && isSameDayEvent) {
-                            // For month view: do not show background for non allday, single day events
-//                            element.addClass('o_cw_nobg');
+                            // For month vie
                             if (event.extendedProps.showTime && !self.hideTime) {
                                 const displayTime = moment(start).clone().format(self._getDbTimeFormat());
                                 element.find('.fc-content .fc-time').text(displayTime);

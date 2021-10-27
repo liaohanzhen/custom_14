@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    	<record id="act_crm_lead_2_project_project" model="ir.actions.act_window">
+            <field name="name">Project</field>
+            <field name="res_model">project.project</field>
+            <!-- <field name="view_type">form</field> -->
+            <field name="view_mode">kanban,form</field>
+            <field name="context">{'search_default_lead_id': active_id}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Create a new project.
+                </p><p>
+                    Organize your activities (plan tasks, track issues, invoice timesheets) for internal, personal or customer projects.
+                </p>
+            </field>
+        </record>
+        <record id="crm_case_kanban_view_leads_aureliehocquel" model="ir.ui.view">
+        	<field name="name">crm.lead.kanban.aureliehocquel</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_case_kanban_view_leads"/>
+            <field name="arch" type="xml">
+            	<field name="expected_revenue" position="after">
+            		<field name="project_power"/>
+            	</field>
+            	<xpath expr="//progressbar[@field='activity_state']" position="replace">
+            		<progressbar field="activity_state" colors='{"planned": "success", "today": "warning", "overdue": "danger"}' sum_field="expected_revenue" sum_field_mw='project_power'/>
+            	</xpath>
+        	</field>
+       	</record>
+    	<record id="view_crm_lead_form_inherit_aureliehocquel" model="ir.ui.view">
+            <field name="name">crm.lead.form.aureliehocquel</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+            <field name="arch" type="xml">
+            	<xpath expr="//div[@name='button_box']" position="inside">
+            		<button class="oe_stat_button" type="action" name="%(crm_5b_erp_ext.act_crm_lead_2_project_project)d" 
+                        icon="fa-tasks">
+                        <field string="Projects" name="project_count" widget="statinfo"/>
+                    </button>     
+                </xpath>
+                <xpath expr="//field[@name='phone']" position="after">
+                    <field name="pipeline_category" />     
+                    <field name="top5_opportunity" /> 
+                    <field name='sales_region' />
+                </xpath>
+            	<xpath expr="//div[@class='oe_title']/h1" position="after">
+            		<h3 class="o_row"><field name="project_code" /></h3>
+            		<h3 class="o_row">
+            			<field name="sop" />
+            			<div>
+            				<label for="sop" />
+            			</div>
+            		</h3>
+            	</xpath>
+            	<field name="partner_id" position="after">
+            		<field name="end_user_id" />
+            		<field name="project_power_calc" />
+            		<field name="project_power" attrs="{'invisible': [('project_power_calc','=','Manual')]}"/>
+            		<field name="project_power_manual" attrs="{'invisible': [('project_power_calc','!=','Manual')]}" string='Project Power'/>
+            		<field name="project_location" />
+            		<field name="incoterms_id" />
+            	</field>
+            	<field name="date_deadline" position="attributes">
+            		<attriubute name="invisible">1</attriubute>
+            	</field>
+            	<field name="user_id" position="replace"></field>
+            	<field name="date_deadline" position="after">
+            		<field name="company_id" string="5B Entity"/>
+            		<field name="user_id" string="Sales Manager"/>
+            		<field name="project_eng_id" />
+            		<field name="deployment_manager_id" />
+            	</field>
+            	<field name="team_id" position="before">
+            		<field name="application_type" />
+            		<field name="likely_to_be_redeployed" />
+            	</field>
+            	<field name="priority" position="attributes">
+            		<attribute name="string">Project rating</attribute>
+            	</field>
+            	<xpath expr="//notebook/page[1]" position="before">
+            		<page string="Technical Specs">
+            			<group>
+            				<group string="MAV solar array">
+            					<field name="product_categ_id_mav" domain="[('complete_name','ilike','All / Saleable / MAV Solar array')]"/>
+            					<field name="product_id_mav" domain="[('sale_ok','=',True), ('categ_id','=',product_categ_id_mav), ('is_mav','=',True)]" context="{'default_is_mav':True,'default_product_categ_id_mav':product_categ_id_mav,'default_sale_ok':True}"/>
+            					<field name="no_of_units_mav" />
+            				</group>
+            				<group string="Inverters">
+            					<field name="product_id_inv" domain="[('categ_id.complete_name','ilike','All / Saleable / Inverters')]"/>
+            					<field name="inverter_power" />
+            					<field name="no_of_units_inv" />
+            				</group>
+            			</group>
+            			<group>
+            				<group string="Modules">
+            					<field name="product_id_mod" domain="[('categ_id.complete_name','ilike','All / Saleable / Modules')]"/>
+            					<field name="module_power" attrs="{'invisible': [('project_power_calc','=','Manual')]}"/>
+            					<field name="no_of_units_mod" attrs="{'invisible': [('project_power_calc','=','Manual')]}"/>
+            				</group>
+            				<group string="Wingman">
+            					<field name="product_id_wingman" domain="[('categ_id.complete_name','ilike','All / Saleable / Wingman')]"/>
+            					<field name="no_of_units_wingman" />
+            				</group>
+            			</group>
+            		</page>
+            		<page string="Decision Makers" name="decision_makers">
+            			<field name="decision_maker_ids" colspan="4" nolabel="1">
+            				<tree string="Decision Makers" editable="bottom">
+            					<field name="role" />
+            					<field name="name" />
+            					<field name="last_time_met" />
+            					<field name="score" />
+            					<field name="comments" />
+            				</tree>
+            			</field>
+            		</page>
+            		<page string="Project Viability" name="project_viability">
+            			<group col="9">
+            				<label for="question_1_ans" colspan="4"/>
+            				<field name="question_1_ans" nolabel="1"/>
+                            <field name="question_1_score" nolabel="1"/>
+                            <field name="question_1_comment" placeholder="Comment.." colspan="3" nolabel="1"/>
+                            
+                            <label for="question_2_ans" colspan="4"/>
+                            <field name="question_2_ans" nolabel="1"/>
+                            <field name="question_2_score" nolabel="1"/>
+                            <field name="question_2_comment" placeholder="Comment.." colspan="3" nolabel="1"/>
+                            
+                            <label for="question_3_ans" colspan="4"/>
+                            <field name="question_3_ans" nolabel="1"/>
+                            <field name="question_3_score" nolabel="1"/>
+                            <field name="question_3_comment" placeholder="Comment.." colspan="3" nolabel="1"/>
+                            
+                            <label for="question_4_ans" colspan="4"/>
+                            <field name="question_4_ans" nolabel="1"/>
+                            <field name="question_4_score" nolabel="1"/>
+                            <field name="question_4_comment" placeholder="Comment.." colspan="3" nolabel="1"/>
+            			</group>
+            		</page>
+            		<page string="Scope of work &amp; pricing" name="scope_of_work_and_pricing">
+            			<group col="8">
+            				<label for="total_price_full_scope" colspan="3"/>
+            				<field name="total_price_full_scope" widget="monetary" options="{'currency_field': 'company_currency'}" nolabel="1"/>
+            				<field name="total_price_full_scope_per"  nolabel="1"/>
+            				<span colspan="3" />
+            				
+            				<label for="total_margin_full_scope" colspan="3"/>
+            				<field name="total_margin_full_scope" widget="monetary" options="{'currency_field': 'company_currency'}" nolabel="1"/>
+           					<field name="total_margin_full_scope_per" nolabel="1"/>
+           					<div class="o_row">
+           						<field name="margin_percent" nolabel="1"/><span>%</span>	
+           					</div>
+           					
+           					<span colspan="2" />
+            				
+            			</group>
+            			<group class="border_bottom_group_name" col="8">
+            				<label class="border_bottom_label_name" for="maverick_ecosystem_supply" colspan="3"/>
+            				<field name="maverick_ecosystem_supply" widget="monetary" options="{'currency_field': 'company_currency'}" nolabel="1"/>
+            				<field name="maverick_ecosystem_supply_per" nolabel="1"/>
+            				<span colspan="3" />
+            				
+            			</group>
+            			<group col="8">
+            				<label for="mav_supply" colspan="3"/>
+            				<field name="mav_supply" widget="monetary" options="{'currency_field': 'company_currency'}" nolabel="1" />
+           					<field name="mav_supply_per" nolabel="1" />
+           					<field name="mav_supply_comment" placeholder="Comment.." nolabel="1" colspan="3"/>
+           					
+            				<label for="module_supply" colspan="3"/>
+            				<field name="module_supply" widget="monetary" options="{'currency_field': 'company_currency'}" nolabel="1" />
+           					<field name="module_supply_per" nolabel="1" />
+           					<field name="module_supply_comment" placeholder="Comment.." nolabel="1" colspan="3"/>
+            				
+            				<label for="inverter_supply" colspan="3"/>
+            				<field name="inverter_supply" widget="monetary" options="{'currency_field': 'company_currency'}" nolabel="1" />
+           					<field name="inverter_supply_per" nolabel="1" />
+           					<field name="inverter_supply_comment" placeholder="Comment.." nolabel="1" colspan="3"/>
+            				
+            				<label for="wingman_supply" colspan="3"/>
+            				<field name="wingman_supply" widget="monetary" options="{'currency_field': 'company_currency'}" nolabel="1" />
+           					<field name="wingman_supply_per" nolabel="1" />
+           					<field name="wingman_supply_comment" placeholder="Comment.." nolabel="1" colspan="3"/>
+            				
+            				<label for="dc_equipment_supply" colspan="3"/>
+            				<field name="dc_equipment_supply" widget="monetary" options="{'currency_field': 'company_currency'}" nolabel="1" />
+           					<field name="dc_equipment_supply_per" nolabel="1" />
+           					<field name="dc_equipment_supply_comment" placeholder="Comment.." nolabel="1" colspan="3"/>
+            				
+            				<label for="ac_equipment_supply" colspan="3"/>
+            				<field name="ac_equipment_supply" widget="monetary" options="{'currency_field': 'company_currency'}" nolabel="1" />
+           					<field name="ac_equipment_supply_per" nolabel="1" />
+           					<field name="ac_equipment_supply_comment" placeholder="Comment.." nolabel="1" colspan="3"/>
+           					
+            				<label for="monitoring_solution" colspan="3"/>
+            				<field name="monitoring_solution" widget="monetary" options="{'currency_field': 'company_currency'}" nolabel="1" />
+           					<field name="monitoring_solution_per" nolabel="1" />
+           					<field name="monitoring_solution_comment" placeholder="Comment.." nolabel="1" colspan="3"/>
+            				
+            			</group>
+            			<group string="Transport" col="8" class="border_bottom_group_name">
+            				<label for="freight" colspan="3"/>
+            				<field name="freight" widget="monetary" options="{'currency_field': 'company_currency'}" nolabel="1"/>
+           					<field name="freight_per" nolabel="1"/>
+           					<field name="freight_comment" placeholder="Comment.." colspan="3" nolabel="1"/>
+            				
+            			</group>
+            			<group  class="border_bottom_group_name" col="8">
+            				<label class="border_bottom_label_name" for="engineering_services" colspan="3"/>
+            				<field name="engineering_services" widget="monetary" options="{'currency_field': 'company_currency'}" nolabel="1"/>
+            				<field name="engineering_services_per" nolabel="1"/>
+            				<span colspan="3" />
+            				
+            			</group>
+            			<group col="8">
+            				<label for="indicative_project_layout" colspan="3"/>
+            				<field name="indicative_project_layout" widget="monetary" options="{'currency_field': 'company_currency'}" nolabel="1"/>
+           					<field name="indicative_project_layout_per"  nolabel="1"/>
+           					<field name="indicative_project_layout_comment" placeholder="Comment.." colspan="3" nolabel="1"/>
+           					
+            				<label for="yield_report" colspan="3"/>
+            				<field name="yield_report" widget="monetary" options="{'currency_field': 'company_currency'}" nolabel="1"/>
+           					<field name="yield_report_per" nolabel="1"/>
+           					<field name="yield_report_comment" placeholder="Comment.." colspan="3" nolabel="1"/>
+            				
+            				<label for="site_survey_with_drone" colspan="3"/>
+            				<field name="site_survey_with_drone" widget="monetary" options="{'currency_field': 'company_currency'}" nolabel="1"/>
+           					<field name="site_survey_with_drone_per" nolabel="1"/>
+           					<field name="site_survey_with_drone_comment" placeholder="Comment.." colspan="3" nolabel="1"/>
+            				
+            				<label for="detailed_project_layout" colspan="3"/>
+            				<field name="detailed_project_layout" widget="monetary" options="{'currency_field': 'company_currency'}" nolabel="1"/>
+           					<field name="detailed_project_layout_per" nolabel="1"/>
+           					<field name="detailed_project_layout_comment" placeholder="Comment.." colspan="3" nolabel="1"/>
+            				
+            				<label for="technical_doc_package" colspan="3"/>
+            				<field name="technical_doc_package" widget="monetary" options="{'currency_field': 'company_currency'}" nolabel="1"/>
+           					<field name="technical_doc_package_per"  nolabel="1"/>
+           					<field name="technical_doc_package_comment" placeholder="Comment.." colspan="3" nolabel="1"/>
+            				
+            				<label for="specific_eng_study" colspan="3"/>
+            				<field name="specific_eng_study" widget="monetary" options="{'currency_field': 'company_currency'}" nolabel="1"/>
+           					<field name="specific_eng_study_per" nolabel="1"/>
+           					<field name="specific_eng_study_comment" placeholder="Comment.." colspan="3" nolabel="1"/>
+            				
+            			</group>
+            			
+            			<group class="border_bottom_group_name" col="8">
+            				<label class="border_bottom_label_name" for="deployment_services" colspan="3"/>
+            				<field name="deployment_services" widget="monetary" options="{'currency_field': 'company_currency'}" nolabel="1"/>
+            				<field name="deployment_services_per" nolabel="1"/>
+            				<span colspan="3" />
+            				
+            			</group>
+            			<group col="8">
+            				<label for="mav_deployment" colspan="3"/>
+            				<field name="mav_deployment" widget="monetary" options="{'currency_field': 'company_currency'}" nolabel="1"/>
+           					<field name="mav_deployment_per" nolabel="1"/>
+           					<field name="mav_deployment_comment" placeholder="Comment.." colspan="3" nolabel="1"/>
+            				
+            				<label for="mav_deployment_support" colspan="3"/>
+            				<field name="mav_deployment_support" widget="monetary" options="{'currency_field': 'company_currency'}" nolabel="1"/>
+           					<field name="mav_deployment_support_per" nolabel="1"/>
+           					<field name="mav_deployment_support_comment" placeholder="Comment.." colspan="3" nolabel="1"/>
+            				
+            				<label for="dc_electrical_work" colspan="3"/>
+            				<field name="dc_electrical_work" widget="monetary" options="{'currency_field': 'company_currency'}" nolabel="1"/>
+           					<field name="dc_electrical_work_per" nolabel="1"/>
+           					<field name="dc_electrical_work_comment" placeholder="Comment.." colspan="3" nolabel="1"/>
+            				
+            				<label for="ac_electrical_work" colspan="3"/>
+            				<field name="ac_electrical_work" widget="monetary" options="{'currency_field': 'company_currency'}" nolabel="1"/>
+           					<field name="ac_electrical_work_per" nolabel="1"/>
+           					<field name="ac_electrical_work_comment" placeholder="Comment.." colspan="3" nolabel="1"/>
+            				
+            				<label for="construction_misc" colspan="3"/>
+            				<field name="construction_misc" widget="monetary" options="{'currency_field': 'company_currency'}" nolabel="1"/>
+           					<field name="construction_misc_per" nolabel="1"/>
+           					<field name="construction_misc_comment" placeholder="Comment.." colspan="3" nolabel="1"/>
+            				
+            			</group>
+            			<group class="border_bottom_group_name" col="8">
+            				<label class="border_bottom_label_name" for="operation_and_maintenance_ser" colspan="3"/>
+            				<field name="operation_and_maintenance_ser" widget="monetary" options="{'currency_field': 'company_currency'}" nolabel="1"/>
+            				<field name="operation_and_maintenance_ser_per" nolabel="1"/>
+            				<span colspan="3" />
+            				
+            			</group>
+            			<group col="8">
+            				<label for="monitoring_and_reporting" colspan="3"/>
+            				<field name="monitoring_and_reporting" widget="monetary" options="{'currency_field': 'company_currency'}" nolabel="1"/>
+           					<field name="monitoring_and_reporting_per" nolabel="1"/>
+           					<field name="monitoring_and_reporting_comment" placeholder="Comment.." colspan="3" nolabel="1"/>
+            				
+            				<label for="preventive_maintenance" colspan="3"/>
+            				<field name="preventive_maintenance" widget="monetary" options="{'currency_field': 'company_currency'}" nolabel="1"/>
+           					<field name="preventive_maintenance_per" nolabel="1"/>
+           					<field name="preventive_maintenance_comment" placeholder="Comment.." colspan="3" nolabel="1"/>
+            				
+            				<label for="corrective_maintenance" colspan="3"/>
+            				<field name="corrective_maintenance" widget="monetary" options="{'currency_field': 'company_currency'}" nolabel="1"/>
+           					<field name="corrective_maintenance_per" nolabel="1"/>
+           					<field name="corrective_maintenance_comment" placeholder="Comment.." colspan="3" nolabel="1"/>
+            				
+            			</group>
+            		</page>
+            		<page string="Planning">
+            			<group col="5">
+            				<label colspan="2" for="start_date_contract_signing" string=""/>
+            				<label for="start_date_contract_signing" string="Start Date" />
+            				<label for="end_date_contract_signing" string="End Date" />
+            				<label for="end_date_contract_signing" string=""/>
+            				
+            				<label for="start_date_contract_signing" string="Purchase order / contract signing" colspan="2"/>
+            				<field name="start_date_contract_signing" placeholder="Start Date" nolabel="1"/>
+            				<field name="end_date_contract_signing" placeholder="End Date" nolabel="1"/>
+            				<!-- <label for="" string=""/> -->
+            				
+            				<label for="start_date_production" string="Production" colspan="2"/>
+            				<field name="start_date_production" placeholder="Start Date" nolabel="1"/>
+            				<field name="end_date_production" placeholder="End Date" nolabel="1"/>
+            				<!-- <label for="" string=""/> -->
+            				
+            				<label for="start_date_deliveries" string="Deliveries" colspan="2"/>
+            				<field name="start_date_deliveries" placeholder="Start Date" nolabel="1"/>
+            				<field name="end_date_deliveries" placeholder="End Date" nolabel="1"/>
+            				<!-- <label for="" string=""/> -->
+            				
+            				<label for="start_date_deployment_work" string="Deployment &amp; work" colspan="2"/>
+            				<field name="start_date_deployment_work" placeholder="Start Date" nolabel="1"/>
+            				<field name="end_date_deployment_work" placeholder="End Date" nolabel="1"/>
+            				<!-- <label for="" string=""/> -->
+            				
+            				<label for="start_date_commissioning" string="Commissioning" colspan="2"/>
+            				<field name="start_date_commissioning" placeholder="Start Date" nolabel="1"/>
+            				<field name="end_date_commissioning" placeholder="End Date" nolabel="1"/>
+            				<!-- <label for="" string=""/> -->
+            				<div class="o_row" name="start_date_commissioning">
+            					<field name="start_date_commissioning" placeholder="Start Date"/>
+            					<field name="end_date_commissioning" placeholder="End Date"/>
+            				</div>
+            			</group>
+            		</page>
+            	</xpath>
+            </field>
+        </record>
+        <record id="view_crm_case_opportunities_filter_inherit" model="ir.ui.view">
+            <field name="name">crm.lead.form.aureliehocquel</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.view_crm_case_opportunities_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='assigned_to_me']" position="replace">
+                    
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-inherit="mail.AttachmentBox" t-inherit-mode="extension">
+        <xpath expr="//button[hasclass('o_AttachmentBox_buttonAdd')]" position="after">
+            <t t-if="thread.isCloudSynced">
+                <button class="o_AttachmentBox_buttonCloudFolder btn btn-link" type="button" t-on-click="_onOpenCloudFolder">
+                    <i class="fa fa-cloud"/>
+                    Open Cloud Folder
+                </button>
+            </t>
+        </xpath>
+    </t>
+
+</templates>

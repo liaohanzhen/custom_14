@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    
+    <record id="paperformat_structurall_recibo" model="report.paperformat">
+        <field name="name">Recibo Deposito Letter</field>
+        <field name="default" eval="True" />
+        <field name="format">Letter</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">20</field>
+        <field name="margin_bottom">20</field>
+        <field name="margin_left">14</field>
+        <field name="margin_right">14</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">15</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <!--Contrato Determinado-->
+    <report
+    id="report_recibo_structurall"
+    model="contract.contract"
+    string="Recibo Deposito"
+    report_type="qweb-pdf"
+    name="structurall_module.recibo_structurall"
+    file="recibo"
+    paperformat="paperformat_structurall_recibo"
+    />
+	
+	<record id="contract.email_contract_template" model="mail.template">
+    	<field name="report_template" ref="structurall_module.report_recibo_structurall"/>
+    	<field name="report_name">Recibo Deposito</field>
+    </record>
+    
+    <!--CONTRATO EXTERNAL LAYOUT-->
+    <template id="recibo_external_layout_contract">
+         <!-- Multicompany -->
+            <t t-if="not o and doc">
+                <t t-set="o" t-value="doc" />
+            </t>
+            <t t-if="o and 'company_id' in o">
+                <t t-set="company" t-value="o.company_id"></t>
+            </t>
+            <t t-if="not o or not 'company_id' in o">
+                <t t-set="company" t-value="res_company"></t>
+            </t>
+
+        <div class="header">
+            <div class="row">
+                <div class="col-6">
+                    <img t-if="docs.company_id.logo" t-att-src="'data:image/png;base64,%s' % to_text(docs.company_id.logo)"
+                        style="max-height: 180px;max-width: 180px;" />
+                </div>
+                    <!--TERMINA DIV INFORMACIÓN GENERAL-->
+
+                <!--EMPIEZA DATOS DEL EMISOR-->
+                <div class="col-6" style="font-size:13px;" >
+                    <h2>ADENDUM 1</h2>
+                    <strong>STRUCTURALL SONORA S.A. DE C.V.</strong>
+                    <br/>
+                    Paseo rio sonora oriente s/n <br/>
+                    Col Hacienda de la Flor  <br/>
+                    Hermosillo, Sonora, Mexico<br/>
+                    Tel. (662) 262-50-00
+                </div>
+                    <!--TERMINA DATOS DEL EMISOR-->
+            </div>
+            
+        </div>
+
+        <div class="article o_report_layout_standard" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id">
+            <t t-call="web.address_layout"/>
+            <t t-raw="0" />
+        </div>
+
+        <!--EMPIEZA EL FOOTER *ESTA BIEN*-->
+        <div class="footer">
+            
+        </div>
+        
+        <!--TERMINA EL FOOTER-->
+
+
+    </template>
+
+    <template id="recibo_structurall">
+        <t t-call="web.html_container">
+        <t t-call="structurall_module.recibo_external_layout_contract">
+            <div class="page"> 
+                <div class="oe_structure"/>
+                        
+                <div style="font-size:18px;text-align:justify">
+                    <br/><br/><br/><br/>
+
+                    <div style="text-align:right;">BUENO POR $<span t-field="docs.deposito_garantia" t-options='{"widget": "monetary", "display_currency": docs.currency_id}'/></div> <br/><br/>
+
+                    <span style="padding-left:5em">Recibí de <span t-field="docs.partner_id.name"/> CV la cantidad de $ <span t-field="docs.deposito_garantia" t-options='{"widget": "monetary", "display_currency": docs.currency_id}'/> (Son: <span t-esc="docs._get_amount_2_text(docs.deposito_garantia)" />), por concepto de DEPOSITO EN GARANTIA de la unidad en renta con número de serie: <t t-foreach="docs.contract_line_fixed_ids" t-as="l"> <t t-if="l.no_serie"><span t-field="l.no_serie"/>, </t></t>  según el contrato de arrendamiento   <span t-field="docs.name_serie"/>; mismo que se le será devuelto al término del contrato, siempre y cuando se hayan cubierto en su totalidad las facturas correspondientes al arrendamiento, si hubiera cargos por mantenimiento o daños que presente la(s) caseta(s) arrendada deberán ser liquidados en los 30 días posteriores a la devolución de la(s) caseta(s), para que proceda la devolución del depósito en garantía.</span> <br/><br/><br/><br/><br/><br/>
+
+                    <div style="width:100%;text-align:right;"><span t-field="docs.team_id.direccion"/> a <span t-esc="docs.date_start.strftime('%A, %d de %B del %Y')" style="text-transform: uppercase;"/>.</div>
+                </div>
+
+    
+            </div>
+
+        </t>
+        </t>
+    </template>
+
+
+</data>
+
+</odoo>

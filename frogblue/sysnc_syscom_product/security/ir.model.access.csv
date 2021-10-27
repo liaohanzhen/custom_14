@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_syscom_category,Access.syscom.category,model_syscom_category,,1,1,1,1
+access_syscom_brand,access.syscom.brand,model_syscom_brand,,1,1,1,1

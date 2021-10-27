@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+		<record id="mavpod" model="selection.booking">
+            <field name="name">MAVPOD</field>
+        </record>
+        <record id="section_a" model="selection.booking">
+            <field name="name">Section A</field>
+        </record>
+        <record id="section_b" model="selection.booking">
+            <field name="name">Section B</field>
+        </record>
+        <record id="section_c" model="selection.booking">
+            <field name="name">Section C</field>
+        </record>
+        <record id="storage" model="selection.booking">
+            <field name="name">Storage</field>
+        </record>
+        <record id="driveway" model="selection.booking">
+            <field name="name">Driveway</field>
+        </record>
+        
+        <!--  request.refer table selection data -->
+        <record id="delivery" model="request.refer">
+            <field name="name">Delivery</field>
+        </record>
+        <record id="pickup" model="request.refer">
+            <field name="name">Pick up</field>
+        </record>
+        <record id="delivery_pickup_equipment" model="request.refer">
+            <field name="name">Delivery/pick up And equipment hire</field>
+        </record>
+        <record id="equipment_use_only" model="request.refer">
+            <field name="name">Equipment use only</field>
+        </record>
+        <record id="stock_movement" model="request.refer">
+            <field name="name">Stock movement</field>
+        </record>
+        <record id="section_booking" model="request.refer">
+            <field name="name">Section booking</field>
+        </record>
+        
+        <!--  Requirements table selection data --> 
+        <record id="time_critical" model="requirements">
+            <field name="name">Time critical</field>
+        </record>
+        <record id="clear_driveway" model="requirements">
+            <field name="name">Clear driveway</field>
+        </record>
+        <record id="forklift_2_5t" model="requirements">
+            <field name="name">Forklift 2.5t</field>
+        </record>
+        <record id="forklift_6t" model="requirements">
+            <field name="name">Forklift 6t</field>
+        </record>
+        <record id="pallet_jack" model="requirements">
+            <field name="name">Pallet jack</field>
+        </record>
+        <record id="tool_kit" model="requirements">
+            <field name="name">Tool kit</field>
+        </record>
+        <record id="drill_press" model="requirements">
+            <field name="name">Drill press</field>
+        </record>
+        <record id="sand_saw" model="requirements">
+            <field name="name">Band saw</field>
+        </record>
+        <record id="inform_requester" model="requirements">
+            <field name="name">Inform the requester immediately upon arrival</field>
+        </record>
+        <record id="labor_assistance" model="requirements">
+            <field name="name">Labour assistance (add comment)</field>
+        </record>
+        <record id="factory_floor_space" model="requirements">
+            <field name="name">Factory floor space - describe below</field>
+        </record>
+        <record id="other_describe" model="requirements">
+            <field name="name">Other - describe below</field>
+        </record>
+        
+</odoo>

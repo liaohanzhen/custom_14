@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<odoo>
+    <data>
+	</data>
+</odoo> -->
+ <templates id="template" xml:space="preserve">
+	<t t-name="CustomActionMenuReplace" t-inherit="web.ActionMenus" t-inherit-mode="extension" owl="1">
+		<xpath expr="//div[hasclass('o_cp_action_menus')]" position="replace">
+			<div class="o_cp_action_menus" t-on-item-selected.stop="_onItemSelected">
+				<script>console.log("I am here in action patch")</script>
+				<DropdownMenu t-if="printItems"
+					title="env._t('Print1')"
+					items="printItems"
+					icon="'fa fa-print'"
+				/>
+				<DropdownMenu t-if="actionItems"
+					title="env._t('Action1')"
+					items="actionItems"
+					icon="'fa fa-cog'"
+					closeOnSelected="true"
+				/>
+			</div>
+		</xpath>
+	</t>
+</templates>
+
+

@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="frogblue_report_layout" inherit_id="web.report_layout" primary="True">
+        <xpath expr="//head" position="inside">
+            <link href="/frogblue_reports/static/src/css/layouts.css" rel="stylesheet"/>
+        </xpath>
+    </template>
+
+    <template id="frogblue_html_container">
+        <t t-set="body_classname" t-value="'container'"/>
+        <t t-call="frogblue_reports.frogblue_report_layout">
+            <t t-raw="0"/>
+        </t>
+    </template>
+
+    <!-- External layouts styles -->
+
+    <template id="frogblue_external_layout_header">
+        <div class="header">
+            <div class="cut-lines"/>
+            <div class="header_image">
+                <div class="top_info_left">
+                    <img src="/frogblue_reports/static/src/img/frogblue_logo_new_right.jpg" style="height:70px;"/>
+                    <div style="clear: both;"/>
+                </div>
+                <div class="top_info_right">
+                    <img src="/frogblue_reports/static/src/img/frogblue_logo_new_left.jpg" style="height:70px;"/>
+                    <div style="clear: both;"/>
+                </div>
+                <div class="top_info_left"/>
+                <div class="top_info_right">
+                    <img src="/frogblue_reports/static/src/img/frogblue_logo_new_right_subhead.jpg" style="height:70px;"/>
+                    <div style="clear: both;"/>
+                </div>
+            </div>
+        </div>
+        <div class="article">
+            <t t-raw="0" />
+        </div>
+    </template>
+
+    <template id="frogblue_external_layout_footer">
+        <t t-set="o" t-value="doc.with_context({'lang':doc.partner_id.lang})"/>
+        <div class="footer">
+            <div>
+                <div t-raw="o.company_id.footer_report"/>
+            </div>
+<!--            <table class="footer_table">-->
+<!--                <tr class="footer_row1">-->
+<!--                    <td class="footer_col1">-->
+<!--                        <table>-->
+<!--                            <tr>-->
+<!--                                <td>-->
+<!--                                    <t t-if="o.company_id and o.company_id.name">-->
+<!--                                        <span t-esc="o.company_id.name" />-->
+<!--                                    </t>-->
+<!--                                </td>-->
+<!--                            </tr>-->
+<!--                            <tr>-->
+<!--                                <td>-->
+<!--                                    <t t-if="o.company_id and o.company_id.street">-->
+<!--                                        <span t-esc="o.company_id.street" />-->
+<!--                                    </t>-->
+<!--                                </td>-->
+<!--                            </tr>-->
+<!--                            <tr>-->
+<!--                                <td>-->
+<!--                                    <t t-if="o.company_id and o.company_id.zip">&lt;!&ndash;-->
+<!--                                        &ndash;&gt;<span t-esc="o.company_id.zip" />&lt;!&ndash;-->
+<!--                                        &ndash;&gt;<span> </span>&lt;!&ndash;-->
+<!--                                    &ndash;&gt;</t>&lt;!&ndash;-->
+<!--                                    &ndash;&gt;<t t-if="o.company_id and o.company_id.city">&lt;!&ndash;-->
+<!--                                        &ndash;&gt;<span t-esc="o.company_id.city" />&lt;!&ndash;-->
+<!--                                    &ndash;&gt;</t>&lt;!&ndash;-->
+<!--                                    &ndash;&gt;<t t-if="o.company_id and (o.company_id.zip or o.company_id.city)">&lt;!&ndash;-->
+<!--                                        &ndash;&gt;<span>, </span>&lt;!&ndash;-->
+<!--                                    &ndash;&gt;</t>&lt;!&ndash;-->
+<!--                                    &ndash;&gt;<t t-if="o.company_id and o.company_id.country_id and o.company_id.country_id.name">&lt;!&ndash;-->
+<!--                                        &ndash;&gt;<span t-field="o.company_id.country_id.name"/>&lt;!&ndash;-->
+<!--                                    &ndash;&gt;</t>-->
+<!--                                </td>-->
+<!--                            </tr>-->
+<!--                            <tr>-->
+<!--                                <td>Tel.:-->
+<!--                                    <t t-if="o.company_id and o.company_id.city">-->
+<!--                                        <span t-esc="o.company_id.phone" />-->
+<!--                                    </t>-->
+<!--                                </td>-->
+<!--                            </tr>-->
+<!--                            <tr>-->
+<!--                                <td>Mail:-->
+<!--                                    <t t-if="o.company_id and o.company_id.email">-->
+<!--                                        <a t-attf-href="mailto:{o.company_id.email}"><span t-field="o.company_id.email"/></a>-->
+<!--                                    </t>-->
+<!--                                </td>-->
+<!--                            </tr>-->
+<!--                            <tr>-->
+<!--                                <td>-->
+<!--                                    <t t-if="o.company_id and o.company_id.website">-->
+<!--                                        <a t-attf-href="mailto:{o.company_id.website}"><span t-field="o.company_id.website"/></a>-->
+<!--                                    </t>-->
+<!--                                </td>-->
+<!--                            </tr>-->
+<!--                        </table>-->
+
+<!--                    </td>-->
+<!--                    <td class="footer_col2">-->
+<!--                        <table>-->
+<!--                            <t t-if="o.company_id.report_footer">-->
+<!--                                <t t-foreach="o.company_id.report_footer.split('\n')" t-as="col2_row">-->
+<!--                                    <tr>-->
+<!--                                        <td>-->
+<!--                                            <span t-esc="col2_row"/>-->
+<!--                                        </td>-->
+<!--                                    </tr>-->
+<!--                                </t>-->
+<!--                            </t>-->
+<!--                        </table>-->
+<!--                    </td>-->
+<!--                    <td class="footer_col3">-->
+<!--                        <img src="/frogblue_reports/static/src/img/frogblue_footer_h96.png" style="width:82px; height:96px"/>-->
+<!--                        <div style="clear: both;"/>-->
+<!--                    </td>-->
+<!--                </tr>-->
+<!--            </table>-->
+        </div>
+    </template>
+
+    <!-- Public api: layout to t-call from reports -->
+
+    <template id="frogblue_external_layout">
+        <!-- Multicompany -->
+        <t t-if="not o and doc">
+            <t t-set="o" t-value="doc"/>
+        </t>
+
+        <t t-if="o and 'company_id' in o">
+            <t t-set="company" t-value="o.company_id.sudo()"/>
+        </t>
+        <t t-if="not o or not 'company_id' in o">
+            <t t-set="company" t-value="res_company"/>
+        </t>
+        <t t-call="frogblue_reports.frogblue_external_layout_header"><t t-raw="0"/></t>
+        <t t-call="frogblue_reports.frogblue_external_layout_footer"><t t-raw="0"/></t>
+    </template>
+
+    <template id="web.minimal_layout">
+        <t t-raw="'&lt;base href=%s&gt;' % base_url"/>
+        &lt;!DOCTYPE html&gt;
+        <html style="height: 0;">
+            <head>
+                <t t-call-assets="web.report_assets_pdf" t-js="false"/>
+                <t t-call-assets="web.report_assets_common" t-js="false"/>
+                <t t-call-assets="web.report_assets_pdf" t-css="false"/>
+                <t t-call-assets="web.report_assets_common" t-css="false"/>
+                <link href="/frogblue_reports/static/src/css/layouts.css" rel="stylesheet"/>
+                <meta charset="utf-8"/>
+                <t t-if="subst is True">
+                    <script>
+                        function subst() {
+                            var vars = {};
+                            var x = document.location.search.substring(1).split('&amp;');
+                            for (var i in x) {
+                                var z = x[i].split('=', 2);
+                                vars[z[0]] = unescape(z[1]);
+                            }
+                            var fromPage = document.getElementsByClassName('page');
+                            for(var j = 0; j&lt;fromPage.length; j++)
+                                fromPage[j].textContent = vars['sitepage'];
+                            var toPage = document.getElementsByClassName('topage');
+                            for(var j = 0; j&lt;toPage.length; j++)
+                                toPage[j].textContent = vars['sitepages'];
+
+                            var index = vars['webpage'].split('.', 4)[3]
+                            var header = document.getElementById('minimal_layout_report_headers');
+                            if(header !== null){
+                                var companyHeader = header.children[index];
+                                header.textContent = '';
+                                header.appendChild(companyHeader);
+                            }
+                            var footer = document.getElementById('minimal_layout_report_footers');
+                            if(footer !== null){
+                                var companyFooter = footer.children[index];
+                                footer.textContent = '';
+                                footer.appendChild(companyFooter);
+                            }
+                        }
+                    </script>
+                </t>
+            </head>
+            <body class="container" onload="subst()">
+                <t t-raw="body"/>
+            </body>
+        </html>
+    </template>
+
+</odoo>

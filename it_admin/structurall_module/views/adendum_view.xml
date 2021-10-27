@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_adendum_form" model="ir.ui.view">
+        <field name="name">adendum.adendum.form</field>
+        <field name="model">adendum.adendum</field>
+        <field name="arch" type="xml">
+            <form string="" >
+             <header>
+                    <button class="oe_highlight" string="Validar" type="object" name="validar_adendum" attrs="{'invisible':[('state','!=','draft')]}"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1 string="Adendum">
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group cols="4">
+                    <group>
+                        <field name="no_adendum"/>
+                        <field name="partner_id" attrs="{'readonly':[('state','!=','draft')]}"/>
+                        <field name="fecha_inicial" attrs="{'readonly':[('state','!=','draft')]}"/>
+                        <field name="fecha_final" attrs="{'readonly':[('state','!=','draft')]}"/>
+                        <field name="no_meses" attrs="{'readonly':[('state','!=','draft')]}"/>
+                        <field name="adendum_origen" attrs="{'readonly':[('state','!=','draft')]}"/>
+                    </group>
+                </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="view_adendum_tree" model="ir.ui.view">
+        <field name="name">adendum.adendum.tree</field>
+        <field name="model">adendum.adendum</field>
+        <field name="arch" type="xml">
+            <tree string="Adendum">
+                <field name="name" string="Nombre" readonly="1"/>
+                <field name="partner_id"/>
+                        <field name="fecha_inicial"/>
+                        <field name="fecha_final"/>
+                        <field name="no_meses"/>
+                        <field name="state"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_adendum_search" model="ir.ui.view">
+        <field name="name">adendum.adendum.search</field>
+        <field name="model">adendum.adendum</field>
+        <field name="arch" type="xml">
+            <search string="Buscar adendum">
+               <field name="partner_id"/>
+                        <field name="fecha_inicial"/>
+                        <field name="fecha_final"/>
+                        <field name="no_meses"/>
+                        <field name="state"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_adendum_tree" model="ir.actions.act_window">
+        <field name="name">Adendum</field>
+        <field name="res_model">adendum.adendum</field>
+        <!-- <field name="view_type">form</field> -->
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Clic para crear Adendum.
+          </p>
+        </field>
+    </record>
+
+
+     <menuitem id="main_manu_adendum" 
+    		  parent="account.menu_finance" 	
+    		  sequence="2"
+    		  name="Contratos"
+    		  />
+
+    <menuitem action="action_adendum_tree" 
+              id="menu_action_adendum" 
+              parent="main_manu_adendum"
+              name="Adendum"   
+              sequence="10"/>
+
+    <menuitem
+        id="contract.menu_contract_contract_customer"
+        parent="main_manu_adendum"
+        action="contract.action_customer_contract"
+        sequence="9"
+    />
+
+
+
+</odoo>
+

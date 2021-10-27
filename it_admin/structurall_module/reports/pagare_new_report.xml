@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+    <record id="paperformat_structurall_pagare" model="report.paperformat">
+        <field name="name">Pagare Structural Letter</field>
+        <field name="default" eval="True" />
+        <field name="format">Letter</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">20</field>
+        <field name="margin_bottom">10</field>
+        <field name="margin_left">14</field>
+        <field name="margin_right">14</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">15</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <!--pagare Determinado-->
+    <report
+    id="report_pagare_structurall"
+    model="contract.contract"
+    string="Pagare Structurall"
+    report_type="qweb-pdf"
+    name="structurall_module.pagare_structurall"
+    file="Pagare Structurall"
+    paperformat="paperformat_structurall_pagare"
+    />
+
+    <!--pagare EXTERNAL LAYOUT-->
+    <template id="pagare_external_layout">
+        <div class="header">
+          <div class="text-right">        
+            <span class="page"/> / <span class="topage"/>
+        </div>
+            
+        </div>
+
+        <div class="article o_report_layout_standard" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id">
+            <t t-call="web.address_layout"/>
+            <t t-raw="0" />
+        </div>
+
+        <!--EMPIEZA EL FOOTER *ESTA BIEN*-->
+        <div class="footer">
+            
+        </div>
+        
+        <!--TERMINA EL FOOTER-->
+
+
+    </template>
+
+    <template id="pagare_structurall">
+        <t t-call="web.html_container">
+        <t t-call="structurall_module.pagare_external_layout">
+
+
+            <t t-set="no_pagare" t-value="1"/>
+            <t t-foreach="range(docs.no_meses)" t-as="l">
+
+            <div class="page"> 
+                <div class="oe_structure"/>
+                  <!--VALUES FOR REPORT-->
+                        <t t-set="price_subtotal_line" t-value="0"/>
+                        <t t-set="plan_subtotal_line" t-value="0"/>
+                        <t t-set="subtotal_price_plan" t-value="0"/>
+                        <t t-set="iva_subtotal_price_plan" t-value="0"/>
+                        <t t-set="total_price_plan" t-value="0"/>
+
+
+                        <t t-set="suma_producto_plan" t-value="0"/>
+                        <t t-set="iva_line" t-value="0"/>
+                        <t t-set="total_line" t-value="0"/>
+                        <t t-set="total_final_line" t-value="0"/>
+                        <t t-set="servicio_entrega" t-value="0"/>
+                        <t t-set="iva_entrega" t-value="0"/>
+                        <t t-set="total_entrega" t-value="0"/>
+                        <t t-set="total_cargos_iniciales" t-value="0"/>
+
+                        <t t-set="total_cargos_pagare" t-value="0"/>
+
+                        <t t-foreach="docs.contract_line_fixed_ids" t-as="s">
+
+                            <t t-if="s.no_serie">
+                                <!--PRODUCTOS QUE CONTIENEN UN NÚMERO DE SERIE-->
+                                <t t-set="price_subtotal_line" t-value="price_subtotal_line + s.price_subtotal"/>
+                            </t>
+                                <!--PRODUCTOS QUE CONTIENEN PLAN DE PROTECCIÓN EN EL NOMBRE-->
+                            <t t-if="not s.no_serie and 'Protección' in s.product_id.name">
+                                <t t-set="plan_subtotal_line" t-value="plan_subtotal_line + s.price_subtotal"/>
+                            </t>
+                                
+                        </t>
+
+                        <!--TOMA EL PLAN DE PROTECCIÓN DE LA TABLA DE PRIMERA FACTURA-->
+
+                        <!--<t t-foreach="docs.primera_factura_ids" t-as="p">
+
+                            PRODUCTOS CON FLETE E INSTALACIÓN EN EL NOMBRE-->
+                            <!--<t t-if="'Flete e Instalación' in p.name">
+                                <t t-set="servicio_entrega" t-value="servicio_entrega + p.subtotal"/>
+                            </t>
+                            
+                        </t>-->
+
+                        <t t-set="subtotal_price_plan" t-value="price_subtotal_line+plan_subtotal_line" />
+
+                        <t t-set="iva_subtotal_price_plan" t-value="subtotal_price_plan*0.16"/>  
+
+                        <t t-set="total_price_plan" t-value="subtotal_price_plan+iva_subtotal_price_plan"/>
+                        
+                        <!--<t t-set="iva_entrega" t-value="servicio_entrega*0.16"/> 
+
+                        <t t-set="total_entrega" t-value="servicio_entrega+iva_entrega"/>-->
+                            
+                        <t t-set="total_cargos_iniciales" t-value="total_price_plan+docs.deposito_garantia"/>
+
+
+                        <!--TOTAL DE CARGOS ENTRE CANTIDAD DE MESES-->
+                        <t t-set="total_cargos_pagare" t-value="total_cargos_iniciales*0.16"/>
+
+
+                        <!--<strong><span t-esc="total_cargos_iniciales"/></strong>-->
+
+                  <!--END VALUES OF REPORT-->
+            <!--<t t-set="pages_ext" t-value="0"/>
+            <t t-if="pages_ext &lt; docs.no_meses">-->
+
+                  <div style="font-size:15px;text-align:justify">
+
+                  <center><strong><u><h2>PAGARÉ</h2></u></strong></center> <br/>
+
+                  <span t-field="docs.partner_id.name"/>, debo y pagaré incondicionalmente a la orden de STRUCTURALL SONORA S.A. DE C.V. el día <span t-esc="docs.date_end.strftime('%A, %d de %B del %Y')" style="text-transform: uppercase;"/>, en el domicilio ubicado en Boulevard Paseo del Río Sonora Oriente S/N, Colonia Hacienda de La Flor, Hermosillo, Sonora C.P. 83090, la suma principal de $<span t-esc="'{:,.2f}'.format(total_price_plan)" widget="monetary"/> <span t-esc="docs._get_amount_2_text(total_price_plan)" /><br/><br/>
+
+                  Este pagaré forma parte de una serie numerada del <span t-esc="no_pagare"/> al  <span t-field="docs.no_meses"/> y todos están sujetos a la condición de que, al no pagarse cualquiera de ellos a su vencimiento, serán exigibles todos los que le sigan en número, además de los ya vencidos, desde la fecha de vencimiento de este documento hasta el día de su liquidación.<br/><br/>
+
+                  <!--ADD +1 TO NO_PAGARE-->
+                  <t t-set="no_pagare" t-value="no_pagare+1"/>
+
+
+
+                  <span style="padding-left:5em">1.- </span>Si la suma principal no es cubierta en su totalidad por el suscriptor en la fecha en que sea requerido de pago por el tenedor, este pagaré generará intereses moratorios del 3% (Tres por ciento) mensual, pagaderos en el mismo domicilio y conjuntamente con el principal a la fecha de su vencimiento.<br/><br/>
+                  
+                  <span style="padding-left:5em">2.-</span> El suscriptor promete incondicionalmente pagar al tenedor del mismo, el importe total de este pagaré y sus intereses moratorios del 3% (Tres por ciento) mensual desde la fecha de su vencimiento y hasta que se realice el pago total del mismo.<br/><br/>
+                  
+                  <span style="padding-left:5em">3.-</span> El suscriptor se obliga a pagar todos los gastos que se realicen como consecuencia de la ejecución de este pagaré, así como los gastos de cobranza extrajudicial o judicial que se genere por el incumplimiento en el pago de la suerte principal y sus accesorios, así como los honorarios de los abogados que intervengan para procurar su cobro, lo cual se hará en el mismo domicilio y en conjunto con el principal.<br/><br/>
+                  
+                  <span style="padding-left:5em">4.-</span> El pago del importe principal de este pagaré, así como sus intereses y accesorios, se hará sin descontar algún tipo de impuesto presente o futuro.<br/><br/>
+                  
+                  <span style="padding-left:5em">5.-</span> Los pagos parciales realizados por el suscriptor serán aplicados de la siguiente manera:<br/>
+                  
+                  <strong><span style="padding-left:5em">A:</span></strong> Intereses moratorios.<br/>
+                  <strong><span style="padding-left:5em">B:</span></strong> Intereses ordinarios.<br/>
+                  <strong><span style="padding-left:5em">C:</span></strong> Suerte principal.<br/>
+                  
+                  <span style="padding-left:5em">6.-</span> El suscriptor designa el siguiente como su domicilio:<br/><br/>
+                  Suscriptor: <span t-field="docs.partner_id.street"/> <span t-field="docs.partner_id.street2"/> <span t-field="docs.partner_id.city"/> <span t-field="docs.partner_id.state_id.name"/> <span t-field="docs.partner_id.zip"/> <span t-field="docs.partner_id.country_id.name"/><br/><br/>
+                  
+                  <span style="padding-left:5em">7.-</span> Para la interpretación, ejecución y cumplimiento de este pagaré y para el requerimiento judicial del pago, el suscriptor se somete de manera expresa e irrevocablemente a sujetarse a la jurisdicción de los tribunales competentes de Hermosillo, Sonora, renunciando expresamente a cualquier otro fuero que en razón de su domicilio presente o futuro le pudiera corresponder.<br/><br/>
+
+                  El presente pagaré se suscribe y entrega en Hermosillo, Sonora, el día <span t-esc="docs.date_start.strftime('%A, %d de %B del %Y')" style="text-transform: uppercase;"/>.<br/><br/>
+
+                  <center><strong>DEUDOR PRINCIPAL</strong></center>
+                  <br/><br/>
+                  <center>_____________________________________________</center><br/>
+                  <center><span t-field="docs.partner_id.name"/></center>
+
+                  </div>
+
+                  <p style="page-break-after:always"></p>
+
+            <!--<t t-set="pages_ext" t-value="pages_ext+1"/>
+            </t>-->
+
+            </div>
+                          </t>
+
+
+        </t>
+        </t>
+    </template>
+
+
+</data>
+
+</odoo>

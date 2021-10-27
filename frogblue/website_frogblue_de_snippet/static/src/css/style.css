@@ -1,0 +1,114 @@
+
+/* FONT */
+@font-face{
+    font-family: 'AvenirNextLTW01'; 
+    src: url('../fonts/AvenirNextLTW01-Regular.eot'); 
+    src: url('../fonts/AvenirNextLTW01-Regular.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/AvenirNextLTW01-Regular.woff2') format('woff2'),
+        url('../fonts/AvenirNextLTW01-Regular.woff') format('woff'),
+        url('../fonts/AvenirNextLTW01-Regular.ttf') format('truetype'); 
+    font-weight: 400; 
+    font-style: normal; 
+    font-display: swap; 
+ }
+ 
+@font-face{
+    font-family: 'AvenirNextW06'; 
+    src: url('../fonts/AvenirNextW06-Bold.eot'); 
+    src: url('../fonts/AvenirNextW06-Bold.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/AvenirNextW06-Bold.woff2') format('woff2'),
+        url('../fonts/AvenirNextW06-Bold.woff') format('woff'),
+        url('../fonts/AvenirNextW06-Bold.ttf') format('truetype'); 
+    font-weight: bold; 
+    font-style: normal; 
+    font-display: swap; 
+}
+
+.website_frogblue_de_snippet.banner-wrap{
+	line-height:1.4;
+	font-family: 'AvenirNextLTW01';
+	font-weight: 400;
+}
+
+.website_frogblue_de_snippet.banner-wrap b{
+	font-family: 'AvenirNextW06';
+	font-weight: bold;
+}
+
+.website_frogblue_de_snippet .banner-header{
+	background: #97d700;
+}
+
+.website_frogblue_de_snippet.banner-wrap{
+	max-width: 1200px; 
+	margin: 20px auto;
+	position: fixed;
+	top: 78px;
+	left: 0;
+	right: 0;
+	width: 100%;
+	-webkit-transition: top ease 300ms;
+	-moz-transition: top ease 300ms;
+	transition: top ease 300ms;
+}
+.fixed-header-bar .website_frogblue_de_snippet.banner-wrap{ top: 0 }
+.website_frogblue_de_snippet.banner-wrap .banner-wrap-inner{ max-width: 190px; top: 0; left: 100%; max-width: 190px; position: absolute;  }
+
+.website_frogblue_de_snippet .banner-content{
+	padding: 15px;
+}
+
+.website_frogblue_de_snippet .banner-header .logo-text{
+	color: #fff; text-align: center; margin: 0; padding: 4px; font-size: 28px; letter-spacing: 0.5px; 
+}
+
+.website_frogblue_de_snippet .banner-title{
+	color: #97d700; font-size: 26px; letter-spacing: 5px; line-height: 1.2; font-weight: bold; 
+}
+
+.website_frogblue_de_snippet.banner-wrap img{
+	max-width: 100%; height: auto; display: block;
+}
+
+.website_frogblue_de_snippet .banner-logo img{
+	margin: 30px 0 40px;
+}
+
+.website_frogblue_de_snippet .fron-blue img{
+	margin: 50px auto 10px;
+}
+
+.website_frogblue_de_snippet.banner-wrap p{
+	color: #575756; font-size: 15px;
+}
+
+@media(max-width:1555px) and (min-width:768px){
+	main #wrap.hasAdBanner{ padding-right: 190px; position: relative; }
+	.website_frogblue_de_snippet.banner-wrap{ position: absolute; top: 150px; right: 0; width: auto; left: auto; min-width: 165px; }
+	.website_frogblue_de_snippet.banner-wrap .banner-wrap-inner{ left: 0; }
+}
+@media(max-width:1199px){
+	.website_frogblue_de_snippet .banner-header .logo-text{ font-size: 20px;padding: 4px; }
+	.website_frogblue_de_snippet .banner-title{ font-size: 20px;letter-spacing: 4px; }
+	.website_frogblue_de_snippet.banner-wrap p{ font-size: 12px; }
+	main #wrap.hasAdBanner .container.oe_website_sale{ width: 100%; }
+	/* .website_frogblue_de_snippet.banner-wrap{margin-right: -8% !important;} */
+ }
+ 
+@media(max-width:991px){
+	.website_frogblue_de_snippet .banner-header .logo-text{ font-size: 17px;padding: 2px; }
+	.website_frogblue_de_snippet .banner-title{ font-size: 12px;letter-spacing: 3.5px; }
+	.website_frogblue_de_snippet.banner-wrap p{ font-size: 7px; }
+	/* .website_frogblue_de_snippet.banner-wrap{ margin-right: -19% !important; } */
+ }
+ 
+@media(max-width:767px){
+	.website_frogblue_de_snippet .banner-logo img{ margin: 30px 0 30px; }
+	.website_frogblue_de_snippet .banner-header .logo-text{ font-size: 38px; }
+	.website_frogblue_de_snippet .banner-title{ font-size: 32px; }
+	.website_frogblue_de_snippet.banner-wrap p{ font-size: 16px; }
+	.website_frogblue_de_snippet .fron-blue img{ margin: 35px auto 5px; }
+	.website_frogblue_de_snippet.banner-wrap{ max-width: 100%; float: none !important; margin-right: 0 !important; position: static; }
+	.website_frogblue_de_snippet.banner-wrap .banner-wrap-inner{ position: static; max-width: 100%; width: 100%; left: 0; }
+ }
+ 

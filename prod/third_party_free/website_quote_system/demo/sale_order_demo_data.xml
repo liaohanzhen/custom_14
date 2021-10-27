@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://store.webkul.com/license.html/ -->
+<odoo>
+    <data noupdate="1">
+        <!-- Sale Order - Demo Data 1-->
+        <record id="customer_quote_sale_order_1" model="sale.order">
+            <field name="partner_id" ref="base.res_partner_2"/>
+        </record>
+
+        <record id="sale_order_1_sale_order_line_1" model="sale.order.line">
+            <field name="order_id" ref="website_quote_system.customer_quote_sale_order_1"/>
+            <field name="product_id" ref="website_quote_system.product_demo_data1"/>
+            <field name="price_unit">70</field>
+            <field name="product_uom_qty">10</field>
+            <field name="customer_quote">True</field>
+            <field name="ref_quote_id" ref="website_quote_system.customer_quote_demo_data4"/>
+        </record>
+
+        <record id="sale_order_1_sale_order_line_2" model="sale.order.line">
+            <field name="order_id" ref="website_quote_system.customer_quote_sale_order_1"/>
+            <field name="product_id" ref="website_quote_system.product_demo_data2"/>
+            <field name="price_unit">999</field>
+            <field name="product_uom_qty">2</field>
+            <field name="customer_quote">False</field>
+        </record>
+        <function model="sale.order" name="action_confirm" eval="[ref('website_quote_system.customer_quote_sale_order_1')]"/>
+
+        <record id="customer_quote_demo_data4" model="quote.quote">
+            <field name="sale_order_id" ref="website_quote_system.customer_quote_sale_order_1"/>
+            <field name="status">inprocess</field>
+        </record>
+
+        <!-- sale Order - Demo Data 2 -->
+        <record id="customer_quote_sale_order_2" model="sale.order">
+            <field name="partner_id" ref="base.res_partner_2"/>
+        </record>
+
+        <record id="sale_order_2_sale_order_line_1" model="sale.order.line">
+            <field name="order_id" ref="website_quote_system.customer_quote_sale_order_2"/>
+            <field name="product_id" ref="website_quote_system.product_demo_data3"/>
+            <field name="price_unit">400</field>
+            <field name="product_uom_qty">15</field>
+            <field name="customer_quote">True</field>
+            <field name="ref_quote_id" ref="website_quote_system.customer_quote_demo_data5"/>
+        </record>
+
+        <record id="customer_quote_demo_data5" model="quote.quote">
+            <field name="sale_order_id" ref="website_quote_system.customer_quote_sale_order_2"/>
+            <field name="status">incart</field>
+        </record>
+    </data>
+</odoo>

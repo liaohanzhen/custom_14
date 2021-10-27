@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- === 5B About Us Page === -->
+    <template id="page_aboutus">
+        <t t-call="website.layout">
+            <div id="wrap">
+				<!-- === Snippets' area === -->
+				<div class="oe_structure" />
+				<t t-call="website_5b.aboutus_page_contents" />
+            </div>
+        </t>
+    </template>
+	
+    <record id="aboutus_page" model="website.page">
+        <field name="name">About 5B</field>
+        <field name="website_published">True</field>
+        <field name="url">/about</field>
+        <field name="view_id" ref="page_aboutus"/>
+    </record>
+
+	<template id="aboutus_page_contents" name="About 5B">
+	  <!-- ======= Hero Section ======= -->
+	  <section id="hero-project" style="background: url('/theme_5b/static/img/banner-about.jpg'); background-position: 50% 50%; background-size:cover; background-repeat:no-repeat">
+		<div class="container position-relative" data-aos="zoom-in" data-aos-delay="100"></div>
+	  </section><!-- End Hero -->
+	  <main id="main">
+		<!-- ======= About Section ======= -->
+		<section id="about" class="about">
+		  <div class="container" data-aos="fade-up">
+
+			<div class="row">
+			  <div class="col-lg-12 pt-4 pt-lg-0 order-2 order-lg-1 content">
+				
+				<div class="section-title">
+				  <h3>About 5B</h3>
+				</div>
+				
+				<div class="mission">
+				<div class="info">
+				<p>
+					5B is an innovative technology business, founded in 2013 by solar engineers, Chris McGrath and Eden Tehan. Our name, 5B, is a constant reminder of the 5 billion years of sunshine we have left, and motivates us to strive for the simplest, most effective ways to leverage this resource.<br /><br />
+				But we can't do this alone. 5B's finely tuned ecosystem allows our solution to be produced anywhere in the world, at scale, with our network of channel, assembly and deployment partners.<br /><br /></p>
+				  </div>
+				</div>
+
+				<div class="section-title">
+				  <h3>Vision, Mission &amp; Values</h3>
+				</div>
+
+				<div class="mission">
+				  <div class="row">
+				  <div class="col-md-12 col-sm-12">
+					<div style="display:block;">
+					  <i class="fa fa-eye" style="font-size: 70px; color:#ff8200; float:left;"></i> <h3 style="float:left; margin:15px 0 0 10px;">Our Vision</h3>
+					  <div style="clear: both;"></div>
+					</div>
+					<div style="margin:0 0 0 80px;">A world where abundant, accessible, affordable power from the sun meets all our energy needs</div>
+					<div class="margin30"></div>
+					<div style="display:block;">
+					  <i class="fa fa-bullseye" style="font-size: 70px; color:#ff8200; float:left;"></i> <h3 style="float:left; margin:15px 0 0 10px;">Our Mission</h3>
+					  <div style="clear: both;"></div>
+					</div>
+					<div style="margin:0 0 0 80px;">We are mavericks of our time and tenacious leaders of the renewable revolution. 
+					  We will accelerate the planet’s transition to fast, easy, low-cost clean energy by harnessing the full power of the sun. 
+					  To do this we will drive a paradigm shift in the delivery, integration and operation of clean energy, 
+					  from project-by-project, in-situ construction to rapid deployment of standardised products and solutions. 
+					  We will scale globally through an ecosystem of partners, collaborators and complementary technologies. 
+					  We will succeed thanks to our innovative minds, inspired people and bold culture.</div>
+					  
+					<div class="margin30"></div> 
+					<div style="display:block;">
+					  <img style="width: 70px; float:left; margin-top:-7px;" src="/theme_5b/static/img/value.png" /> <h3 style="float:left; margin:15px 0 0 10px;">Our Values</h3>
+					  <div style="clear: both;"></div>
+					</div>
+					<div style="margin:0 0 0 80px;">
+						<li><strong>Be bold. </strong>Cultivate a maverick mindset that takes calculated risks and learns from mistakes</li>
+						<li><strong>Stay true. </strong>Hone your honesty, stay open to others and honour your word</li>
+						<li><strong>Build bridges, cross borders. </strong>Seek synergies from inclusion and nurture culture from diverse communities</li>
+						<li><strong>Keep asking why. </strong>Unlock creativity and meet challenges through curiosity and tenacious exploration</li>
+						<li><strong>Answer to yourself. </strong>Make your mark with applied-passion and methodical proactivity</li>
+						<li><strong>Give back. </strong>Champion sustainable communities, environment and economy</li><br />
+					</div>
+					
+				  </div>
+				  
+				</div>
+				</div>
+				<br /><br /><div class="btn-center">
+				<a href="/team" class="learn-more-btn" title="">Meet 5B legends</a>
+					</div>
+								
+			  </div>
+			</div>
+		  </div>
+		</section><!-- End About Section -->
+	  </main><!-- End #main -->
+    </template>
+</odoo>

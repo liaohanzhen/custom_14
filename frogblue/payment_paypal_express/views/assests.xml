@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://store.webkul.com/license.html/ -->
+<odoo>
+    <template id="assets_frontend" inherit_id="web.assets_frontend" name="Payment Paypal Express Assets">
+        <xpath expr="." position="inside">
+        	<script type="text/javascript" src="/payment_paypal_express/static/src/js/express_checkout.js"></script>
+            <link rel="stylesheet" href="/payment_paypal_express/static/src/css/express_checkout.css" media="all" type="text/css"/>
+        </xpath>
+    </template>
+</odoo>

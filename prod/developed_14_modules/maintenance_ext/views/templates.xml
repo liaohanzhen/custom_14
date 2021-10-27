@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="assets_backend_equipment" name="maintenance equipment assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+            	<!-- <script type="text/javascript" src="/maintenance_ext/static/src/js/form_view.js"/> -->
+            	<script type="text/javascript" src="/maintenance_ext/static/src/js/form_renderer.js"/>
+            </xpath>
+        </template>
+    </data>
+</odoo>

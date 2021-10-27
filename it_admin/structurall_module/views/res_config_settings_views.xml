@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.sale</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="10"/>
+        <field name="inherit_id" ref="sale.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+        <xpath expr="//div[@data-key='sale_management']/div[3]/div[8]" position="after">
+               <div class="col-12 col-lg-6 o_setting_box">
+                    <div class="o_setting_right_pane">
+                        <span class="col o_form_label">Producto flete e instalacion</span>
+                        <div class="col mt15">
+                            <field name="product_tmp_id" class="oe_inline"/>
+                        </div>
+                        <span class="col o_form_label">Producto plan de proteccion</span>
+                        <div class="col mt15">
+                            <field name="product_tmp_id2" class="oe_inline"/>
+                        </div>
+                        <span class="col o_form_label">Producto depósito en garantía</span>
+                        <div class="col mt15">
+                            <field name="product_tmp_id3" class="oe_inline"/>
+                        </div>
+                    </div>
+               </div>
+        </xpath>
+        <xpath expr="//div[@id='show_margins']" position="after">
+        	<div class="col-12 col-lg-6 o_setting_box" id="descuento">
+	            <div class="o_setting_left_pane">
+	            </div>
+	            <div class="o_setting_right_pane">
+	            	<label for="descuento_maximo"/>
+                    <div>
+                        <field name="descuento_maximo" class="oe_inline"/>
+                    </div>
+	            </div>
+	        </div>
+        </xpath>
+
+        <!--<xpath expr="//div[@id='down_payments']" position="after">
+            <div class="col-12 col-lg-6 o_setting_box" id="dias_gracia">
+                <div class="o_setting_left_pane">
+                </div>
+                <div class="o_setting_right_pane">
+                    <label for="dias_gracia"/>
+                    <div>
+                        <field name="dias_gracia" class="oe_inline"/>
+                    </div>
+                </div>
+            </div>
+        </xpath>-->
+   		</field>
+    </record>
+</odoo>        

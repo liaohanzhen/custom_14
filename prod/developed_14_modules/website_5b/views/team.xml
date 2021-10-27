@@ -1,0 +1,127 @@
+<odoo>
+  <data>
+	  <template id="page_team" name="Meet our Team">
+		<t t-call="website.layout">
+        <div id="wrap" class="oe_structure oe_empty">
+			<!-- ======= Hero Section ======= -->
+			  <section id="hero-project" style="background: url('/theme_5b/static/img/banner-team.jpg'); background-position: 50% 50%; background-size:cover; background-repeat:no-repeat">
+				<div class="container position-relative"></div>
+			  </section><!-- End Hero -->
+
+			  <main id="main">
+				
+				
+				<!-- ======= About Section ======= -->
+				<section id="about" class="about">
+				  <div class="container">
+					
+					<t t-foreach="contents" t-as="content">
+						<t t-raw="content.description" />
+					</t>
+					
+					<div class="section-title">
+					  <!-- <h2>About</h2> -->
+					  <h3>Leadership Team</h3>
+					</div>
+
+					
+					<div class="meet_team" style="text-align:center !important;">
+						<t t-set="owner" t-value="1" />
+						<t t-set="second" t-value="0" />
+						<t t-set="third" t-value="0" />
+						
+						<t t-foreach="all_employee" t-as="employee">
+							<!--<t t-if="employee.department_id and ('Executive' in employee.department_id.name) and employee.x_show_in_website">-->
+							<t t-if="employee.x_show_in_website">
+							  <div class="column_mgmt">
+								<div class="card">
+								
+								<a data-toggle="modal" t-attf-data-target="#exampleModal{{employee.id}}">
+									<img itemprop="image" class="img img-responsive" style="display: inline-block;" t-attf-src="data:image/png;base64,{{employee.image_1920}}" width="100%" />
+									<div class="container">
+										<p><strong><t t-esc="employee.name" /></strong><br />
+										<!--<span class="title"><t t-esc="employee.job_id.name" /></span>-->
+										<span class="title"><t t-esc="employee.job_title" /></span></p>
+									</div>
+								</a>
+								</div>
+							  </div>
+							  <t t-if="owner == 2 or second == 3 or third == 3">
+								<div style="clear:both"></div>
+							</t>
+							
+							<t t-set="owner" t-value="owner + 1" />
+							
+							<t t-if="owner > 2">
+								<t t-set="second" t-value="second + 1" />
+							</t>
+							
+							<t t-if="second > 3">
+								<t t-set="third" t-value="third + 1" />
+							</t>
+							
+							
+							</t>
+						</t>
+					</div>
+				
+
+				  </div>
+				</section><!-- End About Section -->
+				
+				
+				
+				
+				<section id="mission" class="about">
+				  <div class="container" data-aos="fade-up">
+
+					<div class="row">
+					  <div class="col-lg-12 pt-4 pt-lg-0 order-2 order-lg-1 content">        
+
+					</div>
+				  </div>
+				  </div>
+				</section><!-- End About Section -->
+				
+			  </main><!-- End #main -->
+  
+        </div>
+		
+		<t t-foreach="all_employee" t-as="employee">
+		<!--<t t-if="employee.department_id and ('Executive' in employee.department_id.name) and employee.x_show_in_website">-->
+		<t t-if="employee.x_show_in_website">
+		<!-- Modal -->
+		<div class="modal fade" t-attf-id="exampleModal{{employee.id}}" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+			<div class="modal-content">
+			  <div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel"><t t-esc="employee.name" /><br />
+				<!--<t t-esc="employee.job_id.name" />-->
+				<span style="font-size:0.7em"><t t-esc="employee.job_title" /></span></h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				  <span aria-hidden="true">X</span>
+				</button>
+			  </div>
+			  <div class="modal-body" align="center">
+				<div align="center" style="width:80%; border-radius: 10px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);">
+					<img itemprop="image" class="img img-responsive" t-attf-src="data:image/png;base64,{{employee.image_1920}}" style="width:100%; border-radius: 10px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);" /> 
+				</div><br />
+				<div align="left">
+					<t t-raw="employee.notes" />
+					<br />
+				</div>
+			  </div>
+			  <div class="modal-footer">
+				<button type="button" class="learn-more-btn" data-dismiss="modal">Close</button>
+			  </div>
+			</div>
+		  </div>
+		</div>
+		</t>
+		</t>
+		
+      </t>
+    </template>
+
+  </data>
+</odoo>

@@ -1,0 +1,586 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="deliverynote_internal_content">
+        <!--<t t-set="o" t-value="doc.with_context({'lang':doc.partner_id.lang})"/>-->
+        <t t-if="doc.sale_id and doc.picking_type_id.sequence_id.name == 'Dropship'">
+            <t t-set="o" t-value="doc.with_context(lang=doc.sale_id.partner_shipping_id.lang)"/>
+        </t>
+        <t t-else="">
+            <t t-set="o" t-value="doc.with_context(lang=doc.partner_id.lang)"/>
+        </t>
+        <div class="content">
+            <t t-set="salesperson" t-value="get_salesperson(o)"/>
+            <div>
+                <div class="left_header">
+                    <span class="small_headline" t-field="o.company_id.name"/> • <!--
+                    --><span class="small_headline" t-field="o.company_id.street"/> • <!--
+                    --><span class="small_headline" t-field="o.company_id.zip"/>
+                    <span class="small_headline" t-field="o.company_id.city"/>
+                    <br/>
+                </div>
+                <div class="right_header">
+                    <span t-esc="get_right_header(o)"/>
+                </div>
+                <div style="clear: both;"/>
+            </div>
+            <div>
+                <div class="left_content_div">
+                    <t t-if="doc.sale_id and doc.picking_type_id.sequence_id.name == 'Dropship'">
+                        <t t-set="partner" t-value="o.sale_id.partner_shipping_id"/>
+                    </t>
+                    <t t-else="">
+                        <t t-set="partner" t-value="o.partner_id"/>
+                    </t>
+                    <t t-if="partner and partner.parent_id and partner.parent_id.name and partner.parent_id.is_company">
+                        <span t-field="partner and partner.parent_id and partner.parent_id.name"/>
+                        <br/>
+                    </t>
+                    <span t-field="partner and partner.name"/>
+                    <br/>
+                    <t t-if="partner and partner.street">
+                        <span t-field="partner and partner.street"/>
+                        <br/>
+                    </t>
+                    <t t-if="partner and partner.street2">
+                        <span t-field="partner and partner.street2"/>
+                        <br/>
+                    </t>
+                    <t t-if="partner and partner.zip">
+                        <span t-field="partner and partner.zip"/>
+                    </t>
+                    <t t-if="partner and partner.city">
+                        <span t-field="partner and partner.city"/>
+                    </t>
+                    <t t-if="partner and (partner.zip or partner.city)">
+                        <br/>
+                    </t>
+                    <t t-if="partner and partner.country_id and partner.country_id.name">
+                        <span t-field="partner.country_id.name"/>
+                        <br/>
+                    </t>
+                </div>
+                <div class="right_content_div">
+                    <table class="right_div_table">
+                       <tr>
+                            <td>
+                                <t t-if="o.company_id.id == 1">
+                                    <span>Your Inside Sales Team</span>
+                                </t>
+                                <t t-else="">
+                                    <span t-field="o.user_id and o.user_id.name"/>
+                                </t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <t t-if="o.company_id.id == 1">
+                                    <span>Phone: </span><span>+49-631-520829-120</span>
+                                </t>
+                                <t t-else="">
+                                    <span>Phone: <t t-esc="o.user_id and o.user_id.phone or ''"/></span>
+                                </t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <t t-if="o.company_id.id == 1">
+                                    <a t-attf-href="mailto:sales@frogblue.com">
+                                        sales@frogblue.com
+                                    </a>
+                                </t>
+                                <t t-else="">
+                                    <a t-attf-href="mailto:#{o.user_id.email}">
+                                        <t t-esc="o.user_id.email"/>
+                                    </a>
+                                </t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <br />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Date
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span t-esc="get_formated_date(date=False, lang_code=o._context.get('lang', False), now=True)"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <br />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Customer Number
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <t t-if="o.sale_id">
+                                    <t t-if="partner.commercial_partner_id and partner.commercial_partner_id.debitor_number">
+                                        <span t-esc="partner.commercial_partner_id.debitor_number"/>
+                                    </t>
+                                </t>
+                                <t t-elif="o.purchase_id">
+                                    <t t-if="partner.commercial_partner_id and partner.commercial_partner_id.creditor_number">
+                                        <span t-esc="partner.commercial_partner_id.creditor_number"/>
+                                    </t>
+                                </t>
+                                <t t-else="">
+                                    <t t-if="partner and partner.commercial_partner_id and partner.commercial_partner_id.ref">
+                                        <span t-esc="partner.commercial_partner_id.ref"/>
+                                    </t>
+                                </t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <br />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Delivery note no.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <t t-if="o.name">
+                                    <span t-esc="o.name"/>
+                                </t>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="main_content_div">
+                    <!--<t t-foreach="doc.order_lines_layouted()" t-as="page">-->
+                        <table class="main_content_table" style="width: 99%;">
+                            <thead>
+                                <tr style="width: 100%;">
+                                    <th class="th_main" colspan="4" style="text-align: left;">
+                                        <span class="content_headline">
+                                            <t t-if="o.picking_type_code=='incoming'">
+                                                <span style="font-size: 18px; font-weight: bolder;">Return</span>
+                                            </t>
+                                            <t t-else="">
+                                                <span style="font-size: 18px; font-weight: bolder;">Delivery note</span>
+                                            </t>
+                                            <br/>
+                                            <br/>
+                                        </span>
+                                        <t t-if="o.sale_id and o.sale_id.client_order_ref">
+                                            <span style="font-weight: lighter;">
+                                                Your order no.:
+                                            </span>
+                                            <span style="font-weight: lighter;">
+                                                    <span t-esc="o.sale_id and o.sale_id.client_order_ref"/>
+                                                <br/>
+                                            </span>
+                                        </t>
+                                        <!--<span style="font-weight: lighter;">-->
+                                            <!--dated-->
+                                        <!--</span>-->
+                                        <!--<span style="font-weight: lighter;">-->
+                                            <!--<span t-esc="o.sale_id and get_formated_date(date=o.sale_id.date_order, lang_code=o._context.get('lang', False)) or ''"/>-->
+                                            <!--<br/>-->
+                                        <!--</span>-->
+                                        <t t-if="partner and partner.vat">
+                                            <span style="font-weight: lighter;">
+                                                Your VAT ID:
+                                            </span>
+                                            <span style="font-weight: lighter;">
+                                                <span t-esc="partner.vat"/>
+                                            </span>
+                                        </t>
+                                        <span>
+                                            <br/>
+                                            <br/>
+                                        </span>
+                                    </th>
+                                </tr>
+                                <tr class="main_table_row_border_bottom">
+                                    <th class="delivery_table_col1_h">
+                                        <span>Pos.</span>
+                                    </th>
+                                    <th class="delivery_table_col2">
+                                        <span>Article number / Customer Article number<br/></span>
+                                        <span>Article description</span>
+                                    </th>
+                                    <th class="delivery_table_col3">
+                                        <span>Unit</span>
+                                    </th>
+                                    <th class="delivery_table_col4">
+                                        <span>Amount<br/></span>
+                                        <span>ordered</span>
+                                    </th>
+                                    <th class="delivery_table_col5">
+                                        <span>Amount<br/></span>
+                                        <span>supplied</span>
+                                    </th>
+                                    <!--<th class="delivery_table_col6">-->
+                                        <!--<span>Outstanding<br/></span>-->
+                                        <!--<span>amount</span>-->
+                                    <!--</th>-->
+                                </tr>
+                            </thead>
+                            <t t-set="counter" t-value="0"/>
+                            <t t-foreach="o.move_lines" t-as="line">
+                                <tbody class="sale_tbody">
+                                    <tr>
+                                        <!-- wkhtmltopdf will break tbody groupings, thus we wrap the content in another table. -->
+                                        <td colspan="7">
+                                            <table class="sale_group">
+                                                <tbody>
+                                                    <t  t-set="counter" t-value="counter + 1"/>
+                                                    <t t-call="frogblue_reports.frogblue_line_header_delivery"/>
+                                                    <t t-call="frogblue_reports.frogblue_line_offer_delivery"/>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </t>
+
+                            <tbody class="sale_tbody">
+                                <tr class="main_table_row_border_bottom">
+                                    <td colspan="7"> </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                </div>
+            </div>
+            <div class="delivery_conditions_container">
+                <table>
+                    <tr>
+                        <t t-set="packages" t-value="get_packages(o)"/>
+                        <td>
+                            <span>Number of packages: <t t-esc="packages['num_of_packages']"/> consisting
+of:</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <t t-foreach="packages['packages']" t-as="key">
+                                <span class="tab_inside">
+                                    <t t-set="package" t-value="packages['packages'][key]" />
+                                    1 x package -
+                                    <t t-if="isinstance(package['package_type_length'], int)">
+                                        <t t-esc="'%.0f'%package['package_type_length']"/>
+                                    </t>
+                                    <t t-if="not isinstance(package['package_type_length'], int)">
+                                        <!--<t t-esc="'%.2f'%package['package_type_length']"/>-->
+                                        <t t-esc="get_formated_amount(env=False, amount=package['package_type_length'], currency_obj=False, obj=o)" />
+                                    </t>mm x
+                                    <t t-if="isinstance(package['package_type_height'], int)">
+                                        <t t-esc="'%.0f'%package['package_type_height']"/>
+                                    </t>
+                                    <t t-if="not isinstance(package['package_type_height'], int)">
+                                        <!--<t t-esc="'%.2f'%package['package_type_height']"/>-->
+                                        <t t-esc="get_formated_amount(env=False, amount=package['package_type_height'], currency_obj=False, obj=o)" />
+                                    </t>mm x
+                                    <t t-if="isinstance(package['package_type_width'], int)">
+                                        <t t-esc="'%.0f'%package['package_type_width']"/>
+                                    </t>
+                                    <t t-if="not isinstance(package['package_type_width'], int)">
+                                        <!--<t t-esc="'%.2f'%package['package_type_width']"/>-->
+                                        <t t-esc="get_formated_amount(env=False, amount=package['package_type_width'], currency_obj=False, obj=o)" />
+                                    </t>mm -
+                                    net weight:
+                                    <t t-if="isinstance(package['net_weight'], int)">
+                                        <t t-esc="'%.0f'%package['net_weight']"/>
+                                    </t>
+                                    <t t-if="not isinstance(package['net_weight'], int)">
+                                        <!--<t t-esc="'%.2f'%package['net_weight']"/>-->
+                                        <t t-esc="get_formated_amount(env=False, amount=package['net_weight'], currency_obj=False, obj=o)" />
+                                    </t>kg -
+                                    weight:
+                                    <t t-if="isinstance(package['weight'], int)">
+                                        <t t-esc="'%.0f'%package['weight']"/>
+                                    </t>
+                                    <t t-if="not isinstance(package['weight'], int)">
+                                        <!--<t t-esc="'%.2f'%package['weight']"/>-->
+                                        <t t-esc="get_formated_amount(env=False, amount=package['weight'], currency_obj=False, obj=o)" />
+                                    </t>kg
+                                    <!--<t t-esc="package['shipping_weight']"/>-->
+                                </span>
+                                <br/>
+                            </t>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="delivery_conditions_container">
+                <table>
+                    <tr>
+                        <td>
+                            <span>Requested date:</span>
+                        </td>
+                        <td>
+                            <t t-if="o.sale_id">
+                                <t t-if="o.sale_id.commitment_date">
+                                    <span t-field="o.sale_id.commitment_date" t-options='{"format": "dd.MM.yyyy"}'/>
+                                </t>
+                            </t>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <span>Shipping type:</span>
+                        </td>
+                        <td>
+                            <t t-if="o.carrier_id and o.carrier_id.name">
+                                <span t-field="o.carrier_id.name"/>
+                            </t>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Delivery specification:</span>
+                        </td>
+                        <td>
+                            <t t-if="o.sale_id">
+                                <t t-if="o.sale_id.incoterm">
+                                    <span t-field="o.sale_id.incoterm"/>
+                                </t>
+                            </t>
+                            <t t-if="o.purchase_id">
+                                <t t-if="o.purchase_id.incoterm_id">
+                                    <span t-field="o.purchase_id.incoterm_id"/>
+                                </t>
+                            </t>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <t t-set="weee_data" t-value="get_weee_data(o)" />
+            <t t-if="weee_data['print']">
+                <div class="comment">
+                    <table>
+                        <tr>
+                            <td>
+                                Please notice our WEEE registration number in <t t-esc="weee_data.get('country_name', '')" />: <t t-esc="weee_data.get('weee_number', '')" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </t>
+            <div class="comment">
+                <t t-if="o.sale_id">
+                    <table>
+                        <tr>
+                            <td class="left_bottom_col1 ">
+                                <t t-if="o.sale_id.note">
+                                    <t t-foreach="o.sale_id.note.split('\n')" t-as="comment_line">
+                                        <span t-esc="comment_line"/>
+                                        <br/>
+                                    </t>
+                                </t>
+                            </td>
+                        </tr>
+                    </table>
+                </t>
+            </div>
+            <div class="comment">
+                <table>
+                    <tr>
+                        <td>
+                            Our General Conditions of Sale shall apply exclusively, see: <a t-attf-href="mailto:{o.company_id.website}"><span t-field="o.company_id.website"/></a>.
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="page_break" />
+            <div class="comment">
+                <table>
+                    <tr>
+                        <td>
+                            Serial numbers list:
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <t t-set="serial_numbers_data" t-value="get_serial_numbers_data(o)" />
+            <div class="comment">
+                <table class="right_bottom_table">
+                    <t t-foreach="serial_numbers_data" t-as="key">
+                        <tr>
+                            <td class="serial_column_1">
+                                <t t-esc="serial_numbers_data[key]['article_number']" />
+                                <t t-esc="serial_numbers_data[key]['article_code']" />
+                            </td>
+                            <td colspan="3" class="serial_column_1">
+                                <t t-esc="serial_numbers_data[key]['article_name']" /> - amount:
+                                <!--<t t-esc="'%.2f'%serial_numbers_data[key]['article_qty']" />-->
+                                <t t-esc="get_formated_amount(env=False, amount=serial_numbers_data[key]['article_qty'], currency_obj=False, obj=o)" />
+                                <t t-esc="serial_numbers_data[key]['article_uom']" />
+                            </td>
+                        </tr>
+                        <t t-foreach="serial_numbers_data[key]['serial_numbers']" t-as="row">
+                            <tr class="right_bottom_table">
+                                <t t-foreach="serial_numbers_data[key]['serial_numbers'][row]" t-as="column">
+                                    <t t-if="serial_numbers_data[key]['serial_numbers'][row][column]">
+                                        <td class="serial_column_1">
+                                            <t t-esc="serial_numbers_data[key]['serial_numbers'][row][column]"/>;
+                                        </td>
+                                    </t>
+                                    <t t-else="">
+                                        <td class="serial_column_2">
+
+                                        </td>
+                                    </t>
+                                </t>
+                            </tr>
+                        </t>
+                        <tr>
+                            <td>
+                                <br/>
+                            </td>
+                        </tr>
+                    </t>
+                </table>
+            </div>
+        </div>
+    </template>
+
+    <template id="frogblue_line_header_delivery">
+    </template>
+
+    <template id="frogblue_line_offer_delivery">
+        <tr class="main_table_row_no_border">
+            <td class="delivery_table_col1">
+               <!--  <span t-esc="get_counter()"/> -->
+               <t t-esc="counter"/>.
+            </td>
+            <td class="delivery_table_col2">
+                <table class="pic_table">
+                    <tr class="pic_table">
+                        <td class="main_table_col2">
+                            <!--t t-if="line.product_id">
+                                <t t-if="line.product_id.default_code">
+                                    <span t-esc="line.product_id.default_code"/>
+                                </t> /
+                                <span t-esc="get_customer_product_number(line.product_id, partner)" />
+                                <br/>
+                            </t-->
+                            <t t-if="line.product_id.default_code and '[%s]' % line.product_id.default_code in line.name">
+                                <t t-set="descr_lines" t-value="line.name.replace('[%s]' % line.product_id.default_code, '')"/>
+                                <t t-foreach="descr_lines.split('\n')" t-as="desc_line">
+                                    <span t-esc="desc_line"/>
+                                    <br/>
+                                </t>
+                                <t t-if="line.product_id.hs_code">
+                                    <span>HS Code: </span> <span t-field="line.product_id.hs_code"/><br/>
+                                </t>
+                            </t>
+                            <t t-if="line.product_id.default_code and '[%s]' % line.product_id.default_code not in line.name">
+                                <t t-foreach="line.name.split('\n')" t-as="desc_line">
+                                    <span t-esc="desc_line"/>
+                                    <br/>
+                                </t>
+                                <t t-if="line.product_id.hs_code">
+                                    <span>HS Code: </span> <span t-field="line.product_id.hs_code"/><br/>
+                                </t>
+                            </t>
+                            <t t-if="not line.product_id.default_code">
+                                <t t-foreach="line.name.split('\n')" t-as="desc_line">
+                                    <span t-esc="desc_line"/>
+                                    <br/>
+                                </t>
+                                <t t-if="line.product_id.hs_code">
+                                    <span>HS Code: </span> <span t-field="line.product_id.hs_code"/><br/>
+                                </t>
+                            </t>
+                            <t t-if="line.product_id.barcode">
+                                <span>EAN: </span><span t-field="line.product_id.barcode"/><br/>
+                            </t>
+                            <t t-if="get_non_eu_country(line.partner_id.country_id.id)">
+                                <span>Country of origin: Germany</span><br/>
+                            </t>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td class="delivery_table_col3">
+                <t t-if="line.product_uom and line.product_uom.name">
+                    <span t-field="line.product_uom.name"/>
+                </t>
+            </td>
+
+            <t t-set="line_quantities" t-value="get_line_quantities(line)"/>
+            <td class="delivery_table_col4">
+                <t t-if="line_quantities['amount_ordered']">
+                    <t t-if="isinstance(line_quantities['amount_ordered'], int)">
+                        <span t-esc="'%.0f'%line_quantities['amount_ordered']"/>
+                    </t>
+                    <t t-if="not isinstance(line_quantities['amount_ordered'], int)">
+                        <!--<span t-esc="'%.2f'%line_quantities['amount_ordered']"/>-->
+                        <span t-esc="get_formated_amount(env=False, amount=line_quantities['amount_ordered'], currency_obj=False, obj=o)" />
+                    </t>
+                </t>
+                <t t-else="">
+                    <span t-esc="'%.0f'%0.0"/>
+                </t>
+            </td>
+
+            <td class="delivery_table_col5">
+                <t t-if="line_quantities['amount_supplied']">
+                    <t t-if="isinstance(line_quantities['amount_supplied'], int)">
+                        <span t-esc="'%.0f'%line_quantities['amount_supplied']"/>
+                    </t>
+                    <t t-if="not isinstance(line_quantities['amount_supplied'], int)">
+                        <!--<span t-esc="'%.2f'%line_quantities['amount_supplied']"/>-->
+                        <span t-esc="get_formated_amount(env=False, amount=line_quantities['amount_supplied'], currency_obj=False, obj=o)" />
+                    </t>
+                </t>
+                <t t-else="">
+                    <span t-esc="'%.0f'%0.0"/>
+                </t>
+            </td>
+            <!--<td class="delivery_table_col6">-->
+                <!--<t t-if="line_quantities['outstanding_amount']">-->
+                    <!--<t t-if="line_quantities['outstanding_amount'].is_integer()">-->
+                        <!--<span t-esc="'%.0f'%line_quantities['outstanding_amount']"/>-->
+                    <!--</t>-->
+                    <!--<t t-if="not line_quantities['outstanding_amount'].is_integer()">-->
+                        <!--<span t-esc="'%.2f'%line_quantities['outstanding_amount']"/>-->
+                    <!--</t>-->
+                <!--</t>-->
+                <!--<t t-else="">-->
+                    <!--<span t-esc="'%.0f'%0.0"/>-->
+                <!--</t>-->
+            <!--</td>-->
+        </tr>
+    </template>
+
+
+    <template id="report_frogblue_delivery_note_document">
+        <t t-call="frogblue_reports.frogblue_external_layout">
+            <div class="page">
+                <t t-call="frogblue_reports.deliverynote_internal_content"/>
+            </div>
+        </t>
+    </template>
+
+    <template id="report_frogblue_deliverynote">
+        <t t-call="frogblue_reports.frogblue_html_container">
+            <t t-foreach="docs" t-as="doc">
+                <!--<t t-call="frogblue_reports.report_frogblue_delivery_note_document" t-lang="doc.partner_id.lang"/>-->
+                <t t-if="doc.sale_id and doc.picking_type_id.sequence_id.name == 'Dropship'">
+                    <t t-call="frogblue_reports.report_frogblue_delivery_note_document" t-lang="doc.sale_id.partner_shipping_id.lang" />
+                </t>
+                <t t-else="">
+                    <t t-call="frogblue_reports.report_frogblue_delivery_note_document" t-lang="doc.partner_id.lang"/>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

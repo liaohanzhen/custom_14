@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    	<record id="view_training_session_filter" model="ir.ui.view">
+            <field name="name">training.session.search.view</field>
+            <field name="model">training.session</field>
+            <field name="arch" type="xml">
+                <search string="Training Search">
+                    <field name="name" />
+                    <field name="employee_id"/>
+                    <field name="package_id" />
+                    <separator/>
+                    <group expand="0" string="Group By" >
+                        <filter string="Trainer’s name" name="trainer_name" context="{'group_by':'employee_id'}" />
+                        <filter string="Training Package" name="trainer_package" context="{'group_by':'package_id'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record id="view_training_session_form" model="ir.ui.view">
+            <field name="name">training.session.form</field>
+            <field name="model">training.session</field>
+            <field name="arch" type="xml">
+                <form string="Training Session Form">
+                    <header>
+                    	<button string="START" type="object" name="action_start_training" class="oe_highlight" states="NEW"/>
+                    	<button string="REQUEST SIGNATURES" type="object" name="action_request_signatures" class="oe_highlight" states="IN PROGRESS"/>
+                    	<button string="EMAIL TRAINEES" type="object" name="action_email_trainees" class="oe_highlight" states="SIGNED"/>
+                    	<button string="Trainer Signature" type="object" name="action_do_trainer_signature" class="oe_highlight"  attrs="{'invisible':['|',('state','not in',['SIGNATURE REQUIRED']),('trainer_signature','!=',False)]}" />
+                    	<button string="Cancel" type="object" name="action_cancel_session" class="oe_highlight" states="IN PROGRESS,SIGNATURE REQUIRED,SIGNED,DONE"/>
+                    	<field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                    	<div class="oe_button_box" name="button_box">
+	                        <button name="action_open_session_training" type="object"
+	                                class="oe_stat_button" icon="fa-hashtag">
+	                            <field name="count_training" string="Trainings" widget="statinfo"/>
+	                        </button>
+	                    </div>
+                        <div class="oe_title">
+	                        <h1>
+	                            <field name="name" required="1"/>
+	                        </h1>
+	                    </div>
+                        <group>
+                        	<group>
+                        		<field name="start_date" />
+                        	</group>
+                        	<group>
+                        		<field name="employee_id" />
+                        		<field name="trainer_signature" widget="image" readonly="1" height="90"/>
+                        	</group>
+                        </group>
+                        <notebook>
+                        	<!-- <page string="Training Content">
+                        		<field name="training_content" colspan="4" nolabel="1" />
+                        	</page> -->
+                        	<page string="Trainees">
+                        		<field name="trainee_ids" colspan="4" nolabel="1" attrs="{'readonly': [('state','!=','NEW')]}">
+                        			<tree string="Trainees" editable="bottom" >
+                        				<field name="employee_id" required="1"/>
+                        				<!-- <button string="Signature" type="object" name="action_do_signature" class="oe_highlight" />
+                        				<field name="signature" widget="image" readonly="1" height="90"/> -->
+                        				<!-- <field name="signed" readonly="1"/> -->
+                        			</tree>
+                        		</field>
+                        	</page>
+                        	<page string="Trainings">
+                        		<field name="package_id" colspan="4" attrs="{'readonly': [('state','!=','NEW')]}"/>
+                        		<field name="training_template_ids" colspan="4" nolabel="1" attrs="{'readonly': [('state','!=','NEW')]}">
+                        			<tree string="Training Templates" >
+                        				<field name="name"/>
+					                    <field name="department_id"/>
+					                    <field name="is_recurring" />
+                        			</tree>
+                        		</field>
+                        	</page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_training_session_tree" model="ir.ui.view">
+            <field name="name">training.session.tree</field>
+            <field name="model">training.session</field>
+            <field name="arch" type="xml">
+                <tree string="Training Session tree">
+                	<field name="name"/>
+                    <field name="start_date" />
+                    <field name="employee_id"/>
+                    <field name="state" />
+                </tree>
+            </field>
+        </record>
+		<record id="view_training_session_calendar" model="ir.ui.view">
+            <field name="name">training.session.calendar</field>
+            <field name="model">training.session</field>
+            <field name="arch" type="xml">
+                <calendar string="Training" color="state" date_start="start_date">
+                    <field name="name"/>
+                    <!-- <field name="amount_total" widget="monetary"/> -->
+                </calendar>
+            </field>
+        </record>
+		
+        <record id="action_training_session" model="ir.actions.act_window">
+            <field name="name">Training Sessions</field>
+            <field name="res_model">training.session</field>
+            <!-- <field name="view_type">form</field> -->
+            <field name="view_mode">tree,form,calendar</field>
+            <field name="search_view_id" ref="view_training_session_filter"/>
+        </record>
+        
+        <menuitem id="menu_action_action_training_session"
+        	parent="main_menu_employee_trainings"
+        	name="Training Sessions"
+        	action="action_training_session"
+        	sequence="4"/>
+        	
+    </data>
+</odoo>

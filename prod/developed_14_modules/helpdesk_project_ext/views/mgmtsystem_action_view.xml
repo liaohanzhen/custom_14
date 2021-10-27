@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+        <record id="mgmtsystem_action_form_inherit_helpdesk" model="ir.ui.view">
+            <field name="name">mgmtsystem.action.form.inherit.helpdesk</field>
+            <field name="model">mgmtsystem.action</field>
+            <field name="inherit_id" ref="mgmtsystem_action.view_mgmtsystem_action_form" />
+            <field name="arch" type="xml">
+            	<field name='system_id' position="after">
+            		<field name="ticket_id" readonly="1" />
+            	</field>
+            </field>
+        </record>
+    </data>
+</odoo>

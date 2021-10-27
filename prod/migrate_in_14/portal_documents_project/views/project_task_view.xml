@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="portal_project_task_access_form_view" model="ir.ui.view">
+			<field name="name">portal.project.task.access.form.view.inherit</field>
+			<field name="model">project.task</field>
+			<field name="inherit_id" ref="project.view_task_form2"/>
+			<field name="arch" type="xml">
+				<xpath expr="//notebook/page[last()]" position="after">
+	                <page name='portal_access' string='Portal'>
+	                	<group>
+                            <group>
+                            	<field name="allowed_user_ids" widget="many2many_tags" />
+                                <field name="allowed_group_ids" widget="many2many_tags" /> 
+                            </group>
+                        </group>
+	                </page>
+	            </xpath>
+			</field>
+		</record>
+	</data>
+</odoo>

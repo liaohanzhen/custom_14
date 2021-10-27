@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://store.webkul.com/license.html/ -->
+<odoo>
+    <data noupdate="1">
+
+        <record id="product_demo_data1" model="product.product">
+            <field name="name">Red Glass Bottle</field>
+            <field name="quotation">True</field>
+            <field name="list_price">110</field>
+            <field name="min_qty">10</field>
+            <field name="valid_days">2</field>
+            <field name="image_variant_128" type="base64" file="website_quote_system/static/img/product1.jpg"/>
+            <field name="website_published" eval="True"/>
+        </record>
+
+        <record id="product_demo_data2" model="product.product">
+            <field name="name">Casual Girls Shoes</field>
+            <field name="quotation">True</field>
+            <field name="list_price">999</field>
+            <field name="min_qty">5</field>
+            <field name="valid_days">2</field>
+            <field name="image_variant_128" type="base64" file="website_quote_system/static/img/product2.jpg"/>
+            <field name="website_published" eval="True"/>
+        </record>
+
+        <record id="product_demo_data3" model="product.product">
+            <field name="name">Red Goggles</field>
+            <field name="quotation">True</field>
+            <field name="list_price">499</field>
+            <field name="min_qty">15</field>
+            <field name="valid_days">5</field>
+            <field name="image_variant_128" type="base64" file="website_quote_system/static/img/product3.jpg"/>
+            <field name="website_published" eval="True"/>
+        </record>
+    </data>
+</odoo>

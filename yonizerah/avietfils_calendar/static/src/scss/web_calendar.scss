@@ -33,63 +33,90 @@ div.fc-day-grid table td {
 
 
 // ===============  Generate color classes ===============
-// @for $i from 1 through length($o-colors-complete) {
+
+$o-colors-complete: (
+                        'status3': #f8aa65,
+//                         6: #f8aa65,
+                        'traité': #9cbc58,
+//                         7: #9cbc58,
+                        'status1': #f8ab51,
+//                         16: #f8ab51,
+                        'sav': #94cede,
+//                         21: #94cede,
+                        'sav_ok': #497ebc,
+//                         2: #497ebc,
+                        'status2': #f35f5b,
+//                         11: #f35f5b,
+                    );
+@each $i, $color in $o-colors-complete {
 //     $color: nth($o-colors-complete, $i);
-//         @debug "divider offset: #{$color, $i)}";
-//
-//
-//     .o_calendar_view .fc-view {
-//         .fc-bgevent.o_calendar_color_#{$i - 1} {
-//             border-color: $color;
-//             background-color: $color;
-//             opacity: 0.2;
-//         }
-//         .fc-event.o_calendar_color_#{$i - 1} {
-//             border-color: $color;
-//             color: darken($color, 35%);
-//             opacity: 0.8;
-//
-//             &.o_event_hightlight {
-//                 opacity: 1;
-//
-//                 .fc-content {
-//                     font-weight: bold;
-//                 }
-//             }
-//
-//             .fc-bg {
-//                 background: mix($color, white);
-//             }
-//
-//             &.o_cw_custom_hover, &.o_cw_custom_highlight {
-//                 box-shadow: 0 12px 12px -5px rgba($color, 0.3);
-//                 color: color-yiq($color);
-//
-//                 .fc-bg {
-//                     background: $color;
-//                 }
-//             }
-//         }
-//     }
-//
-//     .o_cw_filter_color_#{$i - 1} {
-//         .o_cw_filter_input_bg {
-//             border-color: $color;
-//             background: $color;
-//             color: color-yiq($color);
-//         }
-//     }
-//
-//     .o_cw_popover.o_calendar_color_#{$i - 1} {
-//         $color-subdle: mix(white, $color, 90%);
-//
-//         .card-header, .card-header .popover-header {
-//             background-color: $color-subdle;
-//             color: color-yiq($color-subdle);
-//         }
-//
-//         .card-header {
-//             border-color: mix($card-border-color, mix(white, $color));
-//         }
-//     }
-// }
+//         @debug "divider offset: #{$o-colors-complete)}";
+        @debug "color key: #{color-yiq($color))}";
+
+
+    .o_calendar_view .fc-view {
+        .fc-bgevent.o_calendar_color_#{$i} {
+            border-color: $color;
+            background-color: $color;
+            opacity: 0.2;
+        }
+        .fc-event.o_calendar_color_#{$i} {
+            border-color: $color;
+            color: darken($color, 35%);
+            opacity: 0.8;
+
+            &.o_event_hightlight {
+                opacity: 1;
+
+                .fc-content {
+                    font-weight: bold;
+                }
+            }
+
+            .fc-bg {
+                background: mix($color, white);
+            }
+
+            &.o_cw_custom_hover, &.o_cw_custom_highlight {
+                box-shadow: 0 12px 12px -5px rgba($color, 0.3);
+                color: color-yiq($color);
+
+                .fc-bg {
+                    background: $color;
+                }
+            }
+        }
+    }
+
+    .o_cw_filter_color_#{$i} {
+        .o_cw_filter_input_bg {
+            border-color: $color;
+            background: $color;
+            color: color-yiq($color);
+        }
+    }
+
+    .o_cw_popover.o_calendar_color_#{$i} {
+        $color-subdle: mix(white, $color, 90%);
+
+        .card-header, .card-header .popover-header {
+            background-color: $color-subdle;
+            color: color-yiq($color-subdle);
+        }
+
+        .card-header {
+            border-color: mix($card-border-color, mix(white, $color));
+        }
+    }
+}
+.o_cw_nobg {
+    .fc-bg {
+        visibility: hidden;
+    }
+
+    &.o_cw_custom_hover, &.o_cw_custom_highlight, &:hover {
+        .fc-bg {
+            visibility: visible;
+        }
+    }
+}

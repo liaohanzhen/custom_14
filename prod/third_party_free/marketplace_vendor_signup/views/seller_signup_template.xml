@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://store.webkul.com/license.html/ -->
+<odoo>
+    <data>
+        <template id="mp_signup_form_progressbar" name="Signup Form Progressbar">
+            <ul id="group_progress" class="d-flex text-center pl-0 list-inline mx-auto justify-content-center">
+                <li class="active list-inline-item" id="1"><strong>Personal Information</strong></li>
+                <t t-foreach="request.website.get_signup_attributes()" t-as="attribute">
+                    <li class="list-inline-item" t-att-id="attribute_index + 2"><strong><t t-esc="attribute"/></strong></li>
+                </t>
+                <li class="list-inline-item" t-att-id="len(request.website.get_signup_attributes()) + 2"><strong>Finish</strong></li>
+            </ul>
+        </template>
+        <template id="mp_seller_signup_inherit" name="Multi Step Vendor Signup" inherit_id="odoo_marketplace.mp_seller_signup">
+                <xpath expr="//form" position="attributes">
+                    <attribute name="t-if">not request.website.mp_multi_step_signup or not request.website.get_signup_attributes()</attribute>
+                </xpath>
+                <xpath expr="//form" position="after">
+                    <form t-else="" class="oe_signup_form col-md-5 mp_form" action="/seller/signup" id="wk_mp" role="form" method="post">
+                    
+                        <div class="text-center seller-register-multistep">Register as a Seller</div>
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                        <div>
+                            <t t-call="marketplace_vendor_signup.mp_signup_form_progressbar"/>
+                        </div>
+                        <fieldset class="p-5">
+                            <h2 style="font-weight: bold;font-size: 26px;" class="mb-3">Personal Information</h2>
+                            <t t-call="auth_signup.fields">
+                                <t t-set="only_passwords" t-value="bool(token)"/>
+                            </t>
+                            
+                            <input type="checkbox" style="display:none;" name="is_seller" id="is_seller" checked="checked" t-att-required="'disabled' if set_seller or signup_from_seller_page else None"/>
+                            <div id="mp_seller_details" t-att-style="None if set_seller or signup_from_seller_page else 'display:none;'">
+                                <div class="form-group field-country">
+                                    <t t-set="countries" t-value="website.get_mp_ajax_seller_countries()"/>
+                                    <t t-set="country" t-value="website.user_id.sudo().partner_id.company_id.country_id"/>
+                                    <label class="control-label" for="country_id">Country</label>
+                                    <select id="country_id" name="country_id" class="form-control wk_attr_input" t-att-required="'disabled' if set_seller or signup_from_seller_page else None">
+                                        <option value="">Country...</option>
+                                        <t t-foreach="countries" t-as="c">
+                                            <option t-att-value="c.id" t-att-selected="1 if country_id == str(c.id) else None">
+                                                <t t-esc="c.name" />
+                                            </option>
+                                        </t>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group has-feedback">
+                                    <label for="profile_url" class="control-label">Profile URL</label>
+                                    <span class="fa fa-info-circle text-info pull-right url_info" data-toggle="popover" data-trigger="hover" data-content="This will be used to display your public profile."/>
+                                    <input type="text" t-att-value="url_handler" name="url_handler" id="profile_url" class="form-control wk_attr_input" placeholder="Unique Seller Profile URL handler.." t-att-required="'disabled' if set_seller or signup_from_seller_page else None"/>
+                                    <span class="fa fa-pencil form-control-feedback pull-right" style="margin-top:-24px;margin-right: 10px;"></span>
+                                    <div class="text-danger" id="profile_url_error" style="display:none;"></div>
+                                    <input type="hidden" name="valid_profile_url" id="valid_profile_url"/>
+                                </div>
+                                <p class="alert alert-danger" t-if="error" role="alert">
+                                    <t t-esc="error"/>
+                                </p>
+                                <t t-if="website.mp_marketplace_t_c">
+                                  <div class="form-group ">
+                                    <input type="checkbox" name="mp_terms_conditions" id="mp_terms_conditions" class="wk_attr_input" t-att-required="'disabled' if set_seller or signup_from_seller_page else None"/>
+                                    <label for="mp_terms_conditions" class="form-group control-label">&#160;I Accept <a href="#" id="mp_t_and_c">Terms &amp; Conditions</a></label>
+                                    <data id="mp_t_and_c_data" t-att-data-terms="website.mp_term_and_condition"/>
+                                  </div>
+                                </t>
+                            </div>
+                            <a t-if="website.get_signup_attributes()" t-attf-href="/web/login?{{ keep_query() }}" class="btn btn-link">Back to Login</a>
+                            <a t-if="website.get_signup_attributes()" name="next" class="mp_next action-button btn btn-primary pull-right">NEXT&#160;&#160;<i class="fa fa-arrow-right"></i></a>
+                            <div t-if="not website.get_signup_attributes()" class="clearfix oe_login_buttons">
+                                <a t-attf-href="/web/login?{{ keep_query() }}" class="btn btn-link pull-right">Back to Login</a>
+                                <button type="submit" class="btn btn-primary pull-left">Sign up</button>
+                            </div>
+                        </fieldset>
+                        <t t-foreach="website.get_signup_attributes()" t-as="attribute">
+                            <fieldset class="p-5">
+                                    <h2 style="font-weight: bold;font-size: 26px;" class="mb-3"><t t-esc="attribute"/></h2>
+                                    <t t-call="marketplace_vendor_signup.show_form_input"/>
+                                    <t t-if="(attribute_index + 1) != len(website.get_signup_attributes())">
+                                        <button type="button" name="previous" class="btn btn-link mp_previous action-button-previous">Back</button>
+                                        <a name="next" class="mp_next action-button btn btn-primary pull-right">NEXT&#160;&#160;<i class="fa fa-arrow-right"></i></a>
+
+                                    </t>
+                                    <t t-if="(attribute_index + 1) == len(website.get_signup_attributes())">
+                                        <button type="button" name="previous" class="btn btn-link mp_previous action-button-previous">Back</button>
+                                        <button type="submit" class="btn btn-primary pull-right">Sign up</button>
+                                    </t>
+                            </fieldset>
+                        </t>
+                    </form>
+                </xpath>
+        </template>
+
+        <template id="input_type_text" name="SignUp Input type Text">
+            <label t-att-for="attribute_name"><t t-esc="attribute_vals.get('label')"/></label>
+            <input
+                t-att-type="'number' if type=='float' else type"
+                t-attf-name="#{attribute_name if attribute_name!='website' else 'wk_website'}"
+                t-att-id="attribute_name"
+                t-attf-value="#{dict(request.params).get(attribute_name) if error else None}"
+                class="form-control wk_attr_input"
+                t-att-placeholder="attribute_vals.get('placeholder')"
+                t-att-title="attribute_vals.get('help')"
+                t-att-required="'required' if attribute_vals.get('is_required') else None"
+                t-att-step="0.1 if type=='float' else None"
+                />
+        </template>
+
+        <template id="input_type_selection" name="SignUp Input type Selection">
+            <t t-set="attribute_values" t-value="attribute_vals.get('attr_values')"/>
+            <label t-att-for="attribute_name"><t t-esc="attribute_vals.get('label')"/></label>
+            <select t-attf-class="form-control wk_attr_input"
+                t-att-required="'required' if attribute_vals.get('is_required') else None"
+                t-att-name="attribute_name"
+                t-att-title="attribute_vals.get('help')"
+                style="cursor: pointer;">
+            <option value="" disabled="1"
+                selected="1"> --Select-- </option>
+            <t t-foreach="attribute_values" t-as="value">
+                <option t-att-value="value"
+                    t-att-selected="1 if dict(request.params).get(attribute_name) == value else None"
+                >
+                    <t t-esc="attribute_values[value]"/>
+                </option>
+            </t>
+            </select>
+        </template>
+
+        <template id="input_type_textarea" name="SignUp Input type Textarea">
+            <label t-att-for="attribute_name"><t t-esc="attribute_vals.get('label')"/></label>
+            <textarea
+                class="form-control o_website_form_input wk_attr_input"
+                t-att-required="'required' if attribute_vals.get('is_required') else None"
+                t-att-name="attribute_name"
+                t-att-id="attribute_name"
+                t-att-placeholder="attribute_vals.get('placeholder')"
+                t-att-title="attribute_vals.get('help')" ><t t-esc="dict(request.params).get(attribute_name) if error else None"/></textarea>
+        </template>
+
+        <template id="input_type_checkbox" name="SignUp Input type Checkbox">
+            <div class="custom-control custom-checkbox">
+                <input
+                    type="checkbox"
+                    t-att-name="attribute_name"
+                    t-att-id="attribute_name"
+                    t-att-title="attribute_vals.get('help')"
+                    t-att-checked="1 if dict(request.params).get(attribute_name) else None"
+                    t-att-required="'required' if attribute_vals.get('is_required') else None"
+                    class="custom-control-input wk_attr_input"
+                    />
+                <label class="form-group control-label custom-control-label" t-att-for="attribute_name">
+                    <t t-esc="attribute_vals.get('label')"/>
+                </label>
+            </div>
+        </template>
+
+        <template id="show_form_input" name="Show Form Input">
+            <t t-foreach="attribute_value" t-as="attribute_name">
+                <t t-set="attribute_vals" t-value="attribute_value[attribute_name]"/>
+                <t t-set="type" t-value="attribute_vals.get('input_type')"/>
+                <div t-attf-class="form-group attribute-#{attribute_name} col-sm-#{'6' if attribute_vals.get('cols')==2 else '12'}">
+                    <t t-if="type in ['text','number','float']" t-call="marketplace_vendor_signup.input_type_text"/>
+                    <t t-if="type in ['selection','selection_m2o','selection_m2m']" t-call="marketplace_vendor_signup.input_type_selection"/>
+                    <t t-if="type == 'textarea'" t-call="marketplace_vendor_signup.input_type_textarea"/>
+                    <t t-if="type == 'checkbox'" t-call="marketplace_vendor_signup.input_type_checkbox"/>
+                </div>
+            </t>
+        </template>
+
+        <template id="auth_signup_inherit" inherit_id="auth_signup.fields">
+            <xpath expr="//input[@name='login']" position="attributes">
+                <attribute name="t-attf-class"  add='#{"form-control wk_attr_input"}' seperator=" "/>
+            </xpath>
+            <xpath expr="//input[@name='name']" position="attributes">
+                <attribute name="t-attf-class"  add='#{"form-control wk_attr_input"}' seperator=" "/>
+            </xpath>
+            <xpath expr="//input[@name='password']" position="attributes">
+                <attribute name="t-attf-class"  add='#{"form-control wk_attr_input"}' seperator=" "/>
+            </xpath>
+            <xpath expr="//input[@name='confirm_password']" position="attributes">
+                <attribute name="t-attf-class"  add='#{"form-control wk_attr_input"}' seperator=" "/>
+            </xpath>
+        </template>
+
+        <template id="mp_signup_successful" name="Seller Signup Successful">
+			<t t-call="website.layout">
+                <div class="row">
+                    <div class="col-lg-5 col-10 mx-auto text-center my-5">
+                        <div class="text-center seller-register-multiste">Register as a Seller</div>
+                        <div class="">
+                            <ul id="group_progress" class="d-flex text-center pl-0 list-inline mx-auto justify-content-center">
+                                <li class="active list-inline-item" id="1"><strong>Personal Information</strong></li>
+                                <t t-foreach="request.website.get_signup_attributes()" t-as="attribute">
+                                    <li class="active list-inline-item" t-att-id="attribute_index + 2"><strong><t t-esc="attribute"/></strong></li>
+                                </t>
+                                <li class="active list-inline-item" t-att-id="len(request.website.get_signup_attributes()) + 2"><strong>Finish</strong></li>
+                            </ul>
+                        </div>
+                        <div class="pb-5" style="box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);">
+                            <img class="py-5" src='/marketplace_vendor_signup/static/src/img/layout_form-submitted.png' style=""/>
+                            <h1>Successfully Submitted</h1>
+                            <p>Your form has been successfully submitted.</p>
+                            <a href="/my/marketplace">Click here to view your profile.</a>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>

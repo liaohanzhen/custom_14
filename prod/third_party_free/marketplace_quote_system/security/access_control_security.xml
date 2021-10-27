@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://store.webkul.com/license.html/ -->
+<odoo>
+    <data noupdate="1">
+        <record id="customer_quotes_of_seller_rule" model="ir.rule">
+	        <field name="name">Seller Customer Quotes</field>
+	        <field name="model_id" ref="website_quote_system.model_quote_quote"/>
+	        <field name="domain_force">['|',('marketplace_seller_id.id','=',user.partner_id.id),('create_uid','=', user.id)]</field>
+	        <field name="groups" eval="[(4, ref('odoo_marketplace.marketplace_seller_group'))]"/>
+	    </record>
+    </data>
+</odoo>

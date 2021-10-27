@@ -1,0 +1,15 @@
+.o_portal_chatter {
+	.o_portal_chatter_attachment {
+        .o_portal_chatter_attachment_name {
+            word-wrap: break-word;
+        }
+
+        .o_portal_chatter_attachment_delete {
+            @include o-position-absolute($top: 0, $right: 0);
+            opacity: 0;
+        }
+        &:hover .o_portal_chatter_attachment_delete {
+            opacity: 1;
+        }
+    }
+}

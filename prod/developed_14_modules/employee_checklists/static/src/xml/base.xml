@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+	<tr t-extend="ListView.row">
+		<t t-jquery="t[t-foreach*='columns'][t-as*='column']:last td" t-operation="replace">
+			<t t-if="column.context and column.context.left_justified===True">
+				<td t-if="!column.meta and column.invisible !== '1'" t-att-title="column.help"
+		            t-attf-class="#{modifiers.readonly ? 'o_readonly' : ''} #{number ? 'o_list_number' : ''} #{text ? 'o_list_text' : ''} #{column.id === 'sequence' ? 'o_handle_cell' : ''} #{column.tag === 'button' ? 'o_list_button' : ''}"
+		            t-att-data-field="column.id" style="text-align:left;"
+		            ><t t-raw="render_cell(record, column)"/></td>
+			</t>
+			<t t-else="">
+				<td t-if="!column.meta and column.invisible !== '1'" t-att-title="column.help"
+		            t-attf-class="#{modifiers.readonly ? 'o_readonly' : ''} #{number ? 'o_list_number' : ''} #{text ? 'o_list_text' : ''} #{column.id === 'sequence' ? 'o_handle_cell' : ''} #{column.tag === 'button' ? 'o_list_button' : ''}"
+		            t-att-data-field="column.id"
+		            ><t t-raw="render_cell(record, column)"/></td>
+            </t>
+	    </t>
+		
+	</tr>
+</templates>

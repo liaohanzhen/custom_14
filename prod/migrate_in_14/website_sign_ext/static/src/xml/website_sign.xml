@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+		
+	<t t-name="website_sign_ext.create_signature_request_confirm_dialog">
+        <div class="form-horizontal">
+            <div class="o_sign_request_signers_sequence">
+                
+            </div>
+            <hr/>
+        </div>
+    </t>
+    <t t-name="SequenceStatus.content.desktop">
+    	<t t-foreach="sequence_partners" t-as="partner">
+			<!-- <t t-call="SequenceStatus.content.button"/> -->
+			<button type="button" style="color: white;background-color: #7F7F7F;" class="btn  disabled">
+				<t t-foreach="partner" t-as="p">        
+		        	<span><t t-esc="p"/></span>
+		        </t>
+		    </button>
+		</t>
+    </t>
+</templates>

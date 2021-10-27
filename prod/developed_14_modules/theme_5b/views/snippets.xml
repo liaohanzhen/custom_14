@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+<template id="snippet_home_page" name="Homepage">
+  <section class="snippet_home_page">
+    <div class="container">
+      <div class="row hidden-sm">
+		  <div class="col-lg-12">
+			<h2>Home Page</h2>
+		  </div>
+	  </div>
+    </div>
+</section>
+</template>
+
+<template id="s_5b_content_header" name="Content Heading">
+	<section class="about">
+	  <div class="container">
+		<div class="row">
+		  <div class="col-12 col-lg-12 mt-4 content" align="center">
+			<div class="section-title">
+			  <h3>Page Header</h3>
+			</div>
+		   </div>
+		 </div>
+	   </div>
+	</section>
+</template>
+
+<template id="s_5b_content_button" name="5B Buttons">
+	<section class="about">
+	  <div class="container">
+		<div class="row">
+		  <div class="col-lg-12 pt-4 pt-lg-0 order-2 order-lg-1 content">
+			<div class="btn-center">
+				<a href="#" class="learn-more-btn">Button text</a>
+			</div>
+		</div>
+		</div>
+		</div>
+	</section>
+</template>
+
+<template id="s_5b_hero_banner" name="5B Hero Banner">
+	<section id="hero-project">
+	<div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
+	</div>
+	</section>
+</template>
+
+<template id="s_5b_container_snippet" name="5B Container">
+	<section class="about">
+		<div class="container" data-aos="fade-up">
+		<div class="row">
+		  <div class="col-lg-12 pt-4 pt-lg-0 order-2 order-lg-1 content">
+			<!-- === Snippets' area === -->
+			<div class="oe_structure" />
+		  </div>
+		</div>
+		</div>
+	</section>
+</template>
+				  
+
+<template id="5b_snippet_place_into_bar" inherit_id="website.snippets" name="5B Snippet bar">
+    <xpath expr="//div[@id='snippet_structure']/div[hasclass('o_panel_body')]" position="inside">
+        <t t-snippet="theme_5b.s_5b_content_header" />
+		<t t-snippet="theme_5b.s_5b_content_button" />
+		<t t-snippet="theme_5b.s_5b_hero_banner" />
+		<t t-snippet="theme_5b.s_5b_container_snippet" />
+    </xpath>
+</template>
+
+</odoo>

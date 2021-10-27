@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="quality_alert_team_form_inherit_members">
+        <field name="name">quality_alert.team.inherit.members</field>
+        <field name="model">quality.alert.team</field>
+        <field name="inherit_id" ref="quality_control.quality_alert_team_view_form"/>
+        <field name="arch" type="xml">
+            <data>
+                <group name="group_alias" position="after">
+                    <group colspan="4">
+                        <div>
+                            <label for="send_sms_if_urgent" style="font-weight:bold;"/>
+                            <field name="send_sms_if_urgent"/>
+                        </div>
+                        <br/>
+                        <div>
+                            <label for="urgent_keyword" style="font-weight:bold;"/>
+                            <field name="urgent_keyword" class="oe_inline"/>
+                        </div>
+                        <br/>
+                        <div>
+                            <label for="member_ids" style="font-weight:bold;"/>
+                            <field name="member_ids" widget="many2many_tags" class="oe_inline"/>
+                        </div>
+                    </group>
+                </group>
+            </data>
+        </field>
+    </record>
+</odoo>

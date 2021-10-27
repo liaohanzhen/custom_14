@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_project_checklists_item_user,access.project.checklists.item.user,model_project_checklists_item,project.group_project_user,1,1,1,0
+access_project_checklists_item_manager,access.project.checklists.item.manager,model_project_checklists_item,project.group_project_manager,1,1,1,1
+access_project_checklists_item_user_helpdesk,access.project.checklists.item.user.helpdesk,model_project_checklists_item,helpdesk.group_helpdesk_user,1,1,1,0
+access_project_checklists_item_manager_helpdesk,access.project.checklists.item.manager.helpdesk,model_project_checklists_item,helpdesk.group_helpdesk_manager,1,1,1,1
+access_project_base_field_project_user,access.project.base.field.project.user,model_project_base_field,,1,1,0,0
+access_project_base_field_value_project_manager,access.project.base.field.value.project.manager,model_project_base_field_value,project.group_project_manager,1,1,1,1
+access_project_base_field_value_project_user,access.project.base.field.value.project.user,model_project_base_field_value,project.group_project_user,1,0,0,0
+access_ir_model_fields_project_manager,access.ir.model.fields.project.manager,base.model_ir_model_fields,project.group_project_manager,1,1,1,1
+access_ir_model_project_manager,access.ir.model.project.manager,base.model_ir_model,project.group_project_manager,1,0,0,0

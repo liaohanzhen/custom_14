@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- === 5B Privacy Policy Page === -->
+    <template id="5b_privacy_policy">
+        <t t-call="website.layout">
+            <div id="wrap">
+				<!-- === Snippets' area === -->
+				<div class="oe_structure" />
+				<t t-call="website_5b.page_5b_privacy_policy_contents" />
+            </div>
+        </t>
+    </template>
+	
+    <record id="page_5b_privacy_policy" model="website.page">
+        <field name="name">Privacy Policy</field>
+        <field name="website_published">True</field>
+        <field name="url">/privacy-policy</field>
+        <field name="view_id" ref="5b_privacy_policy"/>
+    </record>
+
+	<template id="page_5b_privacy_policy_contents" name="Terms of use">
+	  <!-- ======= Hero Section ======= -->
+	  <section id="hero-project" class="d-flex justify-content-center align-items-center">
+			<div class="container position-relative" data-aos="zoom-in" data-aos-delay="100"/>
+		</section><!-- End Hero -->
+	  <main id="main">
+		<section id="about" class="about">
+		  <div class="container" data-aos="fade-up">
+
+			<div class="row">
+			  <div class="col-lg-12 pt-4 pt-lg-0 order-2 order-lg-1 content">
+				
+				<div class="section-title">
+					<h3>5B – PRIVACY POLICY</h3>
+				  </div>
+				  <div align="left" class="privacy">
+					This Privacy Policy sets out our commitment to protecting the privacy of personal information provided to us, or otherwise collected by us, offline or online, including through our website and any other applications (Site). In this Privacy Policy we, us or our means 5B Australia Pty Ltd ABN 51 167 318 023 and affiliates.<br /><br />
+					<h5><strong>Personal information</strong></h5>
+					The types of personal information we may collect about you include:<br />
+					<ul style="list-style-type: square;">
+					<li>name;</li>
+					<li>images of you;</li>
+					<li>your contact details, including email address, mailing address, street address and/or telephone number; </li>
+					<li>your age and/or date of birth;</li>
+					<li>your credit card details;</li>
+					<li>your demographic information, such as postcode;</li>
+					<li>your preferences and/or opinions;</li>
+					<li>information you provide to us through customer surveys;</li>
+					<li>details of products and services we have provided to you and/or that you have enquired about, and our response to you;</li>
+					<li>your browser session and geo-location data, device and network information, statistics on page views and sessions, acquisition sources, search queries and/or browsing behaviour;</li>
+					<li>information about your access and use of our Site, including through the use of Internet cookies, your communications with our Site, the type of browser you are using, the type of operating system you are using and the domain name of your Internet service provider;</li>
+					<li>additional personal information that you provide to us, directly or indirectly, through your use of our Site, associated applications, associated social media platforms and/or accounts from which you permit us to collect information or through any other form; and</li>
+					<li>any other personal information requested by us and/or provided by you or a third party.</li>
+					</ul>
+
+					We may collect these types of personal information directly from you or from third parties. <br /><br />
+
+					<h5><strong>Collection and use of personal information</strong></h5>
+					We may collect, hold, use and disclose personal information for the following purposes:<br />
+					<ul style="list-style-type: square;">
+					<li>to enable you to access and use our Site, associated applications and associated social media platforms;</li>
+					<li>to contact and communicate with you;</li>
+					<li>for internal record keeping and administrative purposes;</li>
+					<li>to enable us to efficiently conduct business with you, including (without limitation) to providing information to you or to undertake e-commerce with you;</li>
+					<li>for analytics, market research and business development, including to operate and improve our Site, associated applications and associated social media platforms;</li>
+					<li>to run competitions and/or offer additional benefits to you; </li>
+					<li>for advertising and marketing, including to send you promotional information about our products and services and information about third parties that we consider may be of interest to you;</li>
+					<li>to comply with our legal obligations and resolve any disputes that we may have; and</li>
+					<li>to consider your employment application.</li>
+					</ul>
+					<h5><strong>Disclosure of personal information to third parties</strong></h5>
+					We may disclose personal information to:  <br />
+					<ul style="list-style-type: square;">
+					<li>third party service providers for the purpose of enabling them to provide their services, including (without limitation) integrators, service providers, data storage, web-hosting and server providers, debt collectors, maintenance or problem-solving providers, marketing or advertising providers, professional advisors and payment systems operators;</li>
+					<li>our employees, contractors and/or related entities;</li>
+					<li>our existing or potential agents or business partners;</li>
+					<li>sponsors or promoters of any competition we run;</li>
+					<li>anyone to whom our business or assets (or any part of them) are, or may (in good faith) be, transferred;</li>
+					<li>credit reporting agencies, courts, tribunals and regulatory authorities, in the event you fail to pay for goods or services we have provided to you;</li>
+					<li>courts, tribunals, regulatory authorities and law enforcement officers, as required by law, in connection with any actual or prospective legal proceedings, or in order to establish, exercise or defend our legal rights;</li>
+					<li>third parties, including agents or sub-contractors, who assist us in providing information, products, services or direct marketing to you. This may include parties located, or that store data, outside of Australia; [and]</li>
+					<li>third parties to collect and process data, such as [Google Analytics or other relevant businesses]. This may include parties that store data outside of Australia.</li>
+					</ul>
+					By providing us with personal information, you consent to the disclosure of your personal information to third parties who reside outside Australia and acknowledge that we are not required to ensure that those third parties comply with Australian privacy laws. <br /><br />
+
+					<h5><strong>How we treat personal information that is also sensitive information</strong></h5>
+					Sensitive information is a subset of personal information that is given a higher level of protection under the Australian Privacy Principles. <strong>Sensitive information</strong> means information relating to your racial or ethnic origin, political opinions, religion, trade union or other professional associations or memberships, philosophical beliefs, sexual orientation or practices, criminal records, health information or biometric information.  <br />
+					5B does not generally collect or store sensitive information. However, in limited circumstances we may collect the following sensitive information in relation to pre-employment applications / checks:<br />
+					<ul style="list-style-type: square;">
+					<li>health information (medical checks); and/or</li>
+					<li>criminal record checks.</li>
+					</ul>
+
+					<h5><strong>Your rights and controlling your personal information</strong></h5>
+					<strong>Choice and consent:</strong> Please read this Privacy Policy carefully. By providing personal information to us, you consent to us collecting, holding, using and disclosing your personal information in accordance with this Privacy Policy. You do not have to provide personal information to us, however, if you do not, it may affect your use of this Site or the products and/or services offered on or through it.<br />
+					<strong>Information from third parties:</strong> If we receive personal information about you from a third party, we will protect it as set out in this Privacy Policy. If you are a third party providing personal information about somebody else, you represent and warrant that you have such person’s consent to provide the personal information to us. <br />
+					<strong>Restrict:</strong> You may choose to restrict the collection or use of your personal information.  If you have previously agreed to us using your personal information for direct marketing purposes, you may change your mind at any time by contacting us using the details below.<br />
+					<strong>Access:</strong> You may request details of the personal information that we hold about you.  An administrative fee may be payable for the provision of such information.  In certain circumstances, as set out in the Privacy Act 1988 (Cth), we may refuse to provide you with personal information that we hold about you. <br />
+					<strong>Correction:</strong> If you believe that any information we hold about you is inaccurate, out of date, incomplete, irrelevant or misleading, please contact us using the details below. We will take reasonable steps to correct any information found to be inaccurate, incomplete, misleading or out of date.<br />
+					<strong>Complaints:</strong> If you believe that we have breached the Australian Privacy Principles and wish to make a complaint, please contact us using the details below and provide us with full details of the alleged breach. We will promptly investigate your complaint and respond to you, in writing, setting out the outcome of our investigation and the steps we will take to deal with your complaint.<br />
+					<strong>Unsubscribe:</strong> To unsubscribe from our e-mail database or opt-out of communications (including marketing communications), please contact us using the details below or opt-out using the opt-out facilities provided in the communication.
+				</div>
+							
+			  </div>
+			</div>
+		  </div>
+		</section><!-- End About Section -->
+	  </main><!-- End #main -->
+    </template>
+</odoo>

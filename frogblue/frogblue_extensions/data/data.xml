@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="sepa_report_template_pdf" model="ir.attachment">
+        	<field name="type">binary</field>
+            <field name="name">sepa_report_template.pdf</field>
+            <field name="datas" type="base64" file="frogblue_extensions/data/sepa_report_template.pdf"></field>
+            <field name="res_model">account.move</field>
+        </record>
+    </data>
+</odoo>

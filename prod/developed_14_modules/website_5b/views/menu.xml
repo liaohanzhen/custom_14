@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+<data>
+	<!--
+	<record id="front_website_main_menu_solutions" model="website.menu">
+		<field name="name">Solutions</field>
+		<field name="parent_id" ref="website.main_menu"/>
+		<field name="sequence">1</field>
+	</record>
+	
+	<record id="front_website_main_menu_solutions_solutions" model="website.menu">
+		<field name="name">Solutions</field>
+		<field name="url">/solutions</field>
+		<field name="parent_id" ref="website_5b.front_website_main_menu_solutions"/>
+		<field name="sequence" type="int">10</field>
+	</record>
+	
+	<record id="front_website_main_menu_solutions_faqs" model="website.menu">
+		<field name="name">FAQs</field>
+		<field name="url">/faqs</field>
+		<field name="parent_id" ref="website_5b.front_website_main_menu_solutions"/>
+		<field name="sequence" type="int">11</field>
+	</record>
+	
+	<record id="front_website_main_menu_projects" model="website.menu">
+		<field name="name">Projects</field>
+		<field name="parent_id" ref="website.main_menu"/>
+		<field name="url">/project</field>
+		<field name="sequence">2</field>
+	</record>
+	
+	<record id="front_website_main_menu_about" model="website.menu">
+		<field name="name">About Us</field>
+		<field name="parent_id" ref="website.main_menu"/>
+		<field name="sequence">3</field>
+	</record>
+	<record id="front_website_main_menu_about_5b" model="website.menu">
+		<field name="name">About 5B</field>
+		<field name="url">/about</field>
+		<field name="parent_id" ref="front_website_main_menu_about"/>
+		<field name="sequence" type="int">20</field>
+	</record>
+	<record id="front_website_main_menu_about_team" model="website.menu">
+		<field name="name">Meet 5B legends</field>
+		<field name="url">/team</field>
+		<field name="parent_id" ref="front_website_main_menu_about"/>
+		<field name="sequence" type="int">21</field>
+	</record>
+
+	<record id="front_website_main_menu_media" model="website.menu">
+		<field name="name">Media</field>
+		<field name="parent_id" ref="website.main_menu"/>
+		<field name="sequence">5</field>
+	</record>
+	<record id="front_website_main_menu_media_news" model="website.menu">
+		<field name="name">News</field>
+		<field name="url">/news</field>
+		<field name="parent_id" ref="website_5b.front_website_main_menu_media"/>
+		<field name="sequence" type="int">30</field>
+	</record>
+	<record id="front_website_main_menu_media_assets" model="website.menu">
+		<field name="name">Assets</field>
+		<field name="url">/media</field>
+		<field name="parent_id" ref="website_5b.front_website_main_menu_media"/>
+		<field name="sequence" type="int">31</field>
+	</record>
+	
+	<record id="front_website_main_menu_careers" model="website.menu">
+		<field name="name">Careers</field>
+		<field name="parent_id" ref="website.main_menu"/>
+		<field name="sequence">7</field>
+	</record>
+	<record id="front_website_main_menu_careers_life" model="website.menu">
+		<field name="name">Life at 5B</field>
+		<field name="url">/careers</field>
+		<field name="parent_id" ref="website_5b.front_website_main_menu_careers"/>
+		<field name="sequence" type="int">40</field>
+	</record>
+	<record id="front_website_main_menu_careers_join" model="website.menu">
+		<field name="name">Join Us</field>
+		<field name="url">/joinus</field>
+		<field name="parent_id" ref="website_5b.front_website_main_menu_careers"/>
+		<field name="sequence" type="int">41</field>
+	</record>
+	
+	<record id="front_website_main_menu_contact" model="website.menu">
+		<field name="name">Contact Us</field>
+		<field name="parent_id" ref="website.main_menu"/>
+		<field name="sequence">8</field>
+	</record>
+	<record id="front_website_main_menu_contact_quote" model="website.menu">
+		<field name="name">Get a Quote</field>
+		<field name="url">/contact#get_a_quote</field>
+		<field name="parent_id" ref="website_5b.front_website_main_menu_contact"/>
+		<field name="sequence" type="int">50</field>
+	</record>
+	
+	<record id="front_website_main_menu_contact_enquiry" model="website.menu">
+		<field name="name">Enquiry</field>
+		<field name="url">/contact</field>
+		<field name="parent_id" ref="website_5b.front_website_main_menu_contact"/>
+		<field name="sequence" type="int">51</field>
+	</record>
+	
+	<record id="front_website_main_menu_contact_update" model="website.menu">
+		<field name="name">Subscribe to updates</field>
+		<field name="url">#subscribeEmailUpdates</field>
+		<field name="url" position="attributes">
+			<attribute name="data-target">#subscribeEmailUpdates</attribute>
+			<attribute name="data-toggle">modal</attribute>
+		</field>
+		<field name="parent_id" ref="website_5b.front_website_main_menu_contact"/>
+		<field name="sequence" type="int">52</field>
+	</record>-->
+	
+</data>	
+</odoo>

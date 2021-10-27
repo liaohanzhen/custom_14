@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://store.webkul.com/license.html/ -->
+<odoo>
+    <data>
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~ Quote Kanaban View Actions ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <record id="quote_system_customer_quote_action_pending" model="ir.actions.act_window">
+            <field name="name">Pending Quote Requests</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">quote.quote</field>
+            <field name="binding_view_types">form</field>
+            <field name="domain">[('status','=','pending')]</field>
+            <field name="context">{}</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_id" ref="cust_quote_search_view"/>
+        </record>
+        <record id="quote_system_customer_quote_action_approved" model="ir.actions.act_window">
+            <field name="name">Approved Quote Requests</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">quote.quote</field>
+            <field name="binding_view_types">form</field>
+            <field name="domain">[('status','=','approved')]</field>
+            <field name="context">{}</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_id" ref="cust_quote_search_view"/>
+        </record>
+        <record id="quote_system_customer_quote_action_rejected" model="ir.actions.act_window">
+            <field name="name">Rejected Quote Requests</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">quote.quote</field>
+            <field name="binding_view_types">form</field>
+            <field name="domain">[('status','=','rejected')]</field>
+            <field name="context">{}</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_id" ref="cust_quote_search_view"/>
+        </record>
+        <record id="quote_system_customer_quote_action_expired" model="ir.actions.act_window">
+            <field name="name">Expired Quote Requests</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">quote.quote</field>
+            <field name="binding_view_types">form</field>
+            <field name="domain">[('status','=','expired')]</field>
+            <field name="context">{}</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_id" ref="cust_quote_search_view"/>
+        </record>
+        <record id="quote_system_customer_quote_action_incart" model="ir.actions.act_window">
+            <field name="name">In Cart Quote Requests</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">quote.quote</field>
+            <field name="binding_view_types">form</field>
+            <field name="domain">[('status','=','incart')]</field>
+            <field name="context">{}</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_id" ref="cust_quote_search_view"/>
+        </record>
+        <record id="quote_system_customer_quote_action_inprocess" model="ir.actions.act_window">
+            <field name="name">In Process Quote Requests</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">quote.quote</field>
+            <field name="binding_view_types">form</field>
+            <field name="domain">[('status','=','inprocess')]</field>
+            <field name="context">{}</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_id" ref="cust_quote_search_view"/>
+        </record>
+        <record id="quote_system_customer_quote_action_sold" model="ir.actions.act_window">
+            <field name="name">Sold Quote Requests</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">quote.quote</field>
+            <field name="binding_view_types">form</field>
+            <field name="domain">[('status','=','sold')]</field>
+            <field name="context">{}</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_id" ref="cust_quote_search_view"/> 
+        </record>
+        
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~ Dashboard Kanaban View ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <record model="ir.ui.view" id="wk_quote_status_dashboard_view">
+            <field name="name">Quote Dashboard</field>
+            <field name="model">wk.quote.dashboard</field>
+			<field name="arch" type="xml">
+                <kanban class="oe_background_grey o_kanban_dashboard o_hr_kanban" create="0" default_order="sequence">
+                    <field name="name"/>
+                    <field name="color"/>
+                    <field name="state"/>
+                    <field name="count_total_quotes"/>
+                    <field name="count_pending_quotes"/>
+                    <field name="count_approved_quotes"/>
+                    <field name="count_rejected_quotes"/>
+                    <field name="count_expired_quotes"/>
+                    <field name="count_incart_quotes"/>
+                    <field name="count_inprocess_quotes"/>
+                    <field name="count_sold_quotes"/>
+                      <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="#{!selection_mode ? kanban_color(record.color.raw_value) : ''}" name="quote_st_dash">
+                                <div t-attf-class="o_kanban_card_header">
+                                    <div class="o_kanban_card_header_title">
+                                        <div class="o_primary"><field name="name"/></div>
+                                    </div>
+                                    <div class="o_kanban_manage_button_section" t-if="!selection_mode">
+                                        <a class="o_kanban_manage_toggle_button" href="#"><i class="fa fa-ellipsis-v" role="img" aria-label="Manage" title="Manage"/></a>
+                                    </div>
+                                </div>
+                                <div class="container o_kanban_card_content" t-if="!selection_mode">
+                                    <div class="row">
+                                        <div class="col-6 o_kanban_primary_left">
+                                            <div class="o_kanban_primary_left">
+                                                <button t-if="record.state.raw_value == 'pending'" class="btn btn-primary" name="%(quote_system_customer_quote_action_pending)d" type="action">View Quotes</button>
+                                                <button t-if="record.state.raw_value == 'approved'" class="btn btn-primary" name="%(quote_system_customer_quote_action_approved)d" type="action">View Quotes</button>
+                                                <button t-if="record.state.raw_value == 'rejected'" class="btn btn-primary" name="%(quote_system_customer_quote_action_rejected)d" type="action">View Quotes</button>
+                                                <button t-if="record.state.raw_value == 'expired'" class="btn btn-primary" name="%(quote_system_customer_quote_action_expired)d" type="action">View Quotes</button>
+                                                <button t-if="record.state.raw_value == 'incart'" class="btn btn-primary" name="%(quote_system_customer_quote_action_incart)d" type="action">View Quotes</button>
+                                                <button t-if="record.state.raw_value == 'inprocess'" class="btn btn-primary" name="%(quote_system_customer_quote_action_inprocess)d" type="action">View Quotes</button>
+                                                <button t-if="record.state.raw_value == 'sold'" class="btn btn-primary" name="%(quote_system_customer_quote_action_sold)d" type="action">View Quotes</button>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 o_kanban_primary_right">
+                                                <button t-if="record.state.raw_value == 'pending'" class="btn btn-primary" name="action_create_new" type="object">Create New</button>
+                                        </div>
+                                        <div class="col-12 o_kanban_primary_bottom bottom_block mt-4 pb-3">
+                                            <div class="row">
+                                                <div class="col-2">
+                                                    <span>Count</span>
+                                                </div>
+                                                <div class="col-10">
+                                                    <t t-if="record.state.raw_value == 'pending'">
+                                                        <field name="count_pending_quotes" widget="progressbar" options="{'current_value': 'absence_of_today', 'max_value': 'count_total_quotes', 'editable': false}"/>
+                                                    </t>
+                                                    <t t-if="record.state.raw_value == 'approved'">
+                                                        <field name="count_approved_quotes" widget="progressbar" options="{'current_value': 'count_approved_quotes', 'max_value': 'count_total_quotes', 'editable': false}"/>
+                                                    </t>
+                                                    <t t-if="record.state.raw_value == 'rejected'">
+                                                        <field name="count_rejected_quotes" widget="progressbar" options="{'current_value': 'count_rejected_quotes', 'max_value': 'count_total_quotes', 'editable': false}"/>
+                                                    </t>
+                                                    <t t-if="record.state.raw_value == 'expired'">
+                                                        <field name="count_expired_quotes" widget="progressbar" options="{'current_value': 'count_expired_quotes', 'max_value': 'count_total_quotes', 'editable': false}"/>
+                                                    </t>
+                                                    <t t-if="record.state.raw_value == 'incart'">
+                                                        <field name="count_incart_quotes" widget="progressbar" options="{'current_value': 'count_incart_quotes', 'max_value': 'count_total_quotes', 'editable': false}"/>
+                                                    </t>
+                                                    <t t-if="record.state.raw_value == 'inprocess'">
+                                                        <field name="count_inprocess_quotes" widget="progressbar" options="{'current_value': 'count_inprocess_quotes', 'max_value': 'count_total_quotes', 'editable': false}"/>
+                                                    </t>
+                                                    <t t-if="record.state.raw_value == 'sold'">
+                                                        <field name="count_sold_quotes" widget="progressbar" options="{'current_value': 'count_sold_quotes', 'max_value': 'count_total_quotes', 'editable': false}"/>
+                                                    </t>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="container o_kanban_card_manage_pane dropdown-menu" role="menu">
+                                    <div class="row">
+                                        <div role="menuitem" class="col-4 o_kanban_card_manage_section o_kanban_manage_to_do">
+                                            <div class="o_kanban_card_manage_title">
+                                                <span><button t-if="record.state" class="btn" name="%(quote_system_customer_quote_action)d" type="action">View All Quotes</button></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div t-if="widget.editable" class="o_kanban_card_manage_settings row">
+                                        <div role="menuitem" aria-haspopup="true" class="col-8">
+                                            <ul class="oe_kanban_colorpicker" data-field="color" role="menu"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                      </templates>
+                </kanban>
+			</field>
+        </record>   
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~ Dashboard Action ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+        <record id="wk_quote_status_dashboard_action" model="ir.actions.act_window">
+            <field name="name">Quote Requests Dashboard</field>
+            <field name="res_model">wk.quote.dashboard</field>
+            <field name="view_mode">kanban</field>
+            <field name="view_id" ref="wk_quote_status_dashboard_view"/>
+        </record>
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~ Dashboard Menu ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <menuitem id="quote_system_dashboard_menu"
+                  name="Dashboard"
+                  parent="website_quote_system.quote_system_root_menu"
+                  sequence="1"
+                  action="wk_quote_status_dashboard_action"
+                  />
+    </data>
+</odoo>

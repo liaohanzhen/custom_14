@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Frogblue Product Form View Inherit -->
+
+        <record id="frogblue_product_template_form_view_inherit" model="ir.ui.view">
+            <field name="name">frogblue.product.template.product.form</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='group_standard_price']" position="after">
+                    <group name="frogblue_checkbox_fields">
+                        <field name="vde"/>
+                        <field name="emv"/>
+                        <field name="funk"/>
+                    </group>
+                    <group name="etim_number">
+                        <field name="etim"/>
+                    </group>
+                </xpath>
+                <xpath expr="//field[@name='default_code']" position="after">
+                    <field name="version_number"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="frogblue_product_normal_form_view_inherit" model="ir.ui.view">
+            <field name="name">product.product.form</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <field name="lst_price" position="after">
+                    <field name="ext_show_price" attrs="{'invisible': 1}"/>
+                </field>
+                <field name="lst_price" position="attributes">
+                    <attribute name="attrs">{'invisible': [('ext_show_price', '=', True)]}</attribute>
+                </field>
+                <field name="standard_price" position="attributes">
+                    <attribute name="attrs">{'invisible': [('ext_show_price', '=', True)]}</attribute>
+                </field>
+            </field>
+        </record>
+
+        <record id="frogblue_product_template_kanban_view_inherit" model="ir.ui.view">
+            <field name="name">frogblue.Product.template.product.kanban.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_kanban_view"/>
+            <field name="arch" type="xml">
+                <field name="currency_id" position="after">
+                    <field name="ext_show_price_kanban_tree" invisible="1"/>
+                </field>
+                <xpath expr="//kanban/templates/t/div/div[2]" position="attributes">
+                    <attribute name="attrs">{'invisible': [('ext_show_price_kanban_tree', '=', True)]}</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="frogblue_product_template_tree_view_inherit" model="ir.ui.view">
+            <field name="name">frogblue.product.template.product.tree.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_tree_view"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="ext_show_price_kanban_tree" invisible="1"/>
+                </field>
+                <field name="list_price" position="attributes">
+                    <attribute name="attrs">{'invisible': [('ext_show_price_kanban_tree', '=', True)]}</attribute>
+                </field>
+                <field name="standard_price" position="attributes">
+                    <attribute name="attrs">{'invisible': [('ext_show_price_kanban_tree', '=', True)]}</attribute>
+                </field>
+            </field>
+        </record>
+
+        <record id="frogblue_product_supplierinfo_tree_view_inherit" model="ir.ui.view">
+            <field name="name">frogblue.product.supplierinfo.tree.view.inherit</field>
+            <field name="model">product.supplierinfo</field>
+            <field name="inherit_id" ref="product.product_supplierinfo_tree_view"/>
+            <field name="arch" type="xml">
+                <field name="price" position="after">
+                    <field name="ext_show_price" invisible="1"/>
+                </field>
+                <field name="price" position="attributes">
+                    <attribute name="attrs">{'invisible': [('ext_show_price', '=', True)]}</attribute>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

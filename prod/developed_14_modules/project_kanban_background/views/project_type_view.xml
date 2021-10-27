@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    	<record id="view_project_project_type_filter" model="ir.ui.view">
+            <field name="name">project.project.type.search.view</field>
+            <field name="model">project.project.type</field>
+            <field name="arch" type="xml">
+                <search string="Project Type">
+		    <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
+                    <field name="name" />
+                </search>
+            </field>
+        </record>
+        <record id="view_project_project_type_form" model="ir.ui.view">
+            <field name="name">project.project.type.form</field>
+            <field name="model">project.project.type</field>
+            <field name="arch" type="xml">
+                <form string="Project Type Form">
+                    <sheet>
+			<div class="oe_button_box" name="button_box">
+	                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+	                            <field name="active" widget="boolean_button" options="{'terminology':'archive'}"/>
+	                        </button>
+                    	</div>
+                        <group>
+                        	<group>
+                        		<field name="name" required="1"/>
+                        		<field name="sequence_id" required="1"/>
+                        	</group>
+                        	<group>
+                        		<field name="image" required="1" widget="image" class="oe_avatar"/>
+                        	</group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_project_project_type_tree" model="ir.ui.view">
+            <field name="name">project.project.type.tree</field>
+            <field name="model">project.project.type</field>
+            <field name="arch" type="xml">
+                <tree string="Project Type tree">
+                	<field name="id"/>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+		
+        <record id="action_project_project_type" model="ir.actions.act_window">
+            <field name="name">Project Type</field>
+            <field name="res_model">project.project.type</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_project_project_type_filter"/>
+            <field name="view_ids"
+                   eval="[(5, 0, 0),
+                          (0, 0, {'view_mode': 'tree', 'view_id': ref('view_project_project_type_tree')}),
+                          (0, 0, {'view_mode': 'form', 'view_id': ref('view_project_project_type_form')}),
+                          ]"/>
+        </record>
+        
+        <menuitem id="menu_action_project_project_type"
+        	parent="project.menu_project_config"
+        	name="Project Type"
+        	action="action_project_project_type"
+        	sequence="20"/>
+        	
+    </data>
+</odoo>

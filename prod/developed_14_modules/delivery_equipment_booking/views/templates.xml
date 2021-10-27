@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	 <!-- Acciones para Website -->
+        <!-- <record id="menu_self_invoice_web" model="website.menu">
+            <field name="name">Delivery Equipment Booking</field>
+            <field name="url">/portal/delivery_equipment</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence" type="int">13</field>
+            <field name="website_id" ref="default_website"/>
+        </record> -->
+         
+        <template id="delivery_equipment" name="Delivery Equipment Booking" inherit_id="portal.user_dropdown">
+	        <xpath expr="//*[@id='o_logout_divider']" position="before">
+	        	<a  class="dropdown-item" role="menuitem" href="/portal/delivery_equipment">Delivery Equipment Booking</a>
+	        </xpath>
+    	</template>
+		<template id="index">
+          <title>Delivery Equipment Booking</title>
+          <t t-call="website.layout">
+          	<form method="post" data-success_page="/booking-thank-you" action="/booking-thank-you" class="form-horizontal container-fluid mt32" enctype="multipart/form-data">
+              <section class="s_text_block">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-12 text-center mt16 mb32">
+                      <h2 class="o_default_snippet_text">
+                        Delivery Equipment Booking 
+                    </h2>
+                    </div>
+                  </div>
+               		 </div>
+               
+                  <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                  <div style="padding-left:31%">
+                  
+                  <div class="col-lg-12">
+                        <label class="col-form-label" for="partner_id">Task assigned to</label>
+                        <div class="col-lg-6">
+                        <select id="partner_id" name="partner_id" t-attf-class="form-control  and 'is-invalid' or ''}" required="True">
+                            <option value=""></option>
+                            <t t-foreach="res_partners" t-as="c">
+                                <option t-att-value="c.id">
+                                    <t t-esc="c.name" />
+                                </option>
+                            </t>
+                        </select>
+                        </div>
+                   </div>
+                  
+                  <!-- <div class="col-lg-12">
+                      <label class="col-form-label" for="partner"></label>
+                      <div class="col-lg-6">
+                          <input type="email" class="form-control o_website_form_input" name="partner" t-att-value="request.params.get('partner', '')" required="True"/>
+                      </div>
+                  </div> -->
+                  <!-- <div class="col-lg-12">
+                      <label class="col-form-label" for="partner_email">Email address</label>
+                      <div class="col-lg-6">
+                          <input type="email" class="form-control o_website_form_input" name="partner_email" t-att-value="request.params.get('partner_email', '')" required="True"/>
+                      </div>
+                  </div> -->
+                  <div class="col-lg-12">
+                      <label class="col-form-label" for="partner_making_book">Name of person making the booking </label>
+                      <div class="col-lg-6">
+                          <input type="text" class="form-control o_website_form_input" name="partner_making_book" t-att-value="request.env.user.name" readonly="true" required="True"/>
+                      </div>
+                  </div>
+                  <div class="col-lg-12">
+                      <label class="col-form-label" for="department_name">Name of the department</label>
+                      <div class="col-lg-6">
+                          <input type="text" class="form-control o_website_form_input" name="department_name" t-att-value="request.params.get('department_name', '')" />
+                      </div>
+                  </div>
+                  <div class="col-lg-12">
+                      <label class="col-form-label" for="request_refer">What does this request refer to?</label>
+                      <div class="col-md-6 col-sm-6" style="padding-left:82px">
+                      	<table>
+                      		<tr>
+                      			<td style="padding-right:10px;">
+                      				<input type="checkbox"  name="delivery" value="Delivery"/>
+                          			<label for="delivery"> Delivery</label><br/>		
+                      			</td>
+                      			<td style="padding-right:10px;">
+                      				<input type="checkbox"  name="equipment_only" value="Equipment use only" />
+                          			<label for="equipment_only"> Equipment use only</label><br/>
+                      			</td>
+                      		</tr>
+                      		<tr>
+                      			<td style="padding-right:10px;">
+                      				<input type="checkbox"  name="pickup" value="Pick up"/>
+                          			<label for="pickup"> Pick up</label><br/>		
+                      			</td>
+                      			<td style="padding-right:10px;">
+	                      			<input type="checkbox"  name="stock_movement" value="Stock movement" />
+                          			<label for="stock_movement">Stock movement</label><br/>
+                      			</td>
+                      		</tr>
+                      		<tr>
+                      			<td style="padding-right:10px;">
+									<input type="checkbox"  name="section_booking" value="Section booking" />
+                          			<label for="section_booking">Section booking</label><br/>                      			
+                      			</td>
+                      		</tr>
+                      		<tr>
+                      			<td style="padding-right:10px;">
+                      				<input type="checkbox"  name="delivery_pickup_eqpt" value="Delivery/pick up And equipment hire" />
+                          			<label for="delivery_pickup_eqpt">Delivery/pick up And equipment hire</label><br/>
+                      			</td>
+                      		</tr>
+                      	</table>
+                      </div>
+                  </div>
+                  <div class="col-lg-12">
+                      <label class="col-form-label" for="delivery_provide_details">In case of delivery please provide details of the delivery. (size, weight, project)</label>
+                      <div class="col-lg-6">
+                          <textarea class="form-control o_website_form_input"  name="delivery_provide_details" t-att-value="request.params.get('delivery_provide_details', '')" />
+                      </div>
+                 </div>
+                 <div class="col-lg-12">
+                      <label class="col-form-label" for="provide_referance_number">Provide a reference number</label>
+                      <div class="col-lg-6">
+                          <input type="text" class="form-control o_website_form_input" name="provide_referance_number" t-att-value="request.params.get('provide_referance_number', '')" />
+                      </div>
+                 </div>
+                  <script type="text/javascript">
+					    $(document).ready(function () {
+					        $('start_date_time').datetimepicker();
+					    });
+					    
+				  </script>
+				  <script type="text/javascript">
+					    $(document).ready(function () {
+					        $('#event_date_time').datetimepicker();
+					    });
+				  </script> 
+                  <div class="col-lg-6">
+                      <label class="col-form-label" for="start_date_time">Event Start Date And Time</label>
+                      <div class="col-lg-6">
+                         <!--  <input id="date_time_funeral" type="text" name="date_time_funeral" class="form-control datetimepicker-input" data-toggle="datetimepicker" data-target="#date_time_funeral" style="text-align: center;" autocomplete="off"/> -->
+                          <input type="text" id="start_date_time" class="form-control o_website_form_input" 
+                          name="start_date_time" data-toggle="datetimepicker" data-target="#start_date_time" t-att-value="request.params.get('start_date_time', '')" 
+                          data-date-format="YYYY-MM-DD HH:mm:ss" data-autoHide="true" autocomplete="off" required="True"/>
+                      </div>
+                  </div>
+                  <div class="col-lg-6" style="margin-left:25%;margin-top:-70px;">
+                      <label class="col-form-label" for="event_date_time">Event End Date And Time</label>
+                      <div class="col-lg-6">
+                          <!-- <input type="date" class="form-control o_website_form_input" name="event_date_time" t-att-value="request.params.get('event_date_time', '')" /> -->
+                          <input type="text" id="event_date_time" class="form-control o_website_form_input"  
+                          data-date-format="YYYY-MM-DD HH:mm:ss" name="event_date_time"  data-target="#event_date_time" t-att-value="request.params.get('start_date_time', '')"
+                          data-toggle="datetimepicker" autoHide="true" required="True"/>
+                      </div>
+                  </div>
+                  <div class="col-lg-12">
+                      <label class="col-form-label" for="section_booking">Section booking</label>
+                      <div class="col-md-6 col-sm-6" style="padding-left:82px">
+                      	  <table>
+                      	  	<tr>
+                      	  		<td style="padding-right:30px;">
+                      	  			<input type="checkbox"  name="mavpod" value="MAVPOD" />
+                          			<label for="mavpod"> MAVPOD</label><br/>
+                      	  		</td>
+                      	  		<td style="padding-right:30px;">
+			                        <input type="checkbox"  name="selection_a" value="Section A" />
+			                        <label for="selection_a"> Section A</label><br/>
+                      	  		</td>
+                      	  		<td style="padding-right:30px;">
+                      	  			<input type="checkbox"  name="selection_b" value="Section B" />
+                          			<label for="selection_b"> Section B</label><br/>
+                      	  		</td>
+                      	  	</tr>
+                      	  	<tr>
+                      	  		<td style="padding-right:30px;">
+                      	  			<input type="checkbox"  name="selection_c" value="Section C" />
+                          			<label for="selection_c"> Section C</label><br/>
+                      	  		</td>
+                      	  		<td style="padding-right:30px;">
+			                        <input type="checkbox"  name="storage" value="Storage"/>
+			                        <label for="storage"> Storage</label><br/>		
+                      	  		</td>
+                      	  		<td style="padding-right:30px;">
+		                            <input type="checkbox"  name="drive_way" value="Driveway"/>
+                          			<label for="drive_way"> Driveway</label><br/>
+                      	  		</td>
+                      	  	</tr>
+                      	  </table>
+                      </div>
+                  </div>
+				  <div class="col-lg-12">
+                      <label class="col-form-label" for="entered_firm">Are the dates and time entered firm or indicative?</label>
+                      <div class="col-md-6 col-sm-6" style="padding-left:82px">
+                      	<input type="radio" name="entered_firm" value="firm"/><lable for="firm" style="margin-right:5px"><b>Firm</b></lable>
+                        <input type="radio" name="entered_firm" value="indicative_unlike"/><lable for="indicative_unlike" style="margin-right:5px"><b>Indicative (unlikely to change)</b></lable><br/>
+                        <input type="radio" name="entered_firm" value="indicative_like"/><lable for="indicative_like"><b>Indicative (likely to change)</b></lable>
+                      </div>
+                  </div> 
+                 <div class="col-lg-12">
+                      <label class="col-form-label" for="requirements">Requirements</label>
+                      <div class="col-md-6 col-sm-6" style="padding-left:82px">
+                      		<table>
+                      			<tr>
+                      				<td>
+                      					<input type="checkbox"  name="time_critical" value="Time critical"/>
+                          				<label for="time_critical"> Time critical</label><br/>
+                      				</td>
+                      				<td>
+			                      		<input type="checkbox"  name="forklift_2_5t" value="Forklift 2.5t"/>
+			                            <label for="forklift_2_5t"> Forklift 2.5t</label><br/>			
+                      				</td>
+                      				<td>
+                      					<input type="checkbox"  name="clear_driveway" value="Clear driveway"/>
+                          				<label for="clear_driveway">Clear driveway</label><br/>
+                      				</td>			
+                      			</tr>
+                      			<tr>
+                      				<td>
+				                        <input type="checkbox"  name="forklift_6t" value="Forklift 6t"/>
+				                        <label for="forklift_6t"> Forklift 6t</label><br/>
+                      				</td>
+                      				<td>
+			                      		<input type="checkbox"  name="pallet_jack" value="Pallet jack"/>
+                          				<label for="pallet_jack"> Pallet jack</label><br/>
+                      				</td>                      				                      				
+                      				<td>
+			                      		<input type="checkbox"  name="tool_kit" value="Tool kit"/>
+                          				<label for="tool_kit">Tool kit</label><br/>
+                      				</td>	
+                      			</tr>
+                      			<tr>
+                      				<td>
+				                        <input type="checkbox"  name="drill_press" value="Drill press"/>
+                          				<label for="drill_press">Drill press</label><br/>
+                      				</td>
+                      				<td>
+				                        <input type="checkbox"  name="band_saw" value="Band saw"/>
+				                        <label for="band_saw">Band saw</label><br/>
+                     				</td>
+                     				<td>
+			                      		<input type="checkbox"  name="Welder" value="Welder"/>
+                          				<label for="welder">Welder</label><br/>
+                      				</td>                      				                      				
+                      			</tr>
+                      			<tr>
+                      				<td colspan="2">
+				                        <input type="checkbox"  name="other_discribe" value="Other - describe below"/>
+                         				<label for="other_discribe">Other - describe below</label><br/>
+                      				</td>
+                      			</tr>
+                      			<tr>
+                      				<td colspan="2">
+				                        <input type="checkbox"  name="labor_assistance" value="Labour assistance (add comment)"/>
+                          				<label for="labor_assistance">Labour assistance (add comment)</label><br/>
+                      				</td>
+                      			</tr>
+                      			<tr>	
+                      				<td colspan="3">
+			                      		<input type="checkbox"  name="factory_floor_space" value="Factory floor space - describe below"/>
+                          				<label for="factory_floor_space">Factory floor space - describe below</label><br/>
+                      				</td>
+                      			</tr>
+                      			<tr>	
+                      				<td colspan="3">
+				                        <input type="checkbox"  name="inform_requester" value="Inform the requester immediately upon arrival"/>
+                          				<label for="inform_requester">Inform the requester immediately upon arrival</label><br/>
+                      				</td>
+                      			</tr>
+                      		</table>
+                      </div>
+                 </div>
+                 <div class="col-lg-12">
+                      <label class="col-form-label" for="questions_comments">Questions and Comments</label>
+                      <div class="col-lg-6">
+                          <textarea class="form-control o_website_form_input"  name="questions_comments" t-att-value="request.params.get('questions_comments', '')" />
+                      </div>
+                 </div>
+                 <div class="col-lg-12">
+                      <label class="col-form-label" for="event_title">Event title</label>
+                      <div class="col-lg-6">
+                          <input type="text" class="form-control o_website_form_input" name="event_title" t-att-value="request.params.get('event_title', '')" required="True" />
+                      </div>
+                 </div>
+                 <div class="col-lg-12">
+                      <label class="col-form-label" for="event_description">Event Description</label>
+                      <div class="col-lg-6">
+                          <textarea class="form-control o_website_form_input" name="event_description" t-att-value="request.params.get('event_description', '')" />
+                      </div>
+                 </div>
+                
+                 
+                 <div class="form-group">
+                            <div class="col-md-offset-3 col-sm-offset-4 col-sm-8 col-md-7">
+                                  <input class="btn btn-primary" type="submit" value="Submit" style="margin-left:-65px;"/>
+                            </div>
+                        </div> 
+                </div>		
+              </section>		 
+            </form>
+          </t>
+        </template> 
+        <record id="booking-thank-you" model="website.page">
+        <field name="name">Thanks For Booking</field>
+        <field name="type">qweb</field>
+        <field name="url">/booking-thank-you</field>
+        <field name="website_indexed" eval="False"/>
+        <field name="website_published">True</field>
+        <field name="key">delivery_equipment_booking.booking-thank-you</field>
+        <field name="arch" type="xml">
+            <t name="Thanks (Contact us)" t-name="delivery_equipment_booking.booking-thank-you">
+                <t t-call="website.layout">
+                  <div id="wrap">
+                    <div class="oe_structure" id="oe_structure_website_crm_contact_us_thanks_1"/>
+                    <div class="container">
+                        <h1>Thanks!</h1>
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="alert alert-success" role="status">
+                                    Your Delivery Equipment Booking successfully.
+                                    <button type="button" class="close" data-dismiss="alert">&amp;times;</button>
+                                </div>
+                                <p>
+                                    We will get back to you shortly.
+                                </p>
+                            </div>
+                            <!-- <div class="col-lg-4">
+                                <t t-call="website.company_description"/>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="oe_structure" id="oe_structure_website_crm_contact_us_thanks_2"/>
+                  </div>
+                </t>
+            </t>
+        </field>
+    </record>
+</odoo>

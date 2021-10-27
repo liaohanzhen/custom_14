@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+        <record id="form_helpdesk_ticket_inherit_purchase_order" model="ir.ui.view">
+            <field name="name">form.helpdesk.ticket.inherit.purchase.order</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form" />
+            <field name="arch" type="xml">
+            	<xpath expr="//button[@name='assign_ticket_to_self']" position="after">
+            		<button name="action_create_purchase_order" string="Create Purchase Order" type="object" class="oe_highlight" groups="purchase.group_purchase_user"/>
+            	</xpath>
+            	<xpath expr="//button[@name='assign_ticket_to_self']" position="after">
+            		<button class="oe_stat_button" name="action_view_purchase_order" icon="fa-hashtag" type="object" groups="purchase.group_purchase_user" attrs="{'invisible':[('count_pos','=',0)]}">
+                        <field name="count_pos" string="Purchase Orders" widget="statinfo"/>
+                    </button>
+            	</xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

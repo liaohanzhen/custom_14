@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    	<menuitem id="main_menu_employee_trainings"
+	    	parent="hr.menu_hr_root"
+	        name="Trainings"
+	        sequence="3"/>
+	        
+    </data>
+</odoo>

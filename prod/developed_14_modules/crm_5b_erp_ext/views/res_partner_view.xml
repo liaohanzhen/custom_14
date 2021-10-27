@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    	<record id="view_partner_form_inherit_aureliehocquel" model="ir.ui.view">
+            <field name="name">res.partner.form.aureliehocquel</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+            	<xpath expr="//div[@name='button_box']" position="inside">
+	            	<field name="customer_rank" invisible="1"/>
+	            	<button class="oe_stat_button" type="object" attrs="{'invisible': [('customer_rank', '!=', 1)]}" name="customer_rating_count" icon="fa-star">
+	                    <field string="Client Rating" name="client_rating_count" widget="statinfo"/>
+	                </button>
+            	</xpath>
+            	<xpath expr="//div[@class='oe_title']/div[@class='o_row']" position="after">
+            		<div class="o_row" >
+            			<field name="key_account_partner" attrs="{'invisible': [('company_type', '!=', 'company')]}"/>
+            			<label for="key_account_partner" attrs="{'invisible': [('company_type', '!=', 'company')]}"/>
+            		</div>
+            	</xpath>
+      	        <field name="type" position="after">
+      	            <field name="customer_segment_ids" widget="many2many_tags" options="{'no_create_edit': True}" attrs="{'invisible': [('company_type', '!=', 'company')]}"/>
+      	        </field>
+      	        <field name="mobile" position="after">
+      	            <field name="fax" />
+      	        </field>
+      	        <xpath expr="//sheet/group/group[2]/div/field[@name='lang']" position="replace"></xpath>
+      	        <field name="function" position="before">
+      	        	<field name="lang"/>
+      	        </field>
+      	        <xpath expr="//notebook/page[@name='internal_notes']" position="before">
+      	        	<field name="customer_rank" invisible="1"/>
+      	        	<page name="client_rating" string="Client Rating" attrs="{'invisible': [('customer_rank', '!=', 1)]}">
+	      	        	<group string="Relation Rating" name="relation_rating" >
+	      	        		<label for="product_acceptability"/>
+                            <div class="o_row" name="product_acceptability">
+                                <field name="product_acceptability"/>
+                                <field name="percentage_product_acceptability"/>
+                                <!-- <span style="font-weight: bold;">%</span> -->
+                            </div>
+                            <label for="offer_and_demand_compatibility"/>
+                            <div class="o_row" name="offer_and_demand_compatibility">
+                                <field name="offer_and_demand_compatibility" />
+                                <field name="percentage_offer_and_demand_compatibility"/>
+                                <!-- <span style="font-weight: bold;">%</span> -->
+                            </div>
+                            <label for="relationship_status"/>
+                            <div class="o_row" name="relationship_status">
+                                <field name="relationship_status" />
+                                <field name="percentage_relationship_status"/>
+                                <!-- <span style="font-weight: bold;">%</span> -->
+                            </div>
+                            <label for="relationship_quality"/>
+                            <div class="o_row" name="relationship_quality">
+                                <field name="relationship_quality" />
+                                <field name="percentage_relationship_quality"/>
+                                <!-- <span style="font-weight: bold;">%</span> -->
+                            </div>
+	      	        		
+	      	        		<!-- <field name="product_acceptability" />
+	      	        		<field name="offer_and_demand_compatibility" />
+	      	        		<field name="relationship_status" />
+	      	        		<field name="relationship_quality" /> -->
+	      	        	</group>
+	      	        	<group string="Business Potential Rating" name="business_potential_rating" colspan="4">
+	      	        		<label for="average_project_size"/>
+                            <div class="o_row" name="average_project_size">
+                                <field name="average_project_size"/>
+                                <field name="percentage_average_project_size"/>
+                                <!-- <span style="font-weight: bold;">%</span> -->
+                            </div>
+                            <label for="total_pipeline_size"/>
+                            <div class="o_row" name="total_pipeline_size">
+                                <field name="total_pipeline_size"/>
+                                <field name="percentage_total_pipeline_size"/>
+                                <!-- <span style="font-weight: bold;">%</span> -->
+                            </div>
+                            
+	      	        		<!-- <field name="average_project_size" />
+	      	        		<field name="total_pipeline_size" /> -->
+	      	        	</group>
+      	        	</page>
+      	        </xpath>
+      	    </field>
+        </record>
+    </data>
+</odoo>

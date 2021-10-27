@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_crm_project_wizard_form_add_template" model="ir.ui.view">
+            <field name="name">Add Project template form</field>
+            <field name="model">crm.project.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Select Project Template">
+                	<group>
+                		<p>This action will create a new project based on the following template.</p>
+                		<!-- <p>Reference is .</p> --> 
+                		<field name="project_template_id" />
+                	</group>
+                	<footer>
+                        <button name="create_project_from_lead" string="Create project" type="object" class="oe_highlight"/>
+                        <button string="Do not create a project at this stage" class="oe_highlight" special="cancel" /> 
+                        <button string="Cancel" class="oe_highlight" special="cancel" />
+                    </footer>
+               </form>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="view_rental_view_form_inherit" model="ir.ui.view">
+		<field name="name">sale.order.form.inherit</field>
+		<field name="model">sale.order</field>
+		<field name="inherit_id" ref="sale.view_order_form" />
+		<field name="arch" type="xml">
+             <xpath expr="//div[@class='oe_button_box']" position="inside">
+
+                <button name="open_contract_related" type="object" class="oe_stat_button" icon="fa-pencil-square-o">
+                    <field name="contract_related_count" widget="statinfo" string="Contrato"/>
+                </button>
+
+            </xpath>
+
+            <xpath expr="//notebook" position="inside">
+                <page name="acta_constitutiva" string="Acta constitutiva">
+                    <group cols="4">
+                        <group>
+                            <field name="nombre_representante_ac"/>
+                            <field name="testimonio_notarial_ac"/>
+                            <field name="fecha_ac"/>
+                            <field name="notaria_ac"/>
+                            <field name="nombre_notario_ac"/>
+                            <field name="domicilio_ac"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page name="poder_notarial" string="Poder notarial">
+                    <group cols="4">
+                        <group>
+                            <field name="nombre_representante_pn"/>
+                            <field name="testimonio_notarial_pn"/>
+                            <field name="fecha_pn"/>
+                            <field name="notaria_pn"/>
+                            <field name="nombre_notario_pn"/>
+                            <field name="domicilio_pn"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+		</field>
+	</record>
+</odoo>

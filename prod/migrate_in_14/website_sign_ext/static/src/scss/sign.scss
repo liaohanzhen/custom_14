@@ -1,0 +1,83 @@
+.o_web_client {
+	.modal-content {
+		.o_field_one2many.o_sign_flat_o2m {
+			tbody > tr > td:nth-child(2) {
+                width: 150px !important;
+                padding-right: 10px;
+                border-right-style: none;
+                &:not([style]) {
+                    border: 2px solid #666666;
+                    border-top-style: none;
+                    border-right-style: none;
+                    border-left-style: none;
+                }
+            }
+            tbody > tr > td:nth-child(3) {
+                width: calc(80% - 310px) !important;
+                border-right-style: none;
+                &:not([style]) {
+                    border: 2px solid #666666;
+                    border-top-style: none;
+                    border-right-style: none;
+                    border-left-style: none;
+                }
+            }
+		}
+	}
+}
+.o_sign_request_signers_sequence {
+	display: flex; display: -webkit-flex; display: -ms-flexbox;
+}
+.o_sign_request_signers_sequence .btn {
+    height: 100px;
+    width: 100%;
+    background-color: #807e80 !important;
+    margin-left: -4px;
+    position: relative;
+    opacity: 1 !important;
+    flex: 0 0 29%; -webkit-flex: 0 0 29%;
+    max-width: 29%;
+    border: none !important;
+}
+.o_sign_request_signers_sequence > .btn:before {
+    position: absolute;
+    content: "";
+    right: -86px;
+    top: 0;
+    bottom: 0;
+    border-width: 50px 45px;
+    border-style: solid;
+    border-color: transparent transparent transparent #807e80;
+    width: 60px;
+    display: inline-block;
+    z-index: 9;
+}
+.o_sign_request_signers_sequence .btn:nth-child(2n+1){
+	background-color:#807e80 !important;
+}
+.o_sign_request_signers_sequence > .btn:nth-child(2n+1):before{
+	border-color: transparent transparent transparent #807e80;
+}
+.o_sign_request_signers_sequence .btn:nth-child(2n+2){
+	background-color:#aba9ab !important;
+}
+.o_sign_request_signers_sequence > .btn:nth-child(2n+2):before{
+	border-color: transparent transparent transparent #aba9ab;
+}
+.o_sign_request_signers_sequence .btn:nth-child(2n+3){
+	background-color:#d5d3d5 !important;
+}
+.o_sign_request_signers_sequence > .btn:nth-child(2n+3):before{
+	border-color: transparent transparent transparent #d5d3d5;
+} 
+
+.o_sign_request_signers_sequence .btn span {
+    padding: 0 20px 0 40px;
+    word-break: break-all;
+    display: block;
+    width: 100%;
+    
+}
+.o_sign_request_signers_sequence .btn:last-child:before {
+    right: -90px;
+}

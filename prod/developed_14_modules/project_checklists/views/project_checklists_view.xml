@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    	<record id="view_project_checklist_item_filter" model="ir.ui.view">
+            <field name="name">project.checklists.item.search.view</field>
+            <field name="model">project.checklists.item</field>
+            <field name="arch" type="xml">
+                <search string="Project Checklist Search">
+                    <field name="checklist_type" />
+                    <field name="ticket_id"/>
+                    <field name="responsible" />
+                    <field name="user_id"/>
+                    <field name="project_id" groups="base.group_user"/>
+                    <field name="task_id" groups="base.group_user"/>
+                    
+                    <filter string="My Checklist" name="my_checklists" domain="[('responsible','=',uid)]"/>
+                    <separator/>
+                    <group expand="0" string="Group By" >
+                        <filter string="Assigned to" name="responsible" context="{'group_by':'responsible'}" />
+                        <filter string="Project" name="project" context="{'group_by':'project_id'}" />
+                        <filter string="Task" name="group_task" context="{'group_by':'task_id'}"/>
+                        <filter string="State" name="group_state" context="{'group_by':'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record id="view_project_checklists_item_form" model="ir.ui.view">
+            <field name="name">project.checklists.item.form</field>
+            <field name="model">project.checklists.item</field>
+            <field name="arch" type="xml">
+                <form string="To-do list Form">
+                    <!-- <header>
+                    	<field name="purchase_id" invisible="1"/>
+                    	<button string="Create Purchase Order" type="object" name="action_create_purchase_order" class="oe_highlight" attrs="{'invisible':[('purchase_id','!=',False)]}"/>
+                    	<button string="Confirm" type="object" name="action_confirm_contract_order" class="oe_highlight" states="draft"/>
+                    	<field name="state" widget="statusbar"/>
+                    </header> -->
+                    <sheet>
+                        <!-- <div class="oe_button_box" name="button_box">
+	                        <button name="action_view_purchase_order"
+	                            type="object"
+	                            class="oe_stat_button"
+	                            icon="fa-shopping-cart"
+	                            string="Purchase Order">
+	                            <field name="invoice_count" widget="statinfo" string="Invoices"/>
+	                        </button>
+	                        <button name="action_view_picking"
+	                            type="object"
+	                            class="oe_stat_button"
+	                            icon="fa-building-o"
+	                            string="Stock Moves">
+	                        </button>
+	                    </div> -->
+	                    <!-- <div class="oe_title">
+	                        <h1>
+	                            <field name="name" readonly="1"/>
+	                        </h1>
+	                    </div> -->
+                        <group>
+                        	<group>
+                        		<field name="checklist_type" required="1"/>
+                        		<field name="description" attrs="{'readonly':[('checklist_type','=','TICKET')]}" force_save="1"/>
+                        		<field name="related_field_project_id" attrs="{'readonly':[('checklist_type','!=','INFO')]}" force_save="1" context="{'task_id':task_id}"/>
+                        		<field name="user_id" readonly="1" force_save="1"/>
+                        		<field name="checklist_done" attrs="{'readonly':[('checklist_type','!=','ACTION')]}" force_save="1"/>
+                        	</group>
+                        	<group>
+                        		<field name="task_id" required="1"/>
+                        		<field name="responsible" />
+                        		<field name="ticket_id" attrs="{'readonly':[('checklist_type','!=','TICKET')]}" force_save="1"/>
+                        		<field name="date" readonly="1" force_save="1"/>
+                        		<field name="doc" filename="file_name" attrs="{'readonly':[('checklist_type','!=','DOC')]}" force_save="1"/>
+                        		<field name="file_name" invisible="1"/>
+                        	</group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_project_checklists_item_tree" model="ir.ui.view">
+            <field name="name">project.checklists.item.tree</field>
+            <field name="model">project.checklists.item</field>
+            <field name="arch" type="xml">
+                <tree string="To-do list tree">
+                	<field name="id"/>
+                    <field name="checklist_done" />
+                    <field name="checklist_type"/>
+                    <field name="related_field_project_id" />
+                    <field name="ticket_id"/>
+                    <field name="description" />
+                    <field name="responsible" />
+                    <field name="user_id"/>
+                    <field name="date"/>
+                    <field name="task_id"/>
+                </tree>
+            </field>
+        </record>
+		
+		<record id="project_checklists_item_kanban_view" model="ir.ui.view">
+            <field name="name">project.checklists.item.kanban.view</field>
+            <field name="model">project.checklists.item</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="project_id" class="o_kanban_small_column">
+                    <field name="project_id" options='{"group_by_tooltip": {"description": "Description"}}'/>
+                    <field name="color"/>
+                    <field name="description"/>
+                    <field name="state"/>
+                    <field name="ticket_id"/>
+                    <field name="checklist_type"/>
+                    <field name="user_id"/>
+                    <field name="date"/>
+                    <field name="responsible"/>
+                    <field name="task_id"/>
+                    <templates>
+                        <t t-name="kanban-tooltip">
+                           <ul class="oe_kanban_tooltip">
+                              <li><b>Project:</b> <field name="project_id"/></li>
+                              <li><b>Task:</b> <field name="task_id"/></li>
+                           </ul>
+                        </t>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_color_#{kanban_getcolor(record.color.raw_value)} oe_kanban_card oe_kanban_global_click oe_semantic_html_override">
+                                <div class="o_dropdown_kanban dropdown" groups="base.group_user">
+
+                                    <a class="dropdown-toggle btn" data-toggle="dropdown" href="#" >
+                                        <span class="fa fa-bars fa-lg"/>
+                                    </a>
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                        <t t-if="widget.editable"><li><a type="edit">Edit Checklist</a></li></t>
+                                        <t t-if="widget.deletable"><li><a type="delete">Delete</a></li></t>
+                                        <li><ul class="oe_kanban_colorpicker" data-field="color"/></li>
+                                    </ul>
+                                </div>
+                                <div class="oe_kanban_content" tooltip="kanban-tooltip">
+                                    <!-- <field name="tag_ids"/> -->
+                                    <div>
+                                        <b><field name="description"/></b> <br/>
+                                        <field name="checklist_type"/><br/>
+                                        <field name="date"/> <br/>
+                                    </div>
+                                    <!-- <div class="oe_kanban_bottom_left">
+                                        <field name="priority" widget="priority"/>
+                                        <t t-if="record.message_needaction_counter.raw_value">
+                                            <span class='oe_kanban_mail_new' title='Unread Messages'><i class='fa fa-comments'/><t t-raw="record.message_needaction_counter.raw_value"/></span>
+                                        </t>
+                                    </div> -->
+                                    <div class="oe_kanban_bottom_right">
+                                        <img t-att-src="kanban_image('res.users', 'image_small', record.responsible.raw_value)" t-att-title="record.responsible.value" width="24" height="24" class="oe_kanban_avatar pull-right"/>
+                                        <!-- <div class="pull-left" groups="base.group_user">
+                                            <field name="kanban_state" widget="kanban_state_selection"/>
+                                        </div> -->
+                                    </div>
+                                </div>
+                                <div class="oe_clear"></div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        
+        <record id="action_project_checklists_item" model="ir.actions.act_window">
+            <field name="name">To-do list Item</field>
+            <field name="res_model">project.checklists.item</field>
+            <!-- <field name="view_mode">tree,form</field> -->
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="search_view_id" ref="view_project_checklist_item_filter"/>
+            <field name="view_ids"
+                   eval="[(5, 0, 0),
+                          (0, 0, {'view_mode': 'kanban', 'view_id': ref('project_checklists_item_kanban_view')}),
+                          (0, 0, {'view_mode': 'tree', 'view_id': ref('view_project_checklists_item_tree')}),
+                          (0, 0, {'view_mode': 'form', 'view_id': ref('view_project_checklists_item_form')}),
+                          ]"/>
+            <field name="context">{'readonly_by_pass': True, 'search_default_project':1, 'search_default_my_checklists':1, 'show_field_name_only':True}</field>
+        </record>
+        
+        <menuitem id="menu_action_project_checklists_item"
+        	parent="project.menu_project_management"
+        	name="To-do list Items"
+        	action="action_project_checklists_item"
+        	sequence="20"/>
+        	
+    </data>
+</odoo>

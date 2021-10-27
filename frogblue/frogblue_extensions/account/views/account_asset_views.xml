@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <record model="ir.ui.view" id="frogblue_view_account_asset_form">
+        <field name="name">froblue.account.asset.form</field>
+        <field name="model">account.asset</field>
+        <field name="inherit_id" ref="account_asset.view_account_asset_form"/>
+        <field name="arch" type="xml">
+            <field name="method" position="after">
+                <field name="hist_ahk"/>
+                <field name="hist_purchase_date"/>
+                <label for="method_number" string="Total Usage Time"/>
+                <div>
+                    <field name="total_usage_time" class="oe_inline"/>
+                    <field name="total_usage_time_type" class="oe_inline"/>
+                </div>
+                <field name="inventoried"/>
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="frogblue_view_account_asset_form_inherit">
+        <field name="name">froblue.account.asset.form.inherit</field>
+        <field name="model">account.asset</field>
+        <field name="inherit_id" ref="account_asset.view_account_asset_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                    <group>
+                        <field name="aml_ids" widget="many2many_tags" domain="[('asset_id', '=', False)]"/>
+                    </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

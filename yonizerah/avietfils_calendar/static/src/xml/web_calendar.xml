@@ -1,5 +1,8 @@
 <templates>
     <t t-extend="calendar-box">
+        <t t-jquery="div" t-operation="attributes">
+            <attribute name="t-attf-class">#{record.is_highlighted ? 'o_event_hightlight' : ''} #{_.str.sprintf('o_calendar_color_%s', color)}</attribute>
+        </t>
         <t t-jquery="div div.o_event_title" t-operation="before">
             <div t-esc="record.x_client_ids[1]"/>
         </t>

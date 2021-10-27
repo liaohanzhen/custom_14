@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    	<record id="res_config_settings_view_form_helpdesk_mail" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.helpdesk.mail</field>
+            <field name="model">res.config.settings</field>
+            <field name="priority" eval="40"/>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('settings')]" position="inside">
+                	<div class="app_settings_block" data-string="Helpdesk" string="Helpdesk" data-key="helpdesk_mail_stage_change" groups="helpdesk.group_helpdesk_manager">
+                    	<h2>Auto Ticket Stage Change when Mail Received</h2>
+	                    <div class="row mt16 o_settings_container">
+	                    	<div class="col-12 o_setting_box" id="source_mail_stages">
+                                <div class="o_setting_left_pane">
+	                                <field name="auto_move_tickets_to_new_stage"/>
+	                            </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="auto_move_tickets_to_new_stage"/>
+                                    <div class="content-group" attrs="{'invisible': [('auto_move_tickets_to_new_stage' ,'=', False)]}">
+                                        <div class="mt16">
+                                        	<label for="stagechange_source_stage"/>
+                                            <field name="stagechange_source_stage" widget="many2many_tags" options="{'no_create': True, 'no_open': True}" />
+                                        </div>
+                                        <div class="mt8">
+                                            <label for="stagechange_destination_stage"/>
+                                            <field name="stagechange_destination_stage" widget="selection" domain="[('id','not in',stagechange_source_stage)]"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+	                    </div>
+                    	
+                    </div>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="action_helpdesk_mail_stage_change_config" model="ir.actions.act_window">
+            <field name="name">Settings</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.config.settings</field>
+            <field name="view_mode">form</field>
+            <field name="target">inline</field>
+            <field name="context">{'module' : 'helpdesk_mail_stage_change'}</field>
+        </record>
+
+        <menuitem id="menu_action_helpdesk_mail_stage_change_config" name="Settings" parent="helpdesk.helpdesk_menu_config"
+            sequence="-1" action="action_helpdesk_mail_stage_change_config" groups="base.group_system"/>
+    </data>
+</odoo>

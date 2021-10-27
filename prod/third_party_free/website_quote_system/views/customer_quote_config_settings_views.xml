@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://store.webkul.com/license.html/ -->
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="customer_quote_settings_form_view">
+			<field name="name">Customer Quote Configuration</field>
+			<field name="model">customer.quote.settings</field>
+			<field name="arch" type="xml">
+				<form string="Customer Quote settings" class="oe_form_configuration">
+					<group  string="Quote Price Setting">
+						<label for="allow_customer_to_quote_price" string="Quote Price" help="Enable this to allow customer to propose price for their quotation."/>
+	                    <div>
+                            <field name="allow_customer_to_quote_price" default_focus="1" class="oe_inline" help="Enable this to allow customer to propose price for their quotation."/>
+							<label for="allow_customer_to_quote_price"/>
+						</div>
+					</group>
+                    <group colspan="5" string="Notify On Creation" >
+						<label for="notify_admin_on_new_quote" string="Admin" help="Enable to notify admin on new customer quote creation."/>
+	                    <div>
+                            <field name="notify_admin_on_new_quote" default_focus="1" class="oe_inline"/>
+							<label for="notify_admin_on_new_quote"/>
+                            <field name="notify_admin_on_new_quote_m_tmpl_id" default_focus="1" class="oe_inline" attrs="{'invisible': [('notify_admin_on_new_quote', '=', False)], 'required': [('notify_admin_on_new_quote', '=', True)]}"/>
+						</div>
+                        <label for="notify_salesman_on_new_quote" string="Salesman" help="Enable to notify salesman on new customer quote creation."/>
+	                    <div>
+                            <field name="notify_salesman_on_new_quote" class="oe_inline"/>
+							<label for="notify_salesman_on_new_quote"/>
+                            <field name="notify_salesman_on_new_quote_m_tmpl_id" default_focus="1" class="oe_inline" attrs="{'invisible': [('notify_salesman_on_new_quote', '=', False)], 'required': [('notify_salesman_on_new_quote', '=', True)]}"/>
+						</div>
+						<label for="salesman_id" attrs="{'invisible' : [('notify_salesman_on_new_quote','=',False)]}" string="          "/>
+						<div class="row">
+							<field name="salesman_id" style="" class="oe_inline col-3 ml-2"
+								   options="{'no_create_edit': True,'no_open':True}"
+								   attrs="{'invisible' : [('notify_salesman_on_new_quote','=',False)],
+								   			'required' : [('notify_salesman_on_new_quote','=',True)],
+											}"
+								   domain="[('share','=',False)]"
+								   />
+								   <span class="text-muted" attrs="{'invisible' : [('notify_salesman_on_new_quote','=',False)]}">⇒</span>
+							<div class="col-8">
+								<b><label for="salesman_id" class="oe_grey" style="font-weight:10px;margin-left: -12px;" attrs="{'invisible' : [('notify_salesman_on_new_quote','=',False)]}"/></b>
+							</div>
+						</div>
+						<label for="notify_customer_on_new_quote" string="Customer" help="Enable to notify customer on new customer quote creation."/>
+	                    <div>
+                            <field name="notify_customer_on_new_quote" default_focus="1" class="oe_inline"/>
+							<label for="notify_customer_on_new_quote"/>
+                            <field name="notify_customer_on_new_quote_m_tmpl_id" default_focus="1" class="oe_inline" attrs="{'invisible': [('notify_customer_on_new_quote', '=', False)], 'required': [('notify_customer_on_new_quote', '=', True)]}"/>
+						</div>
+					</group>
+
+					<group string="Notify On Taking Action">
+						<label for="notify_customer_on_quote_state_change" string="Customer" help="Enable to notify customer on change of status of customer quote."/>
+						<div>
+							<field name="notify_customer_on_quote_state_change" class="oe_inline"/>
+							<label for="notify_customer_on_quote_state_change" string="Enable to notify to customer"/>
+                            <field name="notify_customer_on_quote_state_change_m_tmpl_id" default_focus="1" class="oe_inline" attrs="{'invisible': [('notify_customer_on_quote_state_change', '=', False)], 'required': [('notify_customer_on_quote_state_change', '=', True)]}"/>
+						</div>
+					</group>
+					<footer>
+						<button string="Apply" type="object" name="execute" class="oe_highlight"/>
+						<button string="Cancel" type="object" special="cancel" class="oe_link"/>
+					</footer>
+            	</form>
+			</field>
+		</record>
+		<record model="ir.actions.act_window" id="action_website_quote_system_conf">
+			<field name="name">Customer Quote Configuration</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">customer.quote.settings</field>
+			<field name="view_id" ref="customer_quote_settings_form_view"/>
+			<field name="view_mode">form</field>
+			<field name="target">new</field>
+		</record>
+	</data>
+</odoo>

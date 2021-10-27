@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+		<record model="ir.ui.view" id="res_partner_form_add_contract_custom">
+            <field name="name">res.partner.add.conftract.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <data>
+                	<xpath expr="//notebook" position="inside">
+                		<!-- remove attrs in this field in odoo 14 supplier fiedl is not present in comment origin version 12 field 
+                		<page string="Contract" attrs="{'invisible':['|',('supplier','!=',True),('company_type','!=','company')]}">-->
+                		<page string="Contract" attrs="{'invisible':[('company_type','!=','company')]}">
+                			<field name="partner_contract_ids" colspan="4" >
+                				<tree string="Contracts" editable="top">
+                					<field name="date" required="1"/>
+                					<field name="user_id" required="1"/>
+                					<field name="payment_term_id" required="1" widget="selection"/>
+                					<field name="payment_term_id_tmp" invisible="1"/>
+                					<field name="validity_date" required="1" />
+                					<field name="file" />
+                				</tree>
+                			</field>
+                		</page>
+                	</xpath>
+                </data>
+            </field>
+    	</record>
+</odoo>

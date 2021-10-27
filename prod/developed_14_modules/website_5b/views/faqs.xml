@@ -1,0 +1,64 @@
+<odoo>
+  <data>
+	  <template id="page_faqs" name="FAQs">
+		<t t-call="website.layout">
+        <div id="wrap" class="oe_structure oe_empty">
+			<!-- ======= Hero Section ======= -->
+			  <section id="hero-project" style="background: url('/theme_5b/static/img/banner-faq.jpg'); background-position: 50% 50%; background-size:cover; background-repeat:no-repeat">
+				<div class="container position-relative"></div>
+			  </section><!-- End Hero -->
+
+			  <main id="main">
+				
+				<!-- ======= About Section ======= -->
+				<section id="faqs" class="about">
+				  <div class="container">
+
+					<div class="row">
+					  <div class="col-lg-12 pt-4 pt-lg-0 order-2 order-lg-1 content">
+						<div class="section-title">
+						  <h3>FAQs</h3>
+						</div>
+						
+					  <div align="left" class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+						<t t-set="count" t-value="0" />
+						<t t-foreach="contents" t-as="faq">
+						<div class="panel panel-default">
+						  <div class="panel-heading p-3 mb-3" role="tab" t-attf-id="heading{{count}}">
+							<h5 class="panel-title" style="font-size:1em;">
+							  <a class="collapsed" role="button" title="" data-toggle="collapse" data-parent="#accordion" t-attf-href="#collapse{{count}}" aria-expanded="true" t-attf-aria-controls="collapse{{count}}">
+								<t t-esc="faq.question" />
+							  </a>
+							</h5>
+						  </div>
+						  <div t-attf-id="collapse{{count}}" class="panel-collapse collapse" style="font-size:0.9em;" role="tabpanel" t-attf-aria-labelledby="heading{{count}}">
+							<div class="panel-body px-3 mb-4">
+								<t t-raw="faq.answer" />
+							</div>
+						  </div>
+						</div>
+						<t t-set="count" t-value="count + 1" />
+						</t>
+						
+					  </div>
+					  
+					  <div align="left" class="margin30" style="font-size:0.9em;">
+						  <h5 style="font-size:1em;">Other Questions?</h5>
+						  For any other questions or enquiries you have about the MAVERICK system or 5B please <a href="/contact" style="text-decoration:underline">contact us</a>.<!-- or email us at <a href="mailto:info@5b.com.au" style="text-decoration:underline">info@5b.com.au</a>-->
+					  </div>
+  
+
+					  </div>
+					</div>
+
+				  </div>
+				</section><!-- End About FAQs -->
+
+			  </main><!-- End #main -->
+  
+        </div>
+      </t>
+    </template>
+
+  </data>
+</odoo>

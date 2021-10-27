@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="fb_helpdesk_ticket_view_form" model="ir.ui.view">
+        <field name="name">fb.helpdesk.ticket.form</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="rma_id"/>
+                <field name="crm_team_id"/>
+                <field name="partner_country_id"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="fb_helpdesk_tickets_view_tree" model="ir.ui.view">
+        <field name="name">fb.helpdesk.ticket.tree</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="inherit_id" ref="helpdesk.helpdesk_tickets_view_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='display_name']" position="before">
+                <field name="id"/>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="partner_country_id"/>
+                <field name="crm_team_id"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="helpdesk.helpdesk_my_ticket_action_no_create" model="ir.actions.act_window">
+        <field name="context">{'search_default_is_open': True, 'search_default_my_ticket': True}</field>
+    </record>
+
+    <record id="fb_helpdesk_ticktes_view_kanban" model="ir.ui.view">
+        <field name="name">fb.helpdesk.ticket.view.kanban</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_kanban"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="partner_country_id"/>
+                <field name="crm_team_id"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

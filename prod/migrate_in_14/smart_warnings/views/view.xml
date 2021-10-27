@@ -1,0 +1,12 @@
+<odoo>
+
+    <template id="assets_backend" name="for render assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/smart_warnings/static/src/js/form_render.js"/>
+            <link type="text/css" rel='stylesheet' href='/smart_warnings/static/src/css/style.css'/>
+        </xpath>
+    </template>
+
+</odoo>
+
+

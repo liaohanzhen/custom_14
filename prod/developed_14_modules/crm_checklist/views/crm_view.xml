@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- <record id="view_crm_lead_tree_inherit_checklist" model="ir.ui.view">
+        <field name="name">crm.lead.checklist.tree.inherit</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_tree_view_oppor"/>
+        <field name="arch" type="xml">
+            <field name="user_id" position="after">
+                <field name="check_marked" widget="progressbar"/>
+            </field>
+        </field>
+    </record> -->
+
+    <record id="view_sale_crm_lead_inherit_checklist" model="ir.ui.view">
+        <field name="name">sale.crm.lead.checklist.form.inherit</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="sale_crm.crm_case_form_view_oppor"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Gate checklist">
+                    <group>
+                        <field name="crm_lead_checklist" widget="many2many_checkboxes" domain="[('stage_id','=',stage_id)]" nolabel="1"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- <record id="crm_lead_checklist_view_kanban" model="ir.ui.view">
+        <field name="name">crm.lead.kanban.inherit</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="project.view_project_kanban"/>
+        <field name="arch" type="xml">
+            <data>
+                <field name="task_needaction_count" position="after">
+                    <field  name="check_marked"/>
+                    <field name="max_value"/>
+                </field>
+                <xpath expr="//div[hasclass('o_kanban_primary_left')]" position="inside">
+
+                    <div t-if="record.check_marked.value &lt;= 100" class="mt8">
+                        <field name="check_marked" widget="progressbar" title="Checklist" options="{'current_value': 'check_marked', 'max_value': 'max_value', 'editable': false, 'edit_max_value': true}"/>
+                    </div>
+
+                </xpath>
+            </data>
+        </field>
+    </record> -->
+
+    <!-- <record id="view_crm_lead_checklist_form" model="ir.ui.view">
+        <field name="name">crm.lead.checklist.form</field>
+        <field name="model">crm.lead.checklist</field>
+        <field name="arch" type="xml">
+            <form string="Crm Lead Checklist">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="description"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_crm_lead_checklist_tree" model="ir.ui.view">
+        <field name="name">crm.lead.checklist.tree</field>
+        <field name="model">crm.lead.checklist</field>
+        <field name="arch" type="xml">
+            <tree string="Crm Lead Checklist">
+                <field name="name"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="open_crm_lead_checklist_form" model="ir.actions.act_window">
+        <field name="name">Crm Checklist</field>
+        <field name="res_model">crm.lead.checklist</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="menu_view_crm_lead_checklist_form"
+        action="open_crm_lead_checklist_form"
+        parent="project.menu_project_config"
+        groups="project.group_project_manager"
+        name="CRM Checklist"
+        sequence="1"/> -->
+
+
+</odoo>

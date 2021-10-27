@@ -1,0 +1,119 @@
+/* Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) */
+/* See LICENSE file for full copyright and licensing details. */
+/* License URL : https://store.webkul.com/license.html/ */
+
+.mp_form{
+    max-width: 45% !important;
+}
+@media only screen and (max-width: 768px) {
+    .mp_form{
+        max-width: 100% !important;
+    }
+    #group_progress li {
+        font-size: 7px !important;
+        margin-right: 0px;
+    }
+}
+@media screen and (max-width: 900px) and (min-width: 600px) {
+    .mp_form{
+        max-width: 80% !important;
+    }
+    #group_progress li {
+        font-size: 7px !important;
+        margin-right: 0px;
+    }
+}
+
+.oe_signup_form fieldset{
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
+} 
+.action-button{
+    color: white !important;
+}
+
+.oe_signup_form .form-control{
+    background: #EEEEEE;
+} 
+
+#wk_mp fieldset:not(:first-of-type) {
+    display: none
+}
+
+.wk_warning{
+    border-color:#dc3545;
+}
+
+.wk_boolean_warning{
+    color: #dc3545;
+}
+
+#group_progress {
+    margin-bottom: 30px;
+    overflow: hidden;
+    color: lightgrey
+}
+
+#group_progress .active {
+    color: #000000
+}
+
+#group_progress li {
+    list-style-type: none;
+    font-size: 12px;
+    width: 25%;
+    float: left;
+    position: relative;
+}
+#group_progress li:before {
+    font-family: FontAwesome;
+    content: "\f192"
+}
+
+#group_progress li:before {
+    width: 20px;
+    height: 19px;
+    line-height: 16px;
+    display: block;
+    font-size: 18px;
+    color: #ffffff;
+    background: lightgray;
+    border-radius: 50%;
+    margin: 15px auto 10px auto;
+    padding: 2px 2px 2px 2px;
+
+}
+
+#group_progress li:after {
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: lightgray;
+    position: absolute;
+    left: 0;
+    top: 25px;
+    z-index: -1
+}
+
+#group_progress li.active:before,
+#group_progress li.active:after {
+    background: #000000;
+}
+
+#group_progress li:nth-child(n):after {
+    left: -50%
+}
+
+#group_progress li:first-child:after {
+    left: 50%
+}
+
+.seller-register-multistep {
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #E2E2E2;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 25px;
+    text-transform: uppercase;
+}

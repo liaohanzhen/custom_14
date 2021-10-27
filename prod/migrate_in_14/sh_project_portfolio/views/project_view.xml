@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data> 
+	<!-- PROJECT FORM VIEW -->
+	<record id="sh_inherit_edit_project_for_portfolio" model="ir.ui.view">
+		<field name="name">sh.inherit.edit.project.for.portfolio</field>
+		<field name="model">project.project</field>
+		<field name="inherit_id" ref="project.edit_project"/>
+		<field name="arch" type="xml">
+			<xpath expr="//notebook" position="inside">
+				<page name="sh_portfolio_page" string="Portfolio">
+					<group>
+						<field name="category_id"/>
+						<field name="proj_desc" widget="html"/>
+						<field name="thumb_img" widget="image" class="oe_avatar"/>
+						<field name="related_projects" widget="many2many_tags" domain="[('id','!=',active_id),('is_publish','=',True)]"/>
+						<field name="is_publish"/>
+					
+					<field name="image_lines">
+						<form string="Image Gallary">
+							<group>
+								<field name="name"/>
+								<field name="slide_desc" widget="html"/>
+								<field name="slide_img" widget="image" class="oe_avatar" options="{'size': [90, 90]}"/>
+							</group>
+						</form>
+						<tree>
+								<field name="name"/>
+								<field name="slide_desc" widget="html"/>
+								<field name="slide_img" widget="image" class="oe_avatar" options="{'size': [90, 90]}"/>
+						</tree>
+					</field>
+					</group>				
+				</page>
+			</xpath>
+		</field>
+	</record>
+</data>
+</odoo>

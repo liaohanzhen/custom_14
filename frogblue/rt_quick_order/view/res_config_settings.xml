@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_website" model="ir.ui.view">
+        <field name="name">Configure Quick Order Attrbiute</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="website.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='website_settings']" position="after">
+                <h2>Quick Order</h2>
+                <div class="row mt16 o_settings_container" id="quick_order_settings">
+                    <div class="col-12 col-lg-6 o_setting_box" id="quick_order_settings">
+                        <div class="o_setting_right_pane">
+                            <label for="attribute_ids"/>
+                            <div class="text-muted">
+                                Selected Attribute will be used in the Quick Order Products Attribute.
+                            </div>
+                            <div class="mt16">
+                                <field name="attribute_ids"/>
+                            </div>
+                            <div class="content-group">
+                                <div class="mt8">
+                                    <button name="%(product.attribute_action)d" icon="fa-arrow-right" type="action" string="Attributes" class="btn-link"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

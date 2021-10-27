@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="view_crear_adendum_wizard_form" model="ir.ui.view">
+        <field name="name">crear.adendum.wizard.form.view</field>
+        <field name="model">crear.adendum.wizard</field>
+        <field name="arch" type="xml">
+       	 <form string="Crear Adendum">
+	       	<group style="width:50%">
+	       		<field name="meses_adicionales"/>
+	       	</group>
+	       	<footer>
+	                <button name="confirm_crear_addedum" string="Ok" type="object" default_focus="1" class="oe_highlight"/>
+	                <button string="Cancel" class="btn btn-default" special="cancel" />
+	            </footer>
+	       	</form>
+        </field>
+    </record>
+    
+</odoo>

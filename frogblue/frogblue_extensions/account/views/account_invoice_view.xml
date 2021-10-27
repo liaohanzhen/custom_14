@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+        <record id="frogblue_email_invoice_form_inherit" model="ir.ui.view">
+            <field name="name">frogblue.email.invoice.form.inherit</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@id='header_right_group']//div[hasclass('o_td_label')]" position="before">
+                    <field
+                        name="refund_type"
+                        attrs="{'invisible': [('move_type', '!=', 'out_refund')]}"
+                    />
+                </xpath>
+                <xpath expr="//button[@name='button_cancel']" position="replace">
+                    <button name="button_cancel" string="Cancel Entry" type="object" groups="account.group_account_invoice"
+                            attrs="{'invisible' : ['|', '|', ('id', '=', False), ('state', '!=', 'draft'), ('name', '!=', '/')]}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="invoice_supplier_form" model="ir.ui.view">
+            <field name="name">invoice.supplier.form</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form" />
+            <field name="arch" type="xml">
+                <button name="action_post" position="after">
+                    <button name="generate_and_attach_sepa_pdf_slip" string="Transfer voucher" type="object"
+                            attrs="{'invisible':[('move_type', '!=', 'in_invoice')]}"
+                            help="Allows user to create and attach SEPA slip."/>
+                </button>
+            </field>
+        </record>
+
+        <record id="view_invoice_tree" model="ir.ui.view">
+            <field name="name">view.out.invoice.tree</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_invoice_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="debitor_number" invisible="context.get('default_move_type') not in ('out_invoice', 'out_refund','out_receipt')" groups="base.group_user"/>
+                    <field name="creditor_number" invisible="context.get('default_move_type') not in ('in_invoice', 'in_refund','in_receipt')" groups="base.group_user"/>
+                </xpath>
+                <xpath expr="//field[@name='invoice_partner_display_name']" position="replace"/>
+                <xpath expr="//field[@name='invoice_partner_display_name']" position="replace">
+                    <field name="partner_id" invisible="context.get('default_move_type') not in ('out_invoice', 'out_refund','out_receipt')" groups="base.group_user" string="Customer"/>
+                    <field name="invoice_partner_display_name" invisible="context.get('default_move_type') not in ('in_invoice', 'in_refund','in_receipt')" groups="base.group_user" string="Vendor"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="frogblue_view_account_move_line_filter_inherit" model="ir.ui.view">
+            <field name="name">frogblue.journal.items.inherit</field>
+            <field name="model">account.move.line</field>
+            <field name="inherit_id" ref="account.view_account_move_line_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//search" position="inside">
+                    <field name="ref"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

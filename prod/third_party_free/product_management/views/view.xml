@@ -1,0 +1,14 @@
+<odoo>
+
+    <template id="assets_backend" name="list asssets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/product_management/static/src/js/product_kanbancontroller.js"/>
+            <script type="text/javascript" src="/product_management/static/src/js/product_kanbanmodel.js"/>
+            <script type="text/javascript" src="/product_management/static/src/js/product_kanbanrecord.js"/>
+            <script type="text/javascript" src="/product_management/static/src/js/product_kanbanrender.js"/>
+            <script type="text/javascript" src="/product_management/static/src/js/product_kanbanview.js"/>
+            <link type="text/css" rel='stylesheet' href='/product_management/static/src/css/styles.css'/>
+        </xpath>
+    </template>
+
+</odoo>

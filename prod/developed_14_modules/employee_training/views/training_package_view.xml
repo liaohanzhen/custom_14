@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    	<record id="view_training_packages_filter" model="ir.ui.view">
+            <field name="name">training.package.search.view</field>
+            <field name="model">training.package</field>
+            <field name="arch" type="xml">
+                <search string="Training Package Search">
+                    <field name="name" />
+                </search>
+            </field>
+        </record>
+        <record id="view_training_package_form" model="ir.ui.view">
+            <field name="name">training.package.form</field>
+            <field name="model">training.package</field>
+            <field name="arch" type="xml">
+                <form string="Training Package Form">
+                    <sheet>
+                        <div class="oe_title">
+	                        <h1>
+	                            <field name="name" />
+	                        </h1>
+	                    </div>
+                        <field name="training_template_ids" colspan="4" nolabel="1">
+                   			<tree string="Templates" >
+                   				<field name="name"/>
+			                    <field name="department_id"/>
+			                    <field name="is_recurring" />
+                   			</tree>
+                   		</field>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_training_package_tree" model="ir.ui.view">
+            <field name="name">training.package.tree</field>
+            <field name="model">training.package</field>
+            <field name="arch" type="xml">
+                <tree string="Training Package tree">
+                	<field name="name"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="action_training_packages" model="ir.actions.act_window">
+            <field name="name">Training Packages</field>
+            <field name="res_model">training.package</field>
+            <!-- <field name="view_type">form</field> -->
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_training_packages_filter"/>
+            <field name="view_ids"
+                   eval="[(5, 0, 0),
+                          (0, 0, {'view_mode': 'tree', 'view_id': ref('view_training_package_tree')}),
+                          (0, 0, {'view_mode': 'form', 'view_id': ref('view_training_package_form')}),
+                          ]"/>
+        </record>
+        
+        <menuitem id="menu_action_training_packages"
+        	parent="main_menu_employee_trainings"
+        	name="Training Packages"
+        	action="action_training_packages"
+        	sequence="18"/>
+    </data>
+</odoo>

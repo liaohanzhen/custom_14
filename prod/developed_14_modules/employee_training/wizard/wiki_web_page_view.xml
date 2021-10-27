@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_wiki_web_page_wizard_form" model="ir.ui.view">
+            <field name="name">Wiki/Web Page</field>
+            <field name="model">wiki.web.page.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Wiki/WEb Page">
+                	<center>
+						<iframe src="src_iframe_custom" marginwidth="0" marginheight="0" frameborder="no"  style="height: 600px; width: 100%; border-width:0px;"> 
+						</iframe>
+					</center>
+                	<footer>
+                        <button string="Close" class="oe_highlight" special="cancel" />
+                    </footer>
+               </form>
+            </field>
+        </record>
+    </data>
+</odoo>

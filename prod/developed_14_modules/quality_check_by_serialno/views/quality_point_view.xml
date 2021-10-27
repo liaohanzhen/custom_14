@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="quality_point_view_form_inherit_quality_check_percent" model="ir.ui.view">
+        <field name="name">quality.point.view.form.quality.check.percent</field>
+        <field name="model">quality.point</field>
+        <field name="inherit_id" ref="quality.quality_point_view_form"/>
+        <field name="arch" type="xml">
+            <field name="measure_frequency_type" position="after">
+                <field name="quality_check_percent" attrs="{'invisible': [('measure_frequency_type', '!=', 'all')]}"/>
+            </field>
+            <field name="company_id" position="after">
+            	<field name="source_location_ids" widget="many2many_tags" domain="[('company_id','=',company_id)]"/>
+            </field>
+            <field name="user_id" position="after">
+            	<field name="dest_location_ids" widget="many2many_tags" domain="[('company_id','=',company_id)]"/>
+            </field>
+        </field>
+    </record>
+</odoo>

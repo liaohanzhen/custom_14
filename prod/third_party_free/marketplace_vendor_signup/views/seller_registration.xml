@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://store.webkul.com/license.html/ -->
+<odoo>
+    <record id="seller_reg_group_view_tree" model="ir.ui.view">
+        <field name="name">Seller Registration Group Tree View</field>
+        <field name="model">seller.register.group</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="sequence" string="Sort Order" widget="handle"/>
+                <field name="name"/>
+                <field name="reg_group_status" string="Enable/Disable" widget="boolean_toggle"/>
+                <field name="website_id" string="Website"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="seller_reg_group_view_form" model="ir.ui.view">
+        <field name="name">Seller Registration Group Form View</field>
+        <field name="model">seller.register.group</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_button_box" name="button_box" attrs="{'invisible':[('reg_group_status', '=', True)]}">
+                        <button name="toggle_active" type="object" string="Click to Activate" class="oe_stat_button text-success" icon="fa-check text-success">
+                            <field name="reg_group_status" invisible="True"/>
+                        </button>
+                    </div>
+                    <div class="oe_button_box" name="button_box" attrs="{'invisible':[('reg_group_status', '=', False)]}">
+                        <button name="toggle_active" type="object" string="Click to Deactivate" class="oe_stat_button text-danger" icon="fa-check text-danger">
+                            <field name="reg_group_status" invisible="True"/>
+                        </button>
+                    </div>
+
+                    <div class="oe_title">
+                        <label class="oe_edit_only" for="name" string="Name"/>
+                        <h1><field name="name" required="1" placeholder="Name"/></h1>
+                    </div>
+
+                    <group col="2">
+                        <field name="sequence" string="Sequence"/>
+                        <field name="website_id" string="Website"/>
+                    </group>
+                    <notebook>
+                        <page string="Attributes">
+                            <field name="attribute_ids"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="seller_reg_attr_view_tree" model="ir.ui.view">
+        <field name="name">Seller Registration Attributes Tree View</field>
+        <field name="model">seller.register.attributes</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="sequence" string="Sequence" widget="handle"/>
+                <field name="attribute_label"/>
+                <field name="attribute_input_type" string="Attribute Type"/>
+                <field name="is_required"/>
+                <field name="attribute_status" string="Enable/Disable" widget="boolean_toggle"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="seller_reg_attr_view_form" model="ir.ui.view">
+        <field name="name">Seller Registration Attributes Form View</field>
+        <field name="model">seller.register.attributes</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group string="Attribute Details">
+                        <group>
+                            <field name="attribute" required="1" placeholder="Field" options="{'no_create_edit':'true'}"/>
+                            <field name="attribute_label"/>
+                            <field name="placeholder"/>
+                        </group>
+                        <group>
+                            <field name="attribute_type"/>
+                            <field name="attribute_input_type"/>
+                            <field name="code"/>
+                            <field name="sequence"  string="Sequence"/>
+                        </group>
+                    </group>
+                    <group>
+                      <group>
+                        <field name="attribute_status" string="Status"/>
+                        <field name="is_required"/>
+                      </group>
+                      <group>
+                          <field name="group_id" string="Group" required="1" />
+                      </group>
+                    </group>
+                    	<group string="Attribute Domain" attrs="{'invisible' : [('attribute_type', 'not in', ['many2one','many2many'])]}">
+							<group>
+								<field name="attribute_domain" readonly="0"
+									placeholder='e.g. ["|",["id","=",1],["id","=",1]]'/>
+							</group>
+							<group>
+								<button name="action_add_domain" type="object" string="Add Domain"
+									class="oe_button oe_highlight oe_edit_only"
+									attrs="{'invisible' : [('attribute_type', 'not in',['many2one','many2many'])]}"
+									/>
+							</group>
+						</group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="seller_reg_group_action" model="ir.actions.act_window">
+        <field name="name">Registration Group</field>
+        <field name="res_model">seller.register.group</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="seller_reg_group_view_tree" />
+    </record>
+
+    <record id="seller_reg_attr_action" model="ir.actions.act_window">
+        <field name="name">Registration Attributes</field>
+        <field name="res_model">seller.register.attributes</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="seller_reg_attr_view_tree" />
+    </record>
+
+    <menuitem id="seller_group_manager" name="Vendor Signup" parent="odoo_marketplace.wk_seller_dashboard" sequence="5" groups="odoo_marketplace.marketplace_manager_group" />
+        <menuitem id="seller_reg_group" name="Registration Groups"  parent="seller_group_manager" sequence="1" action="seller_reg_group_action"/>
+        <menuitem id="seller_reg_attr" name="Registration Attributes"  parent="seller_group_manager" sequence="2" action="seller_reg_attr_action"/>
+</odoo>

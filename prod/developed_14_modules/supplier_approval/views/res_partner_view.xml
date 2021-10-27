@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+		<record model="ir.ui.view" id="res_partner_form_add_button_custom">
+            <field name="name">res.partner.add.button form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <data>
+                	<xpath expr="//div[@name='button_box']" position="inside">
+                		<button name="approve_disapprove_supplier" type="object" class="oe_stat_button" icon="fa-check" groups="purchase.group_purchase_manager"
+                		> <!-- attrs="{'invisible':['|',('supplier','!=',True),('approved_supplier','!=',True)]}" -->
+                			<field name="approved_supplier_tmp" widget="toggle_approval" options='{"terminology": "not approved"}'/>
+                		</button>	
+                        <!-- <button name="approve_disapprove_supplier" type="object" class="oe_stat_button" icon="fa-times" groups="purchase.group_purchase_manager"
+                        attrs="{'invisible':['|',('supplier','!=',True),('approved_supplier_tmp','=',True)]}" >
+                        	<field name="approved_supplier_tmp" widget="toggle_approval" options='{"terminology": "not approved"}'/>
+                        </button> -->
+                	</xpath>
+                	<field name="category_id" position="after">
+						 <!-- remove attrs in this field in odoo 14 supplier fiedl is not present in comment origin version 12 field -->              		
+                		<!-- <field name="approved_supplier" readonly="1" attrs="{'invisible':[('supplier','!=',True)]}"/> -->
+                		<field name="approved_supplier" readonly="1"/>
+                	</field>
+                	<xpath expr="//notebook" position="inside">
+                		<!-- remove attrs in this field in odoo 14 supplier fiedl is not present in comment origin version 12 field
+                		<page string="Approval History" attrs="{'invisible':[('supplier','!=',True)]}"> -->
+                		<page string="Approval History">
+                			<field name="approval_history_ids" colspan="4" readonly="1">
+                				<tree string="Approval History">
+                					<field name="date" />
+                					<field name="status" />
+                					<field name="user_id" />
+                					<field name="reason" />
+                				</tree>
+                			</field>
+                		</page>
+                	</xpath>
+                </data>
+            </field>
+    	</record>
+</odoo>

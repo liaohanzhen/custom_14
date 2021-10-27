@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="view_order_form_ext" model="ir.ui.view">
+            <field name="name">sale.order.form.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+		        <xpath expr="//form/header/button[@id='action_confirm']" position="attributes">
+			         <attribute name="groups">structurall_module.confirmar_pedidos_group</attribute>
+			    </xpath>
+			    <xpath expr="//button[@name='action_confirm'][2]" position="attributes">
+			         <attribute name="groups">structurall_module.confirmar_pedidos_group</attribute>
+			    </xpath>
+            	<button name="action_confirm" position="after">
+            		<!-- <button class="oe_highlight" name="agregar_unidad" string="Agregar Unidad" type="object" invisible="not context.get('default_is_rental_order')" /> -->
+            		<button class="oe_highlight" name="agregar_unidad" string="Agregar Unidad" type="object"  attrs="{'invisible':[('state','not in', ('draft','sent'))]}"  />
+            	</button>
+
+                <!--PRICE UNIT CHANGES-->
+                <xpath expr="//field[@name='order_line']/tree/field[@name='price_unit']" position="before">
+                    <field name="check_stock_so" />
+                </xpath>
+
+                <xpath expr="//field[@name='order_line']/tree/field[@name='price_unit']" position="before">
+                    <field name="ubicacion_exacta"/>
+                </xpath>
+
+            	<xpath expr="//field[@name='order_line']/tree/field[@name='price_unit']" position="before">
+            		<field name="editar_precios" invisible="1"/>
+            	</xpath>
+
+            	<xpath expr="//field[@name='order_line']/tree/field[@name='price_unit']" position="attributes">
+                    <attribute name="attrs">{'readonly':[('editar_precios','=',False)]}</attribute>
+            	</xpath>
+                
+                <!--END PRICE UNIT CHANGES-->
+
+
+            	<xpath expr="//field[@name='order_line']/tree/field[@name='discount']" position="before">
+            		<field name="editar_descuentos" invisible="1"/>
+            	</xpath>
+
+                 <xpath expr="//field[@name='order_line']/tree/field[@name='ubicacion_exacta']" position="attributes">
+                    <attribute name="attrs">{'column_invisible':[('parent.is_rental_order','=',False)]}</attribute>
+                </xpath>
+
+                <!--MAKE QTY READONLY IF RENTAL ORDER IS TRUE-->
+                <xpath expr="//field[@name='order_line']/tree/field[@name='product_uom_qty']" position="attributes">
+                    <attribute name="attrs">{'readonly':[('parent.is_rental_order','=',True)]}</attribute>
+                </xpath>
+
+
+            	<xpath expr="//field[@name='order_line']/tree/field[@name='discount']" position="attributes">
+            		<attribute name="attrs">{'readonly':[('editar_descuentos','=',False)]}</attribute>
+            	</xpath>
+
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="contract_related_count" invisible="1"/>
+                </xpath>
+
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="estado_instalacion" options="{'no_create': True, 'no_create_edit':True}" required="1"/>
+                    <field name="autorizado" />
+                </xpath>
+
+                <!--ADD FIELD is_user_admin-->
+
+                <!-- <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="is_user_admin"/>
+                </xpath> -->
+
+                <!--END is_user_admin-->
+            	
+            	<xpath expr="//button[@name='action_confirm']" position="after">
+            		<button name="action_crear_contrato" type="object" string="Crear Contrato"  attrs="{'invisible':['|','|',('state','in',('draft','autorizacion')),('contract_related_count', '=', 1),('is_deliverd', '=', False)]}" groups="sales_team.group_sale_manager"/>
+            	</xpath>
+
+                <xpath expr="//field[@name='payment_term_id']" position="after">
+                   <field name="is_deliverd" invisible="1"/>
+                   <field name="ciudad_destino"/>
+                   <field name="kms"/>
+
+                </xpath>            	
+            	<xpath expr="//header" position="inside">
+            		<button name="action_autorizar" class="oe_highlight" type="object" string="Autorizar" attrs="{'invisible':[('state', 'not in', ['autorizacion'])]}" groups="sales_team.group_sale_manager"/>
+            		<button name="revisar_cotizacion" class="oe_highlight" type="object" string="Revisar cotización" attrs="{'invisible':[('state', 'not in', ['draft','sent',])]}" />
+            	</xpath>
+
+                <!--FIELD PRICELIST_ID TO READONLY ATTRIBUTE-->
+                <xpath expr="//field[@name='pricelist_id']" position="attributes">
+                    <attribute name="readonly">True</attribute>
+                </xpath>
+
+                <!--FIELD PRICELIST_ID WITH FORCE_SAVE TRUE-->
+                <xpath expr="//field[@name='pricelist_id']" position="attributes">
+                    <attribute name="force_save">True</attribute>
+                </xpath>
+
+                <!--SALESPERSON TO READONLY-->
+                <xpath expr="//field[@name='user_id']" position="attributes">
+                    <attribute name="readonly">True</attribute>
+                </xpath>
+
+                <!--PAYMENT TERMS TO READONLY-->
+                <xpath expr="//field[@name='payment_term_id']" position="attributes">
+                    <attribute name="readonly">True</attribute>
+                </xpath>
+
+
+            </field>
+         </record>
+         
+         <record id='resource_rental_mgt.rental_order_action_id' model='ir.actions.act_window'>
+         	<field name='view_id' ref="resource_rental_mgt.rental_order_tree"/>
+         </record>
+
+
+         <!--RECORD TURNS PRICELIST_ID TO EDITABLE FIELD ONLY TO SALES MANAGERS-->
+
+        <record id="view_order_form_ext_pricelist" model="ir.ui.view">
+            <field name="name">sale.order.form.inherit.pricelist</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="groups_id" eval="[(6, 0, [ref('structurall_module.allow_change_pricelist')])]"/>
+            <field name="arch" type="xml">
+                <!--FIELD PRICELIST_ID TO READONLY ATTRIBUTE-->
+                <xpath expr="//field[@name='pricelist_id']" position="attributes">
+                    <attribute name="readonly">False</attribute>
+                </xpath>
+                <xpath expr="//field[@name='user_id']" position="attributes">
+                    <attribute name="readonly">False</attribute>
+                </xpath>
+            </field>
+         </record>
+
+
+        <!--PAYMENT TERM ID TO FALSE-->
+        <record id="view_order_form_ext_payment_terms" model="ir.ui.view">
+            <field name="name">sale.order.form.inherit.payment.terms</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="groups_id" eval="[(6, 0, [ref('structurall_module.allow_change_payment_terms')])]"/>
+            <field name="arch" type="xml">
+                <!--FIELD PAYMENT TERMS TO READONLY ATTRIBUTE-->
+                <xpath expr="//field[@name='payment_term_id']" position="attributes">
+                    <attribute name="readonly">False</attribute>
+                </xpath>
+            </field>
+         </record>
+
+
+   </data>
+</odoo>   

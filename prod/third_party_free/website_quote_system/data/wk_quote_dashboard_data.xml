@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://store.webkul.com/license.html/ -->
+<odoo>
+    <data noupdate="1">
+      <record model="wk.quote.dashboard" id="pending_demo">
+            <field name="name">Pending Quotes</field>
+            <field name="state">pending</field>
+            <field name="sequence">1</field>
+        </record>
+        <record model="wk.quote.dashboard" id="approved_demo" >
+            <field name="name">Approved Quotes</field>
+            <field name="state">approved</field>
+            <field name="sequence">2</field>
+        </record>
+         <record model="wk.quote.dashboard" id="rejected_demo">
+            <field name="name">Rejected Quotes</field>
+            <field name="state">rejected</field>
+            <field name="sequence">6</field>
+        </record>
+         <record model="wk.quote.dashboard" id="expired_demo">
+            <field name="name">Expired Quotes</field>
+            <field name="state">expired</field>
+            <field name="sequence">7</field>
+        </record>
+        <record model="wk.quote.dashboard" id="incart_demo">
+            <field name="name">In Cart Quotes</field>
+            <field name="state">incart</field>
+            <field name="sequence">3</field>
+        </record>
+        <record model="wk.quote.dashboard" id="inprocess_demo">
+            <field name="name">In Process Quotes</field>
+            <field name="state">inprocess</field>
+            <field name="sequence">4</field>
+        </record>
+        <record model="wk.quote.dashboard" id="sold_demo">
+            <field name="name">Sold Quotes</field>
+            <field name="state">sold</field>
+            <field name="sequence">5</field>
+        </record>
+    </data>
+</odoo>

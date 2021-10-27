@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="product_price_line_inherit" inherit_id="website_sale.product_price">
+        <xpath expr="//h4[hasclass('oe_price_h4')]" position="replace">
+            <div class="d-flex align-items-baseline">
+                <h3 class="oe_price_h4 css_editable_mode_hidden mr-3">
+                    <b class="oe_price" style="white-space: nowrap;" t-esc="combination_info['price']"
+                       t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
+                    <span t-attf-class="text-danger oe_default_price {{'' if combination_info['has_discounted_price'] else 'd-none'}}"
+                          style="text-decoration: line-through; white-space: nowrap;"
+                          t-esc="combination_info['list_price']"
+                          t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
+                    <span itemprop="price" style="display:none;" t-esc="combination_info['price']"/>
+                    <span itemprop="priceCurrency" style="display:none;" t-esc="website.currency_id.name"/>
+                </h3>
+                <h5 class="oe_price_h4 css_editable_mode_hidden" style="color:#97D700 !important;">
+                    <span>(Total :</span>
+                    <b class="oe_price" style="white-space: nowrap;" t-esc="combination_info['price']"
+                       t-options="{'widget': 'monetary', 'display_currency': website.currency_id}" id="total_cost">15
+                    </b>
+                    <span t-attf-class="text-danger oe_default_price {{'' if combination_info['has_discounted_price'] else 'd-none'}}"
+                          style="text-decoration: line-through; white-space: nowrap;"
+                          t-esc="combination_info['list_price']"
+                          t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
+                    <span>)</span>
+                    <span itemprop="price" style="display:none;" t-esc="combination_info['price']"/>
+                    <span itemprop="priceCurrency" style="display:none;" t-esc="website.currency_id.name"/>
+                </h5>
+            </div>
+        </xpath>
+    </template>
+    <template id="product_quantity" inherit_id="website_sale.product_quantity" customize_show="True"
+              name="Select Quantity">
+        <xpath expr="//input[@name='add_qty']" position="replace">
+            <t t-set="package_qty" t-value="product_variant.package_product()"/>
+            <input type="text" class="form-control quantity" t-att-data-min="package_qty or 1"
+                   t-att-data-package-qty="package_qty or 1" name="add_qty"
+                   t-att-value="package_qty or add_qty or 1" style="pointer-events: none;"
+                   onkeydown="this.style.width = ((this.value.length + 1) 8) + 'px'; this.style.maxWidth = ((this.value.length + 1) 8+8) + 'px';"/>
+        </xpath>
+    </template>
+
+    <template id="cart_lines" inherit_id="website_sale.cart_lines" priority="50" customize_show="True"
+              name="Shopping Cart Lines">
+        <xpath expr="//input[@class='js_quantity form-control quantity']" position="replace">
+            <t t-set="package_qty" t-value="line.product_id.package_product()"/>
+            <input type="text" class="js_quantity form-control quantity" t-att-data-line-id="line.id"
+                   t-att-data-product-id="line.product_id.id" t-att-data-min="package_qty or 1"
+                   t-att-data-package-qty="package_qty or add_qty or 1" style="pointer-events: none;" name="add_qty"
+                   t-att-value="int(line.product_uom_qty) == line.product_uom_qty and int(line.product_uom_qty) or line.product_uom_qty or package_qty or add_qty or 1"
+                   onkeydown="this.style.width = ((this.value.length + 1) 8) + 'px'; this.style.maxWidth = ((this.value.length + 1) 8+8) + 'px';"/>
+        </xpath>
+
+        <xpath expr="//td[@name='price']" position="replace">
+            <td>
+                <t t-set="combination"
+                   t-value="line.product_id.product_template_attribute_value_ids + line.product_no_variant_attribute_value_ids"/>
+                <t t-set="combination_info"
+                   t-value="line.product_id.product_tmpl_id._get_combination_info(combination)"/>
+
+                <t t-set="list_price_converted"
+                   t-value="website.currency_id._convert(combination_info['list_price'], website_sale_order.currency_id, website_sale_order.company_id, date)"/>
+                <t t-if="(website_sale_order.pricelist_id.discount_policy == 'without_discount' and website_sale_order.currency_id.compare_amounts(list_price_converted, line.price_reduce_taxinc) == 1) or website_sale_order.currency_id.compare_amounts(line.price_unit, line.price_reduce) == 1"
+                   name="order_line_discount">
+                    <del t-attf-class="#{'text-danger mr8'}" style="white-space: nowrap;" t-esc="list_price_converted"
+                         t-options="{'widget': 'monetary', 'display_currency': website_sale_order.currency_id}"/>
+                </t>
+                <span t-field="line.price_reduce_taxinc" style="white-space: nowrap;"
+                      t-options="{'widget': 'monetary', 'display_currency': website_sale_order.currency_id}"/>
+            </td>
+        </xpath>
+    </template>
+
+</odoo>

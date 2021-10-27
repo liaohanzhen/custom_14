@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="view_order_form" model="ir.ui.view">
+            <field name="name">sale.order.form.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="before">
+                    <field name="is_product_rentable" invisible="1"/>
+                    <field name="pickup_date" invisible="1"/>
+                    <field name="return_date" invisible="1"/>
+                    <button name="get_rent" string="Set Date" type="object" class=" oe_edit_only" icon="fa-calendar"
+                            attrs="{'column_invisible':[('parent.is_rental_order', '=', False)]}"/>
+                </xpath>
+                <xpath expr="//field[@name='payment_term_id']" position="after">
+                    <field name="is_rental_order"/>
+                </xpath>
+
+                <xpath expr="//field[@name='order_line']/tree/field[@name='qty_delivered']" position="after">
+                    <field name="qty_returned" attrs="{'column_invisible':[('parent.is_rental_order', '=', False)]}"/>
+                </xpath>
+
+                <xpath expr="//button[@name='action_quotation_send']" position="after">
+                    <field name="rental_status" invisible="1"/>
+                    <field name="has_returnable_lines" invisible="1"/>
+                    <field name="has_late_lines" invisible="1"/>
+                    <field name="has_pickable_lines" invisible="1"/>
+                    <field name="is_rental_order" invisible="1"/>
+                    <field name="time" invisible="1"/>
+                    <button name="open_pickup" type="object" class="btn-primary" string="Pickup"
+                            attrs="{'invisible':['|', '|', ('has_pickable_lines','=',False), ('state', 'not in', ['sale', 'done']), ('is_rental_order', '=', False)]}"/>
+                    <button name="open_return" type="object" class="btn-primary" string="Return"
+                            attrs="{'invisible':['|', ('state', 'not in', ['sale', 'done']), '|',('has_returnable_lines','=',False), '&amp;',('has_returnable_lines','=',True),('has_pickable_lines','=',True)] }"/>
+                    <button name="open_return" type="object" class="btn-secondary" string="Return"
+                            attrs="{'invisible':['|',('state', 'not in', ['sale', 'done']), '|',('has_returnable_lines','=',False),'&amp;',('has_returnable_lines','=',True),('has_pickable_lines','=',False)]}"/>
+                </xpath>
+
+                <xpath expr="//div[@name='button_box']" position="after">
+                    <field name="rental_status" invisible="1"/>
+                    <field name="has_returnable_lines" invisible="1"/>
+                    <field name="has_late_lines" invisible="1"/>
+                    <div class="badge-pill badge-info float-right"
+                         attrs="{'invisible': ['|', '|', ('state', 'not in', ['sale', 'done']),'|', ('rental_status', '!=', 'pickup'), ('has_late_lines', '=', True), ('is_rental_order', '=', False)]}">
+                        Reserved
+                    </div>
+                    <div class="badge-pill badge-info float-right"
+                         attrs="{'invisible': ['|', ('state', 'not in', ['sale', 'done']),'|', ('rental_status', '!=', 'pickup'), ('has_late_lines', '=', False)]}">
+                        Late Pickup
+                    </div>
+                    <div class="badge-pill badge-warning float-right"
+                         attrs="{'invisible': ['|', ('state', 'not in', ['sale', 'done']),'|', ('rental_status', '!=', 'return'), ('has_late_lines', '=', True)]}">
+                        Picked-up
+                    </div>
+                    <div class="badge-pill badge-danger float-right"
+                         attrs="{'invisible': ['|', ('state', 'not in', ['sale', 'done']),'|', ('rental_status', '!=', 'return'), ('has_late_lines', '=', False)]}">
+                        Late Return
+                    </div>
+                    <div class="badge-pill badge-success float-right"
+                         attrs="{'invisible': ['|', ('state', 'not in', ['sale', 'done']), ('rental_status', '!=', 'returned')]}">
+                        Returned
+                    </div>
+                </xpath>
+
+                <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="attributes">
+                    <attribute name="domain">['|', ('sale_ok', '=', True), ('rent_ok', '=', True), '|', ('company_id',
+                        '=', False), ('company_id', '=', parent.company_id)]
+                    </attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="rental_order_kanban" model="ir.ui.view">
+            <field name="name">rental.order.kanban</field>
+            <field name="model">sale.order</field>
+            <field name="arch" type="xml">
+                <kanban class="o_kanban_mobile">
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="amount_total"/>
+                    <field name="date_order"/>
+                    <field name="state"/>
+                    <field name="currency_id"/>
+                    <field name="time"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                                <div class="o_kanban_record_top mb16">
+                                    <div class="o_kanban_record_headings mt4">
+                                        <strong class="o_kanban_record_title">
+                                            <span>
+                                                <t t-esc="record.partner_id.value"/>
+                                            </span>
+                                        </strong>
+                                    </div>
+                                    <strong>
+                                        <field name="amount_total" widget="monetary"/>
+                                        <field name="time" invisible="1"/>
+                                    </strong>
+                                </div>
+                                <div class="o_kanban_record_bottom">
+                                    <div class="oe_kanban_bottom_left text-muted">
+                                        <span>
+                                            <t t-esc="record.name.value"/>
+                                            <p class="text-success">Order Date :
+                                                <t t-esc="record.date_order.value"/>
+                                            </p>
+                                        </span>
+                                    </div>
+                                    <div class="oe_kanban_bottom_right">
+                                        <h3>
+                                            <field name="rental_status" widget="label_selection"
+                                                   options="{'classes': {'pickup': 'info', 'return': 'warning', 'returned': 'success'}}"/>
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="rental_order_tree" model="ir.ui.view">
+            <field name="name">rental.order.tree</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_tree"/>
+            <field name="arch" type="xml">
+                <field name="invoice_status" position="after">
+                    <field name="rental_status"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="rental_order_search" model="ir.ui.view">
+            <field name="name">rental.order.search</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//search" position="inside">
+                    <filter string="Rentals" name="rental" domain="[('is_rental_order', '=', True)]"/>
+                    <filter string="To Pickup" name="pickup"
+                            domain="[('is_pick_date_today', '=', True), ('is_rental_order', '=', True)]"/>
+                    <filter string="To Return" name="return"
+                            domain="[('is_return_date_today', '=', True), ('is_rental_order', '=', True)]"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id='rental_order_action_id' model='ir.actions.act_window'>
+            <field name='name'>Rental Order</field>
+            <field name='res_model'>sale.order</field>
+            <field name='view_mode'>kanban,tree,form</field>
+            <field name='view_id' ref="rental_order_kanban"/>
+            <field name="context">{'default_is_rental_order':True, "search_default_rental":1}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new quotation, the first step of a new rental!
+                </p>
+                <p>
+                    Once the quotation is confirmed, it becomes a rental order.
+                    <br/>
+                    You will be able to create an invoice and collect the payment.
+                </p>
+            </field>
+        </record>
+
+        <record id='rental_order_pickup_action_id' model='ir.actions.act_window'>
+            <field name='name'>Rental Order</field>
+            <field name='res_model'>sale.order</field>
+            <field name='view_mode'>kanban,tree,form</field>
+            <field name='view_id' ref="rental_order_kanban"/>
+            <field name='domain'>[('rental_status', '=', 'pickup')]</field>
+            <field name="context">{'default_is_rental_order':True, "search_default_pickup":1}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new quotation, the first step of a new rental!
+                </p>
+                <p>
+                    Once the quotation is confirmed, it becomes a rental order.
+                    <br/>
+                    You will be able to create an invoice and collect the payment.
+                </p>
+            </field>
+        </record>
+
+        <record id='rental_order_return_action_id' model='ir.actions.act_window'>
+            <field name='name'>Rental Order</field>
+            <field name='res_model'>sale.order</field>
+            <field name='view_mode'>kanban,tree,form</field>
+            <field name='view_id' ref="rental_order_kanban"/>
+            <field name='domain'>[('rental_status', '=', 'return')]</field>
+            <field name="context">{'default_is_rental_order':True, "search_default_return":1}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new quotation, the first step of a new rental!
+                </p>
+                <p>
+                    Once the quotation is confirmed, it becomes a rental order.
+                    <br/>
+                    You will be able to create an invoice and collect the payment.
+                </p>
+            </field>
+        </record>
+
+        <menuitem id='resource_rental_root_menu' name='Rental'/>
+        <menuitem id='rental_order' name='Orders' parent='resource_rental_mgt.resource_rental_root_menu'/>
+        <menuitem id='rental_order_create' name='Orders' parent='resource_rental_mgt.rental_order'
+                  action='resource_rental_mgt.rental_order_action_id'/>
+        <menuitem id='rental_order_to_do' name='To Do Today' parent='resource_rental_mgt.rental_order'/>
+        <menuitem id='rental_order_today_pickup' name='Pickup' parent='resource_rental_mgt.rental_order_to_do'
+                  action='resource_rental_mgt.rental_order_pickup_action_id'/>
+        <menuitem id='rental_order_today_return' name='Return' parent='resource_rental_mgt.rental_order_to_do'
+                  action='resource_rental_mgt.rental_order_return_action_id'/>
+
+        <menuitem id='config_rental' name='Configuration' parent='resource_rental_mgt.resource_rental_root_menu'
+                  sequence="20"/>
+    </data>
+</odoo>
+
+
+

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    	<template id="assets_backend_website_sign_custom" inherit_id="sign.assets_backend">
+	        <!-- <xpath expr="script[last()]" position="after">
+	        	<script type="text/javascript" src="/website_sign_by_priority/static/src/js/widget.js"></script>
+	            <script type="text/javascript" src="/website_sign_by_priority/static/src/js/website_sign_backend.js"></script>
+            	<script type="text/javascript" src="/website_sign_by_priority/static/src/js/website_sign_backend_custom.js"></script>
+	        </xpath> -->
+	        <xpath expr="link[last()]" position="after">
+	            <link rel="stylesheet" type="text/scss" href="/website_sign_ext/static/src/scss/sign.scss"/>
+	        </xpath>
+	    </template>
+    	<template id="website_sign_doc_sign_message" inherit_id="sign._doc_sign">
+    		<xpath expr="//div[@t-att-data-id='sign.id']/div/div[2]/small/em" position="replace">
+    			<em t-if="sign.state != 'sent'"><br/>(the email access has not been sent yet)</em>
+    		</xpath>
+    		<xpath expr="//a[hasclass('o_sign_download_document_button')]" position="before">
+                <a t-if="signature_request and signature_request.state == 'signed' and request.env.user.has_group('website_sign_ext.group_website_signature_manager')" t-attf-href="/sign/download/{{signature_request.id}}/{{signature_request.access_token}}/completed" class="btn btn-primary o_sign_assign_contract_button">Assign Contract</a>
+            </xpath>
+    	</template>
+    </data>
+</odoo>
+
+<!-- <?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	
+    	<template id="website_sign_doc_sign_message" inherit_id="sign._doc_sign">
+    		<xpath expr="//div[@t-att-data-id='sign.id']/em[2]" position="replace">
+    			<em t-if="sign.state != 'sent'"><br/>(the email access has not been sent yet)</em>
+    		</xpath>
+    		<xpath expr="//a[hasclass('o_sign_download_document_button')]" position="before">
+                <a t-if="signature_request.state == 'signed' and request.env.user.has_group('website_sign_ext.group_website_signature_manager')" t-attf-href="/sign/download/{{signature_request.id}}/{{signature_request.access_token}}/completed" class="btn btn-primary o_sign_assign_contract_button">Assign Contract</a>
+            </xpath>
+    	</template>
+    	<template id="assets_common" name="website_sign_ext assets_common" inherit_id="web.assets_common">
+            <xpath expr="." position="inside">
+            	<link rel="stylesheet" type="text/less" href="/website_sign_ext/static/src/less/website_sign.less"/>
+            	<script type="text/javascript" src="/website_sign_ext/static/src/js/website_sign_common.js"></script>
+            	<script type="text/javascript" src="/website_sign_ext/static/src/js/website_sign_backend.js"></script>
+            </xpath> 
+            
+        </template>
+    </data>
+</openerp> -->

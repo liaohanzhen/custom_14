@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+    <record id="paperformat_structurall_contrato" model="report.paperformat">
+        <field name="name">Contrato Structural Letter</field>
+        <field name="default" eval="True" />
+        <field name="format">Letter</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">20</field>
+        <field name="margin_bottom">20</field>
+        <field name="margin_left">14</field>
+        <field name="margin_right">14</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">15</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <!--Contrato Determinado-->
+    <report
+    id="requerimientos_contratos_structurall"
+    model="contract.contract"
+    string="Requerimientos contratos"
+    report_type="qweb-pdf"
+    name="structurall_module.requerimientos_structurall"
+    file="Requerimientos Contratos"
+    paperformat="paperformat_structurall_contrato"
+    />
+
+    <!--CONTRATO EXTERNAL LAYOUT-->
+    <template id="recibo_external_layout">
+         <!-- Multicompany -->
+            <t t-if="not o and doc">
+                <t t-set="o" t-value="doc" />
+            </t>
+            <t t-if="o and 'company_id' in o">
+                <t t-set="company" t-value="o.company_id"></t>
+            </t>
+            <t t-if="not o or not 'company_id' in o">
+                <t t-set="company" t-value="res_company"></t>
+            </t>
+
+        <div class="header">
+            <div class="row">
+            </div>
+            
+        </div>
+
+        <div class="article o_report_layout_standard" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id">
+            <t t-call="web.address_layout"/>
+            <t t-raw="0" />
+        </div>
+
+        <!--EMPIEZA EL FOOTER *ESTA BIEN*-->
+        <div class="footer">
+            
+        </div>
+        
+        <!--TERMINA EL FOOTER-->
+
+
+    </template>
+
+    <template id="requerimientos_structurall">
+        <t t-call="web.html_container">
+        <t t-call="structurall_module.recibo_external_layout">
+            <div class="page"> 
+                <div class="oe_structure"/>
+
+                <div class="col-6">
+                    <img t-if="docs.company_id.logo" t-att-src="'data:image/png;base64,%s' % to_text(docs.company_id.logo)"
+                        style="max-height: 180px;max-width: 180px;" />
+                </div>
+
+                <div style="font-size:15px;text-align:justify">
+                    <br/><br/><br/><br/><br/>
+
+                    <h4><strong>Documentación a pedir:</strong></h4> <br/>
+                    En caso de renta para persona moral.<br/><br/>
+                <ul>
+                    <li>Acta constitutiva. (copia)</li>
+                    <li>Copia de Identificación (INE) del representante legal o Pasaporte, en ambos casos deberá estar vigente.</li>
+                    <li>Copia del Poder donde se manifieste el nombramiento como representante legal.</li>
+                    <li>Comprobante de domicilio (con antigüedad no mayor a dos meses).</li>
+                    <li>Cedula fiscal. (copia)</li>
+                    <li>Copia de Constancia de situación Fiscal.</li>
+                    <li>Lugar de ubicación de las unidades, persona que recibe y teléfono.</li>
+                    <li>Copia del estado de cuenta bancario que corresponde a la cuenta de la cual será el pago de la renta, número de cuenta y clabe interbancaria, con antigüedad no mayoria dos meses.</li>
+                    <li>Constancia de Opinión del Cumplimiento de Obligaciones Fiscales ante el SAT (positiva), con antigüedad no mayor a un mes.</li>
+                    <li>Nombre del contacto, número telefónico y correo electrónico del área financiera para validar el trámite.</li>
+                 </ul>
+
+                    En caso de venta.<br/><br/>
+                    <ul>
+                     <li>Datos fiscales. (copia)</li>
+                     <li>Copia de Identificación (INE) del representante legal o Pasaporte, en ambos casos deberá estar vigente.</li>
+                     <li>Persona a la que se le entrega y envía factura.</li>
+                     <li>Lugar de entrega.</li>
+                     <li>Constancia de Opinión del Cumplimiento de Obligaciones Fiscales ante el SAT (positiva),
+                     con antigüedad no mayor a un mes.</li>
+                 </ul>
+
+                 <br/><br/><br/><br/><br/>
+                <div>
+                Structurall Sonora SA de CV<br/>
+                admonhmo@structurall.com.mx<br/>
+                (662) 262 50 00
+                </div>
+
+                </div>
+
+            </div>
+
+        </t>
+        </t>
+    </template>
+
+
+</data>
+
+</odoo>

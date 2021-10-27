@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://store.webkul.com/license.html/ -->
+<odoo>
+
+    <!-- ~~~~~~~~~~~ CART LINES TEMPLATES ~~~~~~~~~~~~~~~~ -->
+
+    <template id="website_quote_system_inherit_cart_summary" inherit_id="website_sale.cart_summary" name="Website Quote Payment">
+        <xpath expr="//td[hasclass('td-product_name')]/div" position="after">
+            <div t-if="line.customer_quote">
+                <span class="badge badge-warning" style="font-size:11px;">
+                    <a t-attf-href="/my/quote/#{line.ref_quote_id}" style="text-decoration: none;color: #ffffff;" title="Click to view Quote">
+                        Quote <span t-esc="request.env['quote.quote'].browse(line.ref_quote_id).name"/>
+                    </a>
+                </span>
+            </div>
+        </xpath>
+    </template>
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+    <template id="quote_system_inherit_products_item" inherit_id="website_sale.products_item" name="Quote Products item">
+        <xpath expr="//div[hasclass('oe_product_image')]/input" position="before">
+            <span t-if="product.quotation" class="badge badge-warning pull-right" style="z-index: 10;position: absolute;right: 4px;">
+                Request Quote
+            </span>
+        </xpath>
+    </template>
+
+        <template id="quote_request_temp" inherit_id="website_sale.product" name="Request Quote Button">
+            <xpath expr="//div[@id='product_details']/form/div" position="after">
+                <div t-if="product.quotation == True">
+                        <t t-set="is_user_public" t-value="website.env.user == request.website.user_id"/>
+                        <div t-if="not is_user_public">
+                            <a id="quote_request_button" href="#" class="btn btn-primary btn-lg mt8">Request Quote</a>
+                        </div>
+                        <div t-if="is_user_public">
+                            <div id="loginModal" class="modal fade" role="dialog">
+                              <div class="modal-dialog">
+                                <!-- Modal content-->
+                                <div class="modal-content submit_customer_quote_modal">
+                                    <div class="modal-header bg-light">
+  						               <h4 style="color:#823838;">
+                                          <i class="fa fa-exclamation-triangle" aria-hidden="true"> Alert </i>
+                                      </h4>
+              						   <button type="button" class="btn btn-danger" data-dismiss="modal" style="cursor:pointer">X</button>
+              						</div>
+                                  <div class="modal-body" style="color:black;">
+                                        <h4 style="color:rgba(0, 0, 0, 0.78);">You must first
+                                            <a href="/web/login" style="text-decoration: underline;" help="Click here to login."> login</a>
+                                        to request a Quote.</h4>
+                                  </div>
+                                  <!-- Modal footer -->
+                                  <div class="modal-footer">
+                                    <button id="login_modal_close" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <a href="#" data-toggle="modal" data-target="#loginModal" class="btn btn-primary btn-lg mt8">Request Quote</a>
+                        </div>
+                        <div class="quote_loader" style="display:none;"/>
+                        <input type="hidden" name="def_qty" t-att-value="product.min_qty"/>
+                        <input type="hidden" name="def_price" t-att-value="product.list_price"/>
+                </div>
+            </xpath>
+        </template>
+
+        <!-- CREATE CUSTOMER QUOTE -->
+    <template id="customer_quote_template">
+        <div id="createquoteModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content create_customer_quote_modal">
+                    <div class="modal-header bg-info">
+                        <h4 class="modal-title">Quote Request</h4>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" style="cursor:pointer">X</button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal" id="create_customer_quote" role="form" method="post" data-toggle="validator">
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                <div class="section">
+                                  <div class="row">
+                                        <div class="col-md-4">
+                                            <div t-if="prod_img">
+                                                <t t-esc="prod_img" t-options='{"widget": "image"}'/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div t-if="not prod_variant">
+                                                <br/>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-4" style="padding-right: 0;">
+                                                    <b>Product </b>
+                                                </div>
+                                                <div class="col-1">
+                                                    <b>:</b>
+                                                </div>
+                                                <div class="col-5">
+                                                    <b><t t-esc="prod_name"/></b>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-4" style="padding-right: 0;">
+                                                    <b>Current Price </b>
+                                                </div>
+                                                <div class="col-1">
+                                                    <b>:</b>
+                                                </div>
+                                                <div class="col-5">
+                                                    <t t-esc="prod_price" t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
+                                                </div>
+                                            </div>
+                                            <t t-foreach="prod_variant" t-as="variant_name">
+                                                <div class="row">
+                                                    <div class="col-md-4" style="padding-right: 0;">
+                                                        <b><span t-field="variant_name.attribute_id.name"/></b>
+                                                    </div>
+                                                    <div class="col-md-1">
+                                                        <b>:</b>
+                                                    </div>
+                                                    <div class="col-md-5">
+                                                        <span t-field="variant_name.name"/>
+                                                    </div>
+                                                </div>
+                                            </t>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr/>
+                                <div class="section">
+                                    <div class="form-group row mb8">
+                                        <label class="control-label col-sm-3" for="new_quantity">Quantity</label>
+                                        <div class="col-sm-5">
+                                            <div class="">
+                                                <input type="text" placeholder="Enter Quantity" name="new_quantity"  class="form-control" autofocus="autofocus" id="new_quantity" t-att-value="int(prod_minqty)" style="color:black;"/>
+                                                <span t-esc="product_uom_id_name" style="position: absolute;top: 7px;right: 22px;z-index: 1;"/>
+                                            </div>
+                                            <div class="">
+                                                <div style="float:left;color:gray;font-size:12px;">
+                                                    <i>Minimum quantity must be <t t-if="prod_minqty > 0" t-esc="prod_minqty"/><t t-else="">1</t>.</i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <i><span id="qty_error" class="qty_error" style="margin-left:-14px;font-size:13px;">Quantity Invalid</span></i>
+                                        </div>
+                                    </div>
+                                <t t-if="allow_customer_to_quote_price">
+                                    <div class="form-group row mb8">
+                                        <label class="control-label col-sm-3" for="new_price">Your Price</label>
+                                        <div class="col-sm-5">
+                                            <div class="">
+                                                <input type="text" name="new_price" id="new_price" t-att-value="prod_price" class="form-control"
+                                                    placeholder="Enter Price" style="color:black;"/>
+                                                <span t-if="website.currency_id.position=='before'" t-field="website.currency_id.symbol" style="position: absolute;top: 8px;left: 19px;z-index: 1;"/>
+                                                <span t-if="website.currency_id.position=='after'" t-field="website.currency_id.symbol" style="position: absolute;top: 7px;right: 22px;z-index: 1;"/>
+                                            </div>
+                                            <div class="">
+                                                <div style="float:left;color:gray;font-size:12px;">
+                                                    <i> Price per unit</i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <i><span id="price_error" class="price_error" style="margin-left:-14px;font-size:13px;">Price Invalid</span></i>
+                                        </div>
+                                    </div>
+                                </t>
+                                <t t-if="not allow_customer_to_quote_price">
+                                    <input type="hidden" name="new_price" id="new_price" t-att-value="prod_price" class="form-control"/>
+                                </t>
+                                <div class="form-group row mb8">
+                                    <label class="control-label col-sm-2" for="new_desc">Comment</label>
+                                    <div class="col-sm-12">
+                                        <textarea name="new_desc" rows="4" cols="60"
+                                                  id="new_desc"
+                                                  class="form-control"
+                                                  placeholder="Add a comment..."
+                                                  style="color:black;"
+                                                  />
+                                    </div>
+                                </div>
+                                <!-- Modal footer -->
+                                <input type="hidden" name="product_id" t-att-value="prod_id"/>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                    <button type="submit" id="quote_submit_button" class="btn btn-primary pull-right">Request Now</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+             </div>
+        </div>
+    </template>
+
+    <!-- CUSTOMER QUOTE SUBMIT TEMPLATE -->
+    <template id="customer_quote_template_submit">
+        <div id="submitquoteModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content submit_customer_quote_modal">
+                <div class="modal-header">
+                    <h4 class="modal-title">Quote Successfully Submitted</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-condensed ml0 mr0 mb0">
+                        <thead class="thead-light">
+                          <tr class="active">
+                                <th> Quote#</th>
+                                <th> Product </th>
+                                <th width="100"> Quantity </th>
+                                <th width="120"> Price per item</th>
+                                <th width="120"> Status </th>
+                                <th> Total </th>
+                            </tr>
+                        </thead>
+                            <tr>
+                                <td>
+                                    <a t-attf-href="/my/quote/#{quote_obj.id}">
+                                        <span t-esc="quote_obj.name"/>
+                                    </a>
+                                </td>
+                                <td>
+                                    <span t-esc="quote_obj.product_id.name"/>
+                                </td>
+                                <td>
+                                    <span t-esc="new_qty"/>
+                                </td>
+                                <td>
+                                    <span t-esc="new_price" t-options='{"widget": "monetary", "display_currency": website.pricelist_id.currency_id}'/>
+                                </td>
+                                <td>
+                                    <span t-esc="quote_obj.status"/>
+                                </td>
+                                <td>
+                                    <span t-esc="quote_obj.total_amount" t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                  <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- Button add to cart  -->
+    <template id="product_quote_already_in_cart_template">
+        <div id="quoteModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content submit_customer_quote_modal">
+              <div class="modal-header">
+                <h4>
+                    <i style="color: sienna;" class="fa fa-exclamation-triangle" aria-hidden="true"> Warning </i>
+                </h4>
+              </div>
+              <div class="modal-body" style="color:black;">
+                    <i>You cannot add this product as sale order of its quotation is already in cart.</i>
+              </div>
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <button id="modal_close" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+    </template>
+</odoo>

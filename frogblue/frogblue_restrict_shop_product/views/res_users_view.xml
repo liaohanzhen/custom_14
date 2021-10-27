@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<record id="view_res_users_form_inherit" model="ir.ui.view">
+		<field name="name">view.res.user.form.inherit</field>
+		<field name="model">res.users</field>
+	    <field name="inherit_id" ref="base.user_groups_view"/>
+		<field name="arch" type="xml">
+        
+        <xpath expr="//notebook//page[2]//group[@name='preferences']//field[@name='tz']" position="after">
+        	<field name="shop_preview_user"/>
+        </xpath>
+        
+        </field>
+        </record>
+        </odoo>

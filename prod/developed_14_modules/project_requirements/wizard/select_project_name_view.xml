@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_select_project_name_wizard_form_template" model="ir.ui.view">
+            <field name="name">Create Project template form</field>
+            <field name="model">select.project.name</field>
+            <field name="arch" type="xml">
+                <form string="Project Template">
+                	<group>
+                		<field name="name" />
+                		<field name="stage_template_id" />
+                		<field name="project_type_id" />
+                		<field name="category_id" />
+                	</group>
+                	<footer>
+                        <button name="create_project_template_from_project" string="Create Project Template" type="object" class="oe_highlight"/>
+                        <button string="Cancel" class="oe_highlight" special="cancel" />
+                    </footer>
+               </form>
+            </field>
+        </record>
+
+    </data>
+</odoo>

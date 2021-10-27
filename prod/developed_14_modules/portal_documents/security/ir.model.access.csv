@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_attachment_category,access.attachment.category,model_attachment_category,,1,1,1,1
+access_portal_user_attachment,access.portal.user.attachment,model_portal_user_attachment,,1,1,1,1
+access_portal_attachment_wizard,portal.attachment.wizard,model_portal_attachment_wizard,,1,1,1,1

@@ -1,0 +1,309 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * payment_amazonpay
+#
+# Translators:
+# Maksym Nastenko <maximnastenko@gmail.com>, 2020
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: Maksym Nastenko <maximnastenko@gmail.com>, 2020\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: uk\n"
+
+
+#. module: payment_amazonpay
+#: model:ir.model.fields,field_description:payment_amazonpay.field_payment_transaction__amazonpay_amazon_authorize_reference_id
+msgid "Amazon Auth ID"
+msgstr ""
+
+#. module: payment_amazonpay
+#: model:ir.model.fields,field_description:payment_amazonpay.field_payment_transaction__amazonpay_amazon_capture_id
+msgid "Amazon Capture ID"
+msgstr ""
+
+#. module: payment_amazonpay
+#: model:payment.acquirer,name:payment_amazonpay.payment_acquirer_amazon
+msgid "Amazon Pay"
+msgstr ""
+
+#. module: payment_amazonpay
+#: model:ir.model.fields,field_description:payment_amazonpay.field_payment_transaction__amazonpay_log_ids
+msgid "Amazon Pay Log"
+msgstr "Журнал Amazon Pay"
+
+#. module: payment_amazonpay
+#: model:ir.model,name:payment_amazonpay.model_payment_transaction_amazonpay_log
+msgid "Amazon Pay payment transaction log"
+msgstr "Журнал транзакцій Amazon Pay"
+
+#. module: payment_amazonpay
+#. openerp-web
+#: code:addons/payment_amazonpay/static/src/js/frontend/payment_form.js:222
+#: code:addons/payment_amazonpay/static/src/js/frontend/payment_form.js:273
+#, python-format
+msgid "Amazon Pay transaction processing error"
+msgstr "Помилка обробки транзакцій Amazon Pay"
+
+#. module: payment_amazonpay
+#: model:ir.model.fields,field_description:payment_amazonpay.field_payment_transaction__amazonpay_amazon_refund_id
+msgid "Amazon Refund ID"
+msgstr ""
+
+#. module: payment_amazonpay
+#: code:addons/payment_amazonpay/models/payment.py:372
+#, python-format
+msgid "Amazon authorize reference ID not specified."
+msgstr "Не вказано ідентифікатор авторизації Amazon."
+
+#. module: payment_amazonpay
+#: code:addons/payment_amazonpay/models/payment.py:457
+#, python-format
+msgid "Amazon capture reference ID not specified."
+msgstr "Не вказано ідентифікатор виводу коштів Amazon."
+
+#. module: payment_amazonpay
+#: code:addons/payment_amazonpay/models/payment.py:486
+#, python-format
+msgid "Amazon could not process the transaction because of an internal processing error or because the buyer has already received a refund from an A-to-z claim or a chargeback. You should only retry the refund if the Capture object is in the Completed state. Otherwise, you should refund the buyer in an alternative way (for example, a store credit or a check)."
+msgstr "Amazon не міг обробити транзакцію через внутрішню помилку обробки або через те, що покупець уже отримав відшкодування за претензією від А до Я або поверненням коштів. Повторне відшкодування варто повторити лише в тому випадку, якщо об’єкт Capture знаходиться у стані Completed. В іншому випадку ви повинні здійснити повернення покупцеві альтернативним способом (наприклад, кредит у магазині або чек)."
+
+#. module: payment_amazonpay
+#: code:addons/payment_amazonpay/models/payment.py:405
+#, python-format
+msgid "Amazon could not process the transaction because of an internal processing error. You should only retry the capture if the authorization is in the Open state. Otherwise, you should request a new authorization and then call Capture on it."
+msgstr "Amazon не зміг обробити транзакцію через внутрішню помилку обробки. Ви повинні спробувати вивести кошти лише у тому випадку, якщо авторизація знаходиться у відкритому стані. В іншому випадку вам слід надіслати запит на новий авторизацію, а потім виконати Capture."
+
+#. module: payment_amazonpay
+#: code:addons/payment_amazonpay/models/payment.py:283
+#, python-format
+msgid "Amazon could not process your within the default timeout; try to repeat please."
+msgstr "Amazon не зміг здійснити обробку у межах затримки за замовчуванням; спробуйте повторити, будь ласка."
+
+#. module: payment_amazonpay
+#: code:addons/payment_amazonpay/models/payment.py:417
+#, python-format
+msgid "Amazon has closed the capture because of a problem with your account or with the buyer's account."
+msgstr "Amazon закрив вивід коштів через проблему з вашим обліковим записом або з обліковим записом покупця."
+
+#. module: payment_amazonpay
+#: code:addons/payment_amazonpay/models/payment.py:402
+#, python-format
+msgid "Amazon has rejected the capture. You should only retry the capture if the authorization is in the Open state."
+msgstr "Amazon відхилив вивід коштів. Ви повинні спробувати захопити лише у тому випадку, якщо авторизація знаходиться у відкритому стані."
+
+#. module: payment_amazonpay
+#: code:addons/payment_amazonpay/models/payment.py:483
+#, python-format
+msgid "Amazon has rejected the refund. You should issue a refund to the buyer in an alternate manner (for example, a gift card or store credit)."
+msgstr "Amazon відхилив відшкодування. Вам слід оформити повернення покупцю іншим способом (наприклад, подарункову карту або кредит в магазині)."
+
+#. module: payment_amazonpay
+#: code:addons/payment_amazonpay/models/payment.py:198
+#: code:addons/payment_amazonpay/models/payment.py:538
+#, python-format
+msgid "Amazon order reference ID not specified"
+msgstr "Не вказано ідентифікатор замовлення Amazon"
+
+#. module: payment_amazonpay
+#. openerp-web
+#: code:addons/payment_amazonpay/controllers/main.py:37
+#: code:addons/payment_amazonpay/static/src/js/frontend/payment_form.js:179
+#, python-format
+msgid "Amazon payment method not selected"
+msgstr "Не вибрано спосіб оплати Amazon"
+
+#. module: payment_amazonpay
+#. openerp-web
+#: code:addons/payment_amazonpay/static/src/js/frontend/payment_form.js:178
+#: code:addons/payment_amazonpay/static/src/js/frontend/payment_form.js:282
+#, python-format
+msgid "Cannot set-up the payment"
+msgstr "Неможливо встановити платіж"
+
+#. module: payment_amazonpay
+#: code:addons/payment_amazonpay/models/payment.py:370
+#, python-format
+msgid "Capture allowed in 'Authorized' state only"
+msgstr "Вивід коштів дозволено лише в стані 'Authorized'"
+
+#. module: payment_amazonpay
+#: model:ir.model.fields,field_description:payment_amazonpay.field_payment_acquirer__amazonpay_client_id
+msgid "Client ID"
+msgstr ""
+
+#. module: payment_amazonpay
+#: model:ir.model.fields,field_description:payment_amazonpay.field_payment_acquirer__amazonpay_close_order_reference_after_capture
+msgid "Close order reference after capture"
+msgstr "Закрити замовлення після виводу коштів"
+
+#. module: payment_amazonpay
+#: model_terms:ir.ui.view,arch_db:payment_amazonpay.transaction_form
+msgid "Date"
+msgstr "Дата"
+
+#. module: payment_amazonpay
+#: model_terms:ir.ui.view,arch_db:payment_amazonpay.acquirer_form
+msgid "How to configure your Amazon Pay account?"
+msgstr "Як налаштувати свій обліковий запис Amazon Pay?"
+
+#. module: payment_amazonpay
+#: model:ir.model.fields,field_description:payment_amazonpay.field_payment_acquirer__amazonpay_mws_access_key
+msgid "MWS Access Key"
+msgstr ""
+
+#. module: payment_amazonpay
+#: model:ir.model.fields,field_description:payment_amazonpay.field_payment_acquirer__amazonpay_mws_secret_key
+msgid "MWS Secret Key"
+msgstr ""
+
+#. module: payment_amazonpay
+#: model:ir.model.fields,help:payment_amazonpay.field_payment_transaction__amazonpay_seller_authorize_reference_id
+#: model:ir.model.fields,help:payment_amazonpay.field_payment_transaction__amazonpay_seller_capture_id
+#: model:ir.model.fields,help:payment_amazonpay.field_payment_transaction__amazonpay_seller_refund_id
+msgid "Merchant (seller) side operation ID. This identifier must be unique for all your transactions (authorization, capture, refund, etc.)."
+msgstr "Ідентифікатор сторони продавця. Цей ідентифікатор повинен бути унікальним для всіх ваших транзакцій (авторизація, захоплення, повернення коштів тощо)."
+
+#. module: payment_amazonpay
+#: model:ir.model.fields,field_description:payment_amazonpay.field_payment_acquirer__amazonpay_merchant_id
+msgid "Merchant ID"
+msgstr ""
+
+#. module: payment_amazonpay
+#: code:addons/payment_amazonpay/models/payment.py:196
+#, python-format
+msgid "Not allowed transaction state"
+msgstr "Не дозволено стан транзакцій"
+
+#. module: payment_amazonpay
+#: code:addons/payment_amazonpay/models/payment.py:455
+#, python-format
+msgid "Not allowed transaction state '%s' for refund"
+msgstr "Не дозволено стан транзакції '%s' для повернення коштів"
+
+#. module: payment_amazonpay
+#: code:addons/payment_amazonpay/models/payment.py:112
+#, python-format
+msgid "Only one active Amazon Pay payment acquirer configuration supported now!"
+msgstr "Зараз підтримується лише одна активна конфігурація Amazon Pay!"
+
+#. module: payment_amazonpay
+#: model:ir.model.fields,field_description:payment_amazonpay.field_payment_transaction_amazonpay_log__operation
+msgid "Operation"
+msgstr "Операція"
+
+#. module: payment_amazonpay
+#: model:ir.model.fields,field_description:payment_amazonpay.field_payment_transaction_amazonpay_log__received
+msgid "Received"
+msgstr "Отримано"
+
+#. module: payment_amazonpay
+#: model:ir.model.fields,field_description:payment_amazonpay.field_payment_acquirer__amazonpay_region
+msgid "Region"
+msgstr "Регіон"
+
+#. module: payment_amazonpay
+#: model:ir.model.fields,field_description:payment_amazonpay.field_payment_transaction__amazonpay_seller_authorize_reference_id
+msgid "Seller Auth ID"
+msgstr ""
+
+#. module: payment_amazonpay
+#: model:ir.model.fields,field_description:payment_amazonpay.field_payment_transaction__amazonpay_seller_capture_id
+msgid "Seller Capture ID"
+msgstr ""
+
+#. module: payment_amazonpay
+#: model:ir.model.fields,field_description:payment_amazonpay.field_payment_transaction__amazonpay_seller_refund_id
+msgid "Seller Refund ID"
+msgstr ""
+
+#. module: payment_amazonpay
+#: model:ir.model.fields,field_description:payment_amazonpay.field_payment_transaction_amazonpay_log__sent
+msgid "Sent"
+msgstr "Надіслано"
+
+#. module: payment_amazonpay
+#. openerp-web
+#: code:addons/payment_amazonpay/static/src/js/frontend/payment_form.js:264
+#, python-format
+msgid "Server Error"
+msgstr "Помилка сервера"
+
+#. module: payment_amazonpay
+#: code:addons/payment_amazonpay/models/payment.py:279
+#, python-format
+msgid "That payment method was not accepted for this transaction. Please choose another."
+msgstr "Цей спосіб оплати не прийнято для цієї транзакції. Виберіть іншу."
+
+#. module: payment_amazonpay
+#: code:addons/payment_amazonpay/models/payment.py:276
+#, python-format
+msgid "The authorization has been declined by Amazon."
+msgstr "Авторизація була відхилена Amazon."
+
+#. module: payment_amazonpay
+#: code:addons/payment_amazonpay/models/payment.py:408
+#, python-format
+msgid "The capture has been closed."
+msgstr "Вивід коштів був закритий."
+
+#. module: payment_amazonpay
+#: code:addons/payment_amazonpay/models/payment.py:399
+#, python-format
+msgid "The capture has been declined by Amazon."
+msgstr "Вивід коштів було відхилено Amazon."
+
+#. module: payment_amazonpay
+#: code:addons/payment_amazonpay/models/payment.py:480
+#, python-format
+msgid "The refund has been declined by Amazon."
+msgstr "Повернення було відхилено Amazon."
+
+#. module: payment_amazonpay
+#: code:addons/payment_amazonpay/controllers/main.py:35
+#: code:addons/payment_amazonpay/controllers/main.py:47
+#, python-format
+msgid "Transaction not found"
+msgstr "Транзакцію не знайдено"
+
+#. module: payment_amazonpay
+#. openerp-web
+#: code:addons/payment_amazonpay/static/src/js/frontend/payment_form.js:265
+#, python-format
+msgid "We are not able to redirect you to the payment form."
+msgstr "Ми не можемо перенаправити вас до форми оплати."
+
+#. module: payment_amazonpay
+#. openerp-web
+#: code:addons/payment_amazonpay/static/src/js/frontend/payment_form.js:283
+#, python-format
+msgid "We're unable to process your payment."
+msgstr "Ми не можемо обробити ваш платіж."
+
+#. module: payment_amazonpay
+#: model:ir.model.fields,field_description:payment_amazonpay.field_payment_acquirer__amazonpay_widgets_url
+msgid "Widgets URL"
+msgstr ""
+
+#. module: payment_amazonpay
+#: code:addons/payment_amazonpay/models/payment.py:411
+#, python-format
+msgid "You have already refunded the following amounts, including any A-to-z claims and chargebacks."
+msgstr "Ви вже повернули все, включаючи будь-які претензії від А до Я та повернення коштів."
+
+#. module: payment_amazonpay
+#: code:addons/payment_amazonpay/models/payment.py:414
+#, python-format
+msgid "You have already submitted 10 refunds for this Capture object."
+msgstr "Ви вже подали 10 повернень за цей об’єкт Capture."
+
+#. module: payment_amazonpay
+#: code:addons/payment_amazonpay/models/payment.py:287
+#: code:addons/payment_amazonpay/models/payment.py:290
+#, python-format
+msgid "Your payment was not successful. Please try another payment method."
+msgstr "Платіж не вдався. Спробуйте інший спосіб оплати."
+

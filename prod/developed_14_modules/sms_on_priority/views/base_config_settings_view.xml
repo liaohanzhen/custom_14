@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- <record model="ir.ui.view" id="base_config_settings_form_inherit_add_default_urgent_keyword">
+            <field name="name">base.config.settings.inherit.add.default.urgent.keyword</field>
+            <field name="model">base.config.settings</field>
+            <field name="inherit_id" ref="base_setup.view_general_configuration"/>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//group[5]" position="after">
+                        <group string="Halpedesk Ticket &amp; Quality Alert Urgent Keyword" name="default_urgent_keyword">
+                            <field name="urgent_helpdesk_ticket_keyword"/>
+                            <field name="urgent_quality_alert_keyword"/>
+                        </group>
+                    </xpath>
+                </data>
+            </field>
+        </record> -->
+</odoo>

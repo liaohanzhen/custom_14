@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+,,,,,,,
+access_rental_agregar_producto,rental_agregar_product,structurall_module.model_agregar_producto,,1,1,1,1
+adendum,adendum,structurall_module.model_adendum_adendum,base.group_user,1,1,1,1
+primera_factura,primera_factura,structurall_module.model_primera_factura,base.group_user,1,1,1,1
+access_crear_adendum_wizard,access.crear.adendum.wizard,structurall_module.model_crear_adendum_wizard,,1,1,1,1

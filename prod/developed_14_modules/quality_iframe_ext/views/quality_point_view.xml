@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>	
+		<record model="ir.ui.view" id="quality_point_form_view_inherit_iframe">
+            <field name="name">quality.point.form.iframe</field>
+            <field name="model">quality.point</field>
+            <field name="inherit_id" ref="quality.quality_point_view_form"/>
+            <field name="arch" type="xml">
+                <data>
+                	<field name="user_id" position="after">
+                		<field name="iframe_url" />
+                	</field>
+                	<xpath expr="//notebook" position="inside">
+                		<page string="Web/Wiki" attrs="{'invisible':[('iframe_url','=',False)]}">
+                       		<iframe src="src_iframe_custom" marginwidth="0" marginheight="0" frameborder="no"  style="height: 600px; width: 100%; border-width:0px;"> 
+                       		</iframe>
+                       	</page>
+                	</xpath>
+                	
+                </data>
+            </field>
+        </record>
+</odoo>

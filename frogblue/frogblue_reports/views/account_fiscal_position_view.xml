@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Frogblue Fiscal Position Form View Inherit -->
+        <record id="frogblue_view_account_position_form_inherit" model="ir.ui.view">
+            <field name="name">frogblue.view.account.position.form.inherit</field>
+            <field name="model">account.fiscal.position</field>
+            <field name="inherit_id" ref="account.view_account_position_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position="before">
+                    <group name="group_tax_exempt_text">
+                        <field name="tax_exempt_text"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

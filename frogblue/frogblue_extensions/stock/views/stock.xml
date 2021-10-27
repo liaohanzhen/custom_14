@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="frogblue_view_picking_form" model="ir.ui.view">
+            <field name="name">stock.picking.form</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form" />
+            <field name="arch" type="xml">
+                <field name="scheduled_date" position="replace">
+                    <label for="scheduled_date" colspan="1" />
+                    <div colspan="1" col="2">
+                        <field name="scheduled_date" nolabel="1" attrs="{'readonly': ['|','&amp;',('picking_type_code','=','outgoing'),('is_intercompany','=',True),('id', '=', False)], 'required': [('id', '!=', False)]}" />
+                        <button name="open_scheduled_date_update" string="-> set date" type="object" class="oe_link" attrs="{'invisible':['|','|',('picking_type_code','!=','outgoing'),('is_intercompany','=',False),('id', '=', False)]}" />
+                    </div>
+                    <field name="is_intercompany" invisible="1" />
+                </field>
+            </field>
+        </record>
+
+        <record id="view_stock_quant_tree" model="ir.ui.view">
+            <field name="name">stock.quant.tree</field>
+            <field name="model">stock.quant</field>
+            <field name="inherit_id" ref="stock.view_stock_quant_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree" position="attributes">
+                    <attribute name="decoration-danger">available_quantity&gt;0.0</attribute>
+                </xpath>
+                <xpath expr="//field[@name='product_uom_id']" position="after">
+                    <field name="product_cost_price" sum="Cost Price"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_stock_quant_tree_editable" model="ir.ui.view">
+            <field name="name">stock.quant.tree.editable</field>
+            <field name="model">stock.quant</field>
+            <field name="inherit_id" ref="stock.view_stock_quant_tree_editable"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree" position="attributes">
+                    <attribute name="decoration-danger">available_quantity&lt;0.0</attribute>
+                </xpath>
+                <xpath expr="//field[@name='inventory_quantity']" position="attributes">
+                    <attribute name="string">Inventory Qantity</attribute>
+                </xpath>
+                <xpath expr="//field[@name='quantity']" position="attributes">
+                    <attribute name="invisible">0</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_stock_move_line_operation_tree" model="ir.ui.view">
+            <field name="name">stock.move.line.operations.tree</field>
+            <field name="model">stock.move.line</field>
+            <field name="inherit_id" ref="stock.view_stock_move_line_operation_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='lot_id']" position="attributes">
+                    <attribute name="domain">[('product_id', '=', parent.product_id)]</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_production_lot_tree" model="ir.ui.view">
+            <field name="name">view.production.lot.tree</field>
+            <field name="model">stock.production.lot</field>
+            <field name="inherit_id" ref="stock.view_production_lot_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='product_id']" position="after">
+                    <field name="product_qty"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+ <template id="sh_inherit_assets_frontend_for_project_portfolio" inherit_id="website.assets_frontend" name="sh website popup">
+     <xpath expr="." position="inside">
+     	<link rel="stylesheet" type="text/css" href="/sh_project_portfolio/static/src/css/style.scss"/>
+        <script type="text/javascript" src="/sh_project_portfolio/static/src/js/jquery.isotope.min.js"></script>
+        <script type="text/javascript" src="/sh_project_portfolio/static/src/js/sh_website_portfolio.js"></script>
+     </xpath>
+ </template>
+<template id="projects" name="projects">
+            <t t-call="website.layout">
+                <div id="wrap">
+                    <!--PORTFOLIO start-->
+                    <section id="sh_portfolio">
+                        <div class="container">
+                            <div class="row" style="margin:0;">
+                                <div class="sub_portfolio">
+                                    <div class="port_head">
+                                        <h2 class="title"><span>Our Projects</span></h2>
+                                    </div>
+                                    <div class="pot_gallery">
+                                        <!--gallery-isolate-->
+                                        <div id="filters" class="button-group">
+                                            <button class="btn button_bg active_port" data-filter="*">Show All</button>
+											<t t-if="categories">
+												<t t-foreach="categories" t-as="rec">
+                									<button class="btn button_bg category_btn" t-att-data-filter="'.%s00' % (rec.id)">
+                										<t t-esc="rec.name"/>
+                									</button>													
+												</t>	
+											</t>                                             
+                                        </div>
+                                        <div class="container no-gutter">
+                                            <div id="posts" class="row">
+                                            
+                                                <!-- model start here -->
+								 <t t-if="projects">
+								 	<t t-foreach="projects" t-as="rec">
+                                                <div id="1" t-att-class="'item col-lg-4 col-md-4 col-sm-6 col-xs-6 %s00' % (rec.category_id.id)">
+                                                    <div class="item-wrap">
+                                                        <img class="img-responsive" t-attf-src="data:image/gif;base64, #{rec.thumb_img}"/>
+                                                        <div class="overlay">
+                                                            <a t-att-href="'#myModal%s00' %(rec.id)" class="icon" t-att-title="'%s' %(rec.name)" data-toggle="modal" style="width: 100%;height: 100%;">
+                                                                <span class="fa fa-plus"></span>
+                                                            </a>
+                                                        </div>
+                                                        
+                                                      </div>
+                                                    <div class="portfolio-caption"> 
+												    	  <h4>
+												    	  	<a t-att-href="'/project/%s' % (rec.id)">
+												    	  	 	<t t-esc="rec.name"/> 
+												    	  	</a>
+												    	  </h4>
+														</div>  
+                                                </div>
+                                                
+                                                <div class="modal" t-att-id="'myModal%s00' %(rec.id)">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+
+                                                                <button type="button" class="close" data-dismiss="modal"><span class="fa fa-times"></span></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                            	<h2 class="text-uppercase"> <t t-esc="rec.name"/>  </h2>
+												    			
+												            <img class="img-responsive" style="max-width:100%;margin:0 auto;" t-attf-src="data:image/gif;base64, #{rec.thumb_img}" alt="" />
+												            <p> <span t-if="rec.proj_desc" t-field="rec.proj_desc"/> </p>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-primary" data-dismiss="modal">close</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                      </t>
+                                      </t>          
+                                                <!-- model ends here -->
+                                            </div>
+                                        </div>
+                                        <!--gallery-isolate-->
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </t>
+        </template>
+
+<!-- NEW FULL WIDTH SLIDER TEMPLATE DESIGN START HERE-->
+    <template id="sh_project" name="project info">
+        <t t-call="website.layout">
+            <div id="wrap">
+<t t-if="project">
+
+
+<!-- SLIDE SHOW -->
+<div id="myCarousel" class="carousel slide" data-ride="carousel">        
+    <ul class="carousel-indicators">        
+	 	<t t-if="project.image_lines">
+      		 <t t-set="no" t-value="0" />	 	
+	  		 <t t-foreach="project.image_lines" t-as="img_line">			      
+	      		    <t t-if="no == 0">
+        				<li data-target="#myCarousel" t-attf-data-slide-to="#{no}" class="active" contenteditable="false"></li>
+                    </t>
+                    <t t-else="no != 0">
+        				<li data-target="#myCarousel" t-attf-data-slide-to="#{no}" contenteditable="false"></li>
+                    </t>
+	      		<t t-set="no" t-value="no + 1"/>			      
+			</t>
+		</t>        
+    </ul>   
+    
+    <div class="carousel-inner">      
+	 	<t t-if="project.image_lines">
+      		 <t t-set="no" t-value="0"/>	 	
+	  		 <t t-foreach="project.image_lines" t-as="img_line">			      
+	      		    <t t-if="no == 0">				      
+        <div class="carousel-item active">
+			<img class="img-responsive d-block w-100" t-attf-src="/website/image/image.gallary/{{img_line.id}}/slide_img"/>
+            <div class="carousel-caption">
+                <h4 class=""><span t-if="img_line.name" t-field="img_line.name"/></h4>
+                <p class="">
+                   <span t-if="img_line.slide_desc" t-field="img_line.slide_desc"/>
+                </p>
+            </div>
+        </div>	      
+                    </t>
+                    <t t-else="no != 0">
+				      
+        <div class="carousel-item">
+			<img class="img-responsive d-block w-100" t-attf-src="/website/image/image.gallary/{{img_line.id}}/slide_img"/>
+            <div class="carousel-caption">
+                <h4 class=""><span t-if="img_line.name" t-field="img_line.name"/></h4>
+                <p class="">
+                   <span t-if="img_line.slide_desc" t-field="img_line.slide_desc"/>
+                </p>
+            </div>
+        </div>    
+                    </t>
+	      		<t t-set="no" t-value="no + 1"/>			      
+			</t>
+		</t>   
+    </div>    
+
+    <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only"></span>
+    </a>
+
+    <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only"></span>
+    </a>
+
+</div>
+
+<!-- PROJECT DETAILS GOES HERE -->
+<br/><br/>
+<div class="container">
+<div class="row">
+        <div class="col-lg-6">
+          <h2><span t-if="project.name" t-field="project.name"/></h2>
+          <p><span t-if="project.proj_desc" t-field="project.proj_desc"/> </p>
+        </div>
+        <div class="col-lg-6">
+          <img class="img-fluid" style="width:100%;height:auto" t-attf-src="data:image/gif;base64, #{project.thumb_img}" />
+        </div>
+      </div>
+</div>   
+
+
+<!-- RELATED PROJECT GOES HERE -->
+<br/><br/>
+<t t-if="project.related_projects">
+<div class="container">
+<h3 class="my-4">Related Projects</h3>
+<div class="row sh_related_projects">
+
+   <t t-foreach="project.related_projects" t-as="rel_proj">  
+     <div class="col-md-3 col-sm-6 mb-4">
+       <a t-att-href="'/project/%s' % (rel_proj.id)">
+       		<img class="img-responsive" t-attf-src="data:image/gif;base64, #{rel_proj.thumb_img}" />
+       </a>
+       <br/>
+       <p><h4>
+       		<center>
+       		 <a t-att-href="'/project/%s' % (rel_proj.id)">
+       			<span t-if="rel_proj" t-field="rel_proj.name"/>
+       		</a>
+       		</center>
+       		</h4>
+       </p>
+     </div>
+	</t>     
+
+ </div>
+</div>
+</t>
+</t>
+</div>
+</t>
+</template>
+    
+    
+    
+
+</odoo>

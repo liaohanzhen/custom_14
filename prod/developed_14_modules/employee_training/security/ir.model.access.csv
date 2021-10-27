@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_training_package,access.training.package,model_training_package,,1,1,1,1
+access_training_template,access.project.checklists,model_training_template,,1,1,1,1
+access_training_template_history,access.training.template.history,model_training_template_history,,1,1,1,1
+access_training_training,access.training.training,model_training_training,,1,1,1,1
+access_hr_employee_trainee,access.hr.employee.trainee,model_hr_employee_trainee,,1,1,1,1
+access_training_session,access.training_session,model_training_session,,1,1,1,1
+access_employee_signature_wizard,access_employee_signature_wizard,model_employee_signature_wizard,,1,1,1,1
+access_wiki_web_page_wizard,access_wiki_web_page_wizard,model_wiki_web_page_wizard,,1,1,1,1

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="packages_barcode_splitter" model="ir.config_parameter">
+            <field name="key">packages.barcode.splitter</field>
+            <field name="value">;</field>
+        </record>
+
+        <record id="packages_barcode_regex" model="ir.config_parameter">
+            <field name="key">packages.barcode.regex</field>
+            <field name="value">^(http.*[?])|(.*{splitter_plholder}).*$</field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,364 @@
+<odoo>
+  <data>
+		<!-- list view -->
+    <record model="ir.ui.view" id="website_content_5b_list">
+      <field name="name">website.content.5b.tree</field>
+      <field name="model">website.content.5b</field>
+      <field name="arch" type="xml">
+        <tree>
+			<field name="name"/>
+			<field name="title"/>
+			<field name="link_url"/>
+			<field name="publish_date"/>
+			<field name="is_publish"/>
+        </tree>
+      </field>
+    </record>
+	
+		<!-- form view -->
+    <record model="ir.ui.view" id="website_content_5b_form">
+      <field name="name">website.content.5b.form</field>
+      <field name="model">website.content.5b</field>
+      <field name="arch" type="xml">
+			<form>
+        <sheet>
+			<group> 
+				<group>
+					<field name="link_url"/>
+					<field name="publish_date"/>
+					<field name="is_publish"/>
+					<field name="name"/>
+					<field name="seo_tags"/>
+				</group>
+				<group>
+					
+					<field name="document_url"/>
+					<field name="banner_image" context="{'default_public':True}" domain="[('public','=','True')]"/>
+					<field name="caption_image" context="{'default_public':True}" domain="[('public','=','True')]"/>
+					<field name="caption_title"/>
+					<field name="seo_desc"/>
+				</group>
+			</group>
+			<group >
+				<field name="title"/> 
+				<field name="short_intro"/>
+				<field name="video_url" />
+				<field name="video_caption" />
+				<field name="description"/>
+			</group>
+		</sheet>
+      </form>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="website_content_5b_view">
+      <field name="name">Website Content</field>
+      <field name="res_model">website.content.5b</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+	
+	<record model="ir.ui.view" id="website_news_5b_list">
+      <field name="name">website.news.5b.tree</field>
+      <field name="model">website.news.5b</field>
+      <field name="arch" type="xml">
+        <tree>
+			<field name="title"/>
+			<field name="link_url"/>
+			<field name="publish_date"/>
+			<field name="display_order"/>
+			<field name="is_publish"/>
+        </tree>
+      </field>
+    </record>
+	
+		<!-- form view -->
+    <record model="ir.ui.view" id="website_news_5b_form">
+      <field name="name">website.news.5b.form</field>
+      <field name="model">website.news.5b</field>
+      <field name="arch" type="xml">
+			<form>
+        <sheet>
+			<group> 
+				<group>
+					<field name="title" string="News Heading"/>
+					<field name="link_url" string="News URL"/>
+					<field name="publish_date"/>
+					<field name="is_publish"/>
+					<field name="seo_tags"/>
+				</group>
+				<group>
+					
+					<field name="document_url"/>
+					<field name="banner_image" context="{'default_public':True}" domain="[('public','=','True')]"/>
+					<field name="caption_image" context="{'default_public':True}" domain="[('public','=','True')]"/>
+					<field name="caption_title"/>
+					<field name="seo_desc"/>
+					<field name="display_order"/>
+				</group>
+			</group>
+			<group>
+				<group>
+					<field name="external_source"/>
+				</group>
+				<group>
+					<field name="external_source_logo" context="{'default_public':True}" domain="[('public','=','True')]"/>
+				</group>
+				
+			</group>
+			
+			<group >
+				<field name="external_source_url"/>
+				<field name="short_intro"/>
+				<field name="video_url" />
+				<field name="video_caption" />
+				<field name="description"/>
+			</group>
+		</sheet>
+      </form>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="website_news_5b_view">
+      <field name="name">Website News</field>
+      <field name="res_model">website.news.5b</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+	
+	
+	<record model="ir.ui.view" id="website_faqs_5b_list">
+      <field name="name">website.faqs.5b.tree</field>
+      <field name="model">website.faqs.5b</field>
+      <field name="arch" type="xml">
+        <tree>
+			<field name="question"/>
+			<field name="publish_date"/>
+			<field name="display_order"/>
+			<field name="is_publish"/>
+        </tree>
+      </field>
+    </record>
+	
+		<!-- form view -->
+    <record model="ir.ui.view" id="website_faqs_5b_form">
+      <field name="name">website.faqs.5b.form</field>
+      <field name="model">website.faqs.5b</field>
+      <field name="arch" type="xml">
+			<form>
+        <sheet>
+			<group> 
+				<field name="question" />
+				<field name="publish_date" />
+				<field name="is_publish" />
+				<field name="answer" />
+				<field name="display_order"/>
+			</group>
+		</sheet>
+      </form>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="website_faqs_5b_view">
+      <field name="name">Website FAQs</field>
+      <field name="res_model">website.faqs.5b</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+	
+	
+	<record model="ir.ui.view" id="website_project_5b_list">
+      <field name="name">website.project.5b.tree</field>
+      <field name="model">website.project.5b</field>
+      <field name="arch" type="xml">
+        <tree>
+			<field name="name"/>
+			<field name="publish_date"/>
+			<field name="display_order"/>
+			<field name="is_publish"/>
+        </tree>
+      </field>
+    </record>
+	
+		<!-- form view -->
+    <record model="ir.ui.view" id="website_project_5b_form">
+      <field name="name">website.project.5b.form</field>
+      <field name="model">website.project.5b</field>
+      <field name="arch" type="xml">
+			<form>
+        <sheet>
+			<group> 
+				<group>
+					<field name="name" string="Project Name"/>
+					<field name="publish_date"/>
+					<field name="is_publish"/>
+					<field name="project_capacity"/>
+					<field name="project_panel"/>
+					<field name="project_crm_id"/>
+				</group>
+				<group>
+					<field name="project_portfolio" context="{'default_public':True}" domain="[('public','=','True')]"/>
+					<field name="banner_image" context="{'default_public':True}" domain="[('public','=','True')]"/>
+					<field name="caption_image" context="{'default_public':True}" domain="[('public','=','True')]"/>
+					<field name="project_address" />
+					<field name="p_lat"/>
+					<field name="p_lon"/>
+					<field name="display_order"/>
+					<field name="caption_image_thumb" widget="image" />
+				</group>
+			</group>
+			<group >
+				<field name="short_intro"/>
+				<field name="description"/>
+			</group>
+		</sheet>
+      </form>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="website_project_5b_view">
+      <field name="name">Website Projects</field>
+      <field name="res_model">website.project.5b</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+	
+	
+	<record model="ir.ui.view" id="website_media_5b_list">
+      <field name="name">website.media.5b.tree</field>
+      <field name="model">website.media.5b</field>
+      <field name="arch" type="xml">
+        <tree>
+			<field name="name"/>
+			<field name="media_caption"/>
+			<field name="publish_date"/>
+			<field name="display_order"/>
+			<field name="is_publish"/>
+        </tree>
+      </field>
+    </record>
+	
+	<!-- form view -->
+    <record model="ir.ui.view" id="website_media_5b_form">
+      <field name="name">website.media.5b.form</field>
+      <field name="model">website.media.5b</field>
+      <field name="arch" type="xml">
+			<form>
+        <sheet>
+			<group> 
+				<group>
+					<field name="name" string="Media Name"/>
+					<field name="publish_date"/>
+					<field name="is_publish"/>
+				</group>
+				<group>
+					<field name="media_image" context="{'default_public':True}" domain="[('public','=','True')]"/>
+					<field name="media_caption"/>
+					<field name="display_order"/>
+					<field name="media_image_thumb" widget="image" />
+				</group>
+			</group>
+			<group>
+				<field name="video_source" />
+				<field name="video_link"/>
+				<field name="short_intro"/>
+				<field name="document_url"/>
+			</group>
+		</sheet>
+      </form>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="website_media_5b_view">
+      <field name="name">Website Media</field>
+      <field name="res_model">website.media.5b</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+	
+	<record model="ir.ui.view" id="website_resources_5b_list">
+      <field name="name">website.resources.5b.tree</field>
+      <field name="model">website.resources.5b</field>
+      <field name="arch" type="xml">
+        <tree>
+			<field name="name"/>
+			<field name="document_caption"/>
+			<field name="publish_date"/>
+			<field name="display_order"/>
+			<field name="is_publish"/>
+        </tree>
+      </field>
+    </record>
+	
+	<!-- form view -->
+    <record model="ir.ui.view" id="website_resources_5b_form">
+      <field name="name">website.resources.5b.form</field>
+      <field name="model">website.resources.5b</field>
+      <field name="arch" type="xml">
+		<form>
+        <sheet>
+			<group> 
+				<group>
+					<field name="name" string="Document Name"/>
+					<field name="publish_date"/>
+					<field name="is_publish"/>
+					<field name="display_order"/>
+				</group>
+				<group>
+					<field name="document_src" context="{'default_public':True}" domain="[('public','=','True')]"/>
+					<field name="document_caption"/>
+					<field name="document_link"/>
+				</group>
+			</group>
+		</sheet>
+      </form>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="website_resources_5b_view">
+      <field name="name">Website Resources</field>
+      <field name="res_model">website.resources.5b</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+		
+
+	<menuitem id="menu_5b_website_cms"
+            name="Website CMS"
+            sequence="1"
+            parent="website.menu_website_configuration"/>
+			
+	<menuitem name="Static Contents" id="website_content_5b_static" parent="menu_5b_website_cms" action="website_content_5b_view" sequence="1" />
+	<menuitem name="News and Updates" id="website_news_5b_news" parent="menu_5b_website_cms" action="website_news_5b_view" sequence="2" />
+	<menuitem name="FAQs" id="website_content_5b_faqs" parent="menu_5b_website_cms" action="website_faqs_5b_view" sequence="3" />
+	<menuitem name="Projects" id="website_content_5b_project" parent="menu_5b_website_cms" action="website_project_5b_view" sequence="4" />
+	<menuitem name="Media" id="website_content_5b_media" parent="menu_5b_website_cms" action="website_media_5b_view" sequence="5" />
+	<menuitem name="Website Resources" id="website_content_5b_resources" parent="menu_5b_website_cms" action="website_resources_5b_view" sequence="6" />
+	<!--<menuitem name="Career" id="website_content_5b_career" parent="menu_5b_website_cms" action="website_content_5b_view" sequence="6" />-->
+	
+	
+	<record id="hr_employee_form_inherit" model="ir.ui.view">
+		<field name="name">hr.employee.form.inherit</field>
+		<field name="model">hr.employee</field>
+		<field name="inherit_id" ref="hr.view_employee_form"/>
+		<field name="arch" type="xml">
+			<xpath expr="//field[@name='tz']" position="after">
+				<field name="x_department_name" invisible="1" />
+				<!--<field name="x_show_in_website" attrs="{'invisible':[('x_department_name', '!=', 'Executive Team')]}" />-->
+				<field name="x_show_in_website" />
+				<field name="x_display_order" />
+				<field name="notes" string="Bio" placeholder="Other Information ..." />
+			</xpath>
+		</field>
+	</record>
+	
+
+	<!--<template id="extended_libs" name="extended libs" inherit_id="web.assets_backend">
+		<xpath expr="." position="inside">
+			<script type="text/javascript" src="/website_5b/static/src/js/qweb_template.js"></script>
+		</xpath>
+	</template>-->
+	
+	
+  </data>
+</odoo>

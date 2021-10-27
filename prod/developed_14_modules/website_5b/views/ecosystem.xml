@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- === 5B Ecosystem Page === -->
+    <template id="ecosystem_page_template">
+        <t t-call="website.layout">
+            <div id="wrap">
+				<!-- === Snippets' area === -->
+				<div class="oe_structure" />
+				<!--
+				<main id="main">
+					<div class="oe_structure" />
+				</main>
+				-->
+				<t t-call="website_5b.ecosystem_page_contents" />
+            </div>
+        </t>
+    </template>
+	
+    <record id="ecosystem_page" model="website.page">
+        <field name="name">5B Ecosystem</field>
+        <field name="website_published">True</field>
+        <field name="url">/ecosystem</field>
+        <field name="view_id" ref="ecosystem_page_template"/>
+    </record>
+	
+	<record id="ecosystem_page_link" model="website.menu">
+	  <field name="name">5B Ecosystem</field>
+	  <field name="page_id" ref="ecosystem_page"/>
+	  <field name="parent_id" ref="website.main_menu" />
+	  <field name="sequence" type="int">99</field>
+	</record>
+	
+	<template id="ecosystem_page_contents">
+		<!-- ======= Hero Section ======= -->
+		  <section id="hero-banner-ecosystem">
+			<video class="video-on-bg" autoplay="true" muted="true" loop="true" src="/theme_5b/static/img/5b-ecosystem.mp4"></video>
+		  </section><!-- End Hero -->
+
+		  <div class="section-header section-bg-blue">
+			  <div class="container">
+				<h3>5B Ecosystem Partners</h3>
+			  </div>
+		  </div>
+
+		  <main id="main" data-aos="fade-in">
+			<section class="solutions">
+			  <div class="container">
+				<div class="row">
+				  <div class="col-12 col-lg-6 mt-4 content" align="left">
+					<p>The world needs terawatts of solar energy over the next decade... Together, we can make this happen.<br /><br />
+					5B have developed the MAVERICK solution in order to assist in our urgently needed energy transition. Solar is now being delivered much more rapidly but an ecosystem is crucial to rapidly scale up.<br /><br />
+					We need a network of superstar partners to help us assemble and deliver MAVERICK systems, reaching the far corners of the globe.</p>
+				  </div>
+				  <div class="col-12 col-lg-6 mt-4 content" align="left">
+					<div class="col-lg-12 d-flex align-items-stretch">
+						<div class="embed-responsive embed-responsive-16by9" style="background:#000">
+						  <!--<iframe src="https://www.youtube-nocookie.com/embed/xBRBZ6j8im4?modestbranding=1&amp;loop=1&amp;controls=0&amp;rel=0" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="true" />-->
+							<iframe src="https://player.vimeo.com/video/344953643?title=0&amp;byline=0&amp;portrait=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen="true"></iframe>
+						</div>
+					</div>
+				  </div>
+				</div>
+			</div>
+			</section>
+			<div class="oe_structure" />
+			
+			<section class="about">
+			  <div class="container">
+				<div class="row">
+				  <div class="col-lg-12 pt-4 pt-lg-0 order-2 order-lg-1 content">
+					<div class="btn-center">
+						<a data-toggle="modal" data-target="#jotFormBecomePartner" class="learn-more-btn">Join the solar revolution</a>
+					</div>
+				</div>
+				</div>
+				</div>
+			</section>
+			
+			<div class="oe_structure" />
+			
+			<section class="section-bg-blue">
+			  <div class="container">
+				<div class="row">
+				  <div class="col-12 col-lg-12 mt-4 content" align="left">
+					<p>MAVERICK is a patent-protected technology which allows for solar arrays to be deployment simpler, faster and smarter. It consists of prefabricated, pre-wired solar modular blocks (MAVs), which can be packed onto a truck, shipped to site and rolled onto the ground with a team of 3. It is suited to both small and large-scale solar applications and improves supply chain efficiency, simplifies deployment and reduces risk &amp; costs.</p>
+				  </div>
+				  <div class="col-8 offset-2 mt-4 content" align="center">
+					<img style="width:100%" src="/theme_5b/static/img/mav-folding.jpg" />
+				  </div>
+				</div>
+				<div class="row">
+				  <div class="col-10 offset-1 mt-4 content" align="center">
+				  <div class="row">
+					<div class="col-12 col-sm-6 col-md-3 col-lg-3 mt-4 content" align="center">
+					Up to<br />
+					<span style="font-size:1.6em;">80% less</span><br />
+					labour on site
+					</div>
+					<div class="col-12 col-sm-6 col-md-3 col-lg-3 mt-4 content" align="center">
+					Up to<br />
+					<span style="font-size:1.6em;">10 x faster</span><br />
+					deployment
+					</div>
+					<div class="col-12 col-sm-6 col-md-3 col-lg-3 mt-4 content" align="center">
+					<br />
+					<span style="font-size:1.6em;">~2 x more</span><br />
+					energy generated<br />per area od land use
+					</div>
+					<div class="col-12 col-sm-6 col-md-3 col-lg-3 mt-4 content" align="center">
+					<br />
+					<span style="font-size:1.6em;">~10% less</span><br />
+					cost of energy<br />(and reducint fast)
+					</div>
+					</div>
+				  </div>
+				</div>
+			</div>
+			</section>
+			<div class="oe_structure" />
+			
+			<section>
+			  <div class="container">
+				<div class="row">
+				  <div class="col-12 col-lg-12 mt-4 content" align="left">
+					<p>MAVERICK is pre-wired, prefabricated solar array that is assembled in a factory, packed up and shipped to site where it can be rolled out with a forklift by a team of three.</p>
+				  </div>
+				  <div class="col-8 offset-2 mt-4 content" align="center">
+					<div><img src="/theme_5b/static/img/mav-loading-ecosystem.gif" width="200" /></div>
+				  </div>
+				</div>
+				<div class="row">
+				  <div class="col-12 col-lg-12 mt-4 content" align="center">
+					<div class="stepper-wrapper">
+						<div class="stepper-item">
+						  <div class="step-name-up"><img src="/theme_5b/static/img/prefabricated.png" width="54" /></div>
+						  <div class="step-counter"> </div>
+						  <div class="step-name">Prefabricated in a factory</div>
+						</div>
+						<div class="stepper-item">
+						  <div class="step-name-up">Shipped to side deployment-ready</div>
+						  <div class="step-counter"> </div>
+						  <div class="step-name"><img src="/theme_5b/static/img/shipping.png" width="54" /></div>
+						</div>
+						<div class="stepper-item">
+						  <div class="step-name-up"><img src="/theme_5b/static/img/rapid.png" width="54" /></div>
+						  <div class="step-counter"> </div>
+						  <div class="step-name">Rapid on-site deployment</div>
+						</div>
+						<div class="stepper-item">
+						  <div class="step-name-up">Plug &amp; play integration</div>
+						  <div class="step-counter"> </div>
+						  <div class="step-name"><img src="/theme_5b/static/img/pnp.png" width="54" /></div>
+						</div>
+					  </div>
+				  </div>
+				</div>
+			</div>
+			</section>
+			<div class="oe_structure" />
+			<section class="about">
+			  <div class="container">
+				<div class="row">
+				  <div class="col-lg-12 pt-4 pt-lg-0 order-2 order-lg-1 content">
+					<div class="btn-center">
+						<a data-toggle="modal" data-target="#jotFormBecomePartner" class="learn-more-btn">Join the solar revolution</a>
+					</div>
+				</div>
+				</div>
+				</div>
+			</section>
+			<div class="oe_structure" />
+			
+			<section class="section-bg-circle">
+			  <div class="container">
+				<div class="row">
+				  <div class="col-12 col-lg-12" align="center">
+					  <h3>Help us deliver MAVERICK to the world</h3>
+					</div>
+					<div class="margin30_noinline"></div>
+				</div>
+
+				<div class="row" align="center">
+					<div align="center"></div>
+					<div id="outer-circle">
+					  <p class="circle-logo"><img src="/theme_5b/static/img/5B_LOGO_White.png" class="logo_in_circle" /><br /><img src="/theme_5b/static/img/maverick-color-white.png" class="mav_in_circle" /><br />ECOSYSTEM</p>
+					  <div id="semi-inner-circle">
+					  <div class="top">  
+						  <a class="tooltip_circle" data-direction="left">
+							<div class="top-left quadrant tooltip__initiator"><p>ASSEMBLY<br />PARTNERS</p></div>
+							<div class="tooltip__item">
+							  <strong>Assembly of MAVs</strong><br />
+							  Manufacturing is completed according to specifications and deadline.
+
+							</div>
+						  </a>
+						  <a class="tooltip_circle" data-direction="right">
+						  <div class="top-right quadrant tooltip__initiator"><p>O &amp; M</p></div>
+						  <div class="tooltip__item">
+							  <strong>Operation &amp; Maintenance</strong><br />
+							  O&amp;M Partners are engaged upon project completion to routinely check MAVs are performing as planned.
+							</div>
+						  </a>  
+					  </div>
+					  <div class="bottom">
+						  <a class="tooltip_circle" data-direction="left">
+							<div class="bottom-left quadrant tooltip__initiator"><p>LOGISTIC<br />PARTNERS</p></div>
+							<div class="tooltip__item">
+							  <strong>Ship MAVs to project site.</strong><br />
+							  Logistics Partners organise the loading, shipping and transport to site.
+
+							</div>
+						  </a>
+						  <a class="tooltip_circle" data-direction="right">
+						  <div class="bottom-right quadrant tooltip__initiator"><p>DEPLOYMENT<br />PARTNERS</p></div>
+						  <div class="tooltip__item">
+							  <strong>Deployment</strong><br />
+							  Roll out MAVs on site, at 10x the speed of traditional solar using far less labour
+
+							</div>
+						  </a>
+					  </div>
+					  <div id="inner-circle">
+						  <div class="super-inner-circle">
+							<a class="tooltip_circle" data-direction="left2">
+							  <p style="padding-top:15px;" class="tooltip__initiator"><img src="/theme_5b/static/img/5B_LOGO_White.png" class="logo_in_circle" /><br />CUSTOMER</p>
+							  <div class="tooltip__item">
+								  <strong>Order placed via 5B platform</strong><br />Order generates tickets for Assembly, Deployment &amp; Logistics Partners. 5B assigns tickets to Partners in its network based on capabilities &amp; location.
+
+								</div>
+							</a>
+						  </div>
+					  </div>
+					</div>
+
+				  </div>
+
+				</div>
+			   </div>
+			</section>
+			<div class="oe_structure" />
+			
+			<section>
+				<div class="container" align="center">
+					<div class="margin30_noinline"></div>
+					<div class="btn-center content-circle-bottom">
+						<h3>Benefits</h3>
+						<strong>Why partner with us?</strong>
+					</div>
+				</div>
+			</section>
+			<div class="oe_structure" />
+			<section>
+			  <div class="container">
+				<div class="row">
+				  <div class="col-6 col-lg-2 mt-4 content" align="center">
+					<div class="content-circle border-orange">Training and Certification</div>
+					<div><img src="/theme_5b/static/img/certificate.png" width="90" /></div>
+				  </div>
+				  <div class="col-6 col-lg-2 mt-4 content" align="center">
+					<div class="content-circle border-orange">Tooling and Tech</div>
+					<div><img src="/theme_5b/static/img/tool.png" width="90" /></div>
+				  </div>
+				  <div class="col-6 col-lg-2 mt-4 content" align="center">
+					<div class="content-circle border-blue">Marketing and Lead gen</div>
+					<div><img src="/theme_5b/static/img/marketing.png" width="90" /></div>
+				  </div>
+				  <div class="col-6 col-lg-2 mt-4 content" align="center">
+					<div class="content-circle border-blue">Business growth</div>
+					<div><img src="/theme_5b/static/img/growth.png" width="90" /></div>
+				  </div>
+				  <div class="col-6 col-lg-2 mt-4 content" align="center">
+					<div class="content-circle border-dark">R&amp;D and Quality management</div>
+					<div><img src="/theme_5b/static/img/quality.png" width="90" /></div>
+				  </div>
+				  <div class="col-6 col-lg-2 mt-4 content" align="center">
+					<div class="content-circle border-dark">Innovation</div>
+					<div><img src="/theme_5b/static/img/innovation.png" width="90" /></div>
+				  </div>
+				</div>
+			</div>
+			</section>
+			<div class="oe_structure" />
+			<section class="about">
+			  <div class="container">
+				<div class="row">
+				  <div class="col-lg-12 pt-4 pt-lg-0 order-2 order-lg-1 content">
+					<div class="btn-center">
+						<a data-toggle="modal" data-target="#jotFormBecomePartner" class="learn-more-btn">Join the solar revolution</a>
+					</div>
+				</div>
+				</div>
+				</div>
+			</section>
+			<div class="oe_structure" />
+			
+			<section class="section-bg-mission-vision">
+			  <div class="container">
+				<div class="row">
+				  <div class="col-12 col-lg-12  mt-4 content" align="center">
+					  <h3>Who we're looking for</h3>
+					</div>
+					<div class="margin30_noinline"></div>
+				</div>
+				<div class="row">
+					<div class="col-12 col-lg-12  mt-4 content" align="center">
+					  <p>We genuinely live and breathe our mission, vision and values and we want to partner with those who share them. We want to hear from you if your organisation aligns with our vision, wants to further our mission and shares our values.</p>
+					</div>
+					<div class="margin30_noinline"></div>
+					
+				    <div class="col-12 col-md-6 mt-4 content mission-vision-content" align="left">
+					  <div class="nobg">
+						<p><strong>Vision &amp; Mission</strong><br /><br />
+						We envision a world where abundant, accessible, affordable power from the sun meets all our energy needs.<br /><br />
+						We will scale globally through an ecosystem of partners, collaborators and complementary technologies.<br /><br /></p>
+					  </div>
+					</div>
+					<div class="col-12 col-md-6 mt-4 content mission-vision-content" align="left">
+					  <div class="withbg">
+						<p><span><strong>Values</strong></span><br /><br />
+						<strong>Be bold.</strong> Cultivate a maverick mindset that takes calculated risks and learns from mistakes<br />
+						<strong>Stay true.</strong> Hone your honesty, stay open to others and honour your word<br />
+						<strong>Build bridges, cross borders.</strong> Seek synergies from inclusion and nurture culture from diverse communities<br />
+						<strong>Keep asking why.</strong> Unlock creativity and meet challenges through curiosity and tenacious exploration<br />
+						<strong>Answer to yourself.</strong> Make your mark with applied-passion and methodical proactivity<br />
+						<strong>Give back.</strong> Champion sustainable communities, environment and economy
+						<br /><br /></p>
+					  </div>
+					</div>
+				</div>
+				<div class="margin30_noinline"></div>
+			   </div>
+			</section>
+			
+			<div class="oe_structure" />
+			
+			<section class="about">
+			  <div class="container">
+			  <div class="margin30_noinline"></div>
+				<div class="row">
+				  <div class="col-lg-12 pt-4 pt-lg-0 order-2 order-lg-1 content">
+					<div class="btn-center">
+						<a data-toggle="modal" data-target="#jotFormBecomePartner" class="learn-more-btn">Join the solar revolution</a>
+					</div>
+				</div>
+				</div>
+				</div>
+			</section>
+			<div class="oe_structure" />
+		</main>
+		<!-- Modal -->
+		<div class="modal fade" id="jotFormBecomePartner" role="dialog" aria-labelledby="jotFormBecomePartnerLabel" aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+			<div class="modal-content">
+			  <div class="modal-header">
+				<!--<h5 class="modal-title" id="jotFormBecomePartnerLabel">Become a 5B Ecosystem Partner</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				  <span aria-hidden="true">X</span>
+				</button>-->
+			  </div>
+			  <div class="modal-body" align="center">
+				<iframe
+				  id="JotFormIFrame-212408606325046"
+				  title="Become a 5B Ecosystem Partner"
+				  onload="window.parent.scrollTo(0,0)"
+				  allowtransparency="true"
+				  allowfullscreen="true"
+				  allow="geolocation; microphone; camera"
+				  src="https://form.jotform.com/212408606325046"
+				  frameborder="0"
+				  style="
+				  min-width: 100%;
+				  height:539px;
+				  border:none;"
+				  scrolling="no"
+				></iframe>
+				
+			  </div>
+			  <div class="modal-footer">
+				<button type="button" class="learn-more-btn" data-dismiss="modal">Close</button>
+			  </div>
+			</div>
+		  </div>
+		</div>
+		<script src="/theme_5b/static/assets/vendor/jotform/jotform-embed.js"></script>			
+	</template>
+
+</odoo>

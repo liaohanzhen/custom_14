@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates id="template" xml:space="preserve">
+	
+	<t t-extend="portal.chatter_composer">
+		<t t-jquery="o_portal_chatter_composer t" t-operation="before">
+			<t t-set="discussion_url" t-value="window.encodeURI(window.location.href.split('#')[0] + '#discussion')"/>
+		</t>
+		
+		<t t-jquery="o_portal_chatter_composer t p a" t-operation="replace">
+			<a t-attf-href="/web/login?redirect=#{discussion_url}">logged in</a>
+		</t>
+		
+        <t t-jquery=".o_portal_chatter_composer_form div input[name='sha_time']" t-operation="after">
+            <input type="hidden" name="redirect" t-att-value="discussion_url"/>
+            <input type="hidden" name="attachment_ids" class="o_portal_chatter_attachment_ids"/>
+            <input type="hidden" name="attachment_tokens" class="o_portal_chatter_attachment_tokens"/>
+        </t>
+    
+		<t t-jquery="button[t-attf-class='o_portal_chatter_composer_btn btn btn-primary mt8 o_website_message_post_helper']" t-operation="replace">
+			<div class="o_portal_chatter_attachments mt-3"/>
+            <div class="mt8">
+                <button t-attf-class="o_portal_chatter_composer_btn btn btn-primary" type="submit">Send</button>
+                <button class="o_portal_chatter_attachment_btn btn btn-secondary" type="button" title="Add attachment">
+                    <i class="fa fa-paperclip"/>
+                </button>
+            </div>
+		</t>
+		<t t-jquery="form[class='o_portal_chatter_composer_form']" t-operation="after">
+			<form class="d-none" style="display: none !important;">
+                <input type="file" class="o_portal_chatter_file_input" multiple="multiple"/>
+            </form>
+		</t>
+		
+	</t>
+	
+	<t t-name="portal.Chatter.Attachments">
+        <div t-if="attachments.length" class="row">
+            <div t-foreach="attachments" t-as="attachment" class="col-lg-2 col-md-3 col-sm-6">
+                <div class="o_portal_chatter_attachment mb-2 position-relative text-center" t-att-data-id="attachment.id">
+                    <button t-if="showDelete" class="o_portal_chatter_attachment_delete btn btn-sm btn-outline-danger" title="Delete">
+                        <i class="fa fa-times"/>
+                    </button>
+                    <a t-attf-href="/web/content/#{attachment.id}?download=true" target="_blank">
+                        <div class='oe_attachment_embedded o_image' t-att-title="attachment.name" t-att-data-mimetype="attachment.mimetype"/>
+                        <div class='o_portal_chatter_attachment_name'><t t-raw='attachment.name'/></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </t>
+    
+    <t t-extend="portal.chatter_messages">
+    	<t t-jquery="o_portal_chatter_attachments div" t-operation="replace">
+    		<t t-call="portal.Chatter.Attachments">
+                <t t-set="attachments" t-value="message.attachment_ids"/>
+            </t>
+    	</t>
+    	<!-- <t t-jquery="div[class='o_portal_chatter_attachments']/div[t-as='attachment']" t-operation="replace">
+    		<t t-call="portal.Chatter.Attachments">
+                <t t-set="attachments" t-value="message.attachment_ids"/>
+            </t>
+    	</t> -->
+    </t>
+</templates>

@@ -1,0 +1,54 @@
+<?xml version="1.0" ?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://store.webkul.com/license.html/ -->
+
+<odoo>
+    <data noupdate="1">
+        <!--Mail to customer for customer quote creation-->
+        <record id="quote_create_email_template_to_customer" model="mail.template">
+            <field name="name">Mail to Customer On New Quote</field>
+            <field name="email_to">${object.customer_id.email or '' | safe}</field>
+            <field name="subject">New Quote Successfully Created</field>
+            <field name="email_from">${object.company_id.partner_id.email or '' | safe}</field>
+            <field name="model_id" ref="website_quote_system.model_quote_quote"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="lang">${object.lang}</field>
+            <field name="body_html"><![CDATA[
+                                <p>Hello ${object.customer_id.name},</p>
+                                <p>&nbsp;</p>
+                                <p>A new quote requuest ${object.name} has been successfully created and the details are as follows :-</p>
+                                <table>
+                                    <tr>
+                                        <td><b>Quotation </b></td>
+                                        <td>: ${object.name}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Product </b></td>
+                                        <td>: ${object.product_id.name}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Price </b></td>
+                                        <td>: ${format_amount(object.price, object.currency_id)} </td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Quantity </b></td>
+                                        <td>: ${object.qty} </td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Status </b></td>
+                                        <td style="text-transform:capitalize;"><b>: ${object.status}</b></td>
+                                    </tr>
+                                </table>
+                                <p>&nbsp;</p>
+                                <p>Thank you,</p>
+                                <p style="color:#eeeeee;">
+                                % if object.company_id.partner_id.user_ids and object.company_id.partner_id.user_ids[0].signature:
+                                    ${object.company_id.partner_id.user_ids[0].signature | safe}
+                                % endif
+                                </p>
+                            ]]>
+            </field>
+        </record>
+    </data>
+</odoo>

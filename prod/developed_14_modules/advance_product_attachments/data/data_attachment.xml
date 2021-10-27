@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<odoo>
+    <data noupdate="1">
+        <function id="res_website_multi_attachment" model="ir.default" name="set"
+        eval="('res.config.settings', 'res_website_multi_attachment', 'True')"/>
+
+        <record id="product_ir_attachment_1" model="ir.attachment">
+            <field name="name">Terms and condition.pdf</field>
+            <field name="datas" type="base64" file="advance_product_attachments/static/attachment/Customisation_Terms_and_condition-WebKul.pdf"/>
+            <field name="res_model">product.template</field>
+            <field name="type">binary</field>
+            <field name="db_datas">Terms and condition.pdf</field>
+            <field name="datas_fname">Terms and condition.pdf</field>
+            <field name="res_name">Terms and condition.pdf</field>
+        </record>
+        <record id="product_ir_attachment_2" model="ir.attachment">
+            <field name="name">Legal Action.pdf</field>
+            <field name="datas" type="base64" file="advance_product_attachments/static/attachment/Legal_Action-WebKul.pdf"/>
+            <field name="res_model">product.template</field>
+            <field name="type">binary</field>
+            <field name="db_datas">Legal Action.pdf</field>
+            <field name="datas_fname">Legal Action.pdf</field>
+            <field name="res_name">Legal Action.pdf</field>
+        </record>
+        <record id="product_ir_attachment_3" model="ir.attachment">
+            <field name="name">Refund Policy.pdf</field>
+            <field name="datas" type="base64" file="advance_product_attachments/static/attachment/Refund_Policy-WebKul.pdf"/>
+            <field name="res_model">product.template</field>
+            <field name="type">binary</field>
+            <field name="db_datas">Refund Policy.pdf</field>
+            <field name="datas_fname">Refund Policy.pdf</field>
+            <field name="res_name">Refund Policy.pdf</field>
+        </record>
+
+
+        <record model="attachment.category" id="attachment_category_1">
+          <field name="name">Terms and condition</field>
+          <field name="sequence">1</field>
+        </record>
+
+        <record model="attachment.category" id="attachment_category_2">
+          <field name="name">Legal</field>
+          <field name="sequence">2</field>
+        </record>
+
+        <record model="attachment.category" id="attachment_category_3">
+          <field name="name">Policy</field>
+          <field name="sequence">3</field>
+        </record>
+
+        <record id="product_attachment_1" model="product.attachment">
+            <field name="name" ref="advance_product_attachments.product_ir_attachment_1"/>
+            <field name="product_temp_id" ref="product.product_product_9_product_template"/>
+            <field name="description">For the consideration set forth below, Licensor hereby grants to Licensee, and Licensee hereby accepts the worldwide, non-exclusive, perpetual, royalty-free rights and licenses set forth below.</field>
+            <field name="allowed_user">logged_in</field>
+            <field name="attachment_category" ref="advance_product_attachments.attachment_category_1"/>
+            <field name="downloads">129</field>
+          <field name="sequence">1</field>
+        </record>
+
+        <record id="product_attachment_2" model="product.attachment">
+            <field name="name" ref="advance_product_attachments.product_ir_attachment_2"/>
+            <field name="product_temp_id" ref="product.product_product_9_product_template"/>
+            <field name="description">Webkul software Private Limited is known for its plugins for marketplaces, ERP's and various platforms, and is a pioneer in this industry.</field>
+            <field name="allowed_user">logged_in</field>
+            <field name="attachment_category" ref="advance_product_attachments.attachment_category_2"/>
+            <field name="downloads">350</field>
+          <field name="sequence">1</field>
+        </record>
+
+        <record id="product_attachment_3" model="product.attachment">
+            <field name="name" ref="advance_product_attachments.product_ir_attachment_3"/>
+            <field name="product_temp_id" ref="product.product_product_9_product_template"/>
+            <field name="description">Licensee shall pay to us the amount as mentioned on the website from where the order is placed, as one-time, upfront fees in consideration for the licenses and rights granted by us.</field>
+            <field name="allowed_user">logged_in</field>
+            <field name="attachment_category" ref="advance_product_attachments.attachment_category_3"/>
+            <field name="downloads">281</field>
+          <field name="sequence">1</field>
+        </record>
+    </data>
+</odoo>

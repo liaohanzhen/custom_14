@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem name="Products"
+        id="menu_main_products_5b"
+        sequence="10"
+        web_icon="product_user_menu,static/src/img/product.png"
+        groups="base.group_user"/>
+
+    <menuitem id="product_template_menu_top"
+        name="Products"
+        action="product.product_template_action_all"
+        parent="menu_main_products_5b"
+        sequence="2"/>
+	
+	<menuitem name="Users"
+        id="menu_main_res_users_5b"
+        sequence="10"
+        web_icon="product_user_menu,static/description/icon.png"
+        groups="base.group_system,base.group_erp_manager"/>
+
+    <menuitem id="res_users_menu_top_5b"
+        name="Users"
+        action="base.action_res_users"
+        parent="menu_main_res_users_5b"
+        sequence="2"/>
+    
+</odoo>

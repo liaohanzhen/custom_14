@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+        <record id="form_helpdesk_ticket_inherit_eco_order" model="ir.ui.view">
+            <field name="name">form.helpdesk.ticket.inherit.eco.order</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form" />
+            <field name="arch" type="xml">
+            	<xpath expr="//button[@name='assign_ticket_to_self']" position="after">
+            		<button name="action_create_eco_order" string="Create ECO Order" type="object" class="oe_highlight" groups="mrp_plm.group_plm_user"/>
+            	</xpath>
+            	<xpath expr="//button[@name='assign_ticket_to_self']" position="after">
+            		<button class="oe_stat_button" name="action_view_eco_order" icon="fa-hashtag" type="object" groups="mrp_plm.group_plm_user" attrs="{'invisible':[('count_eco','=',0)]}">
+                        <field name="count_eco" string="ECO Orders" widget="statinfo"/>
+                    </button>
+            	</xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

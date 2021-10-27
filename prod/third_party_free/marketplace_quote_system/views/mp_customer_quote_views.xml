@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://store.webkul.com/license.html/ -->
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="inherit_customer_quote_form_view">
+            <field name="name">Marketplace Customer Quote Form</field>
+            <field name="model">quote.quote</field>
+            <field name="type">form</field>
+            <field name="mode">primary</field>
+            <field name="inherit_id" ref="website_quote_system.quote_system_customer_quote_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='product_id']" position="attributes">
+                    <attribute name="domain">[('marketplace_seller_id', '!=', False),('status','=','approved'),('quotation','=',True)]</attribute>
+                    <attribute name="context">{'form_view_ref': 'odoo_marketplace.wk_seller_product_template_form_view',
+                        'tree_view_ref':'odoo_marketplace.wk_seller_product_template_tree_view'}</attribute>
+                    <attribute name="options">{'no_create_edit': True}</attribute>
+                </xpath>
+                <xpath expr="//sheet/group[1]" position="inside">
+                    <group>
+                        <field name="marketplace_seller_id" groups="odoo_marketplace.marketplace_officer_group" readonly="1"
+                                attrs= "{'invisible' : [('marketplace_seller_id','=',False)]}"
+                                context="{'form_view_ref': 'odoo_marketplace.wk_seller_form_view'}"
+                                />
+                    </group>
+                </xpath>
+
+                <xpath expr="//form" position="attributes">
+                   <attribute name="create">0</attribute>
+                   <attribute name="edit">0</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="inherit_customer_quote_form_view_officer">
+            <field name="name">Marketplace Customer Quote Form Officer</field>
+            <field name="model">quote.quote</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="marketplace_quote_system.inherit_customer_quote_form_view"/>
+            <field name="groups_id" eval="[(6, 0, [ref('odoo_marketplace.marketplace_officer_group')])]"/>
+            <field name="arch" type="xml">
+		<xpath expr="//form" position="attributes">
+                   <attribute name="create">1</attribute>
+                   <attribute name="edit">1</attribute>
+                </xpath>		
+            </field>
+        </record>
+
+        <record id="quote_system_customer_quote_kanban_view_inherit" model="ir.ui.view">
+            <field name="name">MP Customer Quotes Kanban</field>
+            <field name="model">quote.quote</field>
+            <field name="mode">primary</field>
+            <field name="inherit_id" ref="website_quote_system.quote_system_customer_quote_kanban_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//kanban" position="attributes">
+                   <attribute name="create">0</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="quote_system_customer_quote_kanban_view_inherit_officer" model="ir.ui.view">
+            <field name="name">MP Customer Quotes Kanban Officer</field>
+            <field name="model">quote.quote</field>
+            <field name="inherit_id" ref="marketplace_quote_system.quote_system_customer_quote_kanban_view_inherit"/>
+            <field name="groups_id" eval="[(6, 0, [ref('odoo_marketplace.marketplace_officer_group') ])]"/>
+            <field name="arch" type="xml">
+                <xpath expr="//kanban" position="attributes">
+                   <attribute name="create">1</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="quote_system_customer_quote_tree_view_inherit" model="ir.ui.view">
+            <field name="name">MP Customer Quotes Tree</field>
+            <field name="model">quote.quote</field>
+            <field name="mode">primary</field>
+            <field name="inherit_id" ref="website_quote_system.quote_system_customer_quote_tree_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree" position="attributes">
+                   <attribute name="create">0</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="quote_system_customer_quote_tree_view_officer" model="ir.ui.view">
+            <field name="name">MP Customer Quotes Tree Officer</field>
+            <field name="model">quote.quote</field>
+            <field name="inherit_id" ref="marketplace_quote_system.quote_system_customer_quote_tree_view_inherit"/>
+            <field name="groups_id" eval="[(6, 0, [ref('odoo_marketplace.marketplace_officer_group') ])]"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree" position="attributes">
+                   <attribute name="create">1</attribute>
+                </xpath>
+            </field>
+        </record>
+        
+
+        <record id="mp_customer_quote_filter" model="ir.ui.view">
+            <field name="name">Customer Quotes</field>
+            <field name="model">quote.quote</field>
+            <field name="inherit_id" ref="website_quote_system.cust_quote_search_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//search//group" position="inside">
+                        <filter string="Status"
+                                context="{'group_by':'status'}"
+                                name="status"
+                                />
+                    </xpath>
+            </field>
+        </record>
+        <record id="mp_customer_quote_filter_inherit" model="ir.ui.view">
+            <field name="name">Customer Quotes Inherit</field>
+            <field name="model">quote.quote</field>
+            <field name="inherit_id" ref="marketplace_quote_system.mp_customer_quote_filter"/>
+            <field name="groups_id" eval="[(6, 0, [ref('odoo_marketplace.marketplace_officer_group') ])]"/>
+            <field name="arch" type="xml">
+                <group position="inside">
+                    <filter string="Seller"
+                        context="{'group_by':'marketplace_seller_id'}"
+                        name="by_marketplace_seller_id"
+                        groups="odoo_marketplace.marketplace_officer_group"
+                        />
+                </group>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="mp_customer_quote_action">
+            <field name="name">Customer Quote</field>
+            <field name="res_model">quote.quote</field>
+            <field name="view_mode">kanban,tree,pivot,form</field>
+            <field name="domain">[('marketplace_seller_id','in',['get_marketplace_seller_id()'])]</field>
+            <field name="context">{'search_default_by_marketplace_seller_id': 1}</field>
+            <field name="search_view_id" ref="marketplace_quote_system.mp_customer_quote_filter"/>
+        </record>
+        <record id="mp_customer_quote_action_for_kanban" model="ir.actions.act_window.view">
+                <field name="view_mode">kanban</field>
+                <field name="sequence">0</field>
+                <field name="view_id" ref="marketplace_quote_system.quote_system_customer_quote_kanban_view_inherit"/>
+                <field name="act_window_id" ref="marketplace_quote_system.mp_customer_quote_action"/>
+        </record>
+        <record id="mp_customer_quote_action_for_tree" model="ir.actions.act_window.view">
+                <field name="view_mode">tree</field>
+                <field name="sequence">1</field>
+                <field name="view_id" ref="marketplace_quote_system.quote_system_customer_quote_tree_view_inherit"/>
+                <field name="act_window_id" ref="marketplace_quote_system.mp_customer_quote_action"/>
+        </record>
+        <record id="mp_customer_quote_action_for_form" model="ir.actions.act_window.view">
+                <field name="view_mode">form</field>
+                <field name="sequence">2</field>
+                <field name="view_id" ref="inherit_customer_quote_form_view"/>
+                <field name="act_window_id" ref="marketplace_quote_system.mp_customer_quote_action"/>
+        </record>
+        <record id="mp_customer_quote_action_for_pivot" model="ir.actions.act_window.view">
+                <field name="view_mode">pivot</field>
+                <field name="sequence">3</field>
+                <field name="view_id" ref="website_quote_system.quote_pivot_view"/>
+                <field name="act_window_id" ref="marketplace_quote_system.mp_customer_quote_action"/>
+        </record>
+       
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ Actions for Marketplace Dashboard ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+        <!-- Pending -->
+        <record model="ir.actions.act_window" id="mp_customer_quote_action_pending">
+            <field name="name">Customers Pending Quote</field>
+            <field name="res_model">quote.quote</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="domain">[('status', '=', 'pending'),('marketplace_seller_id','in',['get_marketplace_seller_id()'])]</field>
+        </record>
+        <record id="mp_customer_quote_action_pending_for_kanban" model="ir.actions.act_window.view">
+                <field name="view_mode">kanban</field>
+                <field name="sequence">1</field>
+                <field name="view_id" ref="marketplace_quote_system.quote_system_customer_quote_kanban_view_inherit"/>
+                <field name="act_window_id" ref="marketplace_quote_system.mp_customer_quote_action_pending"/>
+        </record>
+        <record id="mp_customer_quote_action_pending_for_tree" model="ir.actions.act_window.view">
+                <field name="view_mode">tree</field>
+                <field name="sequence">2</field>
+                <field name="view_id" ref="marketplace_quote_system.quote_system_customer_quote_tree_view_inherit"/>
+                <field name="act_window_id" ref="marketplace_quote_system.mp_customer_quote_action_pending"/>
+        </record>
+        <record id="mp_customer_quote_action_pending_for_form" model="ir.actions.act_window.view">
+                <field name="view_mode">form</field>
+                <field name="sequence">3</field>
+                <field name="view_id" ref="inherit_customer_quote_form_view"/>
+                <field name="act_window_id" ref="marketplace_quote_system.mp_customer_quote_action_pending"/>
+        </record>
+        <!-- Approved -->
+        <record model="ir.actions.act_window" id="mp_customer_quote_action_approved">
+            <field name="name">Customers Approved Quote</field>
+            <field name="res_model">quote.quote</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="domain">[('status', '=', 'approved'),('marketplace_seller_id','in',['get_marketplace_seller_id()'])]</field>
+        </record>
+        <record id="mp_customer_quote_action_approved_for_kanban" model="ir.actions.act_window.view">
+                <field name="view_mode">kanban</field>
+                <field name="sequence">1</field>
+                <field name="view_id" ref="marketplace_quote_system.quote_system_customer_quote_kanban_view_inherit"/>
+                <field name="act_window_id" ref="marketplace_quote_system.mp_customer_quote_action_approved"/>
+        </record>
+        <record id="mp_customer_quote_action_approved_for_tree" model="ir.actions.act_window.view">
+                <field name="view_mode">tree</field>
+                <field name="sequence">2</field>
+                <field name="view_id" ref="marketplace_quote_system.quote_system_customer_quote_tree_view_inherit"/>
+                <field name="act_window_id" ref="marketplace_quote_system.mp_customer_quote_action_approved"/>
+        </record>
+        <record id="mp_customer_quote_action_approved_for_form" model="ir.actions.act_window.view">
+                <field name="view_mode">form</field>
+                <field name="sequence">3</field>
+                <field name="view_id" ref="inherit_customer_quote_form_view"/>
+                <field name="act_window_id" ref="marketplace_quote_system.mp_customer_quote_action_approved"/>
+        </record>
+        <!-- Rejected -->
+        <record model="ir.actions.act_window" id="mp_customer_quote_action_rejected">
+            <field name="name">Customers Rejected Quote</field>
+            <field name="res_model">quote.quote</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="domain">[('status', '=', 'rejected'),('marketplace_seller_id','in',['get_marketplace_seller_id()'])]</field>
+        </record>
+        <record id="mp_customer_quote_action_rejected_for_kanban" model="ir.actions.act_window.view">
+                <field name="view_mode">kanban</field>
+                <field name="sequence">1</field>
+                <field name="view_id" ref="marketplace_quote_system.quote_system_customer_quote_kanban_view_inherit"/>
+                <field name="act_window_id" ref="marketplace_quote_system.mp_customer_quote_action_rejected"/>
+        </record>
+        <record id="mp_customer_quote_action_rejected_for_tree" model="ir.actions.act_window.view">
+                <field name="view_mode">tree</field>
+                <field name="sequence">2</field>
+                <field name="view_id" ref="marketplace_quote_system.quote_system_customer_quote_tree_view_inherit"/>
+                <field name="act_window_id" ref="marketplace_quote_system.mp_customer_quote_action_rejected"/>
+        </record>
+        <record id="mp_customer_quote_action_rejected_for_form" model="ir.actions.act_window.view">
+                <field name="view_mode">form</field>
+                <field name="sequence">3</field>
+                <field name="view_id" ref="inherit_customer_quote_form_view"/>
+                <field name="act_window_id" ref="marketplace_quote_system.mp_customer_quote_action_rejected"/>
+        </record>
+        <!-- Incart -->
+        <record model="ir.actions.act_window" id="mp_customer_quote_action_incart">
+            <field name="name">Customers Incart Quote</field>
+            <field name="res_model">quote.quote</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="domain">[('status', '=', 'incart'),('marketplace_seller_id','in',['get_marketplace_seller_id()'])]</field>
+        </record>
+        <record id="mp_customer_quote_action_incart_for_kanban" model="ir.actions.act_window.view">
+                <field name="view_mode">kanban</field>
+                <field name="sequence">1</field>
+                <field name="view_id" ref="marketplace_quote_system.quote_system_customer_quote_kanban_view_inherit"/>
+                <field name="act_window_id" ref="marketplace_quote_system.mp_customer_quote_action_incart"/>
+        </record>
+        <record id="mp_customer_quote_action_incart_for_tree" model="ir.actions.act_window.view">
+                <field name="view_mode">tree</field>
+                <field name="sequence">2</field>
+                <field name="view_id" ref="marketplace_quote_system.quote_system_customer_quote_tree_view_inherit"/>
+                <field name="act_window_id" ref="marketplace_quote_system.mp_customer_quote_action_incart"/>
+        </record>
+        <record id="mp_customer_quote_action_incart_for_form" model="ir.actions.act_window.view">
+                <field name="view_mode">form</field>
+                <field name="sequence">3</field>
+                <field name="view_id" ref="inherit_customer_quote_form_view"/>
+                <field name="act_window_id" ref="marketplace_quote_system.mp_customer_quote_action_incart"/>
+        </record>
+        <!-- InProcess -->
+        <record model="ir.actions.act_window" id="mp_customer_quote_action_inprocess">
+            <field name="name">Customers Inprocess Quote</field>
+            <field name="res_model">quote.quote</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="domain">[('status', '=', 'inprocess'),('marketplace_seller_id','in',['get_marketplace_seller_id()'])]</field>
+        </record>
+        <record id="mp_customer_quote_action_inprocess_for_kanban" model="ir.actions.act_window.view">
+                <field name="view_mode">kanban</field>
+                <field name="sequence">1</field>
+                <field name="view_id" ref="marketplace_quote_system.quote_system_customer_quote_kanban_view_inherit"/>
+                <field name="act_window_id" ref="marketplace_quote_system.mp_customer_quote_action_inprocess"/>
+        </record>
+        <record id="mp_customer_quote_action_inprocess_for_tree" model="ir.actions.act_window.view">
+                <field name="view_mode">tree</field>
+                <field name="sequence">2</field>
+                <field name="view_id" ref="marketplace_quote_system.quote_system_customer_quote_tree_view_inherit"/>
+                <field name="act_window_id" ref="marketplace_quote_system.mp_customer_quote_action_inprocess"/>
+        </record>
+        <record id="mp_customer_quote_action_inprocess_for_form" model="ir.actions.act_window.view">
+                <field name="view_mode">form</field>
+                <field name="sequence">3</field>
+                <field name="view_id" ref="inherit_customer_quote_form_view"/>
+                <field name="act_window_id" ref="marketplace_quote_system.mp_customer_quote_action_inprocess"/>
+        </record>
+        <!-- Sold -->
+        <record model="ir.actions.act_window" id="mp_customer_quote_action_sold">
+            <field name="name">Customers Sold Quote</field>
+            <field name="res_model">quote.quote</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="domain">[('status', '=', 'sold'),('marketplace_seller_id','in',['get_marketplace_seller_id()'])]</field>
+        </record>
+        <record id="mp_customer_quote_action_sold_for_kanban" model="ir.actions.act_window.view">
+                <field name="view_mode">kanban</field>
+                <field name="sequence">1</field>
+                <field name="view_id" ref="marketplace_quote_system.quote_system_customer_quote_kanban_view_inherit"/>
+                <field name="act_window_id" ref="marketplace_quote_system.mp_customer_quote_action_sold"/>
+        </record>
+        <record id="mp_customer_quote_action_sold_for_tree" model="ir.actions.act_window.view">
+                <field name="view_mode">tree</field>
+                <field name="sequence">2</field>
+                <field name="view_id" ref="marketplace_quote_system.quote_system_customer_quote_tree_view_inherit"/>
+                <field name="act_window_id" ref="marketplace_quote_system.mp_customer_quote_action_sold"/>
+        </record>
+        <record id="mp_customer_quote_action_sold_for_form" model="ir.actions.act_window.view">
+                <field name="view_mode">form</field>
+                <field name="sequence">3</field>
+                <field name="view_id" ref="inherit_customer_quote_form_view"/>
+                <field name="act_window_id" ref="marketplace_quote_system.mp_customer_quote_action_sold"/>
+        </record>
+        <!-- Expired -->
+        <record model="ir.actions.act_window" id="mp_customer_quote_action_expired">
+            <field name="name">Customers Expired Quote</field>
+            <field name="res_model">quote.quote</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="domain">[('status', '=', 'expired'),('marketplace_seller_id','in',['get_marketplace_seller_id()'])]</field>
+        </record>
+        <record id="mp_customer_quote_action_expired_for_kanban" model="ir.actions.act_window.view">
+                <field name="view_mode">kanban</field>
+                <field name="sequence">1</field>
+                <field name="view_id" ref="marketplace_quote_system.quote_system_customer_quote_kanban_view_inherit"/>
+                <field name="act_window_id" ref="marketplace_quote_system.mp_customer_quote_action_expired"/>
+        </record>
+        <record id="mp_customer_quote_action_expired_for_tree" model="ir.actions.act_window.view">
+                <field name="view_mode">tree</field>
+                <field name="sequence">2</field>
+                <field name="view_id" ref="marketplace_quote_system.quote_system_customer_quote_tree_view_inherit"/>
+                <field name="act_window_id" ref="marketplace_quote_system.mp_customer_quote_action_expired"/>
+        </record>
+        <record id="mp_customer_quote_action_expired_for_form" model="ir.actions.act_window.view">
+                <field name="view_mode">form</field>
+                <field name="sequence">3</field>
+                <field name="view_id" ref="inherit_customer_quote_form_view"/>
+                <field name="act_window_id" ref="marketplace_quote_system.mp_customer_quote_action_expired"/>
+        </record>
+
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+        <menuitem name="Quote Requests"
+                  id="mp_customer_quote_menu"
+                  parent="odoo_marketplace.wk_seller_dashboard_menu3"
+                  sequence="2"
+                  action="mp_customer_quote_action"
+                  groups="odoo_marketplace.marketplace_seller_group"
+                />
+    </data>
+</odoo>

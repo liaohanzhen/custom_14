@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://store.webkul.com/license.html/ -->
+<odoo>
+    <template id="assets_frontend" inherit_id="website.assets_frontend" name="Website Customer Quote">
+        <xpath expr="." position="inside">
+              <link rel="stylesheet" href="/website_quote_system/static/src/css/quote_form.css"/>
+        </xpath>
+        <xpath expr="script[last()]" position="after">
+            <script type="text/javascript"  src='/website_quote_system/static/src/js/customer_quote.js'></script> 
+        </xpath>
+    </template>
+    <template id="404">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="oe_structure oe_empty">
+                    <div class="container">
+                        <h1 class="mt32">Quote not found!</h1>
+                        <p>Sorry, this quote is not available anymore.</p>
+                        <p>
+                            <a t-attf-href="/my/quote">Return to the quote list.</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

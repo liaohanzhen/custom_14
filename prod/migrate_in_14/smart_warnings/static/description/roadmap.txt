@@ -1,0 +1,8 @@
+Under consideration
+========================================================================================================================
+
+ * develop 2 scenarios: (1) just to show; (2) forbid to save and move further. Issue: check before write is impossible
+   since there is no way to search by domain
+ * think of optional close of an alert (the config in warning 'Let users cancel alert'). Issues: (1) if it is done per
+   user, need to keep and search this data user <> record; (2) if for for everybody --> possible risk and
+   misundersanding

@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+    <record id="paperformat_persona_moral" model="report.paperformat">
+        <field name="name">Contrato Persona Moral</field>
+        <field name="default" eval="True" />
+        <field name="format">Letter</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">20</field>
+        <field name="margin_bottom">20</field>
+        <field name="margin_left">14</field>
+        <field name="margin_right">14</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">15</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <!--Contrato Determinado-->
+    <report
+    id="report_contrato_persona_moral"
+    model="contract.contract"
+    string="Contrato Persona Moral"
+    report_type="qweb-pdf"
+    name="structurall_module.contrato_arrendamiento_moral"
+    file="Contrato Persona Moral"
+    paperformat="paperformat_persona_moral"
+    />
+
+    <template id="contrato_arrendamiento_moral">
+        <t t-call="web.html_container">
+           <t t-foreach="docs" t-as="doc">
+              <t t-call="structurall_module.contrato_arrendamiento_moral2" t-lang="es_MX"/>
+           </t>
+        </t>
+    </template>
+
+    <!--CONTRATO EXTERNAL LAYOUT-->
+    <template id="contrato_moral_external_layout">
+        <div class="header">
+            <div class="row">
+                <div class="col-6" style="text-align:left;font-size:13px;color:gray;">
+                    <strong>CONTRATO DE ARRENDAMIENTO BIEN INMUEBLE</strong><br/>
+                    <strong>CASETAS</strong>
+                </div>
+                <div class="col-6" style="text-align:right;font-size:13px;color:gray;">
+                    <strong>STRUCTURALL SONORA S.A. DE C.V.</strong><br/>
+                    <strong><span t-field="docs.name_serie"/></strong>
+                </div>
+            </div>
+        </div>
+
+        <div class="article o_report_layout_standard" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id">
+            <t t-call="web.address_layout"/>
+            <t t-raw="0" />
+        </div>
+
+        <!--EMPIEZA EL FOOTER *ESTA BIEN*-->
+        <div class="footer">
+            
+        <div class="text-center">        
+            Página: <span class="page"/> de <span class="topage"/>
+        </div>
+            
+        </div>
+        <!--TERMINA EL FOOTER-->
+    </template>
+
+    <template id="contrato_arrendamiento_moral2">
+        <t t-call="web.html_container">
+        <t t-call="structurall_module.contrato_moral_external_layout">
+            <div class="page"> 
+                <div class="oe_structure"/>
+                <div style="font-size:15px;text-align:justify">
+
+                    <strong>
+                        CONTRATO DE ARRENDAMIENTO QUE CELEBRAN POR UNA PARTE STRUCTURALL SONORA S.A. DE C.V., POR CONDUCTO DE SU REPRESENTANTE LEGAL <span t-field="docs.team_id.nombre_representante_st"/>, A QUIEN EN LO SUCESIVO, SE LE DENOMINARA COMO 'LA ARRENDADORA', Y POR LA OTRA PARTE <span t-field="docs.partner_id.name"/> REPRESENTADA EN ESTE ACTO POR <span t-field="docs.nombre_representante_ac"/> A QUIEN EN LO SUCESIVO Y PARA LOS EFECTOS DEL PRESENTE CONTRATO SE LE DENOMINARA COMO 'LA ARRENDATARIA', AL TENOR DE LAS SIGUIENTES DECLARACIONES Y CLÁUSULAS: <br/><br/>
+                    </strong>
+
+
+                    <center><strong>D E C L A R A C I O N E S</strong></center><br/><br/>
+
+                    <strong>I.- Declara "LA ARRENDADORA" por conducto de su apoderado legal:</strong> <br/><br/>
+                    
+                    a) Que su representada es una sociedad constituida conforme a la legislación mexicana, tal y como se desprende del testimonio notarial 446 de fecha 20 DE AGOSTO 2015, pasada ante la fe del Notario Público 102 de la Ciudad de HERMOSILLO, SONORA, LIC RENE FRANCISCO LUNA SUGICH, mismo que en este acto se agrega en copia simple al cuerpo del presente instrumento como anexo 1.<br/><br/>
+
+                    b) Contar con Registro Federal de Contribuyentes SSO150820DU0.<br/><br/>
+
+                    c) Que <strong><span t-field="docs.team_id.nombre_representante_st"/></strong> cuenta con la capacidad suficiente a suscribir el presente contrato en nombre y representación de STRUCTURALL SONORA S.A. DE C.V., tal y como se desprende del testimonio notarial <span t-field="docs.team_id.testimonio_notarial_st"/> de fecha <span t-esc="docs.team_id.fecha_st.strftime('%A, %d de %B del %Y')" style="text-transform: uppercase;"/>, pasado ante la fe del Notario Público <span t-field="docs.team_id.notaria_st"/> de <span t-field="docs.team_id.ciudad_notario_st"/>, <span t-field="docs.team_id.nombre_notario_st"/> mismas que a la fecha no le han sido modificadas, limitadas o revocadas de forma alguna (anexo 2).<br/><br/>
+
+                    d) Que para los efectos del presente contrato, señalan como su domicilio el ubicado en Boulevard Paseo del Río Sonora Oriente S/N, Colonia Hacienda de La Flor, Hermosillo, Sonora C.P. 83090.<br/><br/>
+
+                    <strong>II.- Declara "LA ARRENDATARIA", por conducto de su apoderado legal:</strong><br/><br/>
+                    
+                    a) Que su representada es una sociedad constituida conforme a la legislación mexicana, tal y como se desprende del testimonio notarial <span t-field="docs.testimonio_notarial_ac"/> de fecha <span t-esc="docs.fecha_ac.strftime('%A, %d de %B del %Y')" style="text-transform: uppercase;"/>, pasada ante la fe del Notario Público <span t-field="docs.notaria_ac"/> de <span t-field="docs.ciudad_notario_ac"/>, <span t-field="docs.nombre_notario_ac"/>,  mismo que en este acto se agrega en copia simple al cuerpo del presente instrumento como anexo 3.<br/><br/>
+
+                    b) Contar con Registro Federal de Contribuyentes <span t-field="docs.partner_id.vat"/><br/><br/>
+
+                    c) Que <span t-field="docs.nombre_representante_pn"/> cuenta con la capacidad suficiente a suscribir el presente contrato en nombre y representación de <span t-field="docs.partner_id.name"/> tal y como se desprende del testimonio notarial <span t-field="docs.testimonio_notarial_pn"/> de <span t-esc="docs.fecha_pn.strftime('%A, %d de %B del %Y')" style="text-transform: uppercase;"/>, pasado ante la fe del Notario Público <span t-field="docs.notaria_pn"/> de <span t-field="docs.ciudad_notario_pn"/> <span t-field="docs.nombre_notario_pn"/> mismas que a la fecha no le han sido modificadas, limitadas o revocadas de forma alguna (anexo 4).<br/><br/>
+
+                    d) Contar con la solvencia económica necesaria para hacer frente a las obligaciones contractuales que de este instrumento se desprendan, desde su fecha de firma y hasta el momento en que el bien objeto del presente arrendamiento, sea entregado física y jurídicamente a “LA ARRENDADORA” a su entera satisfacción, siempre y cuando no existan adeudos pendientes a su cargo, pues de lo contrario, dichas obligaciones contractuales serán extendidas hasta la total liquidación de cualquier adeudo existente.<br/><br/>
+
+
+                    <!--PAGE 2-->
+
+                    e) Que tiene pleno conocimiento del contenido y alcances de la Ley Federal de Extinción de Dominio, motivo por el cual se obliga expresamente a dar cumplimiento cabal a todas y cada una de sus disposiciones, ya que, al ser de carácter público, resultan de observancia obligatoria. Lo anterior, en el entendido de que cualquier violación que "LA ARRENDATARIA" cometa a la Ley Federal de Extinción de Dominio, es sancionada por la autoridad con la pérdida de los derechos de propiedad en perjuicio de “LA ARRENDADORA”, luego entonces, declara en este acto bajo formal protesta de decir verdad que en las actividades que realice en ejecución del presente contrato no podrá: i) Ocultar o mezclar bienes productos del delito; ii) Resguardar la caseta dentro de algún inmueble cuya procedencia o utilización sea ilícita, así como encomendar su posesión o resguardo a persona alguna que se encuentre relacionada con la comisión de actos delictuosos, ya sea que dicha responsabilidad haya sido o no determinada por la autoridad investigadora responsable; iii) Destinar el uso de la unidad para fines ilícitos, de ahí que también "LA ARRENDATARIA" se encuentre impedido para obtener o disfrutar cualquier beneficio de sus productos; iv) Organizar ataques a la paz pública, corrupción de menores e incapaces, extorción, falsificación de documentos públicos, lenocinio, operaciones con recursos de procedencia ilícita, pornografía infantil y/o cualquier otra actividad prevista como ilícita en el Código Penal para el Estado de Sonora, Ciudad de México, Estado de México y demás Entidades Federativas;v) Implicar de forma alguna al bien arrendado en cualquier acto ilícito. <br/><br/>
+
+                    f) Que los recursos con los que pagará el importe de la renta del objeto de este arrendamiento, así como las actividades que realice con en él, son de procedencia lícita en términos de lo dispuesto por la Ley Federal para la Prevención e Identificación de Operaciones con Recursos de Procedencia Ilícita. Por lo anterior, declara "LA ARRENDATARIA" que no tiene directa o indirectamente relación alguna con el desarrollo de actividades ilícitas, dentro de las cuales, en forma enunciativa más no limitativa, se encuentran la introducción o extracción, producción, compra, venta, distribución o intermediación de algún tipo de drogas, enervantes, estupefacientes, psicotrópicos o sustancias ilícitas, lavado de dinero u otra actividad prohibidas por la ley, por lo que en caso de que sea sujeto a cualquier tipo de procedimiento por la comisión de alguno de los delitos que se mencionan anteriormente, se obliga a sacar en paz y a salvo tanto a “LA ARRENDADORA” como al bien objeto del presente instrumento de cualquier procedimiento que se instaure y pagando los daños y perjuicios que, en su caso, se lleguen a ocasionar.<br/><br/>
+
+                    g) Que para los efectos del presente contrato, señala como su domicilio el ubicado en <span t-field="docs.partner_id.street"/> <span t-field="docs.partner_id.street2"/> <span t-field="docs.partner_id.city"/> <span t-field="docs.partner_id.state_id.name"/> <span t-field="docs.partner_id.zip"/><br/><br/>
+
+                    <strong>III.- Declaran "LAS PARTES":</strong><br/><br/>
+                    a) Reconocerse mutuamente la personalidad con la que comparecen a la celebración del presente contrato. <br/><br/>
+
+                    b) Que las declaraciones anteriores son total y absolutamente apegadas a la realidad, por lo que cualquier falsedad en ellas haría incurrir a la parte que actúa de buena fe en un error insalvable e inevitable, teniendo conciencia y conocimiento de lo que esto implica.<br/><br/>
+
+                    c) Que es su voluntad celebrar el presente contrato en los términos precisados y conocer la finalidad del documento, teniéndolo en todo tiempo y lugar como si se tratase de cosa juzgada, manifestando que, en la celebración del mismo, no ha existido dolo, error, mala fe, violencia o cualquier otro vicio de la voluntad.<br/><br/>
+
+                    d) Reconocer las declaraciones hechas con anterioridad y obligarse en términos de las siguientes:
+
+                    <p style="page-break-after:always"></p>
+
+
+
+                    <center><strong>C L Á U S U L A S</strong></center><br/><br/>
+
+                    <strong>PRIMERA.- OBJETO.</strong><br/><br/>
+                    “LA ARRENDADORA” se obligan a dar en arrendamiento a "LA ARRENDATARIA" la(s) caseta(s) móvil(es) que a continuación se detallan (en adelante “LA CASETA”); recibiéndola(s) esta última a su más entera satisfacción de mutuo propio en el estado actual en que se encuentra, mismo que se hace constar en el Reporte de Inspección de Entrega que es suscrito por ambos contratantes en este acto (anexo 5). <br/><br/>
+
+                    Al efecto, acuerdan “LAS PARTES” que los bienes objeto del presente arrendamiento serán
+                    destinados única y exclusivamente como se detalla en el presente contrato, los cuales consisten en:<br/>
+
+                    <!--TABLA DE CASETA-->
+                    <t t-set="no_caseta" t-value="0"/>
+                    <t t-foreach="docs.contract_line_fixed_ids" t-as="caseta">
+                        <t t-if="caseta.no_serie"> 
+                            <t t-set="no_caseta" t-value="no_caseta + 1"/>
+                            <strong>CASETA <span t-esc="no_caseta"/></strong><br/><br/>
+
+                            <table class="table table-bordered">
+                                <tr><td style="padding:3px;width:30%;">Modelo:</td><td style="padding:3px;"><span t-field="caseta.product_id.name"/></td></tr>
+                                <tr><td style="padding:3px;width:30%;">Serie:</td><td style="padding:3px;"><span t-field="caseta.no_serie"/></td></tr>
+                                <tr><td style="padding:3px;width:30%;">Equipamento:</td><td style="padding:3px;"><span t-field="caseta.name"/></td></tr>
+                                <tr><td style="padding:3px;width:30%;">Ubicación exacta del bien:</td><td style="padding:3px;"><span t-field="caseta.ubicacion_exacta"/></td></tr>
+                                <tr><td style="padding:3px;width:30%;">Proyecto:</td><td style="padding:3px;"><span t-field="caseta.proyecto"/></td></tr>
+                                <!--<tr><td style="padding:3px;width:30%;">Tel:</td><span t-field="caseta.parent.partner_id.phone"/><td style="padding:3px;"></td></tr>-->
+                            </table>
+                        </t>
+
+                    </t>
+
+                    <!--TERMINA TABLA DE CASETA-->
+
+                    <!--CASETA 1<br/>
+                    Modelo: 8X24<br/>
+                    Serie:  C118248473<br/>
+                    Equipamiento:<br/>
+                    PERSIANAS, ESCRITORIO EMPOTRADO, REPISA SUPERIOR, 1 AIRE ACONDICIONADO DE 1 TONELADA, CONTACTO DE VOZ Y DATOS, MEDIO BAÑO CON LAVABO Y SANITARIO.<br/>
+                    Uso:    OFICINA<br/>
+                    Ubicación exacta del bien:  BLVD. HIPICO #274 FRACC. EL SECRETO ENTRE AV. DE LAS RIVERAS Y CAMINO DLE CHANATE, HERMOSILLO, SONORA<br/>
+                    Proyecto:   CASAS PLATINO Nombre del Proyecto:  CASAS PLATINO Persona que recibe:   ADOLFO FLORES ALCALA Teléfono:      4421280231<br/><br/>-->
+
+                    “LAS PARTES” convienen que “LA CASETA” deberá permanecer en el domicilio antes señalado durante toda la vigencia del arrendamiento, siendo causa especial de rescisión el incumplimiento a lo aquí pactado salvo el caso de que “LA ARRENDADORA” autorice expresamente y por escrito su traslado a un domicilio diverso.<br/><br/>
+
+                    "LA ARRENDATARIA" recibe “LA CASETA” a su más entera satisfacción en las condiciones necesarias para ser usada conforme a su naturaleza detallada en el presente contrato, con todas sus instalaciones funcionando adecuadamente, obligándose a devolverlo en las mismas condiciones en que se encuentra salvo el desgaste normal que por el mero uso se le llegue a ocasionar.<br/><br/>
+
+                    <strong>SEGUNDA.- DE LAS CONDICIONES DEL TERRENO.</strong><br/><br/>
+                    
+                    "LA ARRENDATARIA" se obliga a que el terreno donde sea instalada “LA CASETA”, deberá ser un sitio firme y plano sin pendientes, con una inclinación del terreno de no más de 15 cm de un extremo a otro, accesible con camión, sin impedimentos u obstrucciones indebidas, pues en caso contario pagará cualquier cargo adicional por instalación, entrega, desensamble y/o devolución en que se incurra por el equipo y/o material adicional que sea necesario para modificar el sitio y que sea lo suficientemente firme, seco y/o estable para que los camiones, remolques y/u otro equipo necesario puedan maniobrar en las proximidades de “LA CASETA” y/o del sitio. No obstante, posteriormente a su instalación, “LA ARRENDADORA” tendrá derecho de inspeccionar “LA CASETA” en cualquier momento durante la vigencia del presente contrato.<br/><br/>
+
+                    En este sentido, “LA ARRENDADORA” no se hace responsable de las condiciones del terreno, por lo que es responsabilidad de "LA ARRENDATARIA" tenerlo en condiciones adecuadas. En caso de que el terreno esté desnivelado o accidentado, "LA ARRENDATARIA" tendrá la responsabilidad y riesgo de cubrir cualquier desnivelación o daño que sufra el bien durante el arrendamiento. Así mismo, al momento de la entrega de la(s) unidad(es), "LA ARRENDATARIA" hará la nivelación y montaje correspondiente, siendo su responsabilidad, bajo su costo y riesgo mantener nivelada(s) la unidad(s) cuando el terreno esté desnivelado o no cumpla con las condiciones del terreno solicitadas.<br/><br/>
+
+                    Finalmente, "LA ARRENDATARIA" deberá tener la(s) unidad(es) listas y con un área adecuada para realizar las maniobras al momento de su retiro, así como desconectada(s) en los servicios de electricidad y plomería, el día de su devolución, pues en caso de no tener el área despejada en la fecha que se programe recoger la unidad en base a su solicitud por escrito, correrán por su cuenta los cargos de costos por servicios de transportación requeridos, gastos de maniobra y daños que sufra el bien en la maniobra de salida. <br/><br/>
+
+                    <strong>TERCERA.- IMPORTE DE LA CONTRAPRESTACIÓN.</strong><br/><br/>
+                    
+                    "LA ARRENDATARIA" pagará a “LA ARRENDADORA”, por concepto de contraprestación al arrendamiento objeto del presente contrato, la cantidad de:<t t-set="subtotal_cantidad" t-value="0"/><t t-foreach="docs.contract_line_fixed_ids" t-as="sub"><t t-set="subtotal_cantidad" t-value="subtotal_cantidad + sub.price_subtotal"/></t> <span t-esc="subtotal_cantidad" t-options='{"widget": "monetary", "display_currency": docs.currency_id}'/> <span t-esc="docs._get_amount_2_text(subtotal_cantidad)" /> mensuales más el Impuesto al Valor Agregado; cantidad tal que deberá ser cubierta dentro de los primeros cinco días de cada mes mediante:<br/><br/>
+
+                    (I) Cheque nominativo a nombre de STRUCTURALL SONORA S.A. DE C.V., mismo que deberá estar debidamente certificado por la institución financiera que lo emita o, en su defecto, será recibido salvo buen cobro. La entrega del cheque correspondiente deberá realizarse en el domicilio señalado por “LA ARRENDADORA” dentro del cuerpo del presente contrato;<br/><br/>
+
+                    (I) En efectivo, pago que deberá verificarse en el domicilio señalado por “LA ARRENDADORA” en el capítulo de declaraciones de este instrumento;<br/><br/>
+
+                    (III) Transferencia electrónica o depósito bancario a la cuenta 22000649054, con clabe interbancaria 014760220006490542, aperturada en la institución financiera BANCO SANTANDER a nombre de STRUCTURALL SONORA S.A. DE C.V.<br/><br/>
+
+                    El pago a que se refiere la presente cláusula será cubierto en una sola exhibición, siendo forzoso para "LA ARRENDATARIA" todo mes de renta completo, debiendo cubrir la pensión rentística de forma íntegra, razón por la cual “LA ARRENDADORA” no están obligada a recibir los pagos de renta cuando estos no se hagan por meses adelantados o se realicen en los términos y condiciones aquí pactados.<br/><br/>
+
+                    Ambos contratantes convienen que le queda estrictamente prohibido a "LA ARRENDATARIA" retener pago alguno por concepto de pensión rentística, ni siquiera en tratándose de título judicial, extrajudicial ni por falta de composturas o reparaciones que el mismo hiciere a “LA CASETA” o que “LA ARRENDADORA” dejare de hacer. En caso de realizar el pago de manera extemporánea a lo ya pactado, se actualizará en su perjuicio la pena convencional a que hace referencia la cláusula décima segunda del presente instrumento, sin perjuicio de que “LA ARRENDADORA” podrá discrecionalmente rescindir la relación contractual sin declaración judicial de por medio.<br/><br/>
+
+                    En caso de mora por parte de "LA ARRENDATARIA" en el pago de las rentas, se obliga pagar a “LA ARRENDADORA” el 0.19% diario. No obstante, quedará a discreción de “LA ARRENDADORA” la facultad de rescindir la relación contractual de manera automática y sin necesidad de declaración judicial de por medio, bastando para ello con la simple notificación que en tal sentido le realice a "LA ARRENDATARIA". En este caso, podrá adicionalmente reclamar el pago de la pena de este instrumento.<br/><br/>
+
+                    En caso de que "LA ARRENDATARIA" pague la renta en abonos, deberá cubrir a “LA ARRENDADORA”, a manera de penalización, el importe equivalente al 15% de la pensión rentística que no fue pagada en una sola exhibición. De verificarse por segunda ocasión un pago de renta en abonos, “LA ARRENDADORA” se encontrará facultada para rescindir el presente contrato sin necesidad de dar aviso por escrito ni de intervención judicial alguna, además de encontrarse facultada para reclamar el pago de la pena convencional.<br/><br/>
+
+                    En el supuesto de que "LA ARRENDATARIA" pague la renta con cheque y el mismo no cuente con fondos suficientes, “LA ARRENDADORA” podrá reclamar a su cargo el pago del 20% sobre su importe total en los términos del artículo 193 de la Ley General de Títulos y Operaciones de Crédito, así como las comisiones vigentes del banco que se trate, independientemente de las acciones que a juicio de “LA ARRENDADORA” sean ejercitadas en su contra.<br/><br/>
+
+                    <strong>CUARTA.- VIGENCIA.</strong><br/><br/>
+                    
+                    “LAS PARTES” acuerdan de común acuerdo que el presente contrato de arrendamiento tendrá una vigencia de <span t-esc="'%.0f'% docs.no_meses"/> meses contados a partir de su firma, es decir, su duración comenzará a correr a partir del día <span t-esc="docs.date_start.strftime('%A, %d de %B del %Y')" style="text-transform: uppercase;"/> al <span t-esc="docs.date_end.strftime('%A, %d de %B del %Y')" style="text-transform: uppercase;"/><br/><br/>
+
+                    En el supuesto caso de que terminado el plazo a que se refiere el párrafo directo anterior, “LAS PARTES” quisieran continuar con el arrendamiento materia del presente contrato, dicha renovación se verificará de manera automática salvo que "LA ARRENDATARIA" notifique por escrito a “LA ARRENDADORA” su deseo de dar por terminada la relación contractual con cuando menos treinta días naturales de anticipación.<br/><br/>
+
+                    La renovación operará solo en caso de que "LA ARRENDATARIA" haya cumplido puntual y cabalmente con las obligaciones contraídas a su cargo, entendiéndose el presente contrato prorrogado automáticamente con base en la figura jurídica de la tácita reconducción, siempre y cuando dicha prórroga obre dentro de las extensiones de contrato (adendum) que para tal efecto sea suscrita por ambas partes (anexo 6).<br/><br/>
+
+                    <strong>QUINTA.- CARGOS ADICIONALES.</strong><br/><br/>
+                    
+                    Los cargos por devolución y desmontaje, más el Impuesto al Valor Agregado aplicable, se encuentran cubiertos dentro del costo que "LA ARRENDATARIA" paga por concepto de gastos iniciales. No obstante, los cargos por mantenimiento o daños que presente la(s) caseta(s) arrendada deberán ser liquidados en los 30 días posteriores a la devolución de la(s) caseta(s), para que proceda la devolución del depósito en garantía.<br/><br/>
+
+                    Los cargos iniciales serán facturados por adelantado y se integran por la renta inicial, los gastos por cuenta del cliente para la entrega de “LA CASETA” y el importe de depósito en garantía, así como el Impuesto al Valor Agregado aplicable a los conceptos que correspondan. Dichos cargos se integran por:<br/><br/>
+
+                <div>
+
+                    <!--INICIA TABLA DE DATOS DE COTIZACIÓN-->
+                    <table class="table table-bordered" style="width:75%;margin:auto;">
+
+                        <!--<t t-foreach="docs.contract_line_fixed_ids" t-as="l">
+                            <t t-if="l.no_serie">
+                                PRODUCTOS QUE CONTIENEN UN NÚMERO DE SERIE
+                                <tr><td style="padding:3px;width:80%;"><strong><span t-field="l.name"/>:</strong></td><td style="padding:3px;"><span t-field="l.price_subtotal"/></td></tr>
+                                <t t-set="price_subtotal_line" t-value="price_subtotal_line + l.price_subtotal"/>
+                            </t>
+                            
+                            <t t-if="not l.no_serie and 'protección' in l.name"> 
+                                <tr><td style="padding:3px;width:80%;">Plan de protección:</td><td style="padding:3px;"><span t-field="l.price_unit"/></td></tr>
+                                <t t-set="plan_subtotal_line" t-value="plan_subtotal_line + l.price_unit"/>
+
+                                <tr><td style="padding:3px;width:80%;">Subtotal:</td><td style="padding:3px;"><t t-set="suma_producto_plan" t-value="price_subtotal_line+plan_subtotal_line"/> <span t-esc="suma_producto_plan"/></td></tr>
+
+                                <tr><td style="padding:3px;width:80%;">Iva:</td><td style="padding:3px;"><t t-set="iva_line" t-value="suma_producto_plan*0.16"/> <span t-esc="iva_line"/></td></tr>
+
+                                <tr><td style="padding:3px;width:80%;"><strong>Total:</strong></td><td style="padding:3px;"><t t-set="total_line" t-value="suma_producto_plan+iva_line"/> <span t-esc="total_line"/></td></tr>
+
+                                <t t-set="total_final_line" t-value="total_final_line+total_line"/> <span t-esc="total_line"/>
+
+
+                                <t t-set="price_subtotal_line" t-value="0"/>
+                                <t t-set="plan_subtotal_line" t-value="0"/>
+                                <t t-set="suma_producto_plan" t-value="0"/>
+                                <t t-set="iva_line" t-value="0"/>
+
+                            </t>
+                               
+                        </t>-->
+
+                        <t t-set="price_subtotal_line" t-value="0"/>
+                        <t t-set="plan_subtotal_line" t-value="0"/>
+                        <t t-set="subtotal_price_plan" t-value="0"/>
+                        <t t-set="iva_subtotal_price_plan" t-value="0"/>
+                        <t t-set="total_price_plan" t-value="0"/>
+
+
+                        <t t-set="suma_producto_plan" t-value="0"/>
+                        <t t-set="iva_line" t-value="0"/>
+                        <t t-set="total_line" t-value="0"/>
+                        <t t-set="total_final_line" t-value="0"/>
+                        <t t-set="servicio_entrega" t-value="0"/>
+                        <t t-set="iva_entrega" t-value="0"/>
+                        <t t-set="total_entrega" t-value="0"/>
+                        <t t-set="total_cargos_iniciales" t-value="0"/>
+
+                        <t t-foreach="docs.contract_line_fixed_ids" t-as="s">
+
+                            <t t-if="s.no_serie">
+                                <!--PRODUCTOS QUE CONTIENEN UN NÚMERO DE SERIE-->
+                                <t t-set="price_subtotal_line" t-value="price_subtotal_line + s.price_subtotal"/>
+                            </t>
+                                <!--PRODUCTOS QUE CONTIENEN PLAN DE PROTECCIÓN EN EL NOMBRE-->
+                            <t t-if="not s.no_serie and 'Protección' in s.name">
+                                <t t-set="plan_subtotal_line" t-value="plan_subtotal_line + s.price_subtotal"/>
+                            </t>
+                              
+                        </t>
+
+                        <!--TOMA EL FLETE E INSTALACIÓN DE LA TABLA DE PRIMERA FACTURA-->
+
+                        <t t-foreach="docs.primera_factura_ids" t-as="p">
+
+                            <!--PRODUCTOS CON FLETE E INSTALACIÓN EN EL NOMBRE-->
+                            <t t-if="'Servicios de entrega e Instalación' in p.product_id.name">
+                                <t t-set="servicio_entrega" t-value="servicio_entrega + p.subtotal"/>
+                            </t>
+                            
+                        </t>
+
+                        <tr><td style="padding:3px;width:80%;"><strong>Renta Mensual:</strong></td><td style="padding:3px;"><span t-esc="price_subtotal_line" t-options='{"widget": "monetary", "display_currency": docs.currency_id}' /></td></tr>
+                        <tr><td style="padding:3px;width:80%;"><strong>Plan de protección:</strong></td><td style="padding:3px;"><span t-esc="plan_subtotal_line" t-options='{"widget": "monetary", "display_currency": docs.currency_id}'/></td></tr>
+
+                        <tr><td style="padding:3px;width:80%;"><strong>Subtotal:</strong></td><td style="padding:3px;"><t t-set="subtotal_price_plan" t-value="price_subtotal_line+plan_subtotal_line" /> <span t-esc="subtotal_price_plan" t-options='{"widget": "monetary", "display_currency": docs.currency_id}'/></td></tr>
+
+                        <tr><td style="padding:3px;width:80%;"><strong>16% IVA:</strong></td><td style="padding:3px;"><t t-set="iva_subtotal_price_plan" t-value="subtotal_price_plan*0.16"/> <span t-esc="float('%.2f'% iva_subtotal_price_plan)" t-options='{"widget": "monetary", "display_currency": docs.currency_id}'/></td></tr>                        
+
+                        <tr><td style="padding:3px;width:80%;"><strong>Total:</strong></td><td style="padding:3px;"><t t-set="total_price_plan" t-value="subtotal_price_plan+iva_subtotal_price_plan"/> <strong><span t-esc="total_price_plan" t-options='{"widget": "monetary", "display_currency": docs.currency_id}'/></strong></td></tr>
+
+                        <tr><td style="padding:3px;width:80%;"><strong>Servicios de entrega, nivelación e instalación:</strong></td><td style="padding:3px;"><span t-esc="servicio_entrega" t-options='{"widget": "monetary", "display_currency": docs.currency_id}'/></td></tr>
+                        <tr><td style="padding:3px;width:80%;"><strong>16% IVA:</strong></td><td style="padding:3px;"><t t-set="iva_entrega" t-value="servicio_entrega*0.16"/> <span t-esc="iva_entrega" t-options='{"widget": "monetary", "display_currency": docs.currency_id}'/></td></tr>
+                        <tr><td style="padding:3px;width:80%;"><strong>Total:</strong></td><td style="padding:3px;"><strong> <t t-set="total_entrega" t-value="servicio_entrega+iva_entrega"/> <span t-esc="total_entrega" t-options='{"widget": "monetary", "display_currency": docs.currency_id}'/></strong></td></tr>
+                        <tr><td style="padding:3px;width:80%;"><strong>3.- Deposito en garantía:</strong></td><td style="padding:3px;"><span t-field="docs.deposito_garantia" t-options='{"widget": "monetary", "display_currency": docs.currency_id}'/></td></tr>
+                        <tr><td style="padding:3px;width:80%;"><strong>TOTAL DE CARGOS INICIALES:</strong></td><td style="padding:3px;">
+                            <t t-set="total_cargos_iniciales" t-value="total_price_plan+total_entrega+docs.deposito_garantia"/><strong> <span t-esc="total_cargos_iniciales" t-options='{"widget": "monetary", "display_currency": docs.currency_id}'/></strong>
+                        </td></tr>
+                    </table>
+                </div>
+
+
+                    <!--TERMINA TABLA DE DATOS DE COTIZACIÓN-->
+
+                    <strong>SEXTA.- OBLIGACIONES DE “"LA ARRENDATARIA"”.</strong><br/><br/>
+                    
+                    "LA ARRENDATARIA" se compromete, durante la vigencia de la relación contractual, a dar cabal cumplimiento con las siguientes obligaciones señaladas de manera enunciativa más no limitativa, independientemente de aquellas que se desprendan del presente instrumento:<br/><br/>
+
+                    • A pagar la renta de “LA CASETA” en la forma y plazos convenidos.<br/>
+                    • A responder por cualquier daño que sufriera “LA CASETA” por su culpa o negligencia, ya sea por actos u omisiones de "LA ARRENDATARIA", sus empleados o cualquier persona a la que se le encomiende el uso, cuidado o resguardo de la misma.<br/>
+                    • A dar “LA CASETA” el mantenimiento y cuidados necesarios que cualquier persona diligente le daría.<br/>
+                    • A pagar por su cuenta las reparaciones y mantenimiento derivados del uso cotidiano y normal de “LA CASETA”.<br/><br/>
+
+                    Así mismo, "LA ARRENDATARIA" se obliga a designar únicamente a personal plenamente capacitado y con los conocimientos necesarios para reparar y dar mantenimiento a “LA CASETA, por lo que se obliga a responder frente a “LA ARRENDADORA” por los daños y perjuicios ocasionados, sin limitación de cuantía, para el caso de incumplimiento a lo aquí pactado.<br/><br/>
+
+                    <strong>SÉPTIMA.- DE LOS RIESGOS.</strong><br/><br/>
+                    
+                    Si "LA ARRENDATARIA" tuviere conocimiento de que exista riesgo alguno de que “LA CASETA” pueda ser embargada, secuestrada o de cualquier forma se ponga en riesgo la propiedad que sobre ella ostenta “LA ARRENDADORA” o, incluso, su posesión o disposición, se obliga a notificar dicha circunstancia por escrito de manera inmediata a esta última. En este supuesto, "LA ARRENDATARIA" se obliga a sacar en paz y a salvo tanto a “LA ARRENDADORA” como a la propia caseta objeto del presente contrato, respondiendo con su patrimonio ante cualquier daño o perjuicio que se le ocasione a esta última, so pena de que STRUCTURALL SONORA S.A. DE C.V. ejerza en su contra las acciones legales que a su juicio considere convenientes.<br/><br/>
+
+                    <strong>OCTAVA.- CONDICIONES DEL BIEN MUEBLE.</strong><br/><br/>
+                    "LA ARRENDATARIA" recibe “LA CASETA” en condiciones necesarias de uso, obligándose a devolverla en el mismo estado en el que la recibe al momento en que se termine o rescinda la relación contractual o, incluso, cuando así convengan “LAS PARTES” entregar la misma, aceptando las modificaciones que sufra por el deterioro natural de uso.<br/><br/>
+
+                    "LA ARRENDATARIA" no podrá quitar letreros, placas o calcomanías existentes fijados en “LA CASETA”, por lo que deberá mantenerla en buen estado de conservación y operación durante el plazo del arrendamiento, así como también se responsabilizará de efectuar el pago por mantenimiento de la caseta y mantenimiento de clima(s) a la devolución del bien, cuando “LA CASETA” haya sido arrendada 3 periodos de renta o más. En caso de que la unidad presente daños fuera de uso normal, se obliga además a reponer con partes nuevas todas y cada una de las partes estropeadas, pues en caso contrario “LA ARRENDADORA” reparará “LA CASETA” y repondrá con partes nuevas todas y cada una de las partes dañadas, cargando estos gastos a "LA ARRENDATARIA" con base al reporte de evaluación técnica y valorización de costos que realice.<br/><br/>
+
+                    "LA ARRENDATARIA" deberá en todo momento dar mantenimiento general a los aparatos de aire acondicionado(s) por lo menos cada 3 meses. En caso de no ser así, corren por cuenta de "LA ARRENDATARIA" todos los costos que se puedan originar a causa de mantenimientos o reparaciones de los climas.<br/><br/>
+
+                    <strong>NOVENA.- DAÑOS.</strong><br/><br/>
+                    Los daños ocasionados a “LA CASETA” o a cualquier bien por siniestros debido a un mal uso o negligencia de "LA ARRENDATARIA", serán responsabilidad de ésta, por lo que en caso de detectar algún equipo o instalación en mal estado, deberá dar aviso por escrito, ya sea judicial o extrajudicial con las formalidades que contempla la ley, a “LA ARRENDADORA”.<br/><br/>
+
+                    <strong>DÉCIMA.- REPARACIONES.</strong><br/><br/>
+                    Durante la vigencia del arrendamiento, "LA ARRENDATARIA" se obliga a conservar “LA CASETA” en buen estado, salvo del deterioro normal del uso que sufra. En esta lógica, "LA ARRENDATARIA" se compromete al pago de todas las reparaciones necesarias, así como las obras de mantenimiento para la conservación, funcionalidad y seguridad de la misma.<br/><br/>
+
+                    En caso de que “LA CASETA” requiera de alguna reparación por alguna falla presentada en el equipo al momento de la conexión de la misma, "LA ARRENDATARIA" se obliga a informar de esta situación a “LA ARRENDADORA” por escrito dentro de los dos días siguientes a que se haya percatado del desperfecto, a fin de que “LA ARRENDADORA” de buena fe atienda su reporte de 48 a 72 horas. En caso de requerirse alguna reparación mayor, el plazo se extenderá a 7 días naturales, tiempo máximo para que la unidad quede en óptimas condiciones de uso y el cual no será afectado en pago de rentas.<br/><br/>
+
+                    “LA CASETA” objeto del presente arrendamiento, por ningún motivo puede ser gravada, secuestrada, enajenada o comprometida directa o indirectamente por "LA ARRENDATARIA" en su beneficio o para solventar sus obligaciones contraídas frente a terceros, dado que en caso contrario será responsable frente a “LA ARRENDADORA” por los daños y perjuicios ocasionados, obligándose a sacarlos en paz y a salvo tanto a ellos como al bien materia de arrendamiento.<br/><br/>
+
+                    Así mismo, "LA ARRENDATARIA" tendrá un plazo de 5 días contados a partir de la fecha de entrega de la unidad, la tenga habilitada o deshabilitada, para verificar las condiciones de “LA CASETA” en todas y cada una de sus instalaciones eléctricas y de plomería. Transcurrido dicho lapso, quedará bajo la responsabilidad total de "LA ARRENDATARIA" su correcto funcionamiento.<br/><br/>
+
+                    <strong>DÉCIMA PRIMERA.- TERMINACIÓN ANTICIPADA.</strong><br/><br/>
+                    En caso de que "LA ARRENDATARIA" desee dar por terminado el arrendamiento antes de su vencimiento, independientemente de la causa que lo motivare, pagará a “LA ARRENDADORA”, como pena convencional, el importe equivalente a dos meses de renta, debiendo en este caso devolver ““LA CASETA” en un plazo no mayor a 3 días naturales contados a partir de la fecha de notificación, obligándose a acudir el día y hora que para tal efecto le fije “LA ARRENDADORA” para levantar el acta de entrega correspondiente debidamente firmada por ambas partes y la constancia de finiquito de las obligaciones por ella contraídas.<br/><br/>
+
+                    <strong>DÉCIMA SEGUNDA.- RECISIÓN Y PENA CONVENCIONAL.</strong><br/><br/>
+                    Además de quedar sujeto a las causas de rescisión establecidas por la ley y/o por cualquier violación o incumplimiento a las obligaciones que emanan del presente contrato, dicha relación contractual será rescindida con responsabilidad para "LA ARRENDATARIA" de manera enunciativa más no limitativa por las causales siguientes:<br/><br/>
+
+                        1) Por no cubrirse la renta en la forma y términos convenidos.<br/>
+                        2) Por no comunicar "LA ARRENDATARIA" a “LA ARRENDADORA” el lugar exacto en que se encuentre “LA CASETA”.<br/>
+                        3) Por destinar “LA CASETA” a fines distintos de los aquí pactados.<br/>
+                        4) Por no comunicar "LA ARRENDATARIA" a “LA ARRENDADORA” cualquier riesgo o toma de posesión que de “LA CASETA” efectúe cualquier tercero o alguna autoridad judicial, administrativa o de cualquier otra índole.<br/>
+                        5) Por declaración de quiebra de "LA ARRENDATARIA" o en caso de insolvencia<br/><br/>
+
+                    “LAS PARTES” señalan como pena convencional para el caso de que "LA ARRENDATARIA" incumpla con lo establecido con el presente contrato o cualquier disposición relativa al mismo, el importe equivalente a dos meses de renta por concepto de pena convencional, además del pago de aquellos conceptos que se encuentren pendientes de pago. Lo anterior sin perjuicio de las acciones legales que, a juicio de “LA ARRENDADORA”, se ejerciten en contra de "LA ARRENDATARIA" por el incumplimiento a las obligaciones que de este instrumento emanan.<br/><br/>
+
+                    En caso de que se actualice cualquier causal de rescisión, “LA ARRENDADORA” se encuentra facultada para reclamar en la vía judicial el pago de las pensiones rentísticas, gastos, daños, perjuicios, penas convencionales o cualquier otro rubro que resulte procedente.<br/><br/>
+
+                    Aunado a lo anterior, ambas partes acuerdan que para el caso de que "LA ARRENDATARIA" adeude rentas y/o deje en estado de abandono “LA CASETA”, independientemente de su ubicación y estando o no vigente la relación contractual, "LA ARRENDATARIA" faculta este acto y de manera expresa a “LA ARRENDADORA” para que tome posesión en forma inmediata y voluntaria del mencionado bien mueble, sin necesidad de intervención o declaración judicial alguna, no reservándose "LA ARRENDATARIA" en consecuencia ningún tipo de acción civil, penal, mercantil, administrativa ni de cualquier índole que pudiera ejercitar por tal motivo en contra de “LA ARRENDADORA”.<br/><br/>
+
+                    <strong>DÉCIMA TERCERA.- PLAN DE PROTECCIÓN.</strong><br/><br/>
+                    
+                    "LA ARRENDATARIA", con el pago realizado por concepto de PRECIO DE RENTA, cubre el pago correspondiente al Plan de Protección del bien mueble arrendado, mismo que consiste en una garantía de uso que estará vigente durante todo el tiempo que dure el arrendamiento, siempre y cuando las pensiones rentísticas se encuentren al corriente, pues de lo contrario, "LA ARRENDATARIA" será la responsable de cubrir de manera íntegra cualquier importe que se genere con motivo de daños sufridos por “LA CASETA” y, en caso de pérdida total de la misma, al pago del precio actual de la unidad que esté vigente en ese momento, determinado este valor de acuerdo a listado de precios vigentes de “LA ARRENDADORA”.<br/><br/>
+
+                    Convienen “LAS PARTES” que con el importe que se llegue constituir por el Plan de Protección, se podrán cubrir eventualmente los daños siguientes:<br/><br/>
+
+                            a) Rayo y/o incendio, siempre y cuando este sea por causa no imputable al usuario del bien arrendado.
+                            b) Explosión, excepto si son causados por calderas, aparatos y recipientes que estén normalmente sujetos a presión.
+                            c) Vendaval.
+                            d) Inundación, por causa natural.
+                            e) Colisión, descarrilamiento o volcadura durante el transporte terrestre del bien arrendado.
+                            f) Robo total del bien arrendado, debiendo en este caso "LA ARRENDATARIA" presentar la denuncia correspondiente ante las autoridades competentes (Ministerio Publico).<br/><br/>
+
+                            Por lo anterior, en tratándose de actos de vandalismo, huelguistas o personas que tomen parte en paros, disturbios de carácter obrero, motines o alborotos populares, sabotaje o actos de personas mal intencionadas durante la realización de tales actos, o bien, ocasionados por las medidas de represión de los mismos, tomadas por las autoridades legalmente reconocidas, con motivo de sus funciones, así como todos aquellos actos o hechos que no se indiquen los incisos anteriores, será "LA ARRENDATARIA" quien deba cubrir el costo total por cualquier daño o pérdida que sufra “LA CASETA”, al igual que en los supuestos siguientes:<br/><br/>
+
+                                a) Daños materiales y estructurales del bien arrendado por exceder la capacidad de carga en la unidad, por lo que deberá orientar a "LA ARRENDATARIA" sobre su capacidad al momento que lo solicite.<br/>
+                                b) Pérdida o daños causados a los bienes arrendados cuando sean utilizados para trabajos para los cuales no fueren construidos.<br/>
+                                c) Pérdidas o daños causados por exceder la capacidad de carga del bien arrendado, los vehículos terrestres o embarcaciones fluviales en que se transporten los bienes amparados cuando sea "LA ARRENDATARIA" quien realice el transporte y/o por utilizar vehículos que no fueran los adecuados para transportar los bienes amparados.<br/>
+                                d) Pérdida o daño causado por sobrecarga o tracción que exceda a la capacidad autorizada por el fabricante para cualquier operación, transporte o levantamiento de carga.<br/>
+                                e) Pérdidas o daños que se produzcan a consecuencia de actos de terrorismo o de actividades de una o más personas dirigidas a la destitución por la fuerza del gobierno de derecho o de hecho.<br/>
+                                f) En los casos de guerra, invasión, actos de enemigo extranjero, hostilidades u operaciones bélicas (haya sido declarada la guerra o no), guerra civil, motín, insurrección, rebelión, revolución, poder usurpado y golpe de estado.<br/>
+                                g) Pérdida o daños causados por el uso de cualquier arma de guerra que emplee fisión o fusión atómica o fuerza radioactiva ya sea en tiempo de paz o de guerra, reacciones nucleares, radiación o contaminación radioactiva.<br/>
+                                h) Pérdida o daños a dínamos, excitadores, lámparas, conmutadores, motores u otros equipos eléctricos que se causen por corto circuito, arco voltaico, falta de aislamiento eléctrico, sobre tensión y otros disturbios eléctricos, ya sea que prevengan de causas naturales o artificiales.<br/>
+                                i) Pérdidas o daños que sean consecuencia directa del uso u operación normales como el desgaste, deterioro gradual, corrosión, incrustación, herrumbres, y otros aspectos del medio ambiente.<br/>
+                                j) Pérdidas o daños ocasionados por confiscación, decomiso, requisición o destrucción de los bienes amparados por orden de gobierno de jure o de facto, o de cualquier autoridad pública, estatal, municipal o local legalmente reconocida con motivo de sus funciones.<br/>
+                                k) Pérdida o daños causados por culpa grave o actos dolosos directamente atribuibles a "LA ARRENDATARIA" o a cualquier persona que actúe a nombre del mismo en la dirección de la empresa o a la persona responsable de la dirección técnica.<br/>
+                                l) Pérdidas o daños cuya responsabilidad legal o contractual recaiga en el fabricante o en el vendedor de los bienes amparados en caso de que el bien arrendado le sea embargado por terceros al arrendatario.<br/>
+                                m) Pérdidas o daños que por su propia explosión sufran calderas, aparatos y recipientes que estén normalmente sujetos a presión.<br/>
+                                n) Faltantes que se descubran al efectuar inventarios físicos o revisiones de control siempre que no sean a consecuencia del robo cubierto.
+                                o) Pérdidas o daños por inmersión total o parcial en el agua, en zonas de marea y a consecuencia de esta.<br/>
+                                p) Cualquier reparación provisional y los daños que como consecuencia de dicha reparación provisional sufran los bienes amparados.<br/>
+                                q) Robo de partes, climas, útiles o accesorios a menos que sean consecuencia del robo total.<br/>
+                                r) Pérdidas o daños que sufran los bienes arrendados durante su transporte marítimo de altura o de cabotaje incluyendo las maniobras de carga y descarga. Esta exclusión no opera para el trasbordo fluvial de servicio regular.<br/>
+
+                    En caso de que se actualice alguna de las hipótesis señaladas para la procedencia del pago de daños o reparaciones por medio del Pelan de Protección, el importe que amparará no será mayor al precio actual de la unidad al momento del incidente, determinado este valor de acuerdo a listado de precios vigentes que lleva “LA ARRENDADORA”, en cuyo caso "LA ARRENDATARIA" deberá pagar tan solo el 10% del valor determinado de la unidad.<br/><br/>
+
+                    <strong>DÉCIMA CUARTA.- SUBARRENDAMIENTO.</strong><br/><br/>
+                    No podrá por ningún motivo "LA ARRENDATARIA" subarrendar, ceder y/o transmitir los derechos que del presente contrato emanan, ni mucho menos el uso o posesión de “LA CASETA”.<br/><br/>
+
+                    <strong>DÉCIMA QUINTA.- DE LOS GASTOS Y CONTRIBUCIONES.</strong><br/><br/>
+                    Todos los gastos que se generen por la celebración del presente contrato tales como honorarios de asesores financieros, jurídicos, técnicos, etc., correrán por cuenta y a cargo de la parte que los hubiera originado, siendo responsabilidad exclusiva de dicha parte el pago de los mismos. De igual forma, todos los impuestos, contribuciones y demás cargas fiscales que se originen por la celebración del presente contrato o durante la vigencia del mismo, deberán correr por cuenta y a cargo de la parte que en los términos de las leyes y demás disposiciones fiscales resulte obligada a ello.<br/><br/>
+
+                    <strong>DÉCIMA SEXTA.- DE LA PROCEDENCIA DE LOS RECURSOS.</strong><br/><br/>
+                    “LAS PARTES” manifiestan bajo formal protesta de decir verdad que los recursos con los que serán pagadas las pensiones rentísticas no provienen de actividades ilícitas, ni de ninguna otra prohibida por nuestra legislación actual.<br/><br/>
+
+                    Así mismo, refiere "LA ARRENDATARIA" bajo formal protesta de decir verdad que los recursos con los que celebrará las operaciones objeto del presente contrato son de su propiedad, derivados del desarrollo de actividades lícitas, manifestando que conoce y entiende plenamente las disposiciones relativas a las operaciones realizadas con recursos de procedencia ilícita y sus consecuencias. En el supuesto de que los recursos con los que efectúe el pago de las operaciones sean propiedad de un tercero, se obliga a notificar tal situación a “LA ARRENDADORA”, así como a identificar plenamente al tercero por cuenta del cual actúe.<br/><br/>
+
+                    <strong>DÉCIMA SÉPTIMA.- EXTINCIÓN DE DOMINIO.</strong><br/><br/>
+                    Para efectos del presente contrato, "LA ARRENDATARIA" libera a “LA ARRENDADORA” de toda responsabilidad penal en la que pudiese verse involucrado por la comisión de cualquier delito consumado y en el que se pueda involucrar a “LA CASETA”, ya sea que el mismo esté relacionado con
+                    la delincuencia organizada o cualquier otro ilícito de los previstos por el artículo 8° de la Ley Federal de Extinción de Dominio o cualquier otro que impacte o se encuentre previsto en dicha legislación, motivo por el cual será causa de rescisión automática del presente contrato de arrendamiento el sólo hecho de que “LA CASETA” sea resguardada o asegurada por cualquier autoridad derivado de la sospecha o comprobación de la comisión de algún delito.<br/><br/>
+
+                    Lo anterior, en el entendido de que la acción de extinción de dominio es de carácter real, de contenido patrimonial y es procedente sobre cualquier bien, independientemente de quien lo tenga en su poder o lo haya adquirido respecto de los bienes relacionados o vinculados con los delitos señalados en el párrafo que antecede, de ahí que en este acto "LA ARRENDATARIA" se obligue a no vincular de forma alguna la caseta dada en arrendamiento en tratándose de:<br/><br/>
+
+                        a) Instrumento, objeto o producto del delito, aun cuando no se haya dictado la sentencia que determine la responsabilidad penal, pero existan elementos suficientes para determinar que el hecho ilícito sucedió.<br/>
+                        b) Instrumento, objeto o producto del delito que haya sido utilizado o destinado a ocultar o mezclar bienes producto del delito.<br/>
+                        c) Ser utilizado para la comisión de delitos por un tercero.<br/>
+                        d) Producto de delitos patrimoniales o de delincuencia organizada.<br/>
+
+
+                    <!--LAST PAGE
+                    <p style="page-break-after:always"></p>
+                    PÁGINA 13-->
+                    
+                    <strong>DÉCIMA OCTAVA.- JURISDICCIÓN.</strong><br/><br/>
+                    “LAS PARTES” expresamente convienen en que para el caso de interpretación y/o ejecución del presente contrato, se someten a las leyes aplicables y jurisdicción de los Tribunales de Hermosillo, Sonora, renunciando expresamente a cualquier fuero que pudiera corresponderles en razón de su domicilio o ubicación de sus bienes, presentes o futuros.<br/><br/>
+
+                    <strong>DÉCIMA OCTAVA.- JURISDICCIÓN.</strong><br/><br/>
+                    “LAS PARTES” expresamente convienen en que para el caso de interpretación y/o ejecución del presente contrato, se someten a las leyes aplicables y jurisdicción de los Tribunales de Hermosillo, Sonora, renunciando expresamente a cualquier fuero que pudiera corresponderles en razón de su domicilio o ubicación de sus bienes, presentes o futuros.<br/><br/>
+
+<!--
+                    Leído por “LAS PARTES” el presente contrato, lo firman el <span t-esc="docs.date_start.strftime('%A, %d de %B del %Y')" /> en la Ciudad de <t t-if="'Hermosillo' in docs.team_id.direccion"><span>Hermosillo, Sonora</span></t> <t t-if="'Hermosillo' not in docs.team_id.direccion">Hermosillo, Sonora y<span t-field="docs.team_id.direccion"/></t>.<br/><br/>
+-->
+                <div style="display:table;width:100%;"> 
+                  <table class="table table-borderless" style="font-weight:bold;text-align:center;">
+                    <tr>
+                        <td style="width:45%;">
+                        “LA ARRENDADORA”
+                            <br/><br/><br/><br/><br/>
+                        </td>
+                        <td>
+                
+                        </td>
+                        <td style="width:45%;">
+                        “EL ARRENDATARIO”<br/><br/><br/><br/><br/>
+                        </td>
+                    </tr>
+                    <tr style="padding:0px;">
+                        <td style="border-top:1px solid black;">
+                            STRUCTURALL SONORA S.A. DE C.V.<br/>
+                            <span t-field="docs.team_id.nombre_representante_st"/>
+                        </td>
+                        <td></td>
+                        <td style="border-top:1px solid black;">
+                            <span t-field="docs.partner_id.name"/><br/>
+                            <span t-field="docs.nombre_representante_pn"/>
+                        </td>
+                    </tr>
+                  </table>
+                </div>
+
+
+                  <br/><br/><br/><br/>
+
+                <div>
+                    <p style="color:gray;">LA PRESENTE FOJA FORMA PARTE DE UNA SERIE NUMERADA DE <span class="topage"/>, SUSCRITA CON MOTIVO DEL CONTRATO DE ARRENDAMIENTO DE BIEN MUEBLE DE FECHA <span t-esc="docs.date_start.strftime('%A, %d de %B del %Y')" style="text-transform: uppercase;"/>, CELEBRADO POR STRUCTURALL SONORA S.A. DE C.V. COMO PROPIETARIA DE LA CASETA Y <span t-field="docs.partner_id.name"/> COMO ARRENDATARIA</p>
+                </div>
+
+                  
+
+
+
+
+
+                </div>
+            </div>
+
+        </t>
+        </t>
+    </template>
+
+
+</data>
+
+</odoo>

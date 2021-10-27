@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_partner_approval_wizard_form" model="ir.ui.view">
+            <field name="name">Partner Approval Reason</field>
+            <field name="model">partner.approval.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Approval Reason">
+                	<group>
+                		<field name="name" required="1"/>
+                		<field name="partner_id" invisible="1"/>
+                	</group>
+                	<footer>
+                        <button name="approve_disapprove_supplier" string="Approved" invisible="not context.get('flag')" type="object" class="oe_highlight"/>
+                        <button name="approve_disapprove_supplier" string="Not Approved" invisible="context.get('flag')" type="object" class="oe_highlight"/>
+                        <button string="Cancel" class="oe_highlight" special="cancel" />
+                    </footer>
+               </form>
+            </field>
+        </record>
+    </data>
+</odoo>

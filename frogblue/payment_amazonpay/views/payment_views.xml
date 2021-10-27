@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <record id="acquirer_form" model="ir.ui.view">
+        <field name="name">acquirer.form.inherited.payment_amazonpay</field>
+        <field name="model">payment.acquirer</field>
+        <field name="inherit_id" ref="payment.acquirer_form" />
+        <field name="priority" eval="999" />
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='acquirer']" position="after">
+                <group attrs="{'invisible': [('provider', '!=', 'amazonpay')]}">
+                    <field name="amazonpay_merchant_id" attrs="{'required': [('provider', '=', 'amazonpay')]}" />
+                    <field name="amazonpay_mws_access_key" attrs="{'required': [('provider', '=', 'amazonpay')]}" />
+                    <field name="amazonpay_mws_secret_key" password="True" attrs="{'required': [('provider', '=', 'amazonpay')]}" />
+                    <field name="amazonpay_client_id" attrs="{'required': [('provider', '=', 'amazonpay')]}" />
+
+                    <field name="amazonpay_region" attrs="{'required': [('provider', '=', 'amazonpay')]}" />
+                    <field name="amazonpay_widgets_url" groups="base.group_no_one" />
+
+<!--                    <field name="amazonpay_ipn_url" />-->
+
+                    <field name="amazonpay_close_order_reference_after_capture" />
+
+                    <a colspan="2" target="_blank"
+                       href="https://developer.amazon.com/docs/amazon-pay-onetime/register.html">How to configure your Amazon Pay account?</a>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+
+
+    <record id="transaction_form" model="ir.ui.view">
+        <field name="name">acquirer.transaction.form.inherited.payment_amazonpay</field>
+        <field name="model">payment.transaction</field>
+        <field name="inherit_id" ref="payment.transaction_form" />
+        <field name="priority" eval="999" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='acquirer_reference']" position="after">
+                <field name="capture_manually" invisible="1" />
+
+                <field name="amazonpay_seller_authorize_reference_id" readonly="1" attrs="{'invisible': [('provider', '!=', 'amazonpay')]}" />
+                <field name="amazonpay_amazon_authorize_reference_id" readonly="1" attrs="{'invisible': [('provider', '!=', 'amazonpay')]}" />
+                <field name="amazonpay_seller_capture_id" readonly="1" attrs="{'invisible': ['|', ('provider', '!=', 'amazonpay'), ('capture_manually', '=', False)]}" />
+                <field name="amazonpay_amazon_capture_id" readonly="1" attrs="{'invisible': ['|', ('provider', '!=', 'amazonpay'), ('capture_manually', '=', False)]}" />
+                <field name="amazonpay_seller_refund_id" readonly="1" attrs="{'invisible': ['|', ('provider', '!=', 'amazonpay'), ('amazonpay_amazon_capture_id', '=', False)]}" />
+                <field name="amazonpay_amazon_refund_id" readonly="1" attrs="{'invisible': ['|', ('provider', '!=', 'amazonpay'), ('amazonpay_amazon_capture_id', '=', False)]}" />
+            </xpath>
+
+            <sheet position="inside">
+                <label for="amazonpay_log_ids" attrs="{'invisible': [('provider', '!=', 'amazonpay')]}" />
+                <field name="amazonpay_log_ids" readonly="1"
+                       attrs="{'invisible': [('provider', '!=', 'amazonpay')]}"
+                       groups="base.group_system, base.group_no_one">
+                    <tree create="0" edit="0" duplicate="0" delete="0">
+                        <field name="create_date" string="Date" readonly="1" />
+                        <field name="operation" readonly="1" />
+                    </tree>
+                    <form create="0" edit="0" duplicate="0" delete="0">
+                        <group>
+                            <field name="create_date" string="Date" readonly="1" />
+                            <field name="operation" readonly="1" />
+                        </group>
+
+                        <label for="sent" />
+                        <field name="sent" readonly="1" class="text-monospace" />
+
+                        <label for="received" />
+                        <field name="received" readonly="1" class="text-monospace" />
+                    </form>
+                </field>
+            </sheet>
+        </field>
+    </record>
+
+
+</odoo>

@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="picklist_internal_content">
+        <t t-if="doc.sale_id and doc.picking_type_id.sequence_id.name == 'Dropship'">
+            <t t-set="o" t-value="doc.with_context(lang=doc.sale_id.partner_shipping_id.lang)"/>
+        </t>
+        <t t-else="">
+            <t t-set="o" t-value="doc.with_context(lang=doc.partner_id.lang)"/>
+        </t>
+        <div class="content">
+            <div>
+                <div class="left_content_div">
+                    <t t-if="doc.sale_id and doc.picking_type_id.sequence_id.name == 'Dropship'">
+                        <t t-set="partner" t-value="o.sale_id.partner_shipping_id"/>
+                    </t>
+                    <t t-else="">
+                        <t t-set="partner" t-value="o.partner_id"/>
+                    </t>
+                </div>
+                <div class="main_content_div">
+                    <div class="total">
+                        <div class="main_col1">
+                            <span class="content_headline">
+                                <span style="font-size: 18px; font-weight: bolder;">Pick List:</span>
+                                <span style="font-size: 18px; font-weight: bolder;">
+                                    <t t-esc="o.name" />
+                                </span>
+                                <br />
+                                <span style="font-size: 18px; font-weight: bolder;">
+                                    <t t-esc="o.partner_id and o.partner_id.name or ''" />
+                                </span>
+                            </span>
+                        </div><!--
+                        --><div class="main_col2">
+                            <span style="font-size: 18px; font-weight: bolder;">
+                                <t t-if="o.sale_id and o.sale_id.name">
+                                    <img
+                                        t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', o.sale_id.name, 600, 100)"
+                                        style="width:280px;height:50px;"
+                                    />
+                                </t>
+                                <br/>
+                            </span>
+                        </div><!--
+                        --><div class="main_col3">
+                            <t t-set="total_data" t-value="get_total_data(o)"/>
+                            <!--<span class="content_headline">-->
+                            <div class="main_col3_1">
+                                <span style="font-size: 18px; font-weight: bolder;">Total weight:</span>
+                            </div><!--
+                            --><div class="main_col3_2">
+                                <span style="font-size: 18px; font-weight: bolder;">
+                                    <t t-if="total_data['total_weight']">
+                                        <t t-if="isinstance(total_data['total_weight'], int)">
+                                            <span t-esc="'%.0f'%total_data['total_weight']"/>
+                                        </t>
+                                        <t t-if="not isinstance(total_data['total_weight'], int)">
+                                            <!--<span t-esc="'%.2f'%total_data['total_weight']"/>-->
+                                            <span t-esc="get_formated_amount(env=False, amount=total_data['total_weight'], currency_obj=False, obj=o)" />
+                                        </t>
+                                    </t>
+                                    <t t-else="">
+                                        <span t-esc="'%.0f'%0.0"/>
+                                    </t>
+                                </span>
+                            </div>
+                            <br />
+                            <div class="main_col3_1">
+                                <span style="font-size: 18px; font-weight: bolder;">Total pieces:</span>
+                            </div><!--
+                            --><div class="main_col3_2">
+                                <span style="font-size: 18px; font-weight: bolder;">
+                                    <t t-if="total_data['total_pieces']">
+                                        <t t-if="isinstance(total_data['total_pieces'], int)">
+                                            <span t-esc="'%.0f'%total_data['total_pieces']"/>
+                                        </t>
+                                        <t t-if="not isinstance(total_data['total_pieces'], int)">
+                                            <!--<span t-esc="'%.2f'%total_data['total_pieces']"/>-->
+                                            <span t-esc="get_formated_amount(env=False, amount=total_data['total_pieces'], currency_obj=False, obj=o)" />
+                                        </t>
+                                    </t>
+                                    <t t-else="">
+                                        <span t-esc="'%.0f'%0.0"/>
+                                    </t>
+                                </span>
+                            </div>
+                            <!--</span>-->
+                        </div>
+                        <br/>
+                        <br/>
+                    </div>
+
+                    <table class="main_content_table">
+                        <thead>
+                            <tr class="main_table_row_border_bottom">
+                                <th class="picklist_table_col1_h">
+                                    <span>Stock Location</span>
+                                </th>
+                                <th class="picklist_table_col2_h">
+                                    <span>Qty</span>
+                                </th>
+                                <th class="picklist_table_col3_h">
+                                    <span>Product Name</span>
+                                </th>
+                                <th class="picklist_table_col4_h">
+                                    <span>Ean Product</span>
+                                </th>
+                                <th class="picklist_table_col5_h">
+                                    <span>Weight</span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <t t-foreach="o.move_lines" t-as="move_line">
+                            <t t-foreach="move_line.move_line_ids" t-as="line">
+                                <tbody class="sale_tbody">
+                                    <t t-call="frogblue_reports.frogblue_line_header_picklist"/>
+                                    <t t-call="frogblue_reports.frogblue_line_offer_picklist"/>
+                                </tbody>
+                            </t>
+                        </t>
+                    </table>
+                </div>
+                <br/>
+                <br/>
+                <div class="main_content_div">
+                    <table class="main_content_table">
+                        <tbody class="sale_tbody">
+                            <tr >
+                                <td class="bottom_free_text_col_1">
+                                    Packer:
+                                </td>
+                                <td class="bottom_free_text_col_1_2">
+                                    <div class="free_text_line"></div>
+                                </td>
+                                <td class="bottom_free_text_col_2">
+                                    Control:
+                                </td>
+                                <td class="bottom_free_text_col_2_2">
+                                    <div class="free_text_line"></div>
+                                </td>
+                                <td class="bottom_free_text_col_3">
+                                    Shipping:
+                                </td>
+                                <td class="bottom_free_text_col_3_2">
+                                    <div class="free_text_line"></div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="frogblue_line_header_picklist">
+    </template>
+
+    <template id="frogblue_line_offer_picklist">
+        <t t-set="line_quantities" t-value="get_line_quantities(move_line, line)"/>
+        <tr class="main_table_row_border_bottom">
+            <td class="picklist_table_col1">
+                <span t-esc="line.location_id and line.location_id.complete_name or ''"/>.
+            </td>
+            <td class="picklist_table_col2">
+                <t t-if="line_quantities['qty_done']">
+                    <t t-if="isinstance(line_quantities['qty_done'], int)">
+                        <span t-esc="'%.0f'%line_quantities['qty_done']"/>
+                    </t>
+                    <t t-if="not isinstance(line_quantities['qty_done'], int)">
+                        <!--<span t-esc="'%.2f'%line_quantities['qty_done']"/>-->
+                        <span t-esc="get_formated_amount(env=False, amount=line_quantities['qty_done'], currency_obj=False, obj=o)" />
+                    </t>
+                </t>
+                <t t-else="">
+                    <span t-esc="'%.0f'%0.0"/>
+                </t>
+            </td>
+            <td class="picklist_table_col3">
+                <table class="pic_table">
+                    <tr class="pic_table">
+                        <td class="main_table_col2">
+                            <t t-if="move_line.product_id">
+                                <t t-if="move_line.product_id.default_code">
+                                    <span t-esc="move_line.product_id.default_code"/>
+                                </t> /
+                                <span t-esc="get_customer_product_number(move_line.product_id, partner)" />
+                                <br/>
+                            </t>
+                            <t t-if="move_line.product_id.default_code and '[%s]' % move_line.product_id.default_code in move_line.name">
+                                <t t-set="descr_lines" t-value="move_line.name.replace('[%s]' % move_line.product_id.default_code, '')"/>
+                                <t t-foreach="descr_lines.split('\n')" t-as="desc_line">
+                                    <span t-esc="desc_line"/>
+                                    <br/>
+                                </t>
+                            </t>
+                            <t t-if="move_line.product_id.default_code and '[%s]' % move_line.product_id.default_code not in move_line.name">
+                                <t t-foreach="move_line.name.split('\n')" t-as="desc_line">
+                                    <span t-esc="desc_line"/>
+                                    <br/>
+                                </t>
+                            </t>
+                            <t t-if="not move_line.product_id.default_code">
+                                <t t-foreach="move_line.name.split('\n')" t-as="desc_line">
+                                    <span t-esc="desc_line"/>
+                                    <br/>
+                                </t>
+                            </t>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td class="picklist_table_col4">
+                <t t-if="line.lot_id and line.lot_id.name">
+                    <span t-esc="line.lot_id.name"/><br/>
+                    <span>
+                        <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', line.lot_id.name, 600, 100)" style="width:100%;height:30px"/>
+                    </span>
+                </t>
+            </td>
+            <td class="picklist_table_col5">
+                <t t-if="line_quantities['qty_done_weight']">
+                    <t t-if="isinstance(line_quantities['qty_done_weight'], int)">
+                        <span t-esc="'%.0f'%line_quantities['qty_done_weight']"/>
+                    </t>
+                    <t t-if="not isinstance(line_quantities['qty_done_weight'], int)">
+                        <!--<span t-esc="'%.2f'%line_quantities['qty_done_weight']"/>                        -->
+                        <span t-esc="get_formated_amount(env=False, amount=line_quantities['qty_done_weight'], currency_obj=False, obj=o)" />
+                    </t>
+                </t>
+                <t t-else="">
+                    <span t-esc="'%.0f'%0.0"/>
+                </t>
+            </td>
+        </tr>
+    </template>
+
+
+    <template id="report_frogblue_pick_list_document">
+        <t t-call="frogblue_reports.frogblue_external_layout">
+            <div class="page">
+                <t t-call="frogblue_reports.picklist_internal_content"/>
+            </div>
+        </t>
+    </template>
+
+    <template id="report_frogblue_picklist">
+        <t t-call="frogblue_reports.frogblue_html_container">
+            <t t-foreach="docs" t-as="doc">
+                <!--<t t-call="frogblue_reports.report_frogblue_pick_list_document" t-lang="doc.partner_id.lang"/>-->
+                <t t-if="doc.sale_id and doc.picking_type_id.sequence_id.name == 'Dropship'">
+                    <t t-call="frogblue_reports.report_frogblue_pick_list_document" t-lang="doc.sale_id.partner_shipping_id.lang" />
+                </t>
+                <t t-else="">
+                    <t t-call="frogblue_reports.report_frogblue_pick_list_document" t-lang="doc.partner_id.lang"/>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

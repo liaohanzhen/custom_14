@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <!--Email template -->
+        <record id="email_template_training_trainer" model="mail.template">
+            <field name="name">Employee Training Email Template</field>
+            <field name="email_from">${(object.session_id.employee_id.work_email and '%s &lt;%s&gt;' % (object.session_id.employee_id.name, object.session_id.employee_id.work_email) or '')|safe}</field>
+            <!-- <field name="email_from">${(object.user_id.email and '%s &lt;%s&gt;' % (object.user_id.name, object.user_id.email) or '')|safe}</field> -->
+            <field name="subject">${object.name or 'n/a' }</field>
+            <field name="email_to">${object.employee_id.work_email}</field>
+            <field name="model_id" ref="employee_training.model_training_training"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[
+<p>Dear <b>${object.employee_id.name}</b>
+,</p>
+<p>
+<b>${object.company_id.name}</b> hereby certifies that you have been attending and successfully
+completed the training course <b>${object.template_id.name or 'n/a' }</b> on <b>${object.start_date or 'n/a' }</b>.
+<p>
+Best Regards,<br/>
+HR Team
+</p>
+
+]]></field>
+        </record>
+		<!-- Email template Signature request.  --> 
+		<record id="email_template_training_employee_signature_request" model="mail.template">
+            <field name="name">Employee Signature Request</field>
+            <field name="email_from">${(object.session_id.employee_id.work_email and '%s &lt;%s&gt;' % (object.session_id.employee_id.name, object.session_id.employee_id.work_email) or '')|safe}</field>
+            <field name="subject">${object.name or 'n/a' }</field>
+            <field name="email_to">${object.employee_id.work_email}</field>
+            <field name="model_id" ref="employee_training.model_training_training" />
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[
+<p>Dear <b>${object.employee_id.name}</b>,</p>
+<p>You have been invited to follow the online training <b>${object.template_id.name}</b>.</p> 
+<p>Please click on the below button to have access to training material or tutorial.</p>
+<p>Once you have gone through this training, please sign off on it by clicking on below button.</p>
+<p>This training will expire on ${object.deadline_date}.</p>
+<p><br/>
+	<a href="/mail/view?model=training.training&amp;res_id=${object.id}"
+	        style="background-color: #9E588B; margin-top: 10px; padding: 10px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 16px;">
+	    View/Sign Training
+	</a>
+<br/>
+</p>
+<p>
+<br/>
+Good luck and all the best,<br/>
+5B HR Team
+</p>
+
+]]></field>
+        </record>
+		
+    </data>
+</odoo>

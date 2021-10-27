@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_customer_product_code_group_user,customer.product.code.group.user,model_customer_product_code,base.group_user,1,1,1,1
+access_weee_number_group_user,weee.number.group.user,model_weee_number,base.group_user,1,1,1,1
+access_ir_attachment_types,access_ir_attachment_types,model_ir_attachment_types,base.group_user,1,1,1,1
+access_ir_attachment_tags,access_ir_attachment_tags,model_ir_attachment_tags,base.group_user,1,1,1,1
+access_ic_picking_date,access_ic_picking_date,model_ic_picking_date,base.group_user,1,1,1,1
+access_fb_inventory_report,access_fb_inventory_report,model_fb_inventory_report,base.group_user,1,1,1,1

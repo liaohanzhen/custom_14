@@ -1,0 +1,118 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#   * syscoon_open_trans
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-03-01 10:09+0000\n"
+"PO-Revision-Date: 2021-03-01 10:09+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: syscoon_open_trans
+#: code:addons/syscoon_open_trans/models/sale_order.py:37
+#, python-format
+msgid "<b>OpenTrans Order API Status<b/>:<br/>"
+msgstr "<b>OpenTrans Auftrags-API Status<b/>:<br/>"
+
+#. module: syscoon_open_trans
+#: code:addons/syscoon_open_trans/models/sale_order.py:49
+#, python-format
+msgid "Connection Error - Order not transmitted<br/>"
+msgstr "Verbindungsfehler - Auftrag nicht übermittelt<br/>"
+
+#. module: syscoon_open_trans
+#: model:ir.model,name:syscoon_open_trans.model_res_partner
+msgid "Contact"
+msgstr "Kontakt"
+
+#. module: syscoon_open_trans
+#: model:ir.model.fields,field_description:syscoon_open_trans.field_open_trans_sale_order_create_uid
+msgid "Created by"
+msgstr "Erstellt von"
+
+#. module: syscoon_open_trans
+#: model:ir.model.fields,field_description:syscoon_open_trans.field_open_trans_sale_order_create_date
+msgid "Created on"
+msgstr "Erstellt am"
+
+#. module: syscoon_open_trans
+#: code:addons/syscoon_open_trans/models/sale_order.py:51
+#, python-format
+msgid "Customer is set to not transmit Orders<br/>"
+msgstr "Für disen Kunden werden keine Aufträge übermittelt<br/>"
+
+#. module: syscoon_open_trans
+#: model:ir.model.fields,field_description:syscoon_open_trans.field_open_trans_sale_order_display_name
+msgid "Display Name"
+msgstr "Anzeigename"
+
+#. module: syscoon_open_trans
+#: model:ir.model.fields,field_description:syscoon_open_trans.field_open_trans_sale_order_id
+msgid "ID"
+msgstr "ID"
+
+#. module: syscoon_open_trans
+#: model:ir.model.fields,field_description:syscoon_open_trans.field_open_trans_sale_order___last_update
+msgid "Last Modified on"
+msgstr "Zuletzt geändert am"
+
+#. module: syscoon_open_trans
+#: model:ir.model.fields,field_description:syscoon_open_trans.field_open_trans_sale_order_write_uid
+msgid "Last Updated by"
+msgstr "Zuletzt aktualisiert durch"
+
+#. module: syscoon_open_trans
+#: model:ir.model.fields,field_description:syscoon_open_trans.field_open_trans_sale_order_write_date
+msgid "Last Updated on"
+msgstr "Zuletzt aktualisiert am"
+
+#. module: syscoon_open_trans
+#: model:ir.model.fields,field_description:syscoon_open_trans.field_res_partner_not_transmit_order
+#: model:ir.model.fields,field_description:syscoon_open_trans.field_res_users_not_transmit_order
+msgid "Not Transmit Orders"
+msgstr "Aufträge nicht übermitteln"
+
+#. module: syscoon_open_trans
+#: model:ir.model.fields,field_description:syscoon_open_trans.field_sale_order_opentrans_order_not_send
+msgid "Not transmit Order"
+msgstr "Auftrag nicht übermitteln"
+
+#. module: syscoon_open_trans
+#: model:ir.model,name:syscoon_open_trans.model_open_trans_sale_order
+msgid "OpenTrans Module for Sale Orders"
+msgstr "OpenTrans Modul für Verkaufsauftrage"
+
+#. module: syscoon_open_trans
+#: model:ir.model.fields,field_description:syscoon_open_trans.field_sale_order_opentrans_order_transmitted
+msgid "Order Transmitted"
+msgstr "Auftrag übermittelt"
+
+#. module: syscoon_open_trans
+#: code:addons/syscoon_open_trans/models/sale_order.py:43
+#, python-format
+msgid "Order not transmitted<br/>"
+msgstr "Auftrag nicht übermittelt<br/>"
+
+#. module: syscoon_open_trans
+#: code:addons/syscoon_open_trans/models/sale_order.py:40
+#, python-format
+msgid "Order transmitted<br/>"
+msgstr "Auftrag übermittelt<br/>"
+
+#. module: syscoon_open_trans
+#: model:ir.model,name:syscoon_open_trans.model_sale_order
+msgid "Quotation"
+msgstr "Angebot"
+
+#. module: syscoon_open_trans
+#: code:addons/syscoon_open_trans/models/sale_order.py:44
+#, python-format
+msgid "Status: %s - %s<br/>"
+msgstr "Status: %s - %s<br/>"

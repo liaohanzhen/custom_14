@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="code_project_form">
+            <field name="name">Project Code Form</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.edit_project"/>
+            <field name="arch" type="xml">
+                <field name="user_id" position="after">
+                    <field name="project_code"/>
+                </field>
+            </field>
+        </record>
+        <!--  added by nilesh -->
+        <record model="ir.ui.view" id="view_task_form2_aureliehocquel">
+            <field name="name">Project task Code Form</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_form2"/>
+            <field name="arch" type="xml">
+                <field name="project_id" position="before">
+                    <field name="id" readonly="1" string="Task ID"/>
+                </field>
+            </field>
+        </record>
+        
+    </data>
+</odoo>

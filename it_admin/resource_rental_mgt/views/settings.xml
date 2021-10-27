@@ -1,0 +1,87 @@
+<?xml version ='1.0'?>
+<odoo>
+    <data>
+        <record id="rental_settings_form_view" model="ir.ui.view">
+            <field name="name">rental.settings.form</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('settings')]" position="inside">
+                    <div class="app_settings_block" data-string="Rental" string="Rental"
+                         data-key="resource_rental_mgt">
+                        <h2>Rental Management</h2>
+                        <div class="row mt16 o_settings_container">
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                    <field name="send_mail_qty_reserved"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="send_mail_qty_reserved"/>
+                                    <div class="text-muted">
+                                        Send a email once the rental quantity is reserved
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                    <field name="send_mail_qty_delivered"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="send_mail_qty_delivered"/>
+                                    <div class="text-muted">
+                                        Send a once the rental quantity is picked or delivered
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                    <field name="send_mail_qty_returned"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="send_mail_qty_returned"/>
+                                    <div class="text-muted">
+                                        Send a email once the rental quantity is returned
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h2>Rental Delay</h2>
+                        <div class="row mt16 o_settings_container">
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <div class="o_setting_right_pane">
+                                    <strong>Default Delay Costs</strong>
+                                    <div class="text-muted">
+                                        Additional costs for late returns
+                                    </div>
+                                    <group>
+                                        <field name="extra_hour" widget='monetary'
+                                               options="{'currency_field': 'currency_id', 'field_digits': True}"/>
+                                        <field name="extra_day" widget='monetary'
+                                               options="{'currency_field': 'currency_id', 'field_digits': True}"/>
+                                        <field name="min_extra_hour" string="Apply after(hours)"/>
+                                        <field name="product_id"/>
+                                    </group>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </xpath>
+            </field>
+        </record>
+
+        <record id='rental_settings_action_id' model='ir.actions.act_window'>
+            <field name='name'>Settings</field>
+            <field name='res_model'>res.config.settings</field>
+            <field name="view_id" ref="rental_settings_form_view"/>
+            <field name='view_mode'>form</field>
+            <field name="target">inline</field>
+            <field name="context">{'module': 'resource_rental_mgt'}</field>
+        </record>
+
+        <menuitem id='rental_mgt_settings' name='Settings' parent='resource_rental_mgt.config_rental'
+                  action="resource_rental_mgt.rental_settings_action_id" sequence='6'/>
+
+    </data>
+</odoo>

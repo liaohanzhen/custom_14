@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record model="ir.ui.view" id="sign_send_request_priority_dialog_view_form">
+		<field name="name">sign.send.request.priority.dialog.view.form</field>
+		<field name="model">sign.send.sequence.dialog</field>
+		<field name="arch" type="xml">
+			<form string="Confirm Sign">
+				<field name="sign_request_id" invisible="1"/>
+				<field name="data_html" nolabel="1" readonly="1" force_save="1"/>
+				<footer>
+                    <button name="send_request" string="Send" type="object" class="oe_highlight"/> 
+                    <button string="Cancel" class="oe_highlight" special="cancel" />
+                </footer>
+			</form>
+		</field>
+	</record>
+</odoo>

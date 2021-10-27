@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_employee_signature_wizard_form" model="ir.ui.view">
+            <field name="name">Signature</field>
+            <field name="model">employee.signature.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Signature">
+                	<group>
+                		<field name="signature" widget="signature"/>
+                	</group>
+                	<footer>
+                        <button name="draw_signature" string="Confirm" type="object" class="oe_highlight"/>
+                        <button string="Cancel" class="oe_highlight" special="cancel" />
+                    </footer>
+               </form>
+            </field>
+        </record>
+    </data>
+</odoo>

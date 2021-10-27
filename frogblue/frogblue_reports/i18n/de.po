@@ -1,0 +1,800 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#   * frogblue_reports
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-03-01 05:58+0000\n"
+"PO-Revision-Date: 2021-03-01 07:18+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: de\n"
+"X-Generator: Poedit 2.4.1\n"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.frogblue_line_offer
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.frogblue_line_offer_invoice
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.frogblue_line_offer_proforma
+msgid "% discount"
+msgstr ""
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.deliverynote_internal_content
+msgid "- amount:"
+msgstr ""
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.saleorder_internal_content
+msgid "- real costs may vary."
+msgstr ""
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.deliverynote_internal_content
+msgid "1 x package -"
+msgstr ""
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.saleorder_internal_content
+msgid ""
+"<br/>\n"
+"                            The"
+msgstr ""
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.saleorder_internal_content_proforma
+msgid ""
+"<span class=\"content_headline\">\n"
+"                                                <span style=\"font-size: 18px; font-weight: bolder;\">Pro forma "
+"invoice</span>\n"
+"                                            <br/>\n"
+"                                            <br/>\n"
+"                                        </span>\n"
+"                                        <span style=\"font-weight: lighter;\">\n"
+"                                            Your order no.:\n"
+"                                        </span>"
+msgstr ""
+"<span class=\"content_headline\">\n"
+"                                                <span style=\"font-size: 18px; font-weight: bolder;\">Proforma "
+"Rechnung</span>\n"
+"                                            <br/>\n"
+"                                            <br/>\n"
+"                                        </span>\n"
+"                                        <span style=\"font-weight: lighter;\">\n"
+"                                            Ihre Bestellnummer:\n"
+"                                        </span>"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.deliverynote_internal_content
+msgid "<span style=\"font-size: 18px; font-weight: bolder;\">Delivery note</span>"
+msgstr "<span style=\"font-size: 18px; font-weight: bolder;\">Lieferschein</span>"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.saleorder_internal_content
+msgid "<span style=\"font-size: 18px; font-weight: bolder;\">Offer</span>"
+msgstr "<span style=\"font-size: 18px; font-weight: bolder;\">Angebot</span>"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.saleorder_internal_content
+msgid "<span style=\"font-size: 18px; font-weight: bolder;\">Order confirmation</span>"
+msgstr "<span style=\"font-size: 18px; font-weight: bolder;\">Auftragsbestätigung</span>"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.picklist_internal_content
+msgid "<span style=\"font-size: 18px; font-weight: bolder;\">Pick List:</span>"
+msgstr "<span style=\"font-size: 18px; font-weight: bolder;\">Pick Liste:</span>"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.purchaseorder_internal_content
+msgid "<span style=\"font-size: 18px; font-weight: bolder;\">Purchase Order</span>"
+msgstr "<span style=\"font-size: 18px; font-weight: bolder;\">Einkaufsbestellung</span>"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.purchaseorder_internal_content
+msgid "<span style=\"font-size: 18px; font-weight: bolder;\">Request for Quotation</span>"
+msgstr "<span style=\"font-size: 18px; font-weight: bolder;\">Einkaufsauftrag</span>"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.deliverynote_internal_content
+msgid "<span style=\"font-size: 18px; font-weight: bolder;\">Return</span>"
+msgstr "<span style=\"font-size: 18px; font-weight: bolder;\">Rückgabe</span>"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.picklist_internal_content
+msgid "<span style=\"font-size: 18px; font-weight: bolder;\">Total pieces:</span>"
+msgstr "<span style=\"font-size: 18px; font-weight: bolder;\">Stück gesamt:</span>"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.picklist_internal_content
+msgid "<span style=\"font-size: 18px; font-weight: bolder;\">Total weight:</span>"
+msgstr "<span style=\"font-size: 18px; font-weight: bolder;\">Gewicht gesamt:</span>"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.saleorder_internal_content
+msgid ""
+"<span style=\"font-weight: lighter;\">\n"
+"                                                    Your VAT ID:\n"
+"                                                </span>"
+msgstr ""
+"<span style=\"font-weight: lighter;\">\n"
+"                                                    Ihre USt-ID:\n"
+"                                                </span>"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.accountinvoice_internal_content
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.deliverynote_internal_content
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.saleorder_internal_content_proforma
+msgid ""
+"<span style=\"font-weight: lighter;\">\n"
+"                                                Your VAT ID:\n"
+"                                            </span>"
+msgstr ""
+"<span style=\"font-weight: lighter;\">\n"
+"                                                Ihre USt-ID:\n"
+"                                            </span>"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.accountinvoice_internal_content
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.deliverynote_internal_content
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.saleorder_internal_content
+msgid ""
+"<span style=\"font-weight: lighter;\">\n"
+"                                                Your order no.:\n"
+"                                            </span>"
+msgstr ""
+"<span style=\"font-weight: lighter;\">\n"
+"                                                Ihre Auftragsnummer:\n"
+"                                            </span>"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.accountinvoice_internal_content
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.saleorder_internal_content
+msgid ""
+"<span style=\"font-weight: lighter;\">\n"
+"                                                dated\n"
+"                                            </span>"
+msgstr ""
+"<span style=\"font-weight: lighter;\">\n"
+"                                                datiert\n"
+"                                            </span>"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.saleorder_internal_content_proforma
+msgid ""
+"<span style=\"font-weight: lighter;\">\n"
+"                                            dated\n"
+"                                        </span>"
+msgstr ""
+"<span style=\"font-weight: lighter;\">\n"
+"                                            datiert\n"
+"                                        </span>"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.deliverynote_internal_content
+msgid ""
+"<span>Amount<br/></span>\n"
+"                                        <span>ordered</span>"
+msgstr ""
+"<span>Amount<br/></span>\n"
+"                                        <span>bestellt</span>"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.deliverynote_internal_content
+msgid ""
+"<span>Amount<br/></span>\n"
+"                                        <span>supplied</span>"
+msgstr ""
+"<span>Amount<br/></span>\n"
+"                                        <span>geliefert</span>"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.accountinvoice_internal_content
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.deliverynote_internal_content
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.saleorder_internal_content
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.saleorder_internal_content_proforma
+msgid ""
+"<span>Article number / Customer Article number<br/></span>\n"
+"                                        <span>Article description</span>"
+msgstr ""
+"<span>Artikelnummer / Kunden-Artikelnummer<br/></span>\n"
+"                                        <span>Artikelbeschreibung</span>"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.purchaseorder_internal_content
+msgid ""
+"<span>Article number / Customer Article number<br/></span>\n"
+"                                    <span>Article description</span>"
+msgstr ""
+"<span>Artikelnummer / Kunden-Artikelnummer<br/></span>\n"
+"                                    <span>Artikelbeschreibung</span>"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.accountinvoice_internal_content
+msgid "<span>Delivery Date:</span>"
+msgstr "<span>Lieferdatum:</span>"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.accountinvoice_internal_content
+msgid "<span>Delivery No:</span>"
+msgstr "<span>Lieferschein-Nr.:</span>"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.accountinvoice_internal_content
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.purchaseorder_internal_content
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.saleorder_internal_content
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.saleorder_internal_content_proforma
+msgid "<span>Delivery address:</span>"
+msgstr "<span>Lieferadresse:</span>"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.accountinvoice_internal_content
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.purchaseorder_internal_content
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.saleorder_internal_content
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.saleorder_internal_content_proforma
+msgid "<span>Delivery conditions:</span>"
+msgstr "<span>Lieferbedingungen:</span>"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.deliverynote_internal_content
+msgid "<span>Delivery specification:</span>"
+msgstr "<span>Lieferspezifikation:</span>"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.frogblue_line_offer
+msgid "<span>ETIM No.: </span>"
+msgstr "<span>ETIM-Nr.: </span>"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.picklist_internal_content
+msgid "<span>Ean Product</span>"
+msgstr "<span>EAN Produkt</span>"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.frogblue_line_offer_delivery
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.frogblue_line_offer_invoice
+msgid "<span>HS Code: </span>"
+msgstr "<span>HS Code: </span>"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.saleorder_internal_content
+msgid "<span>Invoice address:</span>"
+msgstr "<span>Rechnungsadresse:</span>"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.purchaseorder_internal_content
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.saleorder_internal_content
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.saleorder_internal_content_proforma
+msgid "<span>Net Total:</span>"
+msgstr "<span>Netto Total:</span>"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.accountinvoice_internal_content
+msgid "<span>Net total:</span>"
+msgstr "<span>Netto Total:</span>"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.saleorder_internal_content
+msgid "<span>Phone: </span><span>+49-631-520829-120</span>"
+msgstr ""
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.saleorder_internal_content
+msgid ""
+"<span>Planned<br/></span>\n"
+"                                        <span>Delivery Date</span>"
+msgstr ""
+"<span>Geplant<br/></span>\n"
+"                                        <span>Lieferdatum</span>"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.purchaseorder_internal_content
+msgid ""
+"<span>Planned<br/></span>\n"
+"                                    <span>Delivery Date</span>"
+msgstr ""
+"<span>Geplant<br/></span>\n"
+"                                    <span>Lieferdatum</span>"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.accountinvoice_internal_content
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.deliverynote_internal_content
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.purchaseorder_internal_content
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.saleorder_internal_content
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.saleorder_internal_content_proforma
+msgid "<span>Pos.</span>"
+msgstr ""
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.picklist_internal_content
+msgid "<span>Product Name</span>"
+msgstr "<span>Produktname</span>"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.accountinvoice_internal_content
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.picklist_internal_content
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.purchaseorder_internal_content
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.saleorder_internal_content
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.saleorder_internal_content_proforma
+msgid "<span>Qty</span>"
+msgstr "<span>Anzahl</span>"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.deliverynote_internal_content
+msgid "<span>Requested date:</span>"
+msgstr "<span>Gewünschtes Datum:</span>"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.deliverynote_internal_content
+msgid "<span>Shipping type:</span>"
+msgstr "<span>Versandart:</span>"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.picklist_internal_content
+msgid "<span>Stock Location</span>"
+msgstr "<span>Lagerort</span>"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.accountinvoice_internal_content
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.purchaseorder_internal_content
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.saleorder_internal_content
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.saleorder_internal_content_proforma
+msgid "<span>Terms of payment:</span>"
+msgstr "<span>Zahlungsbedingungen:</span>"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.accountinvoice_internal_content
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.purchaseorder_internal_content
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.saleorder_internal_content
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.saleorder_internal_content_proforma
+msgid "<span>Total Price</span>"
+msgstr "<span>Gesamtpreis</span>"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.accountinvoice_internal_content
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.purchaseorder_internal_content
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.saleorder_internal_content
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.saleorder_internal_content_proforma
+msgid "<span>Unit Price</span>"
+msgstr "<span>Preis pro Einheit</span>"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.accountinvoice_internal_content
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.deliverynote_internal_content
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.purchaseorder_internal_content
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.saleorder_internal_content
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.saleorder_internal_content_proforma
+msgid "<span>Unit</span>"
+msgstr "<span>Einheit</span>"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.saleorder_internal_content
+msgid "<span>Valid:</span>"
+msgstr "<span>Gültig:</span>"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.picklist_internal_content
+msgid "<span>Weight</span>"
+msgstr "<span>Gewicht</span>"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.purchaseorder_internal_content
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.saleorder_internal_content
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.saleorder_internal_content_proforma
+msgid ""
+"<strong>\n"
+"                                <span>Gross Total:</span>\n"
+"                            </strong>"
+msgstr ""
+"<strong>\n"
+"                                <span>Gesamtbetrag:</span>\n"
+"                            </strong>"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.accountinvoice_internal_content
+msgid ""
+"<strong>\n"
+"                                <span>Gross total:</span>\n"
+"                            </strong>"
+msgstr ""
+"<strong>\n"
+"                                <span>Gesamtbetrag:</span>\n"
+"                            </strong>"
+
+#. module: frogblue_reports
+#: model:ir.model,name:frogblue_reports.model_res_company
+msgid "Companies"
+msgstr "Unternehmen"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.picklist_internal_content
+msgid "Control:"
+msgstr "Steuerung:"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.accountinvoice_internal_content
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.deliverynote_internal_content
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.saleorder_internal_content_proforma
+msgid "Customer Number"
+msgstr "Kundennummer"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.saleorder_internal_content
+msgid "Customer number"
+msgstr "Kundennummer"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.accountinvoice_internal_content
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.deliverynote_internal_content
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.purchaseorder_internal_content
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.saleorder_internal_content
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.saleorder_internal_content_proforma
+msgid "Date"
+msgstr "Datum"
+
+#. module: frogblue_reports
+#: model:ir.actions.report,name:frogblue_reports.report_frogblue_delivery_note
+msgid "Delivery Note"
+msgstr "Lieferschein"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.saleorder_internal_content
+msgid "Delivery charges are"
+msgstr "Die Lieferkosten sind"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.deliverynote_internal_content
+msgid "Delivery note no."
+msgstr "Lieferschein-Nr."
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.saleorder_internal_content_proforma
+msgid "Delivery will be made no later than one week after receipt of payment."
+msgstr "Die Lieferung erfolgt spätestens eine Woche nach Zahlungseingang."
+
+#. module: frogblue_reports
+#: model:ir.model.fields,field_description:frogblue_reports.field_account_fiscal_position__display_name
+#: model:ir.model.fields,field_description:frogblue_reports.field_account_move__display_name
+#: model:ir.model.fields,field_description:frogblue_reports.field_purchase_order__display_name
+#: model:ir.model.fields,field_description:frogblue_reports.field_report_frogblue_reports_report_frogblue_accountinvoice__display_name
+#: model:ir.model.fields,field_description:frogblue_reports.field_report_frogblue_reports_report_frogblue_deliverynote__display_name
+#: model:ir.model.fields,field_description:frogblue_reports.field_report_frogblue_reports_report_frogblue_picklist__display_name
+#: model:ir.model.fields,field_description:frogblue_reports.field_report_frogblue_reports_report_frogblue_purchaseorder__display_name
+#: model:ir.model.fields,field_description:frogblue_reports.field_report_frogblue_reports_report_frogblue_saleorder__display_name
+#: model:ir.model.fields,field_description:frogblue_reports.field_report_frogblue_reports_report_frogblue_saleorder_proforma__display_name
+#: model:ir.model.fields,field_description:frogblue_reports.field_res_company__display_name
+#: model:ir.model.fields,field_description:frogblue_reports.field_sale_order__display_name
+#: model:ir.model.fields,field_description:frogblue_reports.field_stock_picking__display_name
+msgid "Display Name"
+msgstr "Anzeigename"
+
+#. module: frogblue_reports
+#: model:ir.model,name:frogblue_reports.model_account_fiscal_position
+msgid "Fiscal Position"
+msgstr "Steuerzuordnung"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.view_company_form_inherit_frogblue_reports
+msgid "Footer"
+msgstr "Fußzeile"
+
+#. module: frogblue_reports
+#: model:ir.model.fields,field_description:frogblue_reports.field_res_company__footer_report
+msgid "Footer Report"
+msgstr "Fußzeilenbericht"
+
+#. module: frogblue_reports
+#: model:ir.model,name:frogblue_reports.model_report_frogblue_reports_report_frogblue_accountinvoice
+msgid "Frogblue Account Invoice Report"
+msgstr "Frogblue Konto-Rechnungsbericht"
+
+#. module: frogblue_reports
+#: model:ir.model,name:frogblue_reports.model_report_frogblue_reports_report_frogblue_deliverynote
+msgid "Frogblue Delivery Note Report"
+msgstr "Frogblue Lieferscheinbericht"
+
+#. module: frogblue_reports
+#: model:ir.model,name:frogblue_reports.model_report_frogblue_reports_report_frogblue_picklist
+msgid "Frogblue Pick List Report"
+msgstr "Frogblue Pick Liste Bericht"
+
+#. module: frogblue_reports
+#: model:ir.model,name:frogblue_reports.model_report_frogblue_reports_report_frogblue_purchaseorder
+msgid "Frogblue Purchase Order Report"
+msgstr "Frogblue-Bestellungsbericht"
+
+#. module: frogblue_reports
+#: model:ir.model,name:frogblue_reports.model_report_frogblue_reports_report_frogblue_saleorder
+msgid "Frogblue Sale Order Report"
+msgstr "Frogblue Verkaufsauftrag Bericht"
+
+#. module: frogblue_reports
+#: model:ir.model,name:frogblue_reports.model_report_frogblue_reports_report_frogblue_saleorder_proforma
+msgid "Frogblue Sale Order Report Proforma"
+msgstr "Frogblue Proformarechnung Bericht"
+
+#. module: frogblue_reports
+#: model:ir.model.fields,field_description:frogblue_reports.field_account_fiscal_position__id
+#: model:ir.model.fields,field_description:frogblue_reports.field_account_move__id
+#: model:ir.model.fields,field_description:frogblue_reports.field_purchase_order__id
+#: model:ir.model.fields,field_description:frogblue_reports.field_report_frogblue_reports_report_frogblue_accountinvoice__id
+#: model:ir.model.fields,field_description:frogblue_reports.field_report_frogblue_reports_report_frogblue_deliverynote__id
+#: model:ir.model.fields,field_description:frogblue_reports.field_report_frogblue_reports_report_frogblue_picklist__id
+#: model:ir.model.fields,field_description:frogblue_reports.field_report_frogblue_reports_report_frogblue_purchaseorder__id
+#: model:ir.model.fields,field_description:frogblue_reports.field_report_frogblue_reports_report_frogblue_saleorder__id
+#: model:ir.model.fields,field_description:frogblue_reports.field_report_frogblue_reports_report_frogblue_saleorder_proforma__id
+#: model:ir.model.fields,field_description:frogblue_reports.field_res_company__id
+#: model:ir.model.fields,field_description:frogblue_reports.field_sale_order__id
+#: model:ir.model.fields,field_description:frogblue_reports.field_stock_picking__id
+msgid "ID"
+msgstr ""
+
+#. module: frogblue_reports
+#: model:ir.actions.report,name:frogblue_reports.report_frogblue_account_invoice
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.accountinvoice_internal_content
+msgid "Invoice"
+msgstr "Rechnung"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.accountinvoice_internal_content
+msgid "Invoice correction"
+msgstr "Rechnungskorrektur"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.accountinvoice_internal_content
+msgid "Invoice correction no."
+msgstr "Rechnungskorrektur Nr."
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.accountinvoice_internal_content
+msgid "Invoice no."
+msgstr "Rechnung Nr."
+
+#. module: frogblue_reports
+#: model:ir.model,name:frogblue_reports.model_account_move
+msgid "Journal Entry"
+msgstr "Journaleintrag"
+
+#. module: frogblue_reports
+#: model:ir.model.fields,field_description:frogblue_reports.field_account_fiscal_position____last_update
+#: model:ir.model.fields,field_description:frogblue_reports.field_account_move____last_update
+#: model:ir.model.fields,field_description:frogblue_reports.field_purchase_order____last_update
+#: model:ir.model.fields,field_description:frogblue_reports.field_report_frogblue_reports_report_frogblue_accountinvoice____last_update
+#: model:ir.model.fields,field_description:frogblue_reports.field_report_frogblue_reports_report_frogblue_deliverynote____last_update
+#: model:ir.model.fields,field_description:frogblue_reports.field_report_frogblue_reports_report_frogblue_picklist____last_update
+#: model:ir.model.fields,field_description:frogblue_reports.field_report_frogblue_reports_report_frogblue_purchaseorder____last_update
+#: model:ir.model.fields,field_description:frogblue_reports.field_report_frogblue_reports_report_frogblue_saleorder____last_update
+#: model:ir.model.fields,field_description:frogblue_reports.field_report_frogblue_reports_report_frogblue_saleorder_proforma____last_update
+#: model:ir.model.fields,field_description:frogblue_reports.field_res_company____last_update
+#: model:ir.model.fields,field_description:frogblue_reports.field_sale_order____last_update
+#: model:ir.model.fields,field_description:frogblue_reports.field_stock_picking____last_update
+msgid "Last Modified on"
+msgstr "Zuletzt geändert am"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.deliverynote_internal_content
+msgid "Number of packages:"
+msgstr "Anzahl der Pakete:"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.saleorder_internal_content
+msgid "Offer no."
+msgstr "Angebot Nr."
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.saleorder_internal_content
+msgid "Order confirmation no."
+msgstr "Auftragsbestätigung Nr."
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.purchaseorder_internal_content
+msgid "Order no."
+msgstr "Best.-Nr."
+
+#. module: frogblue_reports
+#: model:ir.actions.report,name:frogblue_reports.report_frogblue_sale_order_proforma
+msgid "Order proforma"
+msgstr "Proforma"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.purchaseorder_internal_content
+msgid "Our General Conditions of Purchase apply, see:"
+msgstr "Es gelten unsere Allgemeinen Einkaufsbedingungen, siehe:"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.deliverynote_internal_content
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.saleorder_internal_content
+msgid "Our General Conditions of Sale shall apply exclusively, see:"
+msgstr "Es gelten ausschließlich unsere Allgemeinen Verkaufsbedingungen, siehe:"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.picklist_internal_content
+msgid "Packer:"
+msgstr "Packer:"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.accountinvoice_internal_content
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.deliverynote_internal_content
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.purchaseorder_internal_content
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.saleorder_internal_content_proforma
+msgid "Phone:"
+msgstr "Telefon:"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.accountinvoice_internal_content
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.deliverynote_internal_content
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.purchaseorder_internal_content
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.saleorder_internal_content
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.saleorder_internal_content_proforma
+msgid "Please notice our WEEE registration number in"
+msgstr "Bitte beachten Sie unsere WEEE-Registrierungsnummer in"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.frogblue_view_picking_form_inherit
+msgid "Print"
+msgstr "Drucken"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.saleorder_internal_content_proforma
+msgid "Proforma invoice no."
+msgstr "Proforma-Rechnung Nr."
+
+#. module: frogblue_reports
+#: model:ir.model,name:frogblue_reports.model_purchase_order
+msgid "Purchase Order"
+msgstr "Beschaffungsauftrag"
+
+#. module: frogblue_reports
+#: model:ir.actions.report,name:frogblue_reports.report_frogblue_purchase_order
+msgid "Purchase Order/RFQ"
+msgstr "Bestellung/Anfrage"
+
+#. module: frogblue_reports
+#: code:addons/frogblue_reports/controllers/sale/portal.py:0
+#, python-format
+msgid "Quotation viewed by customer %s"
+msgstr "Angebot vom Kunden %s angesehen"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.purchaseorder_internal_content
+msgid "RFQ no."
+msgstr "Angebotsanfrage Nr."
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.view_company_form_inherit_frogblue_reports
+msgid "Report Footer"
+msgstr "Fußzeile in Bericht"
+
+#. module: frogblue_reports
+#: model:ir.actions.report,name:frogblue_reports.report_frogblue_sale_order
+msgid "Sale Order"
+msgstr "Auftrag"
+
+#. module: frogblue_reports
+#: model:ir.model,name:frogblue_reports.model_sale_order
+msgid "Sales Order"
+msgstr "Verkaufsauftrag"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.deliverynote_internal_content
+msgid "Serial numbers list:"
+msgstr "Liste der Seriennummern:"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.picklist_internal_content
+msgid "Shipping:"
+msgstr "Versand:"
+
+#. module: frogblue_reports
+#: model:ir.model.fields,field_description:frogblue_reports.field_account_fiscal_position__tax_exempt_text
+msgid "Tax Exempt Text"
+msgstr "Steuerbefreiung Text"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.accountinvoice_internal_content
+msgid ""
+"The goods shall remain the property of the seller until payment is made in full.\n"
+"                                Processing shall be undertaken for the seller as the manufacturer at all times.\n"
+"                                The buyer is entitled to process and sell the purchase item in the normal course of "
+"business\n"
+"                                as long as he does not default on the payment of the purchase price. The buyer hereby\n"
+"                                assigns any receivables resulting from the resale or further processing in full as "
+"security\n"
+"                                to the seller. The seller hereby irrevocably allows the buyer to collect such "
+"receivables.\n"
+"                                Revocation may only be exercised if the security of the purchase price claim is at risk."
+msgstr ""
+"Die Ware bleibt bis zur vollständigen Bezahlung im Eigentum des Verkäufers.\n"
+"                                Die Verarbeitung wird stets für den Verkäufer als Hersteller vorgenommen.\n"
+"                                Der Käufer ist berechtigt, die Kaufsache im ordnungsgemäßen Geschäftsverkehr zu "
+"verarbeiten und zu veräußern\n"
+"                                zu verarbeiten und zu veräußern, solange er mit der Zahlung des Kaufpreises nicht in "
+"Verzug ist. Der Käufer tritt hiermit\n"
+"                                Der Käufer tritt hiermit die aus der Weiterveräußerung oder Weiterverarbeitung "
+"entstehenden Forderungen in voller Höhe zur Sicherheit an den Verkäufer ab.\n"
+"                                an den Verkäufer ab. Der Verkäufer ermächtigt den Käufer hiermit unwiderruflich, diese "
+"Forderungen einzuziehen.\n"
+"                                Der Widerruf kann nur ausgeübt werden, wenn die Sicherheit der Kaufpreisforderung "
+"gefährdet ist."
+
+#. module: frogblue_reports
+#: model:ir.model,name:frogblue_reports.model_stock_picking
+msgid "Transfer"
+msgstr "Lieferung vornehmen"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.purchaseorder_internal_content
+msgid "Vendor Number"
+msgstr "Lieferantennummer"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.saleorder_internal_content
+msgid ""
+"We hope this offer meets your expectations.\n"
+"                                Please quote the offer number as a reference when placing your order."
+msgstr ""
+"Wir hoffen, dass dieses Angebot Ihre Erwartungen erfüllt.\n"
+"                                Bitte geben Sie bei Ihrer Bestellung die Angebotsnummer als Referenz an."
+
+#. module: frogblue_reports
+#: code:addons/frogblue_reports/report/account_invoice.py:0 code:addons/frogblue_reports/report/delivery.py:0
+#: code:addons/frogblue_reports/report/purchase.py:0 code:addons/frogblue_reports/report/sale_order.py:0
+#, python-format
+msgid "Your Contact"
+msgstr "Ihr Ansprechpartner"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.deliverynote_internal_content
+msgid ""
+"consisting\n"
+"of:"
+msgstr ""
+"bestehend aus\n"
+"aus:"
+
+#. module: frogblue_reports
+#: model:ir.model.fields,help:frogblue_reports.field_account_fiscal_position__tax_exempt_text
+msgid "i.e. Tax-exempt intra-Community supply"
+msgstr "Z. B. steuerfreie innergemeinschaftliche Lieferung"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.saleorder_internal_content
+msgid "is entitled to deliver in instalments."
+msgstr "ist zur Teillieferung berechtigt."
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.deliverynote_internal_content
+msgid "kg"
+msgstr ""
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.deliverynote_internal_content
+msgid ""
+"kg -\n"
+"                                    weight:"
+msgstr ""
+"kg -\n"
+"                                    Gewicht:"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.deliverynote_internal_content
+msgid ""
+"mm -\n"
+"                                    net weight:"
+msgstr ""
+"mm -\n"
+"                                    Nettogewicht:"
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.deliverynote_internal_content
+msgid "mm x"
+msgstr ""
+
+#. module: frogblue_reports
+#: model_terms:ir.ui.view,arch_db:frogblue_reports.accountinvoice_internal_content
+msgid "no."
+msgstr "Nr."

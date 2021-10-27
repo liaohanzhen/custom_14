@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+   		<record id="group_show_all_employee_information" model="res.groups">
+        	<field name="name">Show all employee information</field>
+    	</record>
+    </data>
+</odoo>

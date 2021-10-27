@@ -1,0 +1,37 @@
+<odoo>
+	<data>
+		<template id="page_submit_success" name="Success">
+		<t t-call="website.layout">
+		<div id="wrap" class="oe_structure oe_empty">
+		<!-- ======= Hero Section ======= -->
+			<section id="hero-project" class="d-flex justify-content-center align-items-center">
+			  <div class="container position-relative">
+			  </div>
+			</section><!-- End Hero -->
+
+			<main id="main">
+				
+				
+				
+				<section id="about" class="about">
+				  <div class="container">
+					<div class="row">
+					  <div class="col-lg-12 pt-4 pt-lg-0 order-2 order-lg-1 content" align="left">
+						<div class="section-title">
+						  <!-- <h2>About</h2> -->
+						  <h3>Success !</h3>
+						</div>
+						<p>
+							Successfully submitted.
+						</p>
+						</div>
+					</div>
+					</div>
+				</section>
+				
+			</main><!-- End #main -->
+		</div>
+		</t>
+		</template>
+	</data>
+</odoo>

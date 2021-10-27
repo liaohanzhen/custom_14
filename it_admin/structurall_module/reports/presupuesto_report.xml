@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+    <record id="paperformat_structurall_presupuesto" model="report.paperformat">
+        <field name="name">Presupuesto Structural Letter</field>
+        <field name="default" eval="True" />
+        <field name="format">Letter</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">40</field>
+        <field name="margin_bottom">20</field>
+        <field name="margin_left">14</field>
+        <field name="margin_right">14</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">30</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <!--presupuesto Determinado-->
+    <report
+    id="report_presupuesto_structurall"
+    model="sale.order"
+    string="Presupuesto Structurall"
+    report_type="qweb-pdf"
+    name="structurall_module.presupuesto_structurall"
+    file="presupuesto Structurall"
+    paperformat="paperformat_structurall_presupuesto"
+    />
+
+    <!--presupuesto EXTERNAL LAYOUT-->
+    <template id="presupuesto_external_layout">
+        <!-- Multicompany -->
+            <t t-if="not o and doc">
+                <t t-set="o" t-value="doc" />
+            </t>
+            <t t-if="o and 'company_id' in o">
+                <t t-set="company" t-value="o.company_id"></t>
+            </t>
+            <t t-if="not o or not 'company_id' in o">
+                <t t-set="company" t-value="res_company"></t>
+            </t>
+        <div class="header">
+            <div class="row" style="text-align:center;font-size:14px;">
+                    <div class="col-4">
+                        <img t-if="docs.company_id.logo" t-att-src="'data:image/png;base64,%s' % to_text(docs.company_id.logo)"
+                        style="max-height: 160px;max-width: 160px;" />
+                    </div>
+                    <!--TERMINA DIV INFORMACIÓN GENERAL-->
+
+                    <!--EMPIEZA DATOS DEL EMISOR-->
+                    <div class="col-4" style="font-size:14px;">
+                           <span t-field="docs.company_id.name"/><br/>
+                           <span t-field="docs.company_id.street"/> <span t-field="docs.company_id.street2"/><br/>
+                           <span t-field="docs.company_id.city"/> <span t-field="docs.company_id.state_id.name"/> <span t-field="docs.company_id.country_id.name"/><br/>
+                           Tel. <span t-field="docs.company_id.phone"/>
+                    </div>
+                    <!--TERMINA DATOS DEL EMISOR-->
+
+                    <!--INFORMACIÓN GENERAL FACTURA-->
+                    <div class="col-4">
+                         No. <span t-field="docs.name"/><br/>
+                         Fecha y hora <span t-field="docs.date_order"/>
+                    </div>
+            </div>
+            
+        </div>
+
+        <div class="article o_report_layout_standard" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id">
+            <t t-call="web.address_layout"/>
+            <t t-raw="0" />
+        </div>
+
+        <!--EMPIEZA EL FOOTER *ESTA BIEN*-->
+        <div class="footer">
+            
+        </div>
+        
+        <!--TERMINA EL FOOTER-->
+
+
+    </template>
+
+    <template id="presupuesto_structurall">
+        <t t-call="web.html_container">
+        <t t-call="structurall_module.presupuesto_external_layout">
+            <div class="page"> 
+                <div class="oe_structure"/>
+                <br/>
+
+                <!--<t t-if="not docs.autorizado">
+                    <div style="position:absolute;opacity:0.2;z-index:99;width:100%;text-align:center;margin:auto;">
+                        <center><span style="font-size:100px;color:red;">COTIZACIÓN NO VÁLIDA</span></center>
+                    </div>
+                </t>-->
+
+
+                <div style="font-size:14px;text-align:justify">
+
+
+                <table class="table table-bordered">
+                    <tr>
+                        <td style="padding:3px;font-size:17px;"><strong>COTIZACIÓN</strong></td>
+                        <td style="padding:3px;"><strong>NO.</strong></td>
+                        <td style="padding:3px;"><span t-field="docs.name"/></td>
+                        <td style="padding:3px;"><strong>FECHA</strong></td>
+                        <td style="padding:3px;"><span t-field="docs.date_order"/></td>
+                    </tr>
+                    <tr>
+                        <td style="padding:3px;"><strong>Cliente</strong></td>
+                        <td style="padding:3px;"><strong>NOMBRE:</strong></td>
+                        <td style="padding:3px;"><span t-field="docs.partner_id.name"/></td>
+                        <td style="padding:3px;"><strong>CIUDAD DESTINO</strong></td>
+                        <td style="padding:3px;"><span t-field="docs.ciudad_destino"/></td>
+                    </tr>
+                    <tr>
+                        <td style="padding:3px;"></td>
+                        <td style="padding:3px;"><strong>TELEFONO:</strong></td>
+                        <td style="padding:3px;"><span t-field="docs.partner_id.phone"/></td>
+                        <td style="padding:3px;"><strong>EMAIL:</strong></td>
+                        <td style="padding:3px;"><span t-field="docs.partner_id.email"/></td>
+                    </tr>
+                </table>
+
+            <table class="table table-bordered" style="bordercolor:#312F2F;">
+                <thead style="display: table-header-group;">
+                    <tr style="page-break-inside: avoid;background-color: #312F2F;color:#ffffff;">
+                        <td style="padding:3px;width:70%;">DESCRIPCION</td>
+                        <td style="padding:3px;width:10%;">PU</td>
+                        <td style="padding:3px;width:10%;">CANTIDAD</td>
+                        <td style="padding:3px;width:10%;">IMPORTE</td>
+                    </tr>
+                </thead>
+
+                <tbody style="display: table-row-group;">
+                    <t t-set="current_subtotal" t-value="0"/>
+                    <t t-set="current_total" t-value="0"/>
+                    <t t-set="current_mensual_iva" t-value="0"/>
+                    <t t-set="current_mensual_subtotal" t-value="0"/>
+                    <t t-set="no_partida" t-value="0"/>
+                    <t t-set="no_linea" t-value="0"/>
+                    <t t-set="total_gastos" t-value="0"/>
+
+                    <t t-foreach="docs.order_line" t-as="line">
+                        <t t-set="current_subtotal" t-value="current_subtotal + line.price_subtotal"/>
+                        <t t-set="current_total" t-value="current_total + line.price_total"/>
+                        <t t-if="line.product_id.rent_ok">
+                          <t t-set="current_mensual_iva" t-value="current_mensual_iva + line.price_total"/>
+                          <t t-set="current_mensual_subtotal" t-value="current_mensual_subtotal + line.price_subtotal"/>
+                        </t>
+                        <t t-if="not line.product_id.rent_ok">
+                          <t t-set="total_gastos" t-value="total_gastos + line.price_total"/>
+                        </t>
+                        <tr style="page-break-inside: avoid;">
+
+                           <!-- Agrega precio de los productos -->
+                           <t t-if="not line.display_type" name="order_line_structurall">
+                               <td style="padding:3px;width:70%;">
+                                   <span t-field="line.name"/>
+                               </td>
+                               <td style="padding:3px;width:10%;">
+                                   <span t-field="line.price_unit"/>
+                               </td>
+                               <td style="padding:3px;width:10%;">
+                                   <span t-field="line.product_uom_qty"/>
+                               </td>
+                               <td style="padding:3px;width:10%;">
+                                   <span t-field="line.price_subtotal"/> 
+                               </td>
+                               <t t-set="no_linea" t-value="no_linea + 1"/>
+                           </t>
+
+                             <!--ADD SECTIÓN IN REPORT-->
+                           <t t-if="line.display_type == 'line_section'">
+                               <td colspan="99" style="background-color:#818181;color:#ffffff;font-weight:bold;font-size:14px;padding:3px;">
+                                    <span t-field="line.name" t-options="{'widget': 'text'}"/>
+                                </td>
+                                <t t-set="current_section" t-value="line"/>
+                                <t t-set="current_mensual_iva" t-value="0"/>
+                                <t t-set="current_mensual_subtotal" t-value="0"/>
+                                <t t-set="current_total" t-value="0"/>
+                                <t t-set="total_gastos" t-value="0"/>
+                                <t t-set="no_linea" t-value="0"/>
+                            </t>
+                                
+                            <t t-if="line.display_type == 'line_note'">
+                                <td colspan="99" style="background-color:#818181;color:#ffffff;font-weight:bold;font-size:14px;padding:3px;">
+                                    <span t-field="line.name" t-options="{'widget': 'text'}"/>
+                                </td>
+                            </t>
+
+                            <t t-if="no_linea == 2">
+                                <tr class="is-subtotal text-right">
+                                        <td colspan="99" style="padding:3px;">
+                                            <strong class="mr16" style="font-size:15px;font-weight:bold;">IVA</strong>
+                                            <span t-esc="current_mensual_iva - current_mensual_subtotal" t-options='{"widget": "monetary", "display_currency": docs.currency_id}'/>
+                                        </td>
+                                </tr>
+                                <tr class="is-subtotal text-left">
+                                        <td colspan="99" style="padding:3px;background-color:#818181;color:#ffffff;font-weight:bold;">
+                                            <strong class="mr16" style="font-size:15px;font-weight:bold;">FACTURACION MENSUAL</strong>
+                                            <span t-esc="current_mensual_iva" t-options='{"widget": "monetary", "display_currency": docs.currency_id}' style="float:right;"/>
+                                        </td>
+                                </tr>
+                            </t>
+                            <t t-if="no_linea == 3">
+                                <tr class="is-subtotal text-left">
+                                        <td colspan="99" style="padding:3px;">
+                                            <strong class="mr16" style="font-size:15px;font-weight:bold;">IVA</strong>
+                                            <span t-esc="line.price_total - line.price_subtotal" t-options='{"widget": "monetary", "display_currency": docs.currency_id}' style="float:right;"/>
+                                        </td>
+                                </tr>
+                            </t>
+                            <t t-if="no_linea == 4">
+                                <tr class="is-subtotal text-right">
+                                        <td colspan="99" style="padding:3px;">
+                                            <strong class="mr16" style="font-size:15px;font-weight:bold;">GASTOS INICIALES</strong>
+                                            <span t-esc="total_gastos" t-options='{"widget": "monetary", "display_currency": docs.currency_id}'/>
+                                        </td>
+                                </tr>
+                                <tr class="is-subtotal text-right">
+                                        <td colspan="99" style="padding:3px;">
+                                            <strong class="mr16" style="font-size:15px;font-weight:bold;">TOTAL FACTURACIÓN + GASTOS INICIALES</strong>
+                                            <span t-esc="current_total" t-options='{"widget": "monetary", "display_currency": docs.currency_id}'/>
+                                        </td>
+                                </tr>
+                                
+                            </t>
+<!--
+                                <t t-if="line_last or docs.order_line[line_index+1].display_type == 'line_section'">
+                                    <tr class="is-subtotal text-right">
+                                            <td colspan="99" style="padding:3px;">
+                                                <strong class="mr16" style="font-size:15px;font-weight:bold;">TOTAL FACTURACIÓN + GASTOS INICIALES</strong>
+                                                <span t-esc="docs.amount_total" t-options='{"widget": "monetary", "display_currency": docs.currency_id}' />
+                                            </td>
+                                    </tr>
+                                </t>
+-->
+                            
+                        </tr>
+                    </t>
+                </tbody>
+
+            </table>
+            <t t-if="docs.note">
+            <table class="table table-bordered" style="text-align:justify;bordercolor:#686767;">
+                    <tr>
+                        <th style="background-color: #686767;color:#ffffff;padding:2px;">
+                            NOTAS
+                        </th>
+                    </tr>
+                    <tr>
+                        <td style="font-size:15px;">
+                            <span t-field="docs.note"/>
+                        </td>
+                        
+                    </tr>
+                </table>
+            </t>
+
+            <table class="table table-bordered">
+                    <tr>
+                        <td style="width:50%;">
+                            <t t-if="docs.team_id.user_id.id != docs.user_id.id">
+                                <span t-field="docs.user_id.name"/><br/>
+                                <span t-field="docs.user_id.partner_id.street"/> <span t-field="docs.user_id.partner_id.street2"/> <span t-field="docs.user_id.partner_id.zip"/> <br/>
+                                <span t-field="docs.user_id.partner_id.city"/><br/> 
+                                T. <span t-field="docs.user_id.phone"/> | <span t-field="docs.user_id.email"/>
+							</t>
+                            <t t-if="docs.team_id.user_id.id == docs.user_id.id">
+                                <span t-field="docs.company_id.name"/><br/>
+                                <span t-field="docs.company_id.street"/> <span t-field="docs.company_id.street2"/><br/>
+                                <span t-field="docs.company_id.city"/> <span t-field="docs.company_id.state_id.name"/> <span t-field="docs.company_id.country_id.name"/><br/>
+                                T. <span t-field="docs.company_id.phone"/>
+							</t>
+                        </td>
+                        <td style="width:50%;">
+                            <strong>Contacto</strong><br/>
+                            <div class="row">
+                                <div class="col-6"><img t-if="docs.company_id.logo" t-att-src="'data:image/png;base64,%s' % to_text(docs.company_id.logo)" style="max-height: 100px;max-width: 100px;" /></div>
+                                <div class="col-6">
+                                    <img t-att-src="'/structurall_module/static/img/esr.png'"/>
+                                </div>
+                            </div>
+
+                        </td>
+                    </tr>
+                </table>
+                <!--<table class="table table-bordered" style="text-align:justify;bordercolor:#686767;">
+                    <tr>
+                        <th style="background-color: #686767;color:#ffffff;padding:2px;">
+                            ACLARACIONES
+                        </th>
+                    </tr>
+                    <tr>
+                        <td style="font-size:15px;">
+                            El terreno donde se instalará la unidad móvil deberá ser un sitio firme y plano sin pendientes, con una inclinación del terreno de no más de 15 centímetros de un extremo a otro, accesible con camión, sin impedimentos u obstrucciones indebidas, sobre el cual colocar la unidad móvil. <br/>
+                            Los precios en pesos mencionados en la cotización anterior están sujetos a cambios, dicho documento tiene una vigencia de 1(un) mes.
+                        </td>
+                        
+                    </tr>
+                </table>-->
+                <!--<center><strong>ATENTAMENTE</strong></center>
+                <br/><br/><br/>
+                <center>______________________________________________</center><br/>
+                <center><strong><span t-field="docs.user_id.name"/></strong></center><br/>
+                <center><span t-field="docs.user_id.email"/></center>-->
+                </div>
+            </div>
+        </t>
+        </t>
+    </template>
+
+
+</data>
+
+</odoo>

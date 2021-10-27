@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://store.webkul.com/license.html/ -->
+<odoo>
+    <data noupdate="1">
+        <record id="customer_quote_demo_data1" model="quote.quote">
+            <field name="product_id" ref="website_quote_system.product_demo_data1"/>
+            <field name="price">80</field>
+            <field name="qty">20</field>
+            <field name="description">Need 20 bottles @Rs.80/unit. </field>
+            <field name="customer_id" ref="base.res_partner_2"/>
+            <field name="status">pending</field>
+        </record>
+
+        <record id="customer_quote_demo_data2" model="quote.quote">
+            <field name="product_id" ref="website_quote_system.product_demo_data2"/>
+            <field name="price">900</field>
+            <field name="qty">5</field>
+            <field name="description">Quote for 5 shoes @Rs.900/unit. </field>
+            <field name="customer_id" ref="base.res_partner_1"/>
+        </record>
+        <function model="quote.quote" name="but_approve_quote" eval="[ref('website_quote_system.customer_quote_demo_data2')]"/>
+
+        <record id="customer_quote_demo_data3" model="quote.quote">
+            <field name="product_id" ref="website_quote_system.product_demo_data3"/>
+            <field name="price">350</field>
+            <field name="qty">20</field>
+            <field name="description">Quote for 20 goggles @Rs.350 each. </field>
+            <field name="customer_id" ref="base.res_partner_2"/>
+        </record>
+        <function model="quote.quote" name="but_approve_quote" eval="[ref('website_quote_system.customer_quote_demo_data3')]"/>
+
+        <record id="customer_quote_demo_data4" model="quote.quote">
+            <field name="product_id" ref="website_quote_system.product_demo_data1"/>
+            <field name="price">70</field>
+            <field name="qty">10</field>
+            <field name="description">Need 10 bottles @Rs.70/unit. </field>
+            <field name="customer_id" ref="base.res_partner_2"/>
+        </record>
+        <function model="quote.quote" name="but_approve_quote" eval="[ref('website_quote_system.customer_quote_demo_data4')]"/>
+
+        <record id="customer_quote_demo_data5" model="quote.quote">
+            <field name="product_id" ref="website_quote_system.product_demo_data3"/>
+            <field name="price">400</field>
+            <field name="qty">15</field>
+            <field name="description">Need 15 bottles @Rs.400/unit. </field>
+            <field name="customer_id" ref="base.res_partner_2"/>
+        </record>
+        <function model="quote.quote" name="but_approve_quote" eval="[ref('website_quote_system.customer_quote_demo_data5')]"/>
+
+        <record id="customer_quote_demo_data6" model="quote.quote">
+            <field name="product_id" ref="website_quote_system.product_demo_data1"/>
+            <field name="price">50</field>
+            <field name="qty">10</field>
+            <field name="description">Need 10 bottles @Rs.50/unit. </field>
+            <field name="customer_id" ref="base.res_partner_1"/>
+        </record>
+        <function model="quote.quote" name="but_reject_quote" eval="[ref('website_quote_system.customer_quote_demo_data6')]"/>
+
+        <record id="customer_quote_demo_data7" model="quote.quote">
+            <field name="product_id" ref="website_quote_system.product_demo_data3"/>
+            <field name="price">400</field>
+            <field name="qty">20</field>
+            <field name="customer_id" ref="base.res_partner_1"/>
+        </record>
+        <function model="quote.quote" name="but_approve_quote" eval="[ref('website_quote_system.customer_quote_demo_data7')]"/>
+
+        <record id="customer_quote_demo_data8" model="quote.quote">
+            <field name="product_id" ref="website_quote_system.product_demo_data2"/>
+            <field name="price">800</field>
+            <field name="qty">8</field>
+            <field name="description">Quote for 8 shoes @Rs.800 each </field>
+            <field name="customer_id" ref="base.res_partner_1"/>
+        </record>
+        <function model="quote.quote" name="but_approve_quote" eval="[ref('website_quote_system.customer_quote_demo_data8')]"/>
+    </data>
+</odoo>
